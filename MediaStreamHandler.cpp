@@ -1,7 +1,9 @@
 #include "Protos.h"
 #include "utils.h"
-#include "SocketHandler.h"
+#include "TCPHandler.h"
+#include "UDPHandler.h"
 #include "MediaStreamHandler.h"
+
 #include <iostream>
 #include <cstdint>
 #include <cstring>
@@ -12,8 +14,6 @@
 #include <mutex>
 #include <utility>
 #include <random>
-#define SOCK SocketHandler::getInstance()
-using namespace std;
 
 MediaStreamHandler::MediaStreamHandler(): isStreaming(false), isPaused(false) {}
 
@@ -45,11 +45,11 @@ void MediaStreamHandler::handleMediaStream() {
         return;
     }
 
-    unique_lock<mutex> lock(mtx);
+    // std::unique_lock<std::mutex> lock(mtx);
 
     while (isStreaming) {
-        // 스트리밍을 시작하는 신호를 기다림
-        condition.wait(lock, [this] { return !isPaused || !isStreaming; });
+        // wait for streaming start sign 
+        // condition.wait(lock, [this] { return !isPaused || !isStreaming; });
 
         if (!isStreaming) break;  // TEARDOWN 요청 시 종료
 
@@ -57,7 +57,7 @@ void MediaStreamHandler::handleMediaStream() {
             unsigned char rtpPacket[sizeof(Protos::RTPHeader) + payloadSize];
 
             if (captureAudio(pcmHandle, buffer, frames, rc, payload) < 0) {
-                cerr << "오디오 캡처 실패..." << endl;
+                std::cerr << "Error: fail to capture audio" << std::endl;
                 break;
             }
 
@@ -66,7 +66,7 @@ void MediaStreamHandler::handleMediaStream() {
             memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
             memcpy(rtpPacket + sizeof(rtpHeader), payload, payloadSize);
 
-	        cout << "RTP " << packetCount << " sent" << endl;
+	        std::cout << "RTP " << packetCount << " sent" << std::endl;
 
             SOCK.sendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
@@ -75,13 +75,13 @@ void MediaStreamHandler::handleMediaStream() {
             packetCount++;
             octetCount += payloadSize;
 
-            if (packetCount % 10 == 0) {
-                cout << "RTCP sent" << endl;
+            if (packetCount % 100 == 0) {
+                std::cout << "RTCP sent" << std::endl;
                 protos.createSR(&sr, timestamp, packetCount, octetCount);
                 SOCK.sendSenderReport(&sr, sizeof(sr));
             }
 	    }
-        this_thread::sleep_for(std::chrono::milliseconds(20));
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }
 
@@ -155,14 +155,14 @@ int MediaStreamHandler::captureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int&
     rc = snd_pcm_readi(pcmHandle, buffer, frames);
     if (rc == -EPIPE) {
         // 오버런
-        cerr << "Overrun occurred" << endl;
+        std::cerr << "Error: Overrun occurred" << std::endl;
         snd_pcm_prepare(pcmHandle);
         return -1;
     } else if (rc < 0) {
-        cerr << "Error from read: " << snd_strerror(rc) << endl;
+        std::cerr << "Error: from read: " << snd_strerror(rc) << std::endl;
         return -1;
     } else if (rc != frames) {
-        cerr << "Short read, read " << rc << " frames" << endl;
+        std::cerr << "Error: short read, read " << rc << " frames" << std::endl;
     }
 
     for (int i = 0; i < frames; i++)
@@ -171,8 +171,8 @@ int MediaStreamHandler::captureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int&
     return 0;
 }
 
-void MediaStreamHandler::setCmd(const string& cmd) {
-    lock_guard<mutex> lock(mtx);
+void MediaStreamHandler::setCmd(const std::string& cmd) {
+    std::lock_guard<std::mutex> lock(mtx);
     if (cmd == "PLAY") {
         isStreaming = true;
         isPaused = false;

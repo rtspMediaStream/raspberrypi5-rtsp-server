@@ -1,34 +1,39 @@
 #include "utils.h"
 #include "ClientSession.h"
-#include "SocketHandler.h"
+#include "TCPHandler.h"
+#include "UDPHandler.h"
 #include "RequestHandler.h"
 #include "MediaStreamHandler.h"
+
 #include <thread>
 #include <iostream>
-#define SOCK SocketHandler::getInstance()
-using namespace std;
+
+#define TCP TCPHandler::getInstance()
+
+TCPHandler* TCPHandler::instance = nullptr;
 
 int main() {
     // TCP 소켓 생성
-    SOCK.createTCPSocket();
+    TCP->createTCPSocket();
 
-    cout << "RTSP 서버 시작" << endl;
+    std::cout << "Start RTSP server" << std::endl;
 
     while (true) {
-        // 클라이언트 접속 대기
-        int clientSocket = SOCK.acceptClientConnection();
+        // wait for client
+        int clientSocket = TCP->acceptClientConnection();
         if (clientSocket == -1) {
-            cerr << "클라이언트 접속 오류" << endl;
+            std::cerr << "Error: Client accept failed" << std::endl;
             continue; // 오류 시 다음 클라이언트 접속 대기
         }
-        cout << "클라이언트 접속 완료" << endl;
+
+        std::cout << "Client connected" << std::endl;
 
         auto mediaStreamHandler = MediaStreamHandler();
         auto requestHandler = RequestHandler(mediaStreamHandler);
         auto clientSession = ClientSession((int)utils::getRanNum(16));
 
         // 클라이언트 세션을 새로운 스레드에서 처리
-        thread clientThread(&RequestHandler::handleRequest, requestHandler, clientSocket, &clientSession);
+        std::thread clientThread(&RequestHandler::handleRequest, requestHandler, clientSocket, &clientSession);
         // 스레드 비동기 처리
         clientThread.detach();
     }

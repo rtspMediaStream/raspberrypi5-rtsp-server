@@ -1,6 +1,6 @@
 CMakeFiles/rtsp.dir/SocketHandler.cpp.o: \
- /home/hyetae/rtsp/SocketHandler.cpp /usr/include/stdc-predef.h \
- /home/hyetae/rtsp/SocketHandler.h /home/hyetae/rtsp/Protos.h \
+ /home/hyetae/RTSP/SocketHandler.cpp /usr/include/stdc-predef.h \
+ /home/hyetae/RTSP/SocketHandler.h /home/hyetae/RTSP/Protos.h \
  /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \

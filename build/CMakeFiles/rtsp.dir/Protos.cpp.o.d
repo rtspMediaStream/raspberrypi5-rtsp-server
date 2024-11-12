@@ -1,5 +1,5 @@
-CMakeFiles/rtsp.dir/Protos.cpp.o: /home/hyetae/rtsp/Protos.cpp \
- /usr/include/stdc-predef.h /home/hyetae/rtsp/Protos.h \
+CMakeFiles/rtsp.dir/Protos.cpp.o: /home/hyetae/RTSP/Protos.cpp \
+ /usr/include/stdc-predef.h /home/hyetae/RTSP/Protos.h \
  /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
@@ -22,7 +22,7 @@ CMakeFiles/rtsp.dir/Protos.cpp.o: /home/hyetae/rtsp/Protos.cpp \
  /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/c++/12/cstddef \
  /usr/lib/gcc/aarch64-linux-gnu/12/include/stddef.h \
- /home/hyetae/rtsp/utils.h /usr/include/c++/12/string \
+ /home/hyetae/RTSP/utils.h /usr/include/c++/12/string \
  /usr/include/c++/12/bits/stringfwd.h \
  /usr/include/c++/12/bits/memoryfwd.h \
  /usr/include/c++/12/bits/char_traits.h \

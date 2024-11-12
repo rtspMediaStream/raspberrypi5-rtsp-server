@@ -1,22 +1,21 @@
-#include "RequestHandler.h"
 #include "utils.h"
+#include "RequestHandler.h"
 
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <thread>
 
-#define SOCK SocketHandler::getInstance()
-
-using namespace std;
+#define TCP TCPHandler::getInstance()
 
 RequestHandler::RequestHandler(MediaStreamHandler& mediaStreamHandler)
         : mediaStreamHandler(mediaStreamHandler), isAlive(true) {}
 
 void RequestHandler::handleRequest(int clientSocket, ClientSession* session) {
-    cout << "클라이언트 스레드 생성" << endl;
+    std::cout << "create Client Session" << std::endl;
+
     while (isAlive) {
-        string request = SOCK.receiveRTSPRequest(clientSocket);
+        string request = TCP->receiveRTSPRequest(clientSocket);
         if (request.empty()) {
             cerr << "Invalid RTSP request received." << endl;
             return;
@@ -108,7 +107,7 @@ void RequestHandler::handleOptionsRequest(int clientSocket, int cseq) {
                            "CSeq: " + to_string(cseq) + "\r\n"
                            "Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n"
                            "\r\n";
-    SOCK.sendRTSPResponse(clientSocket, response);
+    TCP->sendRTSPResponse(clientSocket, response);
 }
 
 void RequestHandler::handleDescribeRequest(int clientSocket, int cseq, ClientSession* session, const string& request) {
@@ -138,7 +137,7 @@ void RequestHandler::handleDescribeRequest(int clientSocket, int cseq, ClientSes
                 "Content-Type: application/sdp\r\n"
                 "Content-Length: " + to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
-    SOCK.sendRTSPResponse(clientSocket, response);
+    TCP->sendRTSPResponse(clientSocket, response);
 }
 
 void RequestHandler::handleSetupRequest(int clientSocket, int cseq, ClientSession* session, const string& request) {
@@ -160,7 +159,7 @@ void RequestHandler::handleSetupRequest(int clientSocket, int cseq, ClientSessio
                            "Session: " + to_string(session->getSessionId())
                            + "\r\n"
                              "\r\n";
-    SOCK.sendRTSPResponse(clientSocket, response);
+    TCP->sendRTSPResponse(clientSocket, response);
 
     thread mediaStreamThread(&MediaStreamHandler::handleMediaStream, &mediaStreamHandler);
     mediaStreamThread.detach();
@@ -174,7 +173,7 @@ void RequestHandler::handlePlayRequest(int clientSocket, int cseq, ClientSession
                            "Session: " + to_string(session->getSessionId())
                            + "\r\n"
                              "\r\n";
-    SOCK.sendRTSPResponse(clientSocket, response);
+    TCP->sendRTSPResponse(clientSocket, response);
 
     mediaStreamHandler.setCmd("PLAY");
 }
@@ -188,7 +187,7 @@ void RequestHandler::handlePauseRequest(int clientSocket, int cseq, ClientSessio
                            + "\r\n"
                              "\r\n";
 
-    SOCK.sendRTSPResponse(clientSocket, response);
+    TCP->sendRTSPResponse(clientSocket, response);
 
     mediaStreamHandler.setCmd("PAUSE");
     isAlive = false;
@@ -203,7 +202,7 @@ void RequestHandler::handleTeardownRequest(int clientSocket, int cseq, ClientSes
                            + "\r\n"
                              "\r\n";
 
-    SOCK.sendRTSPResponse(clientSocket, response);
+    TCP->sendRTSPResponse(clientSocket, response);
 
     mediaStreamHandler.setCmd("TEARDOWN");
 }

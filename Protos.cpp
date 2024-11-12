@@ -1,6 +1,8 @@
 #include "Protos.h"
 #include "utils.h"
+
 #include <arpa/inet.h>
+
 Protos::Protos(uint32_t ssrc): ssrc(ssrc) {}
 
 void Protos::createRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp) {
@@ -14,6 +16,7 @@ void Protos::createRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned 
     header->timestamp = htonl(timestamp);
     header->ssrc = htonl(ssrc);
 }
+
 void Protos::createSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount) {
     sr->version = 2;
     sr->p = 0;

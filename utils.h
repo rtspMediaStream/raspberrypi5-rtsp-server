@@ -3,7 +3,6 @@
 
 #include <string>
 #include <utility>
-using namespace std;
 
 class utils {
 public:

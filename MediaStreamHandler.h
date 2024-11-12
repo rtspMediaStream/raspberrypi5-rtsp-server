@@ -1,12 +1,12 @@
 #ifndef RTSP_MEDIASTREAMHANDLER_H
 #define RTSP_MEDIASTREAMHANDLER_H
 
-#include "SocketHandler.h"
-#include <condition_variable>
+#include "TCPHandler.h"
+#include "UDPHandler.h"
+
 #include <atomic>
 #include <alsa/asoundlib.h>
-
-using namespace std;
+#include <condition_variable>
 
 class MediaStreamHandler {
 public:
@@ -18,14 +18,14 @@ public:
     void initAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& params, int& rc, unsigned int& sampleRate, int& dir);
     int captureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int& frames, int& rc, unsigned char*& payload);
 
-    void setCmd(const string& cmd);
+    void setCmd(const std::string& cmd);
 
 private:
-    atomic<bool> isStreaming;
-    atomic<bool> isPaused;
+    std::atomic<bool> isStreaming;
+    std::atomic<bool> isPaused;
 
-    mutex mtx;  // 상태 보호용 뮤텍스
-    condition_variable condition;  // 스트리밍 상태 제어용 조건 변수
+    std::mutex mtx;
+    std::condition_variable condition; // condition variable for streaming state controll
 };
 
 #endif //RTSP_MEDIASTREAMHANDLER_H

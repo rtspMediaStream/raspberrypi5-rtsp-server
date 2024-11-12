@@ -1,7 +1,7 @@
 CMakeFiles/rtsp.dir/ClientSession.cpp.o: \
- /home/hyetae/rtsp/ClientSession.cpp /usr/include/stdc-predef.h \
- /home/hyetae/rtsp/ClientSession.h /home/hyetae/rtsp/SocketHandler.h \
- /home/hyetae/rtsp/Protos.h /usr/include/c++/12/cstdint \
+ /home/hyetae/RTSP/ClientSession.cpp /usr/include/stdc-predef.h \
+ /home/hyetae/RTSP/ClientSession.h /home/hyetae/RTSP/SocketHandler.h \
+ /home/hyetae/RTSP/Protos.h /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
