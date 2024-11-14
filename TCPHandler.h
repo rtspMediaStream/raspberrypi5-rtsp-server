@@ -5,6 +5,7 @@
 
 #include <string>
 #include <arpa/inet.h>
+#include <unordered_map>
 
 class TCPHandler {
 public:
@@ -15,9 +16,9 @@ public:
 
     void CreateTCPSocket();
 
-    int AcceptClientConnection();
+    std::pair<int, std::string> AcceptClientConnection();
 
-    std::string ReceiveRTSPRequest(int clientSocket);
+    std::string ReceiveRTSPRequest(int sessionId);
 
     void SendRTSPResponse(int clientSocket, std::string& response);
 
@@ -35,6 +36,8 @@ private:
     int tcpSocket;
 
     sockaddr_in tcpAddr;
+
+    std::unordered_map<int, int> socketTable;
 };
 
 #endif //RTSP_TCPHANDLER_H

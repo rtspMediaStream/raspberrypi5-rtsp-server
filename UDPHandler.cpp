@@ -7,14 +7,15 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-UDPHandler::UDPHandler(): rtpSocket(-1), rtcpSocket(-1) {}
+UDPHandler::UDPHandler(const std::shared_ptr<Info>& client)
+    : client(client), rtpSocket(-1), rtcpSocket(-1) {}
 
 UDPHandler::~UDPHandler() {
     if (rtpSocket != -1) close(rtpSocket);
     if (rtcpSocket != -1) close(rtcpSocket);
 }
 
-bool UDPHandler::CreateUDPSocket(int port1, int port2) {
+bool UDPHandler::CreateUDPSocket() {
     rtpSocket = socket(AF_INET, SOCK_DGRAM, 0);
     if (rtpSocket == -1) {
         std::cerr << "rtp 소켓 생성 실패" << std::endl;
@@ -29,13 +30,13 @@ bool UDPHandler::CreateUDPSocket(int port1, int port2) {
 
     memset(&rtpAddr, 0, sizeof(rtpAddr));
     rtpAddr.sin_family = AF_INET;
-    rtpAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    rtpAddr.sin_port = htons(port1);
+    rtpAddr.sin_port = htons(client->rtpPort);
+    inet_pton(AF_INET, client->ip.c_str(), &rtpAddr.sin_addr);
 
     memset(&rtcpAddr, 0, sizeof(rtcpAddr));
     rtcpAddr.sin_family = AF_INET;
-    rtcpAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    rtcpAddr.sin_port = htons(port2);
+    rtcpAddr.sin_port = htons(client->rtcpPort);
+    inet_pton(AF_INET, client->ip.c_str(), &rtcpAddr.sin_addr);
 
     return true;
 }

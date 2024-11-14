@@ -10,7 +10,7 @@
 
 class RequestHandler {
 public:
-    RequestHandler(const std::shared_ptr<Info>& client);
+    RequestHandler(const std::shared_ptr<Info>& clit);
 
     void HandleRequest();
 

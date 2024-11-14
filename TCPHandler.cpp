@@ -44,7 +44,7 @@ void TCPHandler::CreateTCPSocket() {
     }
 }
 
-int TCPHandler::AcceptClientConnection() {
+    std::pair<int, std::string> TCPHandler::AcceptClientConnection() {
     socklen_t clientAddrLen = sizeof(tcpAddr);
     int clientSocket = accept(tcpSocket, (sockaddr*)&tcpAddr, &clientAddrLen);
 
@@ -55,8 +55,8 @@ int TCPHandler::AcceptClientConnection() {
 
     char clientIP[INET_ADDRSTRLEN];
     inet_ntop(AF_INET, &tcpAddr.sin_addr, clientIP, INET_ADDRSTRLEN);
-
-    return clientSocket;
+    
+    return { clientSocket, clientIP };
 }
 
 std::string TCPHandler::ReceiveRTSPRequest(int clientSocket) {

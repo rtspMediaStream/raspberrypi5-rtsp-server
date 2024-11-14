@@ -2,22 +2,21 @@
 #define RTSP_UDPHANDLER_H
 
 #include "Protos.h"
+#include "ClientSession.h"
 
 #include <string>
 #include <arpa/inet.h>
 
 class UDPHandler {
 public:
-    UDPHandler();
+    UDPHandler(const std::shared_ptr<Info>& client);
     ~UDPHandler();
 
-    bool CreateUDPSocket(int port1, int port2);
+    bool CreateUDPSocket();
 
     void SendRTPPacket(unsigned char* rtpPacket, size_t packetSize);
 
     void SendSenderReport(Protos::SenderReport* senderReport, size_t srSize);
-
-    void SetUDPSocket(int port1, int port2);
 
     int& GetRTPSocket();
     int& GetRTCPSocket();
@@ -27,6 +26,8 @@ public:
 
 
 private:
+    std::shared_ptr<Info> client;
+
     int rtpSocket;
     int rtcpSocket;
 

@@ -1,31 +1,32 @@
 #include "utils.h"
 #include "ClientSession.h"
 
-ClientSession::ClientSession() {
-    sessionId = (int)utils::GetRanNum(16);
-    version = sessionId;
-    state = "INIT";
+ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
+    info->id = (int)utils::GetRanNum(16);
+    info->version = info->id;
+    info->tcpSocket = newClient.first;
+    info->ip = newClient.second;
+    info->state = "INIT";
 
-    Handlers::requestHandler = new RequestHandler();
+    info->rtpPort = -1;
+    info->rtcpPort = -1;
+
+    Handlers::requestHandler = new RequestHandler(info);
+    Handlers::udpHandler = new UDPHandler(info);
 }
 
-int ClientSession::GetSessionId() const { return sessionId; }
+int ClientSession::GetSessionId() const { return info->id; }
 
-int ClientSession::GetVersion() const { return version; }
+int ClientSession::GetVersion() const { return info->version; }
 
-std::string ClientSession::GetState() const { return state; }
+std::string ClientSession::GetState() const { return info->state; }
 
-std::pair<int, int> ClientSession::GetPort() const { return {rtpPort, rtcpPort}; }
-
-// void ClientSession::SetPort(int port1, int port2) {
-//     rtpPort = port1;
-//     rtcpPort = port2;
-
-//     SOCK.createUDPSocket(rtpPort, rtcpPort);
-// }
+std::pair<int, int> ClientSession::GetPort() const {
+    return { Handlers::udpHandler->GetRTPPort(), Handlers::udpHandler->GetRTCPPort()};
+}
 
 void ClientSession::SetState(const std::string& newState) {
     // std::lock_guard<std::mutex> lock(mtx);
-    state = newState;
-    version++;
+    info->state = newState;
+    info->version++;
 }
