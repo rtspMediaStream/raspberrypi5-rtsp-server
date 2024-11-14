@@ -1,7 +1,7 @@
 #ifndef RTSP_CLIENTSESSION_H
 #define RTSP_CLIENTSESSION_H
 
-#include "TCPHandler.h"
+#include "RequestHandler.h"
 
 #include <map>
 #include <queue>
@@ -12,7 +12,7 @@
 
 class ClientSession {
 public:
-    ClientSession(int sessionId);
+    ClientSession();
 
     int GetSessionId() const;
 
@@ -22,15 +22,24 @@ public:
 
     std::pair<int, int> GetPort() const;
 
-    void SetPort(int port1, int port2);
+    // void SetPort(int port1, int port2);
 
     void SetState(const std::string& newState);
 
 private:
-    int sessionId, version;
-    int rtpPort, rtcpPort;
+    int sessionId;
+    int version;
+    int socket;
+    int rtpPort;
+    int rtcpPort;
+
     std::string state;
-    std::mutex mtx;
+    // std::mutex mtx;
+
+    struct Handlers {
+        static RequestHandler* requestHandler;
+
+    };
 };
 
 #endif //RTSP_CLIENTSESSION_H
