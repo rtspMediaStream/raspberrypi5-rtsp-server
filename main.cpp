@@ -14,13 +14,13 @@ TCPHandler* TCPHandler::instance = nullptr;
 
 int main() {
     // TCP 소켓 생성
-    TCP->CreateTCPSocket();
+    TCP.CreateTCPSocket();
 
     std::cout << "Start RTSP server" << std::endl;
 
     while (true) {
         // wait for client
-        int clientSocket = TCP->AcceptClientConnection();
+        int clientSocket = TCP.AcceptClientConnection();
         if (clientSocket == -1) {
             std::cerr << "Error: Client accept failed" << std::endl;
             continue; // 오류 시 다음 클라이언트 접속 대기
