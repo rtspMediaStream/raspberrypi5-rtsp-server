@@ -13,7 +13,7 @@ TCPHandler::~TCPHandler() {
     if (tcpSocket != -1) close(tcpSocket);
 }
 
-void TCPHandler::createTCPSocket() {
+void TCPHandler::CreateTCPSocket() {
     tcpSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (tcpSocket == -1) {
         std::cerr << "Error: fail to create TCP socket" << std::endl;
@@ -36,7 +36,7 @@ void TCPHandler::createTCPSocket() {
     }
 }
 
-int TCPHandler::acceptClientConnection() {
+int TCPHandler::AcceptClientConnection() {
     socklen_t clientAddrLen = sizeof(tcpAddr);
     int clientSocket = accept(tcpSocket, (sockaddr*)&tcpAddr, &clientAddrLen);
 
@@ -51,7 +51,7 @@ int TCPHandler::acceptClientConnection() {
     return clientSocket;
 }
 
-std::string TCPHandler::receiveRTSPRequest(int clientSocket) {
+std::string TCPHandler::ReceiveRTSPRequest(int clientSocket) {
     char buffer[1024];
     memset(buffer, 0, sizeof(buffer));
 
@@ -66,13 +66,13 @@ std::string TCPHandler::receiveRTSPRequest(int clientSocket) {
     return {buffer};
 }
 
-void TCPHandler::sendRTSPResponse(int clientSocket, std::string& response) {
+void TCPHandler::SendRTSPResponse(int clientSocket, std::string& response) {
     int sentBytes = send(clientSocket, response.c_str(), response.size(), 0);
     if (sentBytes == -1) {
         std::cerr << "Error: fail to send RTSP response" << std::endl;
     }
 }
 
-int& TCPHandler::getTCPSocket() { return tcpSocket; }
+int& TCPHandler::GetTCPSocket() { return tcpSocket; }
 
-sockaddr_in& TCPHandler::getTCPAddr() { return tcpAddr; }
+sockaddr_in& TCPHandler::GetTCPAddr() { return tcpAddr; }

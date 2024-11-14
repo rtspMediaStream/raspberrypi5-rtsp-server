@@ -11,19 +11,19 @@ public:
     UDPHandler();
     ~UDPHandler();
 
-    bool createUDPSocket(int port1, int port2);
+    bool CreateUDPSocket(int port1, int port2);
 
-    void sendRTPPacket(unsigned char* rtpPacket, size_t packetSize);
+    void SendRTPPacket(unsigned char* rtpPacket, size_t packetSize);
 
-    void sendSenderReport(Protos::SenderReport* senderReport, size_t srSize);
+    void SendSenderReport(Protos::SenderReport* senderReport, size_t srSize);
 
-    void setUDPSocket(int port1, int port2);
+    void SetUDPSocket(int port1, int port2);
 
-    int& getRTPSocket();
-    int& getRTCPSocket();
+    int& GetRTPSocket();
+    int& GetRTCPSocket();
 
-    sockaddr_in& getRTPAddr();
-    sockaddr_in& getRTCPAddr();
+    sockaddr_in& GetRTPAddr();
+    sockaddr_in& GetRTCPAddr();
 
 
 private:

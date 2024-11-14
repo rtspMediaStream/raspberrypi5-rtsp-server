@@ -12,32 +12,32 @@ class RequestHandler {
 public:
     RequestHandler(MediaStreamHandler& mediaStreamHandler);
 
-    void handleRequest(int clientSocket, ClientSession* session);
+    void HandleRequest(int clientSocket, ClientSession* session);
 
 private:
     MediaStreamHandler& mediaStreamHandler;
     
     bool isAlive;
 
-    string parseMethod(const string& request);
+    std::string ParseMethod(const std::string& request);
 
-    int parseCSeq(const string& request);
+    int ParseCSeq(const std::string& request);
 
-    pair<int, int> parsePorts(const string& request);
+    // std::pair<int, int> ParsePorts(const std::string& request);
 
-    bool parseAccept(const string& request);
+    bool ParseAccept(const std::string& request);
 
-    void handleOptionsRequest(int clientSocket, int cseq);
+    void HandleOptionsRequest(int clientSocket, int cseq);
 
-    void handleDescribeRequest(int clientSocket, int cseq, ClientSession* session, const string& request);
+    void HandleDescribeRequest(int clientSocket, int cseq, ClientSession* session, const std::string& request);
 
-    void handleSetupRequest(int clientSocket, int cseq, ClientSession* session, const string& request);
+    void HandleSetupRequest(int clientSocket, int cseq, ClientSession* session, const std::string& request);
 
-    void handlePlayRequest(int clientSocket, int cseq, ClientSession* session);
+    void HandlePlayRequest(int clientSocket, int cseq, ClientSession* session);
 
-    void handlePauseRequest(int clientSocket, int cseq, ClientSession* session);
+    void HandlePauseRequest(int clientSocket, int cseq, ClientSession* session);
 
-    void handleTeardownRequest(int clientSocket, int cseq, ClientSession* session);
+    void HandleTeardownRequest(int clientSocket, int cseq, ClientSession* session);
 };
 
 #endif //RTSP_REQUESTHANDLER_H

@@ -12,13 +12,13 @@ class MediaStreamHandler {
 public:
     MediaStreamHandler();
 
-    void handleMediaStream();
+    void HandleMediaStream();
 
-    unsigned char linearToUlaw(int sample);
-    void initAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& params, int& rc, unsigned int& sampleRate, int& dir);
-    int captureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int& frames, int& rc, unsigned char*& payload);
+    unsigned char LinearToUlaw(int sample);
+    void InitAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& params, int& rc, unsigned int& sampleRate, int& dir);
+    int CaptureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int& frames, int& rc, unsigned char*& payload);
 
-    void setCmd(const std::string& cmd);
+    void SetCmd(const std::string& cmd);
 
 private:
     std::atomic<bool> isStreaming;

@@ -14,17 +14,17 @@ class ClientSession {
 public:
     ClientSession(int sessionId);
 
-    int getSessionId() const;
+    int GetSessionId() const;
 
-    int getVersion() const;
+    int GetVersion() const;
 
-    std::string getState() const;
+    std::string GetState() const;
 
-    std::pair<int, int> getPort() const;
+    std::pair<int, int> GetPort() const;
 
-    void setPort(int port1, int port2);
+    void SetPort(int port1, int port2);
 
-    void setState(const std::string& newState);
+    void SetState(const std::string& newState);
 
 private:
     int sessionId, version;

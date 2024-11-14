@@ -2,6 +2,7 @@
 #define RTSP_TCPHANDLER_H
 
 #include "Protos.h"
+
 #include <string>
 #include <arpa/inet.h>
 
@@ -10,23 +11,23 @@ public:
     TCPHandler();
     ~TCPHandler();
 
-    static TCPHandler* getInstance() {
+    static TCPHandler* GetInstance() {
         if (instance == NULL)
             instance = new TCPHandler();
         return instance;
     }
 
-    void createTCPSocket();
+    void CreateTCPSocket();
 
-    int acceptClientConnection();
+    int AcceptClientConnection();
 
-    std::string receiveRTSPRequest(int clientSocket);
+    std::string ReceiveRTSPRequest(int clientSocket);
 
-    void sendRTSPResponse(int clientSocket, std::string& response);
+    void SendRTSPResponse(int clientSocket, std::string& response);
 
-    int& getTCPSocket();
+    int& GetTCPSocket();
 
-    sockaddr_in& getTCPAddr();
+    sockaddr_in& GetTCPAddr();
 
 
 private:

@@ -53,8 +53,8 @@ public:
         uint32_t senderOctetCount;
     } __attribute__((packed));
 
-    void createRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp);
-    void createSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount);
+    void CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp);
+    void CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount);
 
 private:
     unsigned int ssrc;

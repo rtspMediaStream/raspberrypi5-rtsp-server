@@ -17,8 +17,8 @@
 
 MediaStreamHandler::MediaStreamHandler(): isStreaming(false), isPaused(false) {}
 
-void MediaStreamHandler::handleMediaStream() {
-    Protos protos(utils::getRanNum(32));
+void MediaStreamHandler::HandleMediaStream() {
+    Protos protos(utils::GetRanNum(32));
 
     snd_pcm_t* pcmHandle;
     snd_pcm_hw_params_t* params;
@@ -33,13 +33,13 @@ void MediaStreamHandler::handleMediaStream() {
 
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
-    unsigned short seqNum = (unsigned short)utils::getRanNum(16);
-    unsigned int timestamp = (unsigned int)utils::getRanNum(16);
+    unsigned short seqNum = (unsigned short)utils::GetRanNum(16);
+    unsigned int timestamp = (unsigned int)utils::GetRanNum(16);
 
     Protos::SenderReport sr;
     Protos::RTPHeader rtpHeader;
 
-    initAlsa(pcmHandle, params, rc, sampleRate, dir);
+    InitAlsa(pcmHandle, params, rc, sampleRate, dir);
     if (rc < 0) {
         fprintf(stderr, "ALSA initialization failed\n");
         return;
@@ -56,13 +56,13 @@ void MediaStreamHandler::handleMediaStream() {
         if (!isPaused) {
             unsigned char rtpPacket[sizeof(Protos::RTPHeader) + payloadSize];
 
-            if (captureAudio(pcmHandle, buffer, frames, rc, payload) < 0) {
+            if (CaptureAudio(pcmHandle, buffer, frames, rc, payload) < 0) {
                 std::cerr << "Error: fail to capture audio" << std::endl;
                 break;
             }
 
             memset(rtpPacket, 0, sizeof(rtpPacket));
-            protos.createRTPHeader(&rtpHeader, seqNum, timestamp);
+            protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
             memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
             memcpy(rtpPacket + sizeof(rtpHeader), payload, payloadSize);
 
@@ -77,7 +77,7 @@ void MediaStreamHandler::handleMediaStream() {
 
             if (packetCount % 100 == 0) {
                 std::cout << "RTCP sent" << std::endl;
-                protos.createSR(&sr, timestamp, packetCount, octetCount);
+                protos.CreateSR(&sr, timestamp, packetCount, octetCount);
                 SOCK.sendSenderReport(&sr, sizeof(sr));
             }
 	    }
@@ -85,7 +85,7 @@ void MediaStreamHandler::handleMediaStream() {
     }
 }
 
-unsigned char MediaStreamHandler::linearToUlaw(int sample) {
+unsigned char MediaStreamHandler::LinearToUlaw(int sample) {
     const int MAX = 32767;
     const int BIAS = 0x84;
     int sign = (sample >> 8) & 0x80;
@@ -102,7 +102,7 @@ unsigned char MediaStreamHandler::linearToUlaw(int sample) {
     return ~(sign | (exponent << 4) | mantissa);
 }
 
-void MediaStreamHandler::initAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& params, int& rc, unsigned int& sampleRate, int& dir) {
+void MediaStreamHandler::InitAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& params, int& rc, unsigned int& sampleRate, int& dir) {
     // PCM 장치 열기
     rc = snd_pcm_open(&pcmHandle, "default", SND_PCM_STREAM_CAPTURE, 0);
     if (rc < 0) {
@@ -150,7 +150,7 @@ void MediaStreamHandler::initAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& p
     }
 }
 
-int MediaStreamHandler::captureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int& frames, int& rc, unsigned char*& payload) {
+int MediaStreamHandler::CaptureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int& frames, int& rc, unsigned char*& payload) {
     // ALSA로부터 오디오 데이터 캡처
     rc = snd_pcm_readi(pcmHandle, buffer, frames);
     if (rc == -EPIPE) {
@@ -166,12 +166,12 @@ int MediaStreamHandler::captureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int&
     }
 
     for (int i = 0; i < frames; i++)
-        payload[i] = linearToUlaw(buffer[i]);
+        payload[i] = LinearToUlaw(buffer[i]);
 
     return 0;
 }
 
-void MediaStreamHandler::setCmd(const std::string& cmd) {
+void MediaStreamHandler::SetCmd(const std::string& cmd) {
     std::lock_guard<std::mutex> lock(mtx);
     if (cmd == "PLAY") {
         isStreaming = true;

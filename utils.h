@@ -6,9 +6,9 @@
 
 class utils {
 public:
-    static uint64_t getTime();
-    static uint32_t getRanNum(int n);
-    static char* getIP();
+    static uint64_t GetTime();
+    static uint32_t GetRanNum(int n);
+    static char* GetIP();
 };
 
 #endif //RTSP_UTILS_H

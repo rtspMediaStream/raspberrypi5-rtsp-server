@@ -14,16 +14,16 @@ UDPHandler::~UDPHandler() {
     if (rtcpSocket != -1) close(rtcpSocket);
 }
 
-bool UDPHandler::createUDPSocket(int port1, int port2) {
+bool UDPHandler::CreateUDPSocket(int port1, int port2) {
     rtpSocket = socket(AF_INET, SOCK_DGRAM, 0);
     if (rtpSocket == -1) {
-        cerr << "rtp 소켓 생성 실패" << endl;
+        std::cerr << "rtp 소켓 생성 실패" << std::endl;
         return false;
     }
 
     rtcpSocket = socket(AF_INET, SOCK_DGRAM, 0);
     if (rtcpSocket == -1) {
-        cerr << "rtcp 소켓 생성 실패" << endl;
+        std::cerr << "rtcp 소켓 생성 실패" << std::endl;
         return false;
     }
 
@@ -40,7 +40,7 @@ bool UDPHandler::createUDPSocket(int port1, int port2) {
     return true;
 }
 
-void UDPHandler::sendRTPPacket(unsigned char* rtpPacket, size_t packetSize) {
+void UDPHandler::SendRTPPacket(unsigned char* rtpPacket, size_t packetSize) {
     int sentBytes = sendto(rtpSocket, rtpPacket, packetSize, 0, (struct sockaddr*)&rtpAddr, sizeof(rtpAddr));
     if (sentBytes == -1) {
         std::cerr << "Error: fail to send RTP packet" << std::endl;
@@ -48,7 +48,7 @@ void UDPHandler::sendRTPPacket(unsigned char* rtpPacket, size_t packetSize) {
     }
 }
 
-void UDPHandler::sendSenderReport(Protos::SenderReport* senderReport, size_t srSize) {
+void UDPHandler::SendSenderReport(Protos::SenderReport* senderReport, size_t srSize) {
     int sentBytes = sendto(rtcpSocket, senderReport, srSize, 0, (struct sockaddr*)&rtcpAddr, sizeof(rtcpAddr));
     if (sentBytes == -1) {
         std::cerr << "Error: fail to send RTCP packet" << std::endl;
@@ -56,8 +56,8 @@ void UDPHandler::sendSenderReport(Protos::SenderReport* senderReport, size_t srS
     }
 }
 
-int& UDPHandler::getRTPSocket() { return rtpSocket; }
-int& UDPHandler::getRTCPSocket() { return rtcpSocket; }
+int& UDPHandler::GetRTPSocket() { return rtpSocket; }
+int& UDPHandler::GetRTCPSocket() { return rtcpSocket; }
 
-sockaddr_in& UDPHandler::getRTPAddr() { return rtpAddr; }
-sockaddr_in& UDPHandler::getRTCPAddr() { return rtcpAddr; }
+sockaddr_in& UDPHandler::GetRTPAddr() { return rtpAddr; }
+sockaddr_in& UDPHandler::GetRTCPAddr() { return rtcpAddr; }

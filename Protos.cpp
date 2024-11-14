@@ -5,7 +5,7 @@
 
 Protos::Protos(uint32_t ssrc): ssrc(ssrc) {}
 
-void Protos::createRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp) {
+void Protos::CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp) {
     header->version = 2;
     header->p = 0;
     header->x = 0;
@@ -17,7 +17,7 @@ void Protos::createRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned 
     header->ssrc = htonl(ssrc);
 }
 
-void Protos::createSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount) {
+void Protos::CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount) {
     sr->version = 2;
     sr->p = 0;
     sr->rc = 0;
@@ -25,7 +25,7 @@ void Protos::createSR(SenderReport *sr, unsigned int timestamp, unsigned int pac
     sr->length = htons(6);
     sr->ssrc = htonl(ssrc);
 
-    auto time = utils::getTime();
+    auto time = utils::GetTime();
     sr->ntpTimestampMsw = htonl((uint32_t)(time >> 32));
     sr->ntpTimestampLsw = htonl((uint32_t)(time & 0xFFFFFFFF));
     sr->rtpTimestamp = htonl(timestamp);

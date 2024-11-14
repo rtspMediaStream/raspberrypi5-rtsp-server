@@ -11,56 +11,56 @@
 RequestHandler::RequestHandler(MediaStreamHandler& mediaStreamHandler)
         : mediaStreamHandler(mediaStreamHandler), isAlive(true) {}
 
-void RequestHandler::handleRequest(int clientSocket, ClientSession* session) {
+void RequestHandler::HandleRequest(int clientSocket, ClientSession* session) {
     std::cout << "create Client Session" << std::endl;
 
     while (isAlive) {
-        string request = TCP->receiveRTSPRequest(clientSocket);
+        std::string request = TCP->receiveRTSPRequest(clientSocket);
         if (request.empty()) {
-            cerr << "Invalid RTSP request received." << endl;
+            std::cerr << "Invalid RTSP request received." << std::endl;
             return;
         }
 
-        string method = parseMethod(request);
+        std::string method = ParseMethod(request);
 
-        int cseq = parseCSeq(request);
+        int cseq = ParseCSeq(request);
         if (cseq == -1) {
-            cerr << "CSeq parsing failed." << endl;
+            std::cerr << "CSeq parsing failed." << std::endl;
             return;
         }
 
         if (method == "OPTIONS") {
-            handleOptionsRequest(clientSocket, cseq);
+            HandleOptionsRequest(clientSocket, cseq);
         } else if (method == "DESCRIBE") {
-            handleDescribeRequest(clientSocket, cseq, session, request);
+            HandleDescribeRequest(clientSocket, cseq, session, request);
         } else if (method == "SETUP") {
-            handleSetupRequest(clientSocket, cseq, session, request);
+            HandleSetupRequest(clientSocket, cseq, session, request);
         } else if (method == "PLAY") {
-            handlePlayRequest(clientSocket, cseq, session);
+            HandlePlayRequest(clientSocket, cseq, session);
         } else if (method == "PAUSE") {
-            handlePauseRequest(clientSocket, cseq, session);
+            HandlePauseRequest(clientSocket, cseq, session);
         } else if (method == "TEARDOWN") {
-            handleTeardownRequest(clientSocket, cseq, session);
+            HandleTeardownRequest(clientSocket, cseq, session);
         } else {
-            cerr << "Unsupported RTSP method: " << method << endl;
+            std::cerr << "Unsupported RTSP method: " << method << std::endl;
         }
     }
 }
 
-string RequestHandler::parseMethod(const string& request) {
-    istringstream requestStream(request);
-    string method;
+std::string RequestHandler::ParseMethod(const std::string& request) {
+    std::istringstream requestStream(request);
+    std::string method;
     requestStream >> method;
     return method;
 }
 
-int RequestHandler::parseCSeq(const string& request) {
-    istringstream requestStream(request);
-    string line;
+int RequestHandler::ParseCSeq(const std::string& request) {
+    std::istringstream requestStream(request);
+    std::string line;
     while (getline(requestStream, line)) {
-        if (line.find("CSeq") != string::npos) {
-            istringstream lineStream(line);
-            string label;
+        if (line.find("CSeq") != std::string::npos) {
+            std::istringstream lineStream(line);
+            std::string label;
             int cseq;
             lineStream >> label >> cseq;
             return cseq;
@@ -69,20 +69,20 @@ int RequestHandler::parseCSeq(const string& request) {
     return -1; // CSeq not found
 }
 
-pair<int, int> RequestHandler::parsePorts(const string& request) {
-    istringstream requestStream(request);
-    string line;
+std::pair<int, int> RequestHandler::ParsePorts(const std::string& request) {
+    std::istringstream requestStream(request);
+    std::string line;
     while (getline(requestStream, line)) {
-        if (line.find("client_port=") != string::npos) {
-            istringstream lineStream(line);
-            string label;
+        if (line.find("client_port=") != std::string::npos) {
+            std::istringstream lineStream(line);
+            std::string label;
 
             while (getline(lineStream, label, '/')) {
-                string portRange;
+                std::string portRange;
                 getline(lineStream, portRange);
                 size_t dashPos = portRange.find('-');
 
-                if (dashPos != string::npos) {
+                if (dashPos != std::string::npos) {
                     int rtpPort = stoi(portRange.substr(0, dashPos));
                     int rtcpPort = stoi(portRange.substr(dashPos + 1));
 		    return {rtpPort, rtcpPort};
@@ -93,84 +93,84 @@ pair<int, int> RequestHandler::parsePorts(const string& request) {
     return {-1, -1};
 }
 
-bool RequestHandler::parseAccept(const string& request) {
-    istringstream requestStream(request);
-    string line;
+bool RequestHandler::ParseAccept(const std::string& request) {
+    std::istringstream requestStream(request);
+    std::string line;
     while (getline(requestStream, line))
-        if (line.find("application/sdp") != string::npos)
+        if (line.find("application/sdp") != std::string::npos)
             return true;
     return false;
 }
 
-void RequestHandler::handleOptionsRequest(int clientSocket, int cseq) {
-    string response = "RTSP/1.0 200 OK\r\n"
-                           "CSeq: " + to_string(cseq) + "\r\n"
+void RequestHandler::HandleOptionsRequest(int clientSocket, int cseq) {
+    std::string response = "RTSP/1.0 200 OK\r\n"
+                           "CSeq: " + std::to_string(cseq) + "\r\n"
                            "Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n"
                            "\r\n";
     TCP->sendRTSPResponse(clientSocket, response);
 }
 
-void RequestHandler::handleDescribeRequest(int clientSocket, int cseq, ClientSession* session, const string& request) {
-    string ip = "";
-    string sdp = "";
-    string response = "";
-    if (parseAccept(request)) {
+void RequestHandler::HandleDescribeRequest(int clientSocket, int cseq, ClientSession* session, const std::string& request) {
+    std::string ip = "";
+    std::string sdp = "";
+    std::string response = "";
+    if (ParseAccept(request)) {
         response = "RTSP/1.0 200 OK\r\n";
 
-        ip = utils::getIP();
+        ip = utils::GetIP();
         sdp = "v=0\r\n"
               "o=- "
-              + to_string(session->getSessionId())
-              + " " + to_string(session->getVersion())
+              + std::to_string(session->GetSessionId())
+              + " " + std::to_string(session->GetVersion())
               + " IN IP4 " + ip + "\r\n"
               "s=Audio Stream\r\n"
               "c=IN IP4 " + ip + "\r\n"
               "t=0 0\r\n"
-              "m=audio " + to_string(session->getPort().first)
+              "m=audio " + std::to_string(session->GetPort().first)
               + " RTP/AVP 0\r\n"
                 "a=rtpmap:0 PCMU/8000\r\n";
     } else
         response = "RTSP/1.0 406 Not Acceptable\r\n";
 
-    response += "CSeq: " + to_string(cseq) + "\r\n"
+    response += "CSeq: " + std::to_string(cseq) + "\r\n"
                 "Content-Base: rtsp://" + ip + ":8554/\r\n"
                 "Content-Type: application/sdp\r\n"
-                "Content-Length: " + to_string(sdp.size()) + "\r\n"
+                "Content-Length: " + std::to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
     TCP->sendRTSPResponse(clientSocket, response);
 }
 
-void RequestHandler::handleSetupRequest(int clientSocket, int cseq, ClientSession* session, const string& request) {
+void RequestHandler::HandleSetupRequest(int clientSocket, int cseq, ClientSession* session, const std::string& request) {
     session->setState("SETUP");
 
-    auto ports = parsePorts(request);
+    auto ports = ParsePorts(request);
     if (ports.first < 0 || ports.second < 0) {
-        cerr << "클라이언트 포트가 없습니다" << endl;
+        std::cerr << "클라이언트 포트가 없습니다" << std::endl;
         return;
     }
 
     session->setPort(ports.first, ports.second);
 
-    string response = "RTSP/1.0 200 OK\r\n"
-                           "CSeq: " + to_string(cseq) + "\r\n"
+    std::string response = "RTSP/1.0 200 OK\r\n"
+                           "CSeq: " + std::to_string(cseq) + "\r\n"
                            "Transport: RTP/AVP;unicast;client_port="
-                           + to_string(session->getPort().first) + "-"
-                           + to_string(session->getPort().second) + "\r\n"
-                           "Session: " + to_string(session->getSessionId())
+                           + std::to_string(session->GetPort().first) + "-"
+                           + std::to_string(session->GetPort().second) + "\r\n"
+                           "Session: " + std::to_string(session->GetSessionId())
                            + "\r\n"
                              "\r\n";
     TCP->sendRTSPResponse(clientSocket, response);
 
-    thread mediaStreamThread(&MediaStreamHandler::handleMediaStream, &mediaStreamHandler);
+    std::thread mediaStreamThread(&MediaStreamHandler::handleMediaStream, &mediaStreamHandler);
     mediaStreamThread.detach();
 }
 
-void RequestHandler::handlePlayRequest(int clientSocket, int cseq, ClientSession* session) {
+void RequestHandler::HandlePlayRequest(int clientSocket, int cseq, ClientSession* session) {
     session->setState("PLAY");
 
-    string response = "RTSP/1.0 200 OK\r\n"
-                           "CSeq: " + to_string(cseq) + "\r\n"
-                           "Session: " + to_string(session->getSessionId())
+    std::string response = "RTSP/1.0 200 OK\r\n"
+                           "CSeq: " + std::to_string(cseq) + "\r\n"
+                           "Session: " + std::to_string(session->GetSessionId())
                            + "\r\n"
                              "\r\n";
     TCP->sendRTSPResponse(clientSocket, response);
@@ -178,12 +178,12 @@ void RequestHandler::handlePlayRequest(int clientSocket, int cseq, ClientSession
     mediaStreamHandler.setCmd("PLAY");
 }
 
-void RequestHandler::handlePauseRequest(int clientSocket, int cseq, ClientSession* session) {
+void RequestHandler::HandlePauseRequest(int clientSocket, int cseq, ClientSession* session) {
     session->setState("PAUSE");
 
-    string response = "RTSP/1.0 200 OK\r\n"
-                           "CSeq: " + to_string(cseq) + "\r\n"
-                           "Session: " + to_string(session->getSessionId())
+    std::string response = "RTSP/1.0 200 OK\r\n"
+                           "CSeq: " + std::to_string(cseq) + "\r\n"
+                           "Session: " + std::to_string(session->GetSessionId())
                            + "\r\n"
                              "\r\n";
 
@@ -193,12 +193,12 @@ void RequestHandler::handlePauseRequest(int clientSocket, int cseq, ClientSessio
     isAlive = false;
 }
 
-void RequestHandler::handleTeardownRequest(int clientSocket, int cseq, ClientSession* session) {
+void RequestHandler::HandleTeardownRequest(int clientSocket, int cseq, ClientSession* session) {
     session->setState("TEARDOWN");
 
-    string response = "RTSP/1.0 200 OK\r\n"
-                           "CSeq: " + to_string(cseq) + "\r\n"
-                           "Session: " + to_string(session->getSessionId())
+    std::string response = "RTSP/1.0 200 OK\r\n"
+                           "CSeq: " + std::to_string(cseq) + "\r\n"
+                           "Session: " + std::to_string(session->GetSessionId())
                            + "\r\n"
                              "\r\n";
 
