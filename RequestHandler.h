@@ -23,7 +23,7 @@ private:
 
     int ParseCSeq(const std::string& request);
 
-    // std::pair<int, int> ParsePorts(const std::string& request);
+    std::pair<int, int> ParsePorts(const std::string& request);
 
     bool ParseAccept(const std::string& request);
 

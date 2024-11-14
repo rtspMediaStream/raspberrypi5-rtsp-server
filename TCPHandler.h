@@ -8,14 +8,10 @@
 
 class TCPHandler {
 public:
-    TCPHandler();
-    ~TCPHandler();
+    TCPHandler(const TCPHandler&) = delete;
+    TCPHandler& operator=(const TCPHandler&) = delete;
 
-    static TCPHandler* GetInstance() {
-        if (instance == NULL)
-            instance = new TCPHandler();
-        return instance;
-    }
+    static TCPHandler& GetInstance();
 
     void CreateTCPSocket();
 
@@ -31,6 +27,8 @@ public:
 
 
 private:
+    TCPHandler() = default;
+    ~TCPHandler() = default;
     static TCPHandler* instance;
 
     int tcpPort;
