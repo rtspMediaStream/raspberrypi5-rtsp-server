@@ -10,14 +10,13 @@
 
 class RequestHandler {
 public:
-    RequestHandler(MediaStreamHandler& mediaStreamHandler);
+    RequestHandler(const std::shared_ptr<Info>& client);
 
-    void HandleRequest(int clientSocket, ClientSession* session);
+    void HandleRequest();
 
 private:
+    std::shared_ptr<Info> client;
     MediaStreamHandler& mediaStreamHandler;
-    
-    bool isAlive;
 
     std::string ParseMethod(const std::string& request);
 
@@ -27,17 +26,17 @@ private:
 
     bool ParseAccept(const std::string& request);
 
-    void HandleOptionsRequest(int clientSocket, int cseq);
+    void HandleOptionsRequest(int cseq);
 
-    void HandleDescribeRequest(int clientSocket, int cseq, ClientSession* session, const std::string& request);
+    void HandleDescribeRequest(const std::string& request, int cseq);
 
-    void HandleSetupRequest(int clientSocket, int cseq, ClientSession* session, const std::string& request);
+    void HandleSetupRequest(const std::string& request, int cseq);
 
-    void HandlePlayRequest(int clientSocket, int cseq, ClientSession* session);
+    void HandlePlayRequest(int cseq);
 
-    void HandlePauseRequest(int clientSocket, int cseq, ClientSession* session);
+    void HandlePauseRequest(int cseq);
 
-    void HandleTeardownRequest(int clientSocket, int cseq, ClientSession* session);
+    void HandleTeardownRequest(int cseq);
 };
 
 #endif //RTSP_REQUESTHANDLER_H
