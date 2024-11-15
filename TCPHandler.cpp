@@ -44,7 +44,7 @@ void TCPHandler::CreateTCPSocket() {
     }
 }
 
-    std::pair<int, std::string> TCPHandler::AcceptClientConnection() {
+std::pair<int, std::string> TCPHandler::AcceptClientConnection() {
     socklen_t clientAddrLen = sizeof(tcpAddr);
     int clientSocket = accept(tcpSocket, (sockaddr*)&tcpAddr, &clientAddrLen);
 

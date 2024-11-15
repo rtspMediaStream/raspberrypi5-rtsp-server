@@ -11,8 +11,9 @@ ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
     info->rtpPort = -1;
     info->rtcpPort = -1;
 
-    Handlers::requestHandler = new RequestHandler(info);
-    Handlers::udpHandler = new UDPHandler(info);
+    requestHandler = new RequestHandler(info);
+    udpHandler = new UDPHandler(info);
+    
 }
 
 int ClientSession::GetSessionId() const { return info->id; }
@@ -22,7 +23,7 @@ int ClientSession::GetVersion() const { return info->version; }
 std::string ClientSession::GetState() const { return info->state; }
 
 std::pair<int, int> ClientSession::GetPort() const {
-    return { Handlers::udpHandler->GetRTPPort(), Handlers::udpHandler->GetRTCPPort()};
+    return { info->rtpPort, info->rtcpPort };
 }
 
 void ClientSession::SetState(const std::string& newState) {

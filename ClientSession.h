@@ -40,11 +40,10 @@ private:
     std::shared_ptr<Info> info;
 
     // std::mutex mtx;
-
-    struct Handlers {
-        static RequestHandler* requestHandler;
-        static UDPHandler* udpHandler;
-    };
+    
+    RequestHandler* requestHandler;
+    UDPHandler* udpHandler;
+    MediaStreamHandler* mediaStreamHandler;
 };
 
 #endif //RTSP_CLIENTSESSION_H
