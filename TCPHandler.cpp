@@ -7,15 +7,8 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-TCPHandler* TCPHandler::instance = nullptr;
-
-TCPHandler& TCPHandler::GetInstance() {
-    if (instance == nullptr)
-        instance = new TCPHandler();
-    return *instance;
+TCPHandler::TCPHandler(): tcpPort(554), tcpSocket(-1) {
 }
-
-TCPHandler::TCPHandler(): tcpPort(554), tcpSocket(-1) {}
 
 TCPHandler::~TCPHandler() {
     if (tcpSocket != -1) close(tcpSocket);

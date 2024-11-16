@@ -1,5 +1,8 @@
 #include "utils.h"
 #include "ClientSession.h"
+#include "RequestHandler.h"
+#include "UDPHandler.h"
+#include "MediaStreamHandler.h"
 
 ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
     info->id = (int)utils::GetRanNum(16);

@@ -1,9 +1,6 @@
 #ifndef RTSP_MEDIASTREAMHANDLER_H
 #define RTSP_MEDIASTREAMHANDLER_H
 
-#include "TCPHandler.h"
-#include "UDPHandler.h"
-
 #include <atomic>
 #include <alsa/asoundlib.h>
 #include <condition_variable>

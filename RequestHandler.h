@@ -1,12 +1,10 @@
 #ifndef RTSP_REQUESTHANDLER_H
 #define RTSP_REQUESTHANDLER_H
 
-#include "TCPHandler.h"
-#include "UDPHandler.h"
-#include "ClientSession.h"
-#include "MediaStreamHandler.h"
-
+#include <memory>
 #include <string>
+struct Info;
+class MediaStreamHandler;
 
 class RequestHandler {
 public:
