@@ -43,8 +43,6 @@ private:
     // std::mutex mtx;
     
     RequestHandler* requestHandler;
-    UDPHandler* udpHandler;
-    MediaStreamHandler* mediaStreamHandler;
 };
 
 #endif //RTSP_CLIENTSESSION_H

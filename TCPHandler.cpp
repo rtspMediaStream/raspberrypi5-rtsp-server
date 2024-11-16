@@ -7,7 +7,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-TCPHandler::TCPHandler(): tcpPort(554), tcpSocket(-1) {
+TCPHandler::TCPHandler(): tcpPort(8554), tcpSocket(-1) {
 }
 
 TCPHandler::~TCPHandler() {

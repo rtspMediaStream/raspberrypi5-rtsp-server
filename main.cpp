@@ -21,6 +21,7 @@ int main() {
         std::cout << "Client connected" << std::endl;
 
         ClientSession* clientSession = new ClientSession(newClient);
+        std::cout << "Main while loop." << std::endl;
     }
 
     return 0;

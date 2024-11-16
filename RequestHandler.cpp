@@ -3,6 +3,7 @@
 #include "TCPHandler.h"
 #include "ClientSession.h"
 #include "MediaStreamHandler.h"
+#include "UDPHandler.h"
 
 #include <iostream>
 #include <string>
@@ -10,13 +11,14 @@
 #include <thread>
 
 RequestHandler::RequestHandler(const std::shared_ptr<Info>& client)
-        : mediaStreamHandler(mediaStreamHandler), client(client) {}
+        : client(client) {}
 
 void RequestHandler::HandleRequest() {
      std::cout << "create Client Session" << std::endl;
 
     while (true) {
-        std::string request = TCPHandler::GetInstance().ReceiveRTSPRequest(client->id);
+        std::cout << "recv wait id :" << client->tcpSocket << std::endl;
+        std::string request = TCPHandler::GetInstance().ReceiveRTSPRequest(client->tcpSocket);
         if (request.empty()) {
             std::cerr << "Invalid RTSP request received." << std::endl;
             return;
@@ -81,11 +83,15 @@ std::pair<int, int> RequestHandler::ParsePorts(const std::string& request) {
             while (getline(lineStream, label, '/')) {
                 std::string portRange;
                 getline(lineStream, portRange);
+                size_t eqPos = portRange.find('=') + 1;
                 size_t dashPos = portRange.find('-');
 
                 if (dashPos != std::string::npos) {
-                    int rtpPort = stoi(portRange.substr(0, dashPos));
+                    
+                    int rtpPort = stoi(portRange.substr(eqPos, dashPos - eqPos));
                     int rtcpPort = stoi(portRange.substr(dashPos + 1));
+                    //int rtpPort = stoi(portRange.substr(0, dashPos));
+                    //int rtcpPort = stoi(portRange.substr(dashPos + 1));
 		            return {rtpPort, rtcpPort};
                 }
             }
@@ -164,7 +170,10 @@ void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
                              "\r\n";
     TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
-    std::thread mediaStreamThread(&MediaStreamHandler::HandleMediaStream, &mediaStreamHandler);
+    mediaStreamHandler = new MediaStreamHandler();
+    mediaStreamHandler->udpHandler = new UDPHandler(client);
+    mediaStreamHandler->udpHandler->CreateUDPSocket();
+    std::thread mediaStreamThread(&MediaStreamHandler::HandleMediaStream, mediaStreamHandler);
     mediaStreamThread.detach();
 }
 
@@ -178,7 +187,7 @@ void RequestHandler::HandlePlayRequest(int cseq) {
                              "\r\n";
     TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
-    mediaStreamHandler.SetCmd("PLAY");
+    mediaStreamHandler->SetCmd("PLAY");
 }
 
 void RequestHandler::HandlePauseRequest(int cseq) {
@@ -192,7 +201,7 @@ void RequestHandler::HandlePauseRequest(int cseq) {
 
     TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
-    mediaStreamHandler.SetCmd("PAUSE");
+    mediaStreamHandler->SetCmd("PAUSE");
 }
 
 void RequestHandler::HandleTeardownRequest(int cseq) {
@@ -206,5 +215,5 @@ void RequestHandler::HandleTeardownRequest(int cseq) {
 
     TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
-    mediaStreamHandler.SetCmd("TEARDOWN");
+    mediaStreamHandler->SetCmd("TEARDOWN");
 }

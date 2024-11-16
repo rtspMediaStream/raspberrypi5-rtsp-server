@@ -3,8 +3,10 @@
 #include "RequestHandler.h"
 #include "UDPHandler.h"
 #include "MediaStreamHandler.h"
+#include <thread>
 
 ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
+    info = std::make_shared<Info>();
     info->id = (int)utils::GetRanNum(16);
     info->version = info->id;
     info->tcpSocket = newClient.first;
@@ -15,8 +17,8 @@ ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
     info->rtcpPort = -1;
 
     requestHandler = new RequestHandler(info);
-    udpHandler = new UDPHandler(info);
-    
+    std::thread requestHandlerThread(&RequestHandler::HandleRequest, *requestHandler);
+    requestHandlerThread.detach();
 }
 
 int ClientSession::GetSessionId() const { return info->id; }
