@@ -9,17 +9,14 @@
 #include <thread>
 #include <iostream>
 
-#define TCP TCPHandler::GetInstance()
-
-TCPHandler* TCPHandler::instance = nullptr;
 
 int main() {
-    TCP.CreateTCPSocket();
+    TCPHandler::GetInstance().CreateTCPSocket();
 
     std::cout << "Start RTSP server" << std::endl;
 
     while (true) {
-        std::pair<int, std::string> newClient = TCP.AcceptClientConnection();
+        std::pair<int, std::string> newClient = TCPHandler::GetInstance().AcceptClientConnection();
 
         std::cout << "Client connected" << std::endl;
 

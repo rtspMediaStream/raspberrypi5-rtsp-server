@@ -2,10 +2,12 @@
 #define RTSP_UDPHANDLER_H
 
 #include "Protos.h"
-#include "ClientSession.h"
 
 #include <string>
 #include <arpa/inet.h>
+#include <memory>
+
+struct Info;
 
 class UDPHandler {
 public:

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <utility>
+#include <cstdint>
 
 class utils {
 public:

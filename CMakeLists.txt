@@ -8,7 +8,8 @@ set(SOURCES
         main.cpp
         utils.cpp
         RequestHandler.cpp
-        SocketHandler.cpp
+        TCPHandler.cpp
+        UDPHandler.cpp
         MediaStreamHandler.cpp
         ClientSession.cpp
         Protos.cpp

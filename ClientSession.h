@@ -1,9 +1,6 @@
 #ifndef RTSP_CLIENTSESSION_H
 #define RTSP_CLIENTSESSION_H
 
-#include "RequestHandler.h"
-#include "UDPHandler.h"
-
 #include <map>
 #include <queue>
 #include <mutex>
@@ -20,6 +17,10 @@ struct Info {
     std::string ip;
     std::string state;
 };
+
+class RequestHandler;
+class UDPHandler;
+class MediaStreamHandler;
 
 class ClientSession {
 public:

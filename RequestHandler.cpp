@@ -1,21 +1,22 @@
 #include "utils.h"
 #include "RequestHandler.h"
+#include "TCPHandler.h"
+#include "ClientSession.h"
+#include "MediaStreamHandler.h"
 
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <thread>
 
-#define TCP TCPHandler::GetInstance()
-
 RequestHandler::RequestHandler(const std::shared_ptr<Info>& client)
         : mediaStreamHandler(mediaStreamHandler), client(client) {}
 
 void RequestHandler::HandleRequest() {
-    // std::cout << "create Client Session" << std::endl;
+     std::cout << "create Client Session" << std::endl;
 
     while (true) {
-        std::string request = TCP.ReceiveRTSPRequest(client->id);
+        std::string request = TCPHandler::GetInstance().ReceiveRTSPRequest(client->id);
         if (request.empty()) {
             std::cerr << "Invalid RTSP request received." << std::endl;
             return;
@@ -107,7 +108,7 @@ void RequestHandler::HandleOptionsRequest(int cseq) {
                            "CSeq: " + std::to_string(cseq) + "\r\n"
                            "Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n"
                            "\r\n";
-    TCP.SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 }
 
 void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq) {
@@ -137,7 +138,7 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
                 "Content-Type: application/sdp\r\n"
                 "Content-Length: " + std::to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
-    TCP.SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 }
 
 void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
@@ -161,7 +162,7 @@ void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
                            "Session: " + std::to_string(client->id)
                            + "\r\n"
                              "\r\n";
-    TCP.SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
     std::thread mediaStreamThread(&MediaStreamHandler::HandleMediaStream, &mediaStreamHandler);
     mediaStreamThread.detach();
@@ -175,7 +176,7 @@ void RequestHandler::HandlePlayRequest(int cseq) {
                            "Session: " + std::to_string(client->id)
                            + "\r\n"
                              "\r\n";
-    TCP.SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
     mediaStreamHandler.SetCmd("PLAY");
 }
@@ -189,7 +190,7 @@ void RequestHandler::HandlePauseRequest(int cseq) {
                            + "\r\n"
                              "\r\n";
 
-    TCP.SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
     mediaStreamHandler.SetCmd("PAUSE");
 }
@@ -203,7 +204,7 @@ void RequestHandler::HandleTeardownRequest(int cseq) {
                            + "\r\n"
                              "\r\n";
 
-    TCP.SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 
     mediaStreamHandler.SetCmd("TEARDOWN");
 }

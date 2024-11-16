@@ -68,7 +68,7 @@ void MediaStreamHandler::HandleMediaStream() {
 
 	        std::cout << "RTP " << packetCount << " sent" << std::endl;
 
-            SOCK.sendRTPPacket(rtpPacket, sizeof(rtpPacket));
+            //SOCK.sendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
             seqNum++;
             timestamp += payloadSize;
@@ -78,7 +78,7 @@ void MediaStreamHandler::HandleMediaStream() {
             if (packetCount % 100 == 0) {
                 std::cout << "RTCP sent" << std::endl;
                 protos.CreateSR(&sr, timestamp, packetCount, octetCount);
-                SOCK.sendSenderReport(&sr, sizeof(sr));
+                //SOCK.sendSenderReport(&sr, sizeof(sr));
             }
 	    }
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
