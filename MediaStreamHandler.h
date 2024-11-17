@@ -5,6 +5,14 @@
 #include <alsa/asoundlib.h>
 #include <condition_variable>
 
+
+enum MediaStreamState{
+    eMediaStream_Init,
+    eMediaStream_Play,
+    eMediaStream_Pause,
+    eMediaStream_Teardown,
+};
+
 class MediaStreamHandler {
 public:
     UDPHandler* udpHandler;
@@ -20,10 +28,8 @@ public:
     void SetCmd(const std::string& cmd);
 
 private:
-    std::atomic<bool> isStreaming;
-    std::atomic<bool> isPaused;
-
-    std::mutex mtx;
+    MediaStreamState streamState;
+    std::mutex streamMutex;
     std::condition_variable condition; // condition variable for streaming state controll
 };
 
