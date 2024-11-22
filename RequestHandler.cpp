@@ -140,7 +140,7 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
         response = "RTSP/1.0 406 Not Acceptable\r\n";
 
     response += "CSeq: " + std::to_string(cseq) + "\r\n"
-                "Content-Base: rtsp://" + ip + ":8554/\r\n"
+                "Content-Base: rtsp://" + ip + ":554/\r\n"
                 "Content-Type: application/sdp\r\n"
                 "Content-Length: " + std::to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
