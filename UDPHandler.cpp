@@ -30,11 +30,13 @@ bool UDPHandler::CreateUDPSocket() {
 
     memset(&rtpAddr, 0, sizeof(rtpAddr));
     rtpAddr.sin_family = AF_INET;
+    //rtpAddr.sin_port = htons(5004);
     rtpAddr.sin_port = htons(client->rtpPort);
     inet_pton(AF_INET, client->ip.c_str(), &rtpAddr.sin_addr);
 
     memset(&rtcpAddr, 0, sizeof(rtcpAddr));
     rtcpAddr.sin_family = AF_INET;
+    //rtcpAddr.sin_port = htons(5005);
     rtcpAddr.sin_port = htons(client->rtcpPort);
     inet_pton(AF_INET, client->ip.c_str(), &rtcpAddr.sin_addr);
 

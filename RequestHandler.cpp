@@ -90,8 +90,6 @@ std::pair<int, int> RequestHandler::ParsePorts(const std::string& request) {
                     
                     int rtpPort = stoi(portRange.substr(eqPos, dashPos - eqPos));
                     int rtcpPort = stoi(portRange.substr(dashPos + 1));
-                    //int rtpPort = stoi(portRange.substr(0, dashPos));
-                    //int rtcpPort = stoi(portRange.substr(dashPos + 1));
 		            return {rtpPort, rtcpPort};
                 }
             }
@@ -121,44 +119,46 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
     std::string ip = "";
     std::string sdp = "";
     std::string response = "";
+
     if (ParseAccept(request)) {
         response = "RTSP/1.0 200 OK\r\n";
 
         ip = utils::GetIP();
         sdp = "v=0\r\n"
-              "o=- "
-              + std::to_string(client->id)
-              + " " + std::to_string(client->version)
-              + " IN IP4 " + ip + "\r\n"
+              "o=- " + std::to_string(client->id) + " " + std::to_string(client->version) +
+              " IN IP4 " + ip + "\r\n"
               "s=Audio Stream\r\n"
               "c=IN IP4 " + ip + "\r\n"
               "t=0 0\r\n"
-              "m=audio " + std::to_string(client->rtpPort)
-              + " RTP/AVP 0\r\n"
-                "a=rtpmap:0 PCMU/8000\r\n";
-    } else
+              "m=audio " + std::to_string(client->rtpPort) + " RTP/AVP 111\r\n"  // Payload type for Opus
+              "a=rtpmap:111 opus/48000/2\r\n";  // Opus codec details
+    } else {
         response = "RTSP/1.0 406 Not Acceptable\r\n";
+    }
 
     response += "CSeq: " + std::to_string(cseq) + "\r\n"
                 "Content-Base: rtsp://" + ip + ":554/\r\n"
                 "Content-Type: application/sdp\r\n"
                 "Content-Length: " + std::to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
+
     TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
 }
+
 
 void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
     client->state = "SETUP";
 
     auto ports = ParsePorts(request);
     if (ports.first < 0 || ports.second < 0) {
-        std::cerr << "클라이언트 포트가 없습니다" << std::endl;
+     //   std::cerr << "클라이언트 포트가 없습니다" << std::endl;
         return;
     }
 
     client->rtpPort = ports.first;
     client->rtcpPort = ports.second;
-    // session->SetPort(ports.first, ports.second);
+    //client->rtpPort = 5004;
+    //client->rtcpPort = 5005;
 
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"

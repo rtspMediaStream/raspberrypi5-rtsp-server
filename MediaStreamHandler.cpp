@@ -4,6 +4,7 @@
 #include "UDPHandler.h"
 #include "MediaStreamHandler.h"
 #include "AudioCapture.h"
+#include "OpusEncoder.h"
 
 #include <iostream>
 #include <cstdint>
@@ -15,19 +16,15 @@
 #include <mutex>
 #include <utility>
 #include <random>
+#define PCM_FRAME_SIZE 1152
 
 MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaStream_Init){}
 
 void MediaStreamHandler::HandleMediaStream() {
     Protos protos(utils::GetRanNum(32));
 
-    size_t payloadSize = 160;  // 20ms당 160 샘플
-    int frames = payloadSize;  // G.711은 8kHz에서 20ms당 160 샘플
-    unsigned int sampleRate = 8000 ; // G.711의 샘플링 레이트
-    int chnnels = 2; //mono
-
-    short pcmBuffer[frames * chnnels];
-    unsigned char payloadBuffer[payloadSize];
+    short pcmBuffer[OPUS_FRAME_SIZE * OPUS_CHANNELS];
+    unsigned char encodedBuffer[MAX_PACKET_SIZE];
 
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
@@ -37,7 +34,8 @@ void MediaStreamHandler::HandleMediaStream() {
     Protos::SenderReport sr;
     Protos::RTPHeader rtpHeader;
 
-    AudioCapture audioCapture(sampleRate);
+    AudioCapture audioCapture(OPUS_SAMPLE_RATE);
+    OpusEncoder opusEncoder;
 
     while (true) {
         if(streamState == MediaStreamState::eMediaStream_Pause) {
@@ -48,29 +46,27 @@ void MediaStreamHandler::HandleMediaStream() {
             break;
         }
         else if(streamState == MediaStreamState::eMediaStream_Play) {
-            int rc = audioCapture.read(pcmBuffer, frames);
-            if (rc != frames) {
+            int rc = audioCapture.read(pcmBuffer, OPUS_FRAME_SIZE);
+            if (rc != OPUS_FRAME_SIZE) {
                 continue;
             }
 
-            //pcm ulaw encoding
-            for (int i = 0; i < frames; i++)
-                payloadBuffer[i] = pcm_to_ulaw(pcmBuffer[i]);
+            int encoded_bytes = opusEncoder.encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
 
             //make RTP Packet.
-            unsigned char rtpPacket[sizeof(Protos::RTPHeader) + payloadSize] = {0,};
+            unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = {0,};
             protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
             memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
-            memcpy(rtpPacket + sizeof(rtpHeader), payloadBuffer, payloadSize);
+            memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
 
             std::cout << "RTP " << packetCount << " sent" << std::endl;
 
             udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
             seqNum++;
-            timestamp += payloadSize;
+            timestamp += PCM_FRAME_SIZE;
             packetCount++;
-            octetCount += payloadSize;
+            octetCount += encoded_bytes;
 
             if (packetCount % 100 == 0)
             {
@@ -80,7 +76,7 @@ void MediaStreamHandler::HandleMediaStream() {
             }
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        //std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }
 
