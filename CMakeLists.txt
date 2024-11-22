@@ -11,6 +11,7 @@ set(SOURCES
         TCPHandler.cpp
         UDPHandler.cpp
         MediaStreamHandler.cpp
+        AudioCapture.cpp
         ClientSession.cpp
         Protos.cpp
 )

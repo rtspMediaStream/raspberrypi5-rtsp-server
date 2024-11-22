@@ -21,9 +21,7 @@ public:
 
     void HandleMediaStream();
 
-    unsigned char LinearToUlaw(int sample);
-    void InitAlsa(snd_pcm_t*& pcmHandle, snd_pcm_hw_params_t*& params, int& rc, unsigned int& sampleRate, int& dir);
-    int CaptureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int& frames, int& rc, unsigned char*& payload);
+    uint8_t pcm_to_ulaw(int16_t pcm_val);
 
     void SetCmd(const std::string& cmd);
 
