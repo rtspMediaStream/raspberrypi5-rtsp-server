@@ -13,8 +13,9 @@ public:
     void HandleRequest();
 
 private:
+    MediaStreamHandler *mediaStreamHandler;
+
     std::shared_ptr<Info> client;
-    MediaStreamHandler& mediaStreamHandler;
 
     std::string ParseMethod(const std::string& request);
 

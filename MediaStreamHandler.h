@@ -7,6 +7,8 @@
 
 class MediaStreamHandler {
 public:
+    UDPHandler* udpHandler;
+
     MediaStreamHandler();
 
     void HandleMediaStream();
