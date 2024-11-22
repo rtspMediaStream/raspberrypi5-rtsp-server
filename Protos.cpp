@@ -11,7 +11,7 @@ void Protos::CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned 
     header->x = 0;
     header->cc = 0;
     header->m = 0;
-    header->pt = 0;  // 0 for PCMU (G.711 µ-law)
+    header->pt = 111;  // 0 for PCMU (G.711 µ-law) , 111 (Opus)
     header->seqNum = htons(seqNum);
     header->timestamp = htonl(timestamp);
     header->ssrc = htonl(ssrc);
