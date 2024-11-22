@@ -15,7 +15,7 @@
 #include <utility>
 #include <random>
 
-MediaStreamHandler::MediaStreamHandler(): isStreaming(false), isPaused(false) {}
+MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaStream_Init){}
 
 void MediaStreamHandler::HandleMediaStream() {
     Protos protos(utils::GetRanNum(32));
@@ -47,26 +47,26 @@ void MediaStreamHandler::HandleMediaStream() {
 
     // std::unique_lock<std::mutex> lock(mtx);
 
-    while (isStreaming) {
-        // wait for streaming start sign 
-        // condition.wait(lock, [this] { return !isPaused || !isStreaming; });
-
-        if (!isStreaming) break;  // TEARDOWN 요청 시 종료
-
-        if (!isPaused) {
-            unsigned char rtpPacket[sizeof(Protos::RTPHeader) + payloadSize];
-
+    while (true) {
+        if(streamState == MediaStreamState::eMediaStream_Pause) {
+            std::unique_lock<std::mutex> lck(streamMutex);
+            condition.wait(lck);
+        }
+        else if (streamState == MediaStreamState::eMediaStream_Teardown) {
+            break;
+        }
+        else if(streamState == MediaStreamState::eMediaStream_Play) {
             if (CaptureAudio(pcmHandle, buffer, frames, rc, payload) < 0) {
                 std::cerr << "Error: fail to capture audio" << std::endl;
                 break;
             }
 
-            memset(rtpPacket, 0, sizeof(rtpPacket));
+            unsigned char rtpPacket[sizeof(Protos::RTPHeader) + payloadSize] = {0,};
             protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
             memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
             memcpy(rtpPacket + sizeof(rtpHeader), payload, payloadSize);
 
-	        std::cout << "RTP " << packetCount << " sent" << std::endl;
+            std::cout << "RTP " << packetCount << " sent" << std::endl;
 
             udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
@@ -75,12 +75,14 @@ void MediaStreamHandler::HandleMediaStream() {
             packetCount++;
             octetCount += payloadSize;
 
-            if (packetCount % 100 == 0) {
+            if (packetCount % 100 == 0)
+            {
                 std::cout << "RTCP sent" << std::endl;
                 protos.CreateSR(&sr, timestamp, packetCount, octetCount);
                 udpHandler->SendSenderReport(&sr, sizeof(sr));
             }
-	    }
+        }
+
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }
@@ -172,13 +174,13 @@ int MediaStreamHandler::CaptureAudio(snd_pcm_t*& pcmHandle, short*& buffer, int&
 }
 
 void MediaStreamHandler::SetCmd(const std::string& cmd) {
-    std::lock_guard<std::mutex> lock(mtx);
+    std::lock_guard<std::mutex> lock(streamMutex);
     if (cmd == "PLAY") {
-        isStreaming = true;
-        isPaused = false;
-    } else if (cmd == "PAUSE")
-        isPaused = true;
-    else if (cmd == "TEARDOWN")
-        isStreaming = false;
-    condition.notify_all();
+        streamState = MediaStreamState::eMediaStream_Play;
+        condition.notify_all();
+    } else if (cmd == "PAUSE") {
+        streamState = MediaStreamState::eMediaStream_Pause;
+    } else if (cmd == "TEARDOWN") {
+        streamState = MediaStreamState::eMediaStream_Teardown;
+    }
 }
