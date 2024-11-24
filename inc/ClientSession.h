@@ -26,6 +26,8 @@ class MediaStreamHandler;
 class ClientSession {
 public:
     ClientSession(const std::pair<int, std::string>& newClient);
+    
+    void StartRequestHandlerThread();
 
     int GetSessionId() const;
 

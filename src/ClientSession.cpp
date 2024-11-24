@@ -16,6 +16,10 @@ ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
     info->rtpPort = -1;
     info->rtcpPort = -1;
 
+
+}
+
+void ClientSession::StartRequestHandlerThread() {
     requestHandler = new RequestHandler(info);
     std::thread requestHandlerThread(&RequestHandler::HandleRequest, *requestHandler);
     requestHandlerThread.detach();

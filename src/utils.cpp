@@ -30,7 +30,7 @@ uint32_t utils::GetRanNum(int n) {
     return 0;
 }
 
-char* utils::GetIP() {
+std::string utils::GetIP() {
     char hostbuffer[256];
     char *IPbuffer;
     struct hostent *host_entry;
@@ -40,18 +40,17 @@ char* utils::GetIP() {
     hostname = gethostname(hostbuffer, sizeof(hostbuffer));
     if (hostname == -1) {
         perror("gethostname");
-        return "";
+        return std::string("");
     }
 
     // Get host information
     host_entry = gethostbyname(hostbuffer);
     if (host_entry == nullptr) {
         perror("gethostbyname");
-        return "";
+        return std::string("");
     }
 
     // Convert host's binary address into text
     IPbuffer = inet_ntoa(*((struct in_addr *) host_entry->h_addr_list[0]));
-
     return IPbuffer;
 }
