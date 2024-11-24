@@ -7,6 +7,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include <memory>
 
 struct Info {
     int id;
@@ -25,6 +26,8 @@ class MediaStreamHandler;
 class ClientSession {
 public:
     ClientSession(const std::pair<int, std::string>& newClient);
+    
+    void StartRequestHandlerThread();
 
     int GetSessionId() const;
 

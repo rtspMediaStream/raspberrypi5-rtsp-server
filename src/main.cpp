@@ -21,6 +21,7 @@ int main() {
         std::cout << "Client connected" << std::endl;
 
         ClientSession* clientSession = new ClientSession(newClient);
+        clientSession->StartRequestHandlerThread();
         std::cout << "Main while loop." << std::endl;
     }
 
