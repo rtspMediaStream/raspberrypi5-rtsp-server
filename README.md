@@ -7,11 +7,9 @@ Develop a server that streams audio and video.
 - Install
 ```bash
 sudo apt update
-sudo apt install libasound2-dev  // ALSA 
-sudo apt install libopus-dev     // OPUS codec
-sudo apt install ffmpeg		     // ffmpeg 
+sudo apt install build-essential libopus-dev libasound2-dev pkg-config
+sudo apt install ffmpeg		     // client test ffmpeg
 ```
-## ⚠️ Please download CMake version 3.29.2(supported by Kitware)
 
 ### for Build 
     mkdir build

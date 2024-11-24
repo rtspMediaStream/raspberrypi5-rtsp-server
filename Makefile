@@ -1,8 +1,10 @@
 # Compiler
 CXX = g++
 
-# Compiler flags
-CXXFLAGS = -I./inc `pkg-config --cflags --libs lopus -lasound` -Wall -std=c++11
+# Compiler and Linker flags
+PKG_CONFIG = pkg-config
+CXXFLAGS = -I./inc `$(PKG_CONFIG) --cflags opus alsa` -Wall -std=c++11
+LDFLAGS = `$(PKG_CONFIG) --libs opus alsa`
 
 # Source and object files
 SRC_DIR = src
@@ -18,7 +20,7 @@ all: $(TARGET)
 
 # Link the object files to create the executable
 $(TARGET): $(OBJS)
-	$(CXX) -o $@ $^ $(CXXFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS)
 
 # Compile each .cpp file into an .o file
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
@@ -34,3 +36,4 @@ clean:
 
 # Phony targets
 .PHONY: all clean
+

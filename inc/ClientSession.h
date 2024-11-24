@@ -7,6 +7,7 @@
 #include <chrono>
 #include <string>
 #include <iostream>
+#include <memory>
 
 struct Info {
     int id;
