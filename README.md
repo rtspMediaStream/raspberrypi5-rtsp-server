@@ -7,25 +7,25 @@ Develop a server that streams audio and video.
 - Install
 ```bash
 sudo apt update
-sudo apt install build-essential libopus-dev libasound2-dev pkg-config
+sudo apt install build-essential pkg-config libopus-dev libasound2-dev   // For g++, make, library compile, Opus, ALSA
 sudo apt install ffmpeg		     // client test ffmpeg
 ```
 
 ### for Build 
-    mkdir build
-    cmake ..
-    make
+```bash
+make
+```
 
 ###  Check your speaker device.
 ```bash
-    aplay -l
+aplay -l
 ```
 
 # Start
 
 ### Start RTSP-server (Send)
 ```bash
-./rtsp
+sudo ./rtsp-opus-codec.out
 ```
 
 ### Check the sound by entering the speaker number in ffmpeg (Receive)
