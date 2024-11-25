@@ -7,8 +7,8 @@ Develop a server that streams audio and video.
 - Install
 ```bash
 sudo apt update
-sudo apt install build-essential pkg-config libopus-dev libasound2-dev   // For g++, make, library compile, Opus, ALSA
-sudo apt install ffmpeg		     // client test ffmpeg
+sudo apt install build-essential pkg-config libopus-dev libasound2-dev   # For g++, make, library compile, Opus, ALSA
+sudo apt install ffmpeg		     # client test ffmpeg
 ```
 
 ### for Build 
