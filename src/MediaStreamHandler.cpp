@@ -5,6 +5,8 @@
 #include "MediaStreamHandler.h"
 #include "AudioCapture.h"
 #include "OpusEncoder.h"
+#include "H264Encoder.h"
+#include "global.h"
 
 #include <iostream>
 #include <cstdint>
@@ -36,6 +38,7 @@ void MediaStreamHandler::HandleMediaStream() {
 
     AudioCapture audioCapture(OPUS_SAMPLE_RATE);
     OpusEncoder opusEncoder;
+    H264Encoder h264_file(g_inputFile);
 
     while (true) {
         if(streamState == MediaStreamState::eMediaStream_Pause) {
@@ -46,33 +49,56 @@ void MediaStreamHandler::HandleMediaStream() {
             break;
         }
         else if(streamState == MediaStreamState::eMediaStream_Play) {
-            int rc = audioCapture.read(pcmBuffer, OPUS_FRAME_SIZE);
-            if (rc != OPUS_FRAME_SIZE) {
-                continue;
-            }
+            if(g_serverStreamType == Audio) {
+                int rc = audioCapture.read(pcmBuffer, OPUS_FRAME_SIZE);
+                if (rc != OPUS_FRAME_SIZE)
+                {
+                    continue;
+                }
 
-            int encoded_bytes = opusEncoder.encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
+                int encoded_bytes = opusEncoder.encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
 
-            //make RTP Packet.
-            unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = {0,};
-            protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
-            memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
-            memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
+                // make RTP Packet.
+                unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = { 0, };
+                protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
+                memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
+                memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
+                udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
-            std::cout << "RTP " << packetCount << " sent" << std::endl;
+                seqNum++;
+                timestamp += PCM_FRAME_SIZE;
+                packetCount++;
+                octetCount += encoded_bytes;
 
-            udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
+                if (packetCount % 100 == 0)
+                {
+                    std::cout << "RTCP sent" << std::endl;
+                    protos.CreateSR(&sr, timestamp, packetCount, octetCount);
+                    udpHandler->SendSenderReport(&sr, sizeof(sr));
+                }
+            }else if (g_serverStreamType == Video) {
+                auto cur_frame = this->h264_file.get_next_frame();
+                const auto ptr_cur_frame = cur_frame.first;
+                const auto cur_frame_size = cur_frame.second;
 
-            seqNum++;
-            timestamp += PCM_FRAME_SIZE;
-            packetCount++;
-            octetCount += encoded_bytes;
+                if (cur_frame_size < 0) {
+                    fprintf(stderr, "RTSP::serve_client() H264::getOneFrame() failed\n");
+                    break;
+                } else if (!cur_frame_size) {
+                    fprintf(stdout, "Finish serving the user\n");
+                    return;
+                }
 
-            if (packetCount % 100 == 0)
-            {
-                std::cout << "RTCP sent" << std::endl;
-                protos.CreateSR(&sr, timestamp, packetCount, octetCount);
-                udpHandler->SendSenderReport(&sr, sizeof(sr));
+                // make RTP Packet.
+                unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = { 0, };
+                protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
+                memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
+                memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
+                udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
+
+                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
+                //RTSP::push_stream(rtpFD, rtpPacket, ptr_cur_frame + start_code_len, cur_frame_size - start_code_len, (sockaddr *)&clientSock, timeStampStep);
+                usleep(sleepPeriod);
             }
         }
 

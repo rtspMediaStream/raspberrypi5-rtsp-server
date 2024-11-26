@@ -4,6 +4,7 @@
 #include "ClientSession.h"
 #include "MediaStreamHandler.h"
 #include "UDPHandler.h"
+#include "global.h"
 
 #include <iostream>
 #include <string>
@@ -116,15 +117,15 @@ void RequestHandler::HandleOptionsRequest(int cseq) {
 }
 
 void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq) {
-    std::string ip = "";
+    std::string ip = utils::GetIP();
     std::string sdp = "";
     std::string response = "";
 
     if (ParseAccept(request)) {
         response = "RTSP/1.0 200 OK\r\n";
 
-        ip = utils::GetIP();
-        sdp = "v=0\r\n"
+        if(g_serverStreamType == ServerStreamType::Audio) {
+            sdp = "v=0\r\n"
               "o=- " + std::to_string(client->id) + " " + std::to_string(client->version) +
               " IN IP4 " + ip + "\r\n"
               "s=Audio Stream\r\n"
@@ -132,6 +133,18 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
               "t=0 0\r\n"
               "m=audio " + std::to_string(client->rtpPort) + " RTP/AVP 111\r\n"  // Payload type for Opus
               "a=rtpmap:111 opus/48000/2\r\n";  // Opus codec details
+        }else if(g_serverStreamType == ServerStreamType::Video) {
+            sdp = "v=0\r\n"
+              "o=- " + std::to_string(client->id) + " " + std::to_string(client->version) +
+              " IN IP4 " + ip + "\r\n"
+              "s=Audio Stream\r\n"
+              "c=IN IP4 " + ip + "\r\n"
+              "t=0 0\r\n"
+              "m=video " + std::to_string(client->rtpPort) + " RTP/AVP 96\r\n"
+              "a=rtpmap:96 H264/90000\r\n";
+              "a=control:track0\r\n"
+        }
+        
     } else {
         response = "RTSP/1.0 406 Not Acceptable\r\n";
     }
