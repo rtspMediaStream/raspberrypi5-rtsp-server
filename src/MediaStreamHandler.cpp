@@ -23,7 +23,7 @@
 MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaStream_Init){}
 
 void MediaStreamHandler::HandleMediaStream() {
-    Protos protos(utils::GetRanNum(32));
+    Protos protos;
 
     short pcmBuffer[OPUS_FRAME_SIZE * OPUS_CHANNELS];
     unsigned char encodedBuffer[MAX_PACKET_SIZE];
@@ -60,7 +60,7 @@ void MediaStreamHandler::HandleMediaStream() {
 
                 // make RTP Packet.
                 unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = { 0, };
-                protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
+                protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_OPUS);
                 memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
                 memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
                 udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
@@ -77,32 +77,95 @@ void MediaStreamHandler::HandleMediaStream() {
                     udpHandler->SendSenderReport(&sr, sizeof(sr));
                 }
             }else if (g_serverStreamType == Video) {
-                auto cur_frame = this->h264_file.get_next_frame();
+                auto cur_frame = h264_file.get_next_frame();
                 const auto ptr_cur_frame = cur_frame.first;
-                const auto cur_frame_size = cur_frame.second;
+                const auto encoded_bytes = cur_frame.second;
 
-                if (cur_frame_size < 0) {
+                if (encoded_bytes < 0) {
                     fprintf(stderr, "RTSP::serve_client() H264::getOneFrame() failed\n");
                     break;
-                } else if (!cur_frame_size) {
+                } else if (!encoded_bytes) {
                     fprintf(stdout, "Finish serving the user\n");
                     return;
                 }
 
+                // Determine if the frame is a complete NALU or needs fragmentation
+                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, encoded_bytes, 4) ? 4 : 3;
+                const unsigned char *nal_unit = ptr_cur_frame + start_code_len;
+                const int nal_unit_size = encoded_bytes - start_code_len;
+
+                // RTP Packetize the NALU
+                if (nal_unit_size <= MAX_RTP_PAYLOAD_SIZE)
+                {
+                    // Single NAL Unit Packet
+                    unsigned char rtpPacket[sizeof(Protos::RTPHeader) + nal_unit_size] = {0};
+                    protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_H264);
+                    memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
+                    memcpy(rtpPacket + sizeof(rtpHeader), nal_unit, nal_unit_size);
+                    udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
+
+                    seqNum++;
+                }
+                else
+                {
+                    // Fragmented NAL Unit Packet (FU-A)
+                    int remaining = nal_unit_size;
+                    const unsigned char nal_header = nal_unit[0];
+                    const unsigned char fu_indicator = (nal_header & 0xE0) | 28; // FU-A NAL type
+                    const unsigned char fu_header_base = nal_header & 0x1F;      // Original NAL type
+
+                    const unsigned char *payload = nal_unit + 1;
+                    while (remaining > 0)
+                    {
+                        const int fragment_size = std::min(remaining, MAX_RTP_PAYLOAD_SIZE);
+
+                        unsigned char rtpPacket[sizeof(Protos::RTPHeader) + 2 + fragment_size] = {0};
+                        protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_H264);
+
+                        // FU-A Header
+                        unsigned char fu_header = fu_header_base;
+                        if (remaining == nal_unit_size - 1)
+                        {
+                            fu_header |= 0x80; // Start bit
+                        }
+                        else if (remaining <= fragment_size)
+                        {
+                            fu_header |= 0x40; // End bit
+                        }
+
+                        // Build RTP Packet
+                        memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
+                        rtpPacket[sizeof(rtpHeader)] = fu_indicator;
+                        rtpPacket[sizeof(rtpHeader) + 1] = fu_header;
+                        memcpy(rtpPacket + sizeof(rtpHeader) + 2, payload, fragment_size);
+
+                        udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
+                        seqNum++;
+                        remaining -= fragment_size;
+                        payload += fragment_size;
+                    }
+                }
+
+                usleep(sleepPeriod);
+
+
+                /*
                 // make RTP Packet.
                 unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = { 0, };
-                protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp);
+                protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_H264);
                 memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
                 memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
                 udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
-                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
-                //RTSP::push_stream(rtpFD, rtpPacket, ptr_cur_frame + start_code_len, cur_frame_size - start_code_len, (sockaddr *)&clientSock, timeStampStep);
+                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, encoded_bytes, 4) ? 4 : 3;
+
+
+                //RTSP::push_stream(rtpFD, rtpPacket, ptr_cur_frame + start_code_len, encoded_bytes - start_code_len, (sockaddr *)&clientSock, timeStampStep);
                 usleep(sleepPeriod);
+                */
             }
         }
 
-        //std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }
 

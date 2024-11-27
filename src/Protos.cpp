@@ -3,15 +3,15 @@
 
 #include <arpa/inet.h>
 
-Protos::Protos(uint32_t ssrc): ssrc(ssrc) {}
+Protos::Protos() {}
 
-void Protos::CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp) {
-    header->version = 2;
+void Protos::CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp, int payloadType) {
+    header->version = 2;    //fixed RTP version 
     header->p = 0;
     header->x = 0;
     header->cc = 0;
     header->m = 0;
-    header->pt = 111;  // 0 for PCMU (G.711 µ-law) , 111 (Opus)
+    header->pt = payloadType;  // 0 for PCMU (G.711 µ-law) , 111 (Opus) , 96 (H.264)
     header->seqNum = htons(seqNum);
     header->timestamp = htonl(timestamp);
     header->ssrc = htonl(ssrc);
