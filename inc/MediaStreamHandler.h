@@ -5,6 +5,7 @@
 #include <alsa/asoundlib.h>
 #include <condition_variable>
 
+#define MAX_RTP_PAYLOAD_SIZE 1400 // RTP Payload 최대 크기 (일반적으로 MTU - Header 크기)
 
 enum MediaStreamState{
     eMediaStream_Init,
