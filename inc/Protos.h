@@ -6,11 +6,11 @@
 
 #define MAX_RTP_PAYLOAD_SIZE 1400 // RTP Payload 최대 크기 (일반적으로 MTU - Header 크기)
 
-enum
+enum ssrc
 {
     PROTO_OPUS = 111,
     PROTO_H264 = 96,
-}
+};
 
 class Protos
 {
@@ -63,8 +63,8 @@ public:
         uint32_t senderOctetCount;
     } __attribute__((packed));
 
-    void CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp, int payloadType);
-    void CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount);
+    void CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp, ssrc payloadType);
+    void CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, ssrc payloadType);
 };
 
 #endif //RTSP_PROTOS_H

@@ -30,6 +30,7 @@ private:
     MediaStreamState streamState;
     std::mutex streamMutex;
     std::condition_variable condition; // condition variable for streaming state controll
+    void SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, Protos::RTPHeader& rtpHeader, unsigned short &seqNum);
 };
 
 #endif //RTSP_MEDIASTREAMHANDLER_H

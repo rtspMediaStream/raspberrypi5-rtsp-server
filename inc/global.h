@@ -3,11 +3,19 @@
 #include <string.h>
 
 enum ServerStreamType{
-    Audio,
+    Audio = 1,
     Video,
 };
 
-static ServerStreamType g_serverStreamType = ServerStreamType::Audio;
-static std::string g_inputFile = "";
+class ServerStream{
+    public:
+    ServerStreamType type;
+    static ServerStream& getInstance(){
+        static ServerStream instance;
+        return instance;
+    }
+};
+
+static std::string g_inputFile = "example/dragon.h264";
 
 #endif //GLOBAL_H

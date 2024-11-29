@@ -18,9 +18,88 @@
 #include <mutex>
 #include <utility>
 #include <random>
+#include <algorithm>
 #define PCM_FRAME_SIZE 1152
 
+constexpr int64_t IP_V4_HEADER_SIZE = 20;
+constexpr int64_t UDP_HEADER_SIZE = 8;
+constexpr int64_t RTP_HEADER_SIZE = 12;
+constexpr int64_t RTP_VERSION = 2;
+constexpr int64_t RTP_PAYLOAD_TYPE_H264 = 96;
+constexpr int64_t FU_SIZE = 2;  // FU-A 헤더 크기 (FU Indicator + FU Header)
+
+constexpr int64_t MAX_UDP_PACKET_SIZE = 65535;
+constexpr int64_t MAX_RTP_DATA_SIZE = MAX_UDP_PACKET_SIZE - IP_V4_HEADER_SIZE
+                                        - UDP_HEADER_SIZE - RTP_HEADER_SIZE - FU_SIZE;
+constexpr int64_t MAX_RTP_PACKET_LEN = MAX_RTP_DATA_SIZE + RTP_HEADER_SIZE + FU_SIZE;
+
+
 MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaStream_Init){}
+
+void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, Protos::RTPHeader& rtpHeader, unsigned short &seqNum) {
+    unsigned char nalHeader = payload[0]; // NAL 헤더 (첫 바이트)
+    unsigned char rtpPacket[MAX_UDP_PACKET_SIZE] = {0};
+
+    if (payloadSize <= MAX_RTP_DATA_SIZE) {
+        // 패킷 크기가 MTU 이하인 경우, 단일 RTP 패킷 전송
+        //rtpHeader.m = 1; // 단일 RTP 패킷이므로 마커 비트 활성화
+        memcpy(rtpPacket, &rtpHeader, sizeof(Protos::RTPHeader)); // RTP 헤더 복사
+        memcpy(rtpPacket + sizeof(Protos::RTPHeader), payload, payloadSize); // NAL 데이터 복사
+
+        std::cout<<"test02"<<std::endl;
+        udpHandler->SendRTPPacket(rtpPacket, sizeof(Protos::RTPHeader) + payloadSize);
+
+        // 마커 비트 설정
+        seqNum++;
+        rtpHeader.seqNum = seqNum;
+        return;
+    }
+
+    // 패킷 크기가 MTU를 초과하는 경우, FU-A로 분할
+    //unsigned char fuIndicator = (nalHeader & 0xE0) | 28; // FU Indicator (F | NRI | Type)
+
+
+    const int64_t packetNum = payloadSize / MAX_RTP_DATA_SIZE;
+    const int64_t remainPacketSize = payloadSize % MAX_RTP_DATA_SIZE;
+    int64_t pos = 1;    // NAL 헤더(첫 바이트)는 별도 처리
+
+    for (int i = 0; i < packetNum; i++) {
+        rtpPacket[sizeof(Protos::RTPHeader) + 0] = (nalHeader & NALU_F_NRI_MASK) | SET_FU_A_MASK;
+        rtpPacket[sizeof(Protos::RTPHeader) + 1] = nalHeader & NALU_TYPE_MASK;
+        // FU Header 생성
+        if(i == 0) {    //처음 조각
+            rtpPacket[sizeof(Protos::RTPHeader) + 1] |= FU_S_MASK;
+        }else if(i == packetNum-1 && remainPacketSize == 0) {    //마지막 조각
+            rtpPacket[sizeof(Protos::RTPHeader) + 1] |= FU_E_MASK;
+        }
+
+        // RTP 패킷 생성
+        memcpy(rtpPacket, &rtpHeader, sizeof(Protos::RTPHeader));                                          // RTP Header 추가
+        memcpy(rtpPacket + sizeof(Protos::RTPHeader) + FU_SIZE, &payload[pos], MAX_RTP_DATA_SIZE); // 분할된 데이터 복사
+        // RTP 패킷 전송
+        std::cout << "test01" << std::endl;
+        udpHandler->SendRTPPacket(rtpPacket, MAX_RTP_PACKET_LEN);
+
+        // 시퀀스 넘버 증가 및 오프셋 업데이트
+        seqNum++;
+        rtpHeader.seqNum = seqNum;
+        pos += MAX_RTP_DATA_SIZE;
+    }
+    if(remainPacketSize > 0) {
+        rtpPacket[sizeof(Protos::RTPHeader) + 0] = (nalHeader & NALU_F_NRI_MASK) | SET_FU_A_MASK;
+        rtpPacket[sizeof(Protos::RTPHeader) + 1] = (nalHeader & NALU_TYPE_MASK) | FU_E_MASK;
+
+        // RTP 패킷 생성
+        memcpy(rtpPacket, &rtpHeader, sizeof(Protos::RTPHeader));                                          // RTP Header 추가
+        memcpy(rtpPacket + sizeof(Protos::RTPHeader) + FU_SIZE, payload + pos, remainPacketSize); // 분할된 데이터 복사
+        // RTP 패킷 전송
+        std::cout << "test01" << std::endl;
+        //udpHandler->SendRTPPacket(rtpPacket, sizeof(Protos::RTPHeader) + sizeof(FU_SIZE) + remainPacketSize);
+
+        seqNum++;
+        rtpHeader.seqNum = seqNum;
+    }
+}
 
 void MediaStreamHandler::HandleMediaStream() {
     Protos protos;
@@ -36,9 +115,19 @@ void MediaStreamHandler::HandleMediaStream() {
     Protos::SenderReport sr;
     Protos::RTPHeader rtpHeader;
 
-    AudioCapture audioCapture(OPUS_SAMPLE_RATE);
-    OpusEncoder opusEncoder;
-    H264Encoder h264_file(g_inputFile);
+    
+    AudioCapture *audioCapture = nullptr;
+    OpusEncoder *opusEncoder = nullptr;
+    H264Encoder *h264_file = nullptr;
+
+    if(ServerStream::getInstance().type == Audio) {
+        std::cout<< "audio" << std::endl;
+        audioCapture = new AudioCapture(OPUS_SAMPLE_RATE);
+        opusEncoder = new OpusEncoder();
+    }else if(ServerStream::getInstance().type == Video){
+        std::cout<< "video file open : " << g_inputFile.c_str() << std::endl;
+        h264_file = new H264Encoder(g_inputFile.c_str());
+    }
 
     while (true) {
         if(streamState == MediaStreamState::eMediaStream_Pause) {
@@ -49,20 +138,21 @@ void MediaStreamHandler::HandleMediaStream() {
             break;
         }
         else if(streamState == MediaStreamState::eMediaStream_Play) {
-            if(g_serverStreamType == Audio) {
-                int rc = audioCapture.read(pcmBuffer, OPUS_FRAME_SIZE);
+            if(ServerStream::getInstance().type == Audio) {
+                int rc = audioCapture->read(pcmBuffer, OPUS_FRAME_SIZE);
                 if (rc != OPUS_FRAME_SIZE)
                 {
                     continue;
                 }
 
-                int encoded_bytes = opusEncoder.encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
+                int encoded_bytes = opusEncoder->encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
 
                 // make RTP Packet.
                 unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = { 0, };
                 protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_OPUS);
                 memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
                 memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
+                std::cout<<"test03"<<std::endl;
                 udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
                 seqNum++;
@@ -73,96 +163,45 @@ void MediaStreamHandler::HandleMediaStream() {
                 if (packetCount % 100 == 0)
                 {
                     std::cout << "RTCP sent" << std::endl;
-                    protos.CreateSR(&sr, timestamp, packetCount, octetCount);
+                    protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_OPUS);
                     udpHandler->SendSenderReport(&sr, sizeof(sr));
                 }
-            }else if (g_serverStreamType == Video) {
-                auto cur_frame = h264_file.get_next_frame();
+            }
+            if (ServerStream::getInstance().type == Video) {
+                auto cur_frame = h264_file->get_next_frame();
                 const auto ptr_cur_frame = cur_frame.first;
-                const auto encoded_bytes = cur_frame.second;
+                const auto cur_frame_size = cur_frame.second;
 
-                if (encoded_bytes < 0) {
-                    fprintf(stderr, "RTSP::serve_client() H264::getOneFrame() failed\n");
+                if (ptr_cur_frame == nullptr || cur_frame_size <= 0)
+                {
+                    std::cerr << "No more frames or invalid frame data." << std::endl;
                     break;
-                } else if (!encoded_bytes) {
-                    fprintf(stdout, "Finish serving the user\n");
-                    return;
                 }
 
-                // Determine if the frame is a complete NALU or needs fragmentation
-                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, encoded_bytes, 4) ? 4 : 3;
-                const unsigned char *nal_unit = ptr_cur_frame + start_code_len;
-                const int nal_unit_size = encoded_bytes - start_code_len;
 
-                // RTP Packetize the NALU
-                if (nal_unit_size <= MAX_RTP_PAYLOAD_SIZE)
-                {
-                    // Single NAL Unit Packet
-                    unsigned char rtpPacket[sizeof(Protos::RTPHeader) + nal_unit_size] = {0};
-                    protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_H264);
-                    memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
-                    memcpy(rtpPacket + sizeof(rtpHeader), nal_unit, nal_unit_size);
-                    udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
-
-                    seqNum++;
-                }
-                else
-                {
-                    // Fragmented NAL Unit Packet (FU-A)
-                    int remaining = nal_unit_size;
-                    const unsigned char nal_header = nal_unit[0];
-                    const unsigned char fu_indicator = (nal_header & 0xE0) | 28; // FU-A NAL type
-                    const unsigned char fu_header_base = nal_header & 0x1F;      // Original NAL type
-
-                    const unsigned char *payload = nal_unit + 1;
-                    while (remaining > 0)
-                    {
-                        const int fragment_size = std::min(remaining, MAX_RTP_PAYLOAD_SIZE);
-
-                        unsigned char rtpPacket[sizeof(Protos::RTPHeader) + 2 + fragment_size] = {0};
-                        protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_H264);
-
-                        // FU-A Header
-                        unsigned char fu_header = fu_header_base;
-                        if (remaining == nal_unit_size - 1)
-                        {
-                            fu_header |= 0x80; // Start bit
-                        }
-                        else if (remaining <= fragment_size)
-                        {
-                            fu_header |= 0x40; // End bit
-                        }
-
-                        // Build RTP Packet
-                        memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
-                        rtpPacket[sizeof(rtpHeader)] = fu_indicator;
-                        rtpPacket[sizeof(rtpHeader) + 1] = fu_header;
-                        memcpy(rtpPacket + sizeof(rtpHeader) + 2, payload, fragment_size);
-
-                        udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
-                        seqNum++;
-                        remaining -= fragment_size;
-                        payload += fragment_size;
-                    }
-                }
-
-                usleep(sleepPeriod);
-
-
-                /*
-                // make RTP Packet.
-                unsigned char rtpPacket[sizeof(Protos::RTPHeader) + encoded_bytes] = { 0, };
+                // RTP 헤더 생성
                 protos.CreateRTPHeader(&rtpHeader, seqNum, timestamp, PROTO_H264);
-                memcpy(rtpPacket, &rtpHeader, sizeof(rtpHeader));
-                memcpy(rtpPacket + sizeof(rtpHeader), encodedBuffer, encoded_bytes);
-                udpHandler->SendRTPPacket(rtpPacket, sizeof(rtpPacket));
 
-                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, encoded_bytes, 4) ? 4 : 3;
+                // RTP 패킷 전송 (FU-A 분할 포함)
+                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
+                SendFragmentedRTPPackets((unsigned char*)ptr_cur_frame+ start_code_len, cur_frame_size- start_code_len, rtpHeader, seqNum);
 
+                // 타임스탬프 업데이트
+                timestamp += 3000.0; //uint32_t(90000 / 30);
 
-                //RTSP::push_stream(rtpFD, rtpPacket, ptr_cur_frame + start_code_len, encoded_bytes - start_code_len, (sockaddr *)&clientSock, timeStampStep);
+                // 주기적으로 RTCP Sender Report 전송
+                packetCount++;
+                octetCount += cur_frame_size;
+
+                // if (packetCount % 100 == 0)
+                // {
+                //     std::cout << "RTCP sent" << std::endl;
+                //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
+                //     udpHandler->SendSenderReport(&sr, sizeof(sr));
+                // }
+                
+                const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
                 usleep(sleepPeriod);
-                */
             }
         }
 
