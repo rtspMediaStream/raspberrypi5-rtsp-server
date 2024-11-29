@@ -9,7 +9,7 @@
 
 //constexpr uint8_t NALU_F_MASK = 0x80;
 constexpr uint8_t NALU_NRI_MASK = 0x60;
-constexpr uint8_t NALU_F_NRI_MASK = 0xe0;
+constexpr uint8_t NALU_F_NRI_MASK = 0xE0;
 constexpr uint8_t NALU_TYPE_MASK = 0x1F;
 
 constexpr uint8_t FU_S_MASK = 0x80;

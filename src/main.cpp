@@ -24,24 +24,25 @@ int main(int argc, char* argv[]) {
     /// program option process
     while((option = getopt(argc, argv, "hm:")) != -1)
     {
-        swtich(option)
+        switch(option)
         {
         case 'h':
             showHelp(argv[0]);
             exit(0);
         case 'm':
             std::string mode(optarg);
-            if(mode == "Audio")
-                g_serverStreamType = ServerStreamType::Audio;
-            else if(mode == "Video")
-                g_serverStreamType = ServerStreamType::Video;
+            if(mode == "Audio") {
+                ServerStream::getInstance().type = Audio;
+            }else if(mode == "Video") {
+                ServerStream::getInstance().type = Video;
+            }
             break;
         }
     }
 
     TCPHandler::GetInstance().CreateTCPSocket();
 
-    std::cout << "Start RTSP server" << std::endl;
+    std::cout << "Start RTSP server (" << ServerStream::getInstance().type << ")" << std::endl;
 
     while (true) {
         std::pair<int, std::string> newClient = TCPHandler::GetInstance().AcceptClientConnection();
