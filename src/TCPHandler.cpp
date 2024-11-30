@@ -9,6 +9,7 @@
 #include <sys/socket.h>
 
 TCPHandler::TCPHandler(): tcpPort(g_serverRtpPort), tcpSocket(-1) {
+    CreateTCPSocket();
 }
 
 TCPHandler::~TCPHandler() {

@@ -30,25 +30,15 @@ bool UDPHandler::CreateUDPSocket() {
 
     memset(&rtpAddr, 0, sizeof(rtpAddr));
     rtpAddr.sin_family = AF_INET;
-    //rtpAddr.sin_port = htons(5004);
     rtpAddr.sin_port = htons(client->rtpPort);
     inet_pton(AF_INET, client->ip.c_str(), &rtpAddr.sin_addr);
 
     memset(&rtcpAddr, 0, sizeof(rtcpAddr));
     rtcpAddr.sin_family = AF_INET;
-    //rtcpAddr.sin_port = htons(5005);
     rtcpAddr.sin_port = htons(client->rtcpPort);
     inet_pton(AF_INET, client->ip.c_str(), &rtcpAddr.sin_addr);
 
     return true;
-}
-//TODO: 삭제 검토
-void UDPHandler::SendRTPPacket(unsigned char* rtpPacket, size_t packetSize) {
-    int sentBytes = sendto(rtpSocket, rtpPacket, packetSize, 0, (struct sockaddr*)&rtpAddr, sizeof(rtpAddr));
-    if (sentBytes == -1) {
-        std::cerr << "Error: fail to send RTP packet" << std::endl;
-        exit(1);
-    }
 }
 
 void UDPHandler::SendSenderReport(Protos::SenderReport* senderReport, size_t srSize) {

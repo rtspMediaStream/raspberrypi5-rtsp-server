@@ -150,7 +150,7 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
     }
 
     response += "CSeq: " + std::to_string(cseq) + "\r\n"
-                "Content-Base: rtsp://" + ip + ":554/\r\n"
+                "Content-Base: rtsp://" + ip + ":" + std::to_string(g_serverRtpPort) +"/\r\n"
                 "Content-Type: application/sdp\r\n"
                 "Content-Length: " + std::to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
@@ -164,15 +164,12 @@ void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
 
     auto ports = ParsePorts(request);
     if (ports.first < 0 || ports.second < 0) {
-     //   std::cerr << "클라이언트 포트가 없습니다" << std::endl;
+        std::cerr << "not found IP or Port in SETUP" << std::endl;
         return;
     }
 
     client->rtpPort = ports.first;
     client->rtcpPort = ports.second;
-    //client->rtpPort = 5004;
-    //client->rtcpPort = 5005;
-
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
                            "Transport: RTP/AVP;unicast;client_port="
