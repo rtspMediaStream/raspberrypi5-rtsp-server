@@ -2,6 +2,9 @@
 #define GLOBAL_H
 #include <string.h>
 
+
+const int g_serverRtpPort = 554;
+
 enum ServerStreamType{
     Audio = 1,
     Video,
