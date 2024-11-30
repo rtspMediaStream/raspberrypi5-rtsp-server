@@ -15,31 +15,7 @@ enum ssrc
 class Protos
 {
 public:
-
     Protos();
-
-    struct RTPHeader {
-#if __BYTE_ORDER == __LITTLE_ENDIAN
-        uint8_t cc : 4;
-        uint8_t x : 1;
-        uint8_t p : 1;
-        uint8_t version : 2;
-        uint8_t pt : 7;
-        uint8_t m : 1;
-#elif __BYTE_ORDER == __BIG_ENDIAN
-        uint8_t version : 2;
-        uint8_t p : 1;
-        uint8_t x : 1;
-        uint8_t cc : 4;
-        uint8_t m : 1;
-        uint8_t pt : 7;
-#else
-#error "Please fix <bits/endian.h>"
-#endif
-        uint16_t seqNum;
-        uint32_t timestamp;
-        uint32_t ssrc;
-    } __attribute__((packed));
 
     struct SenderReport {
 #if __BYTE_ORDER == __LITTLE_ENDIAN
@@ -63,7 +39,6 @@ public:
         uint32_t senderOctetCount;
     } __attribute__((packed));
 
-    void CreateRTPHeader(RTPHeader *header, unsigned short seqNum, unsigned int timestamp, ssrc payloadType);
     void CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, ssrc payloadType);
 };
 

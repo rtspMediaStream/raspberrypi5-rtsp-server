@@ -42,7 +42,7 @@ bool UDPHandler::CreateUDPSocket() {
 
     return true;
 }
-
+//TODO: 삭제 검토
 void UDPHandler::SendRTPPacket(unsigned char* rtpPacket, size_t packetSize) {
     int sentBytes = sendto(rtpSocket, rtpPacket, packetSize, 0, (struct sockaddr*)&rtpAddr, sizeof(rtpAddr));
     if (sentBytes == -1) {
