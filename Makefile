@@ -13,7 +13,7 @@ SRCS = $(wildcard $(SRC_DIR)/*.cpp)
 OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
 # Executable name
-TARGET = rtsp-opus-codec.out
+TARGET = rtsp-server.out
 
 # Default rule
 all: $(TARGET)

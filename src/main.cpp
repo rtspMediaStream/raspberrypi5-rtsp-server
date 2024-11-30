@@ -10,18 +10,18 @@
 #include <thread>
 #include <iostream>
 
-void showHelp(const char *thisName) {
-    printf("usage : %s [OPTION]\n"
-           " -h            help\n"
-           " -m [media type] Audio or Video\n",
-           thisName);
-}
+void showHelp(const char *thisName);
+bool isPrivilegedPort(int port);
+bool isRunningAsRoot();
 
 int main(int argc, char* argv[]) {
     int option;
     extern char *optarg;
-    
-    /// program option process
+
+    if(argc < 2){
+        showHelp(argv[0]);
+        return 1;
+    }
     while((option = getopt(argc, argv, "hm:")) != -1)
     {
         switch(option)
@@ -40,8 +40,12 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    TCPHandler::GetInstance().CreateTCPSocket();
+    if(isPrivilegedPort(g_serverRtpPort) && !isRunningAsRoot()) {
+        std::cerr << "Error: Program must be run as root to bind to privileged ports.\n";
+        return 1;
+    };
 
+    TCPHandler::GetInstance().CreateTCPSocket();
     std::cout << "Start RTSP server (" << ServerStream::getInstance().type << ")" << std::endl;
 
     while (true) {
@@ -55,4 +59,18 @@ int main(int argc, char* argv[]) {
     }
 
     return 0;
+}
+
+void showHelp(const char *thisName) {
+    printf("usage : %s [OPTION]\n"
+           " -h            help\n"
+           " -m [media type] Audio or Video\n",
+           thisName);
+}
+
+bool isPrivilegedPort(int port) {
+    return port <= 1024;
+}
+bool isRunningAsRoot() {
+    return getuid() == 0;
 }

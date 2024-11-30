@@ -1,4 +1,5 @@
 #include "TCPHandler.h"
+#include "global.h"
 
 #include <string>
 #include <cstring>
@@ -7,7 +8,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-TCPHandler::TCPHandler(): tcpPort(554), tcpSocket(-1) {
+TCPHandler::TCPHandler(): tcpPort(g_serverRtpPort), tcpSocket(-1) {
 }
 
 TCPHandler::~TCPHandler() {
@@ -26,7 +27,7 @@ void TCPHandler::CreateTCPSocket() {
     tcpAddr.sin_addr.s_addr = INADDR_ANY;
     tcpAddr.sin_port = htons(tcpPort);
 
-    if (::bind(tcpSocket, (struct sockaddr*)&tcpAddr, sizeof(tcpAddr)) == -1) {
+    if (bind(tcpSocket, (struct sockaddr*)&tcpAddr, sizeof(tcpAddr)) == -1) {
         std::cerr << "Error: fail to bind TCP socket" << std::endl;
         exit(1);
     }
