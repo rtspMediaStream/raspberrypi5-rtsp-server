@@ -17,7 +17,6 @@ bool isRunningAsRoot();
 int main(int argc, char* argv[]) {
     int option;
     extern char *optarg;
-    std::string mode(optarg);
 
     if(argc < 2){
         showHelp(argv[0]);
@@ -31,6 +30,7 @@ int main(int argc, char* argv[]) {
             showHelp(argv[0]);
             return 1;
         case 'm':
+            std::string mode(optarg);
             if(mode == "Audio") {
                 ServerStream::getInstance().type = Audio;
             }else if(mode == "Video") {
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
         return 1;
     };
 
-    std::cout << "Start RTSP server (" << mode << ")" << std::endl;
+    std::cout << "Start RTSP server (" << ServerStream::getInstance().type << ")" << std::endl;
 
     while (true) {
         std::pair<int, std::string> newClient = TCPHandler::GetInstance().AcceptClientConnection();

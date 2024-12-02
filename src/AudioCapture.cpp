@@ -9,7 +9,7 @@ AudioCapture::AudioCapture(unsigned int rate) : sample_rate(rate)
     {
         throw std::runtime_error("PCM 디바이스를 열 수 없습니다: " + std::string(snd_strerror(rc)));
     }
-
+    
     snd_pcm_hw_params_alloca(&params);
     snd_pcm_hw_params_any(pcm_handle, params);
     snd_pcm_hw_params_set_access(pcm_handle, params, SND_PCM_ACCESS_RW_INTERLEAVED);

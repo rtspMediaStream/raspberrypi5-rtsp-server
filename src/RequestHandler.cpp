@@ -145,6 +145,7 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
               "a=control:track0\r\n";
         }
         
+
     } else {
         response = "RTSP/1.0 406 Not Acceptable\r\n";
     }
@@ -184,6 +185,7 @@ void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
     mediaStreamHandler->udpHandler = new UDPHandler(client);
     mediaStreamHandler->udpHandler->CreateUDPSocket();
     std::thread mediaStreamThread(&MediaStreamHandler::HandleMediaStream, mediaStreamHandler);
+    //TODO : 스레드 우선순위 높이기
     mediaStreamThread.detach();
 }
 

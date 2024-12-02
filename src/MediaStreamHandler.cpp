@@ -4,6 +4,7 @@
 #include "UDPHandler.h"
 #include "MediaStreamHandler.h"
 #include "AudioCapture.h"
+#include "VideoCapture.h"
 #include "OpusEncoder.h"
 #include "H264Encoder.h"
 #include "global.h"
@@ -90,6 +91,7 @@ void MediaStreamHandler::HandleMediaStream() {
 
     
     AudioCapture *audioCapture = nullptr;
+    VideoCapture *videoCapture = nullptr;
     OpusEncoder *opusEncoder = nullptr;
     H264Encoder *h264_file = nullptr;
 
@@ -99,6 +101,7 @@ void MediaStreamHandler::HandleMediaStream() {
         opusEncoder = new OpusEncoder();
     }else if(ServerStream::getInstance().type == Video){
         std::cout<< "video file open : " << g_inputFile.c_str() << std::endl;
+        videoCapture = new VideoCapture();
         h264_file = new H264Encoder(g_inputFile.c_str());
     }
 
@@ -123,7 +126,7 @@ void MediaStreamHandler::HandleMediaStream() {
         else if (streamState == MediaStreamState::eMediaStream_Teardown) {
             break;
         }
-        else if(streamState == MediaStreamState::eMediaStream_Play) {
+        else if(streamState == MediaStreamState::eMediaStream_Play) { 
             if(ServerStream::getInstance().type == Audio) {
                 int rc = audioCapture->read(pcmBuffer, OPUS_FRAME_SIZE);
                 if (rc != OPUS_FRAME_SIZE)
@@ -151,35 +154,49 @@ void MediaStreamHandler::HandleMediaStream() {
                 }
             }
             else if (ServerStream::getInstance().type == Video) {
-                auto cur_frame = h264_file->get_next_frame();
-                const auto ptr_cur_frame = cur_frame.first;
-                const auto cur_frame_size = cur_frame.second;
+                //파일에서 VideoCapture Queue로 던지기
+                std::thread([h264_file, videoCapture]()->void {
+                    while(1){
+                        std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();   //get frame img pointer & img size
+                        const auto ptr_cur_frame = cur_frame.first;
+                        const auto cur_frame_size = cur_frame.second;
+                        if(cur_frame.first == nullptr)
+                            return ;
+                     
+                        videoCapture->pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);
+                        const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
+                        usleep(sleepPeriod);                    
+                    }
+                    return ;
+                } ).detach();
 
-                if (ptr_cur_frame == nullptr || cur_frame_size <= 0)
-                {
-                    std::cerr << "No more frames or invalid frame data." << std::endl;
-                    break;
+
+                while(1){
+                    while(videoCapture->getImgBufferSize() >0) {
+                        std::pair<const uint8_t *, int64_t> cur_frame = videoCapture->popImg();
+                        const auto ptr_cur_frame = cur_frame.first;
+                        const auto cur_frame_size = cur_frame.second;
+
+                        // RTP 패킷 전송 (FU-A 분할 포함)
+                        const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
+                        SendFragmentedRTPPackets((unsigned char *)ptr_cur_frame + start_code_len, cur_frame_size - start_code_len, rtpPack, timestamp);
+
+                        // 주기적으로 RTCP Sender Report 전송
+                        packetCount++;
+                        octetCount += cur_frame_size;
+                        timestamp += 3000;
+
+                        if (packetCount % 100 == 0)
+                        {
+                            std::cout << "RTCP sent" << std::endl;
+                            protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
+                            udpHandler->SendSenderReport(&sr, sizeof(sr));
+                        }
+
+                        const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
+                        usleep(sleepPeriod);
+                    }
                 }
-
-                // RTP 패킷 전송 (FU-A 분할 포함)
-                const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
-                SendFragmentedRTPPackets((unsigned char*)ptr_cur_frame+ start_code_len, cur_frame_size- start_code_len, rtpPack, timestamp);
-
-
-                // 주기적으로 RTCP Sender Report 전송
-                packetCount++;
-                octetCount += cur_frame_size;
-                timestamp+= 3000;
-
-                if (packetCount % 100 == 0)
-                {
-                    std::cout << "RTCP sent" << std::endl;
-                    protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
-                    udpHandler->SendSenderReport(&sr, sizeof(sr));
-                }
-                
-                const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
-                usleep(sleepPeriod);
             }
         }
 
