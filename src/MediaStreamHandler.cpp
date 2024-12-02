@@ -91,7 +91,6 @@ void MediaStreamHandler::HandleMediaStream() {
 
     
     AudioCapture *audioCapture = nullptr;
-    VideoCapture *videoCapture = nullptr;
     OpusEncoder *opusEncoder = nullptr;
     H264Encoder *h264_file = nullptr;
 
@@ -101,7 +100,6 @@ void MediaStreamHandler::HandleMediaStream() {
         opusEncoder = new OpusEncoder();
     }else if(ServerStream::getInstance().type == Video){
         std::cout<< "video file open : " << g_inputFile.c_str() << std::endl;
-        videoCapture = new VideoCapture();
         h264_file = new H264Encoder(g_inputFile.c_str());
     }
 
@@ -154,16 +152,17 @@ void MediaStreamHandler::HandleMediaStream() {
                 }
             }
             else if (ServerStream::getInstance().type == Video) {
+                
                 //파일에서 VideoCapture Queue로 던지기
-                std::thread([h264_file, videoCapture]()->void {
+                std::thread([h264_file]()->void {
                     while(1){
                         std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();   //get frame img pointer & img size
                         const auto ptr_cur_frame = cur_frame.first;
                         const auto cur_frame_size = cur_frame.second;
                         if(cur_frame.first == nullptr)
                             return ;
-                     
-                        videoCapture->pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);
+
+                        VideoCapture::getInstance().pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);
                         const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
                         usleep(sleepPeriod);                    
                     }
@@ -172,8 +171,8 @@ void MediaStreamHandler::HandleMediaStream() {
 
 
                 while(1){
-                    while(videoCapture->getImgBufferSize() >0) {
-                        std::pair<const uint8_t *, int64_t> cur_frame = videoCapture->popImg();
+                    while(VideoCapture::getInstance().getImgBufferSize() >0) {
+                        std::pair<const uint8_t *, int64_t> cur_frame = VideoCapture::getInstance().popImg();
                         const auto ptr_cur_frame = cur_frame.first;
                         const auto cur_frame_size = cur_frame.second;
 
