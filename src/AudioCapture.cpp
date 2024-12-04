@@ -2,8 +2,25 @@
 #include <opus/opus.h>
 #include <iostream>
 
-AudioCapture::AudioCapture(unsigned int rate) : sample_rate(rate)
+void AudioCapture::pushData(unsigned char* dataPtr, int size) {
+    bufferMutex.lock();
+    buffer.push(std::make_pair(dataPtr, size));
+    bufferMutex.unlock();
+}
+    
+    
+std::pair<unsigned char*, int> AudioCapture::popData() {
+    std::pair<unsigned char*, int> ret = buffer.front();
+    bufferMutex.lock();
+    buffer.pop();
+    bufferMutex.unlock();
+    return ret;
+}
+
+
+AudioCapture::AudioCapture()
 {
+    sample_rate = OPUS_SAMPLE_RATE;
     int rc = snd_pcm_open(&pcm_handle, "default", SND_PCM_STREAM_CAPTURE, 0);
     if (rc < 0)
     {
