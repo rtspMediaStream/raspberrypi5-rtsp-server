@@ -1,9 +1,26 @@
 #include "AudioCapture.h"
+#include "OpusEncoder.h"
 #include <opus/opus.h>
 #include <iostream>
 
-AudioCapture::AudioCapture(unsigned int rate) : sample_rate(rate)
+void AudioCapture::pushData(unsigned char* dataPtr, int size) {
+    bufferMutex.lock();
+    buffer.push(std::make_pair(dataPtr, size));
+    bufferMutex.unlock();
+}
+    
+    
+std::pair<unsigned char*, int> AudioCapture::popData() {
+    std::pair<unsigned char*, int> ret = buffer.front();
+    bufferMutex.lock();
+    buffer.pop();
+    bufferMutex.unlock();
+    return ret;
+}
+
+AudioCapture::AudioCapture()
 {
+    sample_rate = OPUS_SAMPLE_RATE;
     int rc = snd_pcm_open(&pcm_handle, "default", SND_PCM_STREAM_CAPTURE, 0);
     if (rc < 0)
     {
@@ -14,8 +31,10 @@ AudioCapture::AudioCapture(unsigned int rate) : sample_rate(rate)
     snd_pcm_hw_params_any(pcm_handle, params);
     snd_pcm_hw_params_set_access(pcm_handle, params, SND_PCM_ACCESS_RW_INTERLEAVED);
     snd_pcm_hw_params_set_format(pcm_handle, params, SND_PCM_FORMAT_S16_LE);
-    snd_pcm_hw_params_set_channels(pcm_handle, params, 2);
-    snd_pcm_hw_params_set_rate_near(pcm_handle, params, &sample_rate, &dir);
+    snd_pcm_hw_params_set_rate(pcm_handle, params, OPUS_SAMPLE_RATE, 0);
+    snd_pcm_hw_params_set_channels(pcm_handle, params, OPUS_CHANNELS);
+    snd_pcm_hw_params_set_period_size(pcm_handle, params, OPUS_FRAME_SIZE, 0);  
+    //snd_pcm_hw_params_set_rate_near(pcm_handle, params, &sample_rate, &dir);
     rc = snd_pcm_hw_params(pcm_handle, params);
     if (rc < 0)
     {

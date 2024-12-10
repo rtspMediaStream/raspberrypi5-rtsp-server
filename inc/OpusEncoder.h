@@ -4,7 +4,7 @@
 
 const static int OPUS_SAMPLE_RATE = 48000;
 const static int OPUS_CHANNELS = 2;
-const static int OPUS_FRAME_SIZE = 480;
+const static int OPUS_FRAME_SIZE = 960;
 const static int APPLICATION = OPUS_APPLICATION_AUDIO;
 const static int MAX_PACKET_SIZE = 1500;
 

@@ -19,6 +19,7 @@ void RequestHandler::HandleRequest() {
 
     while (true) {
         std::cout << "recv wait id :" << client->tcpSocket << std::endl;
+        
         std::string request = TCPHandler::GetInstance().ReceiveRTSPRequest(client->tcpSocket);
         if (request.empty()) {
             std::cerr << "Invalid RTSP request received." << std::endl;
@@ -45,6 +46,8 @@ void RequestHandler::HandleRequest() {
             HandlePauseRequest(cseq);
         } else if (method == "TEARDOWN") {
             HandleTeardownRequest(cseq);
+            std::cout << "Client session closed";
+            break;
         } else {
             std::cerr << "Unsupported RTSP method: " << method << std::endl;
         }
@@ -128,7 +131,7 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
             sdp = "v=0\r\n"
               "o=- " + std::to_string(client->id) + " " + std::to_string(client->version) +
               " IN IP4 " + ip + "\r\n"
-              "s=Audio Stream\r\n"
+              "s=Opus Stream\r\n"
               "c=IN IP4 " + ip + "\r\n"
               "t=0 0\r\n"
               "m=audio " + std::to_string(client->rtpPort) + " RTP/AVP 111\r\n"  // Payload type for Opus
@@ -185,7 +188,7 @@ void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
     mediaStreamHandler->udpHandler = new UDPHandler(client);
     mediaStreamHandler->udpHandler->CreateUDPSocket();
     std::thread mediaStreamThread(&MediaStreamHandler::HandleMediaStream, mediaStreamHandler);
-    //TODO : 스레드 우선순위 높이기
+
     mediaStreamThread.detach();
 }
 
