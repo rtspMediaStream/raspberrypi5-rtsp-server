@@ -60,7 +60,9 @@ int main(int argc, char* argv[]) {
             std::cout << "Client Ip:" << newIp << " connected." << std::endl;
         }
         ClientSession* clientSession = new ClientSession(newClient, newIp);
-        clientSession->StartRequestHandlerThread();
+
+        RequestHandler requestHandler(clientSession);
+        requestHandler.StartThread();
     }
     
     std::cout << "Stop RTSP server" << std::endl;

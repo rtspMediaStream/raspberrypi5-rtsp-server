@@ -7,11 +7,11 @@
 #include <arpa/inet.h>
 #include <memory>
 
-struct Info;
+class ClientSession;
 
 class UDPHandler {
 public:
-    UDPHandler(const std::shared_ptr<Info>& client);
+    UDPHandler(std::shared_ptr<ClientSession> client);
     ~UDPHandler();
 
     bool CreateUDPSocket();
@@ -26,7 +26,7 @@ public:
 
 
 private:
-    std::shared_ptr<Info> client;
+    std::shared_ptr<ClientSession> client;
 
     int rtpSocket;
     int rtcpSocket;

@@ -3,20 +3,24 @@
 
 #include <memory>
 #include <string>
-struct Info;
+class ClientSession;
 class MediaStreamHandler;
 
 
 class RequestHandler {
 public:
-    RequestHandler(const std::shared_ptr<Info>& clit);
+    RequestHandler(ClientSession* session);
+
+    void operator()() { HandleRequest(); }
 
     void HandleRequest();
 
-private:
-    MediaStreamHandler *mediaStreamHandler;
+    void StartThread();
 
-    std::shared_ptr<Info> client;
+private:
+    std::shared_ptr<ClientSession> session;
+
+    MediaStreamHandler *mediaStreamHandler;
 
     std::string ParseMethod(const std::string& request);
 
@@ -26,11 +30,11 @@ private:
 
     bool ParseAccept(const std::string& request);
 
-    void HandleOptionsRequest(int cseq);
+    void HandleOptionsRequest(const int cseq);
 
-    void HandleDescribeRequest(const std::string& request, int cseq);
+    void HandleDescribeRequest(const std::string& request, const int cseq);
 
-    void HandleSetupRequest(const std::string& request, int cseq);
+    void HandleSetupRequest(const std::string& request, const int cseq);
 
     void HandlePlayRequest(int cseq);
 

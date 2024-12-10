@@ -30,7 +30,7 @@ uint32_t utils::GetRanNum(int n) {
     return 0;
 }
 
-std::string utils::GetIP() {
+std::string utils::GetServerIP() {
     char hostbuffer[256];
     char *IPbuffer;
     struct hostent *host_entry;

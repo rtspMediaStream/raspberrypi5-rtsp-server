@@ -9,16 +9,6 @@
 #include <iostream>
 #include <memory>
 
-struct Info {
-    int id;
-    int version;
-    int tcpSocket;
-    int rtpPort;
-    int rtcpPort;
-    std::string ip;
-    std::string state;
-};
-
 class RequestHandler;
 class UDPHandler;
 class MediaStreamHandler;
@@ -27,23 +17,27 @@ class ClientSession {
 public:
     ClientSession(const int tcpSocket, const std::string ip);
     
-    void StartRequestHandlerThread();
-
     int GetSessionId() const;
 
     int GetVersion() const;
 
-    std::string GetState() const;
+    inline int GetID() { return this->tcpSocket; };
+    inline int GetTCPSocket() { return this->tcpSocket; };
+    inline int GetRTPPort() { return this->rtpPort; };
+    inline int GetRTCPPort() { return this->rtcpPort; };
+    inline std::string GetIP() { return this->ip; };
 
-    std::pair<int, int> GetPort() const;
-
-    void SetState(const std::string& newState);
+    inline void SetRTPPort(int rtpPort) { this->rtpPort = rtpPort; };
+    inline void SetRTCPPort(int rtcpPort) { this->rtcpPort = rtcpPort; };
+    ///RTP 만들기
 
 private:
-    
-    std::shared_ptr<Info> info;
-
-    // std::mutex mtx;
+    int id;
+    int version;
+    int tcpSocket;
+    int rtpPort;
+    int rtcpPort;
+    std::string ip;
     
     RequestHandler* requestHandler;
 };
