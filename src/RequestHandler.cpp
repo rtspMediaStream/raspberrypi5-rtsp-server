@@ -15,8 +15,6 @@ RequestHandler::RequestHandler(const std::shared_ptr<Info>& client)
         : client(client) {}
 
 void RequestHandler::HandleRequest() {
-     std::cout << "create Client Session" << std::endl;
-
     while (true) {
         std::cout << "recv wait id :" << client->tcpSocket << std::endl;
         
@@ -46,12 +44,13 @@ void RequestHandler::HandleRequest() {
             HandlePauseRequest(cseq);
         } else if (method == "TEARDOWN") {
             HandleTeardownRequest(cseq);
-            std::cout << "Client session closed";
             break;
         } else {
             std::cerr << "Unsupported RTSP method: " << method << std::endl;
         }
     }
+
+    std::cout << "Client session closed";
 }
 
 std::string RequestHandler::ParseMethod(const std::string& request) {

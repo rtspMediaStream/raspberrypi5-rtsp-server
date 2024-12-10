@@ -5,18 +5,16 @@
 #include "MediaStreamHandler.h"
 #include <thread>
 
-ClientSession::ClientSession(const std::pair<int, std::string>& newClient) {
+ClientSession::ClientSession(const int tcpSocket, const std::string ip) {
     info = std::make_shared<Info>();
     info->id = (int)utils::GetRanNum(16);
     info->version = info->id;
-    info->tcpSocket = newClient.first;
-    info->ip = newClient.second;
+    info->tcpSocket = tcpSocket;
+    info->ip = ip;
     info->state = "INIT";
 
     info->rtpPort = -1;
     info->rtcpPort = -1;
-
-
 }
 
 void ClientSession::StartRequestHandlerThread() {

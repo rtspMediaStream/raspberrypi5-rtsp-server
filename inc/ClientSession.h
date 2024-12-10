@@ -25,7 +25,7 @@ class MediaStreamHandler;
 
 class ClientSession {
 public:
-    ClientSession(const std::pair<int, std::string>& newClient);
+    ClientSession(const int tcpSocket, const std::string ip);
     
     void StartRequestHandlerThread();
 
