@@ -9,7 +9,7 @@ public:
         return instance;
     }
     
-    inline bool isBufferEmpty() { return buffer.isEmpty(); };
+    inline bool isBufferEmpty() { return buffer.empty(); };
     void pushData(unsigned char* dataPtr, int size);
     std::pair<unsigned char*, int> popData();
     AudioCapture();

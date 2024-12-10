@@ -1,4 +1,5 @@
 #include "AudioCapture.h"
+#include "OpusEncoder.h"
 #include <opus/opus.h>
 #include <iostream>
 
@@ -17,7 +18,6 @@ std::pair<unsigned char*, int> AudioCapture::popData() {
     return ret;
 }
 
-
 AudioCapture::AudioCapture()
 {
     sample_rate = OPUS_SAMPLE_RATE;
@@ -31,8 +31,10 @@ AudioCapture::AudioCapture()
     snd_pcm_hw_params_any(pcm_handle, params);
     snd_pcm_hw_params_set_access(pcm_handle, params, SND_PCM_ACCESS_RW_INTERLEAVED);
     snd_pcm_hw_params_set_format(pcm_handle, params, SND_PCM_FORMAT_S16_LE);
-    snd_pcm_hw_params_set_channels(pcm_handle, params, 2);
-    snd_pcm_hw_params_set_rate_near(pcm_handle, params, &sample_rate, &dir);
+    snd_pcm_hw_params_set_rate(pcm_handle, params, OPUS_SAMPLE_RATE, 0);
+    snd_pcm_hw_params_set_channels(pcm_handle, params, OPUS_CHANNELS);
+    snd_pcm_hw_params_set_period_size(pcm_handle, params, OPUS_FRAME_SIZE, 0);  
+    //snd_pcm_hw_params_set_rate_near(pcm_handle, params, &sample_rate, &dir);
     rc = snd_pcm_hw_params(pcm_handle, params);
     if (rc < 0)
     {

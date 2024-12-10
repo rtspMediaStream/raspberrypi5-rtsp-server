@@ -10,6 +10,7 @@
 #include "global.h"
 #include "rtp_header.hpp"
 #include "rtp_packet.hpp"
+#include "RTPHeader.h"
 
 #include <iostream>
 #include <cstdint>
@@ -81,17 +82,15 @@ void MediaStreamHandler::HandleMediaStream() {
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
     uint16_t seqNum = (uint16_t)utils::GetRanNum(16);
-    uint32_t timestamp = (uint32_t)utils::GetRanNum(16);
+    unsigned int timestamp = (unsigned int)utils::GetRanNum(16);
 
     Protos::SenderReport sr;
     int ssrcNum = 0;
 
-    OpusEncoder *opusEncoder = nullptr;
     H264Encoder *h264_file = nullptr;
 
     if(ServerStream::getInstance().type == Audio) {
         std::cout<< "audio" << std::endl;
-        opusEncoder = new OpusEncoder();
     }else if(ServerStream::getInstance().type == Video){
         std::cout<< "video file open : " << g_inputFile.c_str() << std::endl;
         h264_file = new H264Encoder(g_inputFile.c_str());
@@ -110,64 +109,9 @@ void MediaStreamHandler::HandleMediaStream() {
     // RTP 패킷 생성
     RtpPacket rtpPack{rtpHeader};
 
-    while (true) {
-        if(streamState == MediaStreamState::eMediaStream_Pause) {
-            std::unique_lock<std::mutex> lck(streamMutex);
-            condition.wait(lck);
-        }
-        else if (streamState == MediaStreamState::eMediaStream_Teardown) {
-            break;
-        }
-        else if(streamState == MediaStreamState::eMediaStream_Play) { 
-            if(ServerStream::getInstance().type == Audio) {
-                std::thread([]()->void {
-                    short pcmBuffer[OPUS_FRAME_SIZE * OPUS_CHANNELS];
-                    unsigned char encodedBuffer[MAX_PACKET_SIZE];
-                    while(1){
-                        int rc = AudioCapture.getInstance().read(pcmBuffer, OPUS_FRAME_SIZE);
-                        if (rc != OPUS_FRAME_SIZE)
-                        {
-                            std::cout << "occur audio packet skip." << std::endl;
-                            continue;
-                        }
-                        int bufferSize = opusEncoder->encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
-
-                        AudioCapture::getInstance().pushData(encodedBuffer, bufferSize);
-                        usleep(10 * 1000); // 10ms 대기
-                    }
-                    return ;
-                } ).detach();
-
-                while (1)
+    // 파일에서 VideoCapture Queue로 던지기
+    std::thread([h264_file]() -> void
                 {
-                    while ( !AudioCapture::getInstance().isBufferEmpty())
-                    {
-                        // make RTP Packet.
-                        rtpPack.get_header().set_timestamp(timestamp);
-
-                        std::pair<const uint8_t *, int64_t> frame = AudioCapture::getInstance().popData();
-                        memcpy(rtpPack.get_payload(), frame.first, frame.second);
-                        rtpPack.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + frame.second, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
-                        delete(frame.first);
-
-                        timestamp += OPUS_FRAME_SIZE;
-                        packetCount++;
-                        octetCount += frame.second;
-
-                        if (packetCount % 100 == 0)
-                        {
-                            std::cout << "RTCP sent" << std::endl;
-                            protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_OPUS);
-                            udpHandler->SendSenderReport(&sr, sizeof(sr));
-                        }
-                    }
-                }
-
-            }
-            else if (ServerStream::getInstance().type == Video) {
-                
-                //파일에서 VideoCapture Queue로 던지기
-                std::thread([h264_file]()->void {
                     while(1){
                         std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();   //get frame img pointer & img size
                         const auto ptr_cur_frame = cur_frame.first;
@@ -175,43 +119,129 @@ void MediaStreamHandler::HandleMediaStream() {
                         if(cur_frame.first == nullptr)
                             return ;
 
-                        VideoCapture::getInstance().pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);
-                        const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
-                        usleep(sleepPeriod);                    
+                        VideoCapture::getInstance().pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);       
+                        usleep(33333); //1000 * 1000 / 30.0fps
+                    }
+                    return ; })
+        .detach();
+        
+    while (true) {
+        if(streamState == MediaStreamState::eMediaStream_Play) { 
+            if(ServerStream::getInstance().type == Audio) {
+                std::thread([]()->void {
+                    short pcmBuffer[OPUS_FRAME_SIZE * OPUS_CHANNELS];
+                    OpusEncoder opusEncoder;
+                    while(1){
+                        unsigned char *encodedBuffer = new unsigned char[MAX_PACKET_SIZE];
+                        int rc = AudioCapture::getInstance().read(pcmBuffer, OPUS_FRAME_SIZE);
+                        if (rc != OPUS_FRAME_SIZE)
+                        {
+                            std::cout << "occur audio packet skip." << std::endl;
+                            continue;
+                        }
+                        
+                        int bufferSize = opusEncoder.encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
+                        if (bufferSize < 0)
+                        {
+                            std::cerr << "Opus encoding error: " << bufferSize << std::endl;
+                            delete[] encodedBuffer;
+                            continue;
+                        }
+
+                        AudioCapture::getInstance().pushData(encodedBuffer, bufferSize);
                     }
                     return ;
                 } ).detach();
 
+                unsigned short seq_num = 0;
+                unsigned int ssrc = 0;
+                while (1)
+                {
+                    while ( !AudioCapture::getInstance().isBufferEmpty())
+                    {
+                        // RTPHeader::rtp_header header;
+                        // RTPHeader::create(header, seq_num, timestamp, ssrc);
 
-                while(1){
-                    while(VideoCapture::getInstance().getImgBufferSize() >0) {
-                        std::pair<const uint8_t *, int64_t> cur_frame = VideoCapture::getInstance().popImg();
-                        const auto ptr_cur_frame = cur_frame.first;
-                        const auto cur_frame_size = cur_frame.second;
+                        // std::pair<const unsigned char *, int> frame = AudioCapture::getInstance().popData();
 
-                        // RTP 패킷 전송 (FU-A 분할 포함)
-                        const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
-                        SendFragmentedRTPPackets((unsigned char *)ptr_cur_frame + start_code_len, cur_frame_size - start_code_len, rtpPack, timestamp);
+                        // unsigned char packet[1500];
+                        // memcpy(packet, &header, sizeof(header));
+                        // memcpy(packet + sizeof(header), frame.first, frame.second);
 
-                        // 주기적으로 RTCP Sender Report 전송
+                        // int packet_size = sizeof(header) + frame.second;
+                        // if (sendto(udpHandler->GetRTPSocket(), packet, packet_size, 0, (struct sockaddr *)&udpHandler->GetRTPAddr(), sizeof(udpHandler->GetRTPAddr())) < 0)
+                        // {
+                        //     throw std::runtime_error("RTP 패킷 전송 오류");
+                        // }
+
+                        // make RTP Packet.
+                        rtpPack.get_header().set_timestamp(timestamp);
+                        rtpPack.get_header().set_marker(true);
+                        // if(seq_num %100 == 0){
+                        //     rtpPack.get_header().set_marker(true);
+                        // }else{
+                        //     rtpPack.get_header().set_marker(false);
+                        // }
+
+                        std::pair<const uint8_t *, int64_t> frame = AudioCapture::getInstance().popData();
+                        memcpy(rtpPack.get_payload(), frame.first, frame.second);
+                        rtpPack.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + frame.second, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
+                        delete(frame.first);
+
+                        seq_num++;
+                        timestamp += OPUS_FRAME_SIZE;
                         packetCount++;
-                        octetCount += cur_frame_size;
-                        timestamp += 3000;
+                        octetCount += frame.second;
 
-                        if (packetCount % 100 == 0)
-                        {
-                            std::cout << "RTCP sent" << std::endl;
-                            protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
-                            udpHandler->SendSenderReport(&sr, sizeof(sr));
-                        }
+                        // if (packetCount % 100 == 0)
+                        // {
+                        //     std::cout << "RTCP sent" << std::endl;
+                        //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_OPUS);
+                        //     udpHandler->SendSenderReport(&sr, sizeof(sr));
+                        // }
+                    }
+                }
 
-                        const auto sleepPeriod = uint32_t(1000 * 1000 / 30.0);
-                        usleep(sleepPeriod);
+            }
+            else if (ServerStream::getInstance().type == Video) {
+                
+
+
+                while (!VideoCapture::getInstance().isEmptyBuffer())
+                {
+                    std::pair<const uint8_t *, int64_t> cur_frame = VideoCapture::getInstance().popImg();
+                    const auto ptr_cur_frame = cur_frame.first;
+                    const auto cur_frame_size = cur_frame.second;
+                    if (ptr_cur_frame == nullptr || cur_frame_size <= 0)
+                    {
+                        std::cout << "Not Ready\n";
+                        continue;
+                    }
+                    // RTP 패킷 전송 (FU-A 분할 포함)
+                    const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
+                    SendFragmentedRTPPackets((unsigned char *)ptr_cur_frame + start_code_len, cur_frame_size - start_code_len, rtpPack, timestamp);
+
+                    // 주기적으로 RTCP Sender Report 전송
+                    packetCount++;
+                    octetCount += cur_frame_size;
+                    timestamp += 2700; // 90 * 30	== 2700
+
+                    if (packetCount % 100 == 0)
+                    {
+                        std::cout << "RTCP sent" << std::endl;
+                        protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
+                        udpHandler->SendSenderReport(&sr, sizeof(sr));
                     }
                 }
             }
+        }else if(streamState == MediaStreamState::eMediaStream_Pause) {
+            std::unique_lock<std::mutex> lck(streamMutex);
+            condition.wait(lck);
         }
-
+        else if (streamState == MediaStreamState::eMediaStream_Teardown) {
+            break;
+        }
+        usleep(1000*10);
     }
 }
 
