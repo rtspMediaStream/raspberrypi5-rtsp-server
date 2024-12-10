@@ -11,20 +11,22 @@
 #include <sstream>
 #include <thread>
 
-RequestHandler::RequestHandler(const std::shared_ptr<Info>& client)
-        : client(client) {}
+RequestHandler::RequestHandler(ClientSession* session) : session(session){};
+
+void RequestHandler::StartThread() {
+    std::thread handlerThread(*this);
+    handlerThread.detach();
+};
 
 void RequestHandler::HandleRequest() {
     while (true) {
-        std::cout << "recv wait id :" << client->tcpSocket << std::endl;
+        std::cout << "recv wait id :" << session->GetTCPSocket() << std::endl;
         
-        std::string request = TCPHandler::GetInstance().ReceiveRTSPRequest(client->tcpSocket);
+        std::string request = TCPHandler::GetInstance().ReceiveRTSPRequest(session->GetTCPSocket());
         if (request.empty()) {
             std::cerr << "Invalid RTSP request received." << std::endl;
             return;
         }
-
-        std::string method = ParseMethod(request);
 
         int cseq = ParseCSeq(request);
         if (cseq == -1) {
@@ -32,6 +34,7 @@ void RequestHandler::HandleRequest() {
             return;
         }
 
+        std::string method = ParseMethod(request);
         if (method == "OPTIONS") {
             HandleOptionsRequest(cseq);
         } else if (method == "DESCRIBE") {
@@ -49,8 +52,6 @@ void RequestHandler::HandleRequest() {
             std::cerr << "Unsupported RTSP method: " << method << std::endl;
         }
     }
-
-    std::cout << "Client session closed";
 }
 
 std::string RequestHandler::ParseMethod(const std::string& request) {
@@ -110,16 +111,16 @@ bool RequestHandler::ParseAccept(const std::string& request) {
     return false;
 }
 
-void RequestHandler::HandleOptionsRequest(int cseq) {
+void RequestHandler::HandleOptionsRequest(const int cseq) {
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
                            "Public: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n"
                            "\r\n";
-    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 }
 
-void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq) {
-    std::string ip = utils::GetIP();
+void RequestHandler::HandleDescribeRequest(const std::string& request, const int cseq) {
+    std::string ip = utils::GetServerIP();
     std::string sdp = "";
     std::string response = "";
 
@@ -128,21 +129,21 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
 
         if(ServerStream::getInstance().type == ServerStreamType::Audio) {
             sdp = "v=0\r\n"
-              "o=- " + std::to_string(client->id) + " " + std::to_string(client->version) +
+              "o=- " + std::to_string(session->GetID()) + " " + std::to_string(session->GetVersion()) +
               " IN IP4 " + ip + "\r\n"
               "s=Opus Stream\r\n"
               "c=IN IP4 " + ip + "\r\n"
               "t=0 0\r\n"
-              "m=audio " + std::to_string(client->rtpPort) + " RTP/AVP 111\r\n"  // Payload type for Opus
+              "m=audio " + std::to_string(session->GetRTPPort()) + " RTP/AVP 111\r\n"  // Payload type for Opus
               "a=rtpmap:111 opus/48000/2\r\n";  // Opus codec details
         }else if(ServerStream::getInstance().type == ServerStreamType::Video) {
             sdp = "v=0\r\n"
-              "o=- " + std::to_string(client->id) + " " + std::to_string(client->version) +
+              "o=- " + std::to_string(session->GetID()) + " " + std::to_string(session->GetVersion()) +
               " IN IP4 " + ip + "\r\n"
               "s=H264 Video Stream\r\n"
               "c=IN IP4 " + ip + "\r\n"
               "t=0 0\r\n"
-              "m=video " + std::to_string(client->rtpPort) + " RTP/AVP 96\r\n"
+              "m=video " + std::to_string(session->GetRTPPort()) + " RTP/AVP 96\r\n"
               "a=rtpmap:96 H264/90000\r\n"
               "a=control:track0\r\n";
         }
@@ -158,33 +159,31 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, int cseq)
                 "Content-Length: " + std::to_string(sdp.size()) + "\r\n"
                 "\r\n" + sdp;
 
-    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 }
 
 
-void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
-    client->state = "SETUP";
-
+void RequestHandler::HandleSetupRequest(const std::string& request, const int cseq) {
     auto ports = ParsePorts(request);
     if (ports.first < 0 || ports.second < 0) {
         std::cerr << "not found IP or Port in SETUP" << std::endl;
         return;
     }
+    session->SetRTPPort(ports.first);
+    session->SetRTCPPort(ports.second);
 
-    client->rtpPort = ports.first;
-    client->rtcpPort = ports.second;
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
                            "Transport: RTP/AVP;unicast;client_port="
-                           + std::to_string(client->rtpPort) + "-"
-                           + std::to_string(client->rtcpPort) + "\r\n"
-                           "Session: " + std::to_string(client->id)
+                           + std::to_string(session->GetRTPPort()) + "-"
+                           + std::to_string(session->GetRTCPPort()) + "\r\n"
+                           "Session: " + std::to_string(session->GetID())
                            + "\r\n"
                              "\r\n";
-    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 
     mediaStreamHandler = new MediaStreamHandler();
-    mediaStreamHandler->udpHandler = new UDPHandler(client);
+    mediaStreamHandler->udpHandler = new UDPHandler(session);
     mediaStreamHandler->udpHandler->CreateUDPSocket();
     std::thread mediaStreamThread(&MediaStreamHandler::HandleMediaStream, mediaStreamHandler);
 
@@ -192,42 +191,36 @@ void RequestHandler::HandleSetupRequest(const std::string& request, int cseq) {
 }
 
 void RequestHandler::HandlePlayRequest(int cseq) {
-    client->state = "PLAY";
-
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
-                           "Session: " + std::to_string(client->id)
+                           "Session: " + std::to_string(session->GetID())
                            + "\r\n"
                              "\r\n";
-    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 
     mediaStreamHandler->SetCmd("PLAY");
 }
 
 void RequestHandler::HandlePauseRequest(int cseq) {
-    client->state = "PAUSE";
-
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
-                           "Session: " + std::to_string(client->id)
+                           "Session: " + std::to_string(session->GetID())
                            + "\r\n"
                              "\r\n";
 
-    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 
     mediaStreamHandler->SetCmd("PAUSE");
 }
 
 void RequestHandler::HandleTeardownRequest(int cseq) {
-    client->state = "TEARDOWN";
-
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
-                           "Session: " + std::to_string(client->id)
+                           "Session: " + std::to_string(session->GetID())
                            + "\r\n"
                              "\r\n";
 
-    TCPHandler::GetInstance().SendRTSPResponse(client->tcpSocket, response);
+    TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 
     mediaStreamHandler->SetCmd("TEARDOWN");
 }

@@ -9,7 +9,7 @@ class utils {
 public:
     static uint64_t GetTime();
     static uint32_t GetRanNum(int n);
-    static std::string GetIP();
+    static std::string GetServerIP();
 };
 
 #endif //RTSP_UTILS_H

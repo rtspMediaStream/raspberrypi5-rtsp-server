@@ -60,7 +60,7 @@ void TCPHandler::CloseClientConnection() {
 }
 
 std::string TCPHandler::ReceiveRTSPRequest(int clientSocket) {
-    char buffer[1024];
+    char buffer[1024] = {0,};
     memset(buffer, 0, sizeof(buffer));
 
     int receivedBytes = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);

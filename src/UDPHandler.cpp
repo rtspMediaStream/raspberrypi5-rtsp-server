@@ -7,7 +7,7 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-UDPHandler::UDPHandler(const std::shared_ptr<Info>& client)
+UDPHandler::UDPHandler(std::shared_ptr<ClientSession> client)
     : client(client), rtpSocket(-1), rtcpSocket(-1) {}
 
 UDPHandler::~UDPHandler() {
@@ -30,13 +30,13 @@ bool UDPHandler::CreateUDPSocket() {
 
     memset(&rtpAddr, 0, sizeof(rtpAddr));
     rtpAddr.sin_family = AF_INET;
-    rtpAddr.sin_port = htons(client->rtpPort);
-    inet_pton(AF_INET, client->ip.c_str(), &rtpAddr.sin_addr);
+    rtpAddr.sin_port = htons(client->GetRTPPort());
+    inet_pton(AF_INET, client->GetIP().c_str(), &rtpAddr.sin_addr);
 
     memset(&rtcpAddr, 0, sizeof(rtcpAddr));
     rtcpAddr.sin_family = AF_INET;
-    rtcpAddr.sin_port = htons(client->rtcpPort);
-    inet_pton(AF_INET, client->ip.c_str(), &rtcpAddr.sin_addr);
+    rtcpAddr.sin_port = htons(client->GetRTCPPort());
+    inet_pton(AF_INET, client->GetIP().c_str(), &rtcpAddr.sin_addr);
 
     return true;
 }
