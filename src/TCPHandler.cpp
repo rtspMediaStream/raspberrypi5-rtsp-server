@@ -39,19 +39,24 @@ void TCPHandler::CreateTCPSocket() {
     }
 }
 
-std::pair<int, std::string> TCPHandler::AcceptClientConnection() {
+int TCPHandler::AcceptClientConnection(std::string &_clientIp) {
     socklen_t clientAddrLen = sizeof(tcpAddr);
     int clientSocket = accept(tcpSocket, (sockaddr*)&tcpAddr, &clientAddrLen);
 
     if (clientSocket == -1) {
         std::cerr << "Error: fail to connect client" << std::endl;
-        exit(1);
+        return -1;
     }
 
     char clientIP[INET_ADDRSTRLEN];
     inet_ntop(AF_INET, &tcpAddr.sin_addr, clientIP, INET_ADDRSTRLEN);
     
-    return { clientSocket, clientIP };
+    _clientIp = clientIP;
+    return clientSocket;
+}
+
+void TCPHandler::CloseClientConnection() {
+    close(tcpSocket);
 }
 
 std::string TCPHandler::ReceiveRTSPRequest(int clientSocket) {

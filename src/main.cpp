@@ -9,10 +9,13 @@
 #include <string>
 #include <thread>
 #include <iostream>
+#include <csignal>
+#include <vector>
 
 void showHelp(const char *thisName);
 bool isPrivilegedPort(int port);
 bool isRunningAsRoot();
+void signalHandler(int signal);
 
 int main(int argc, char* argv[]) {
     int option;
@@ -46,16 +49,21 @@ int main(int argc, char* argv[]) {
     };
 
     std::cout << "Start RTSP server (" << ServerStream::getInstance().type << ")" << std::endl;
+    signal(SIGINT, signalHandler);
 
     while (true) {
-        std::pair<int, std::string> newClient = TCPHandler::GetInstance().AcceptClientConnection();
-
-        std::cout << "Client connected" << std::endl;
-
-        ClientSession* clientSession = new ClientSession(newClient);
+        std::string newIp;
+        int newClient = TCPHandler::GetInstance().AcceptClientConnection(newIp);
+        if(newClient == -1){
+            break;
+        }else {
+            std::cout << "Client Ip:" << newIp << " connected." << std::endl;
+        }
+        ClientSession* clientSession = new ClientSession(newClient, newIp);
         clientSession->StartRequestHandlerThread();
     }
-
+    
+    std::cout << "Stop RTSP server" << std::endl;
     return 0;
 }
 
@@ -71,4 +79,9 @@ bool isPrivilegedPort(int port) {
 }
 bool isRunningAsRoot() {
     return getuid() == 0;
+}
+
+void signalHandler(int signal) {
+    std::cout << "Interrupt signal (" << signal << ") received. Shutting down..." << std::endl;
+    TCPHandler::GetInstance().CloseClientConnection();
 }
