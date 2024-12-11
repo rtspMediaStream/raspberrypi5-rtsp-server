@@ -247,12 +247,12 @@ void MediaStreamHandler::HandleMediaStream() {
                     octetCount += cur_frame_size;
                     timestamp += 3000; // 90 * 30	== 2700
 
-                    if (packetCount % 100 == 0)
-                    {
-                        std::cout << "RTCP sent" << std::endl;
-                        protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
-                        udpHandler->SendSenderReport(&sr, sizeof(sr));
-                    }
+                    // if (packetCount % 100 == 0)
+                    // {
+                    //     std::cout << "RTCP sent" << std::endl;
+                    //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
+                    //     udpHandler->SendSenderReport(&sr, sizeof(sr));
+                    // }
                 }
             }
         }else if(streamState == MediaStreamState::eMediaStream_Pause) {
@@ -262,7 +262,6 @@ void MediaStreamHandler::HandleMediaStream() {
         else if (streamState == MediaStreamState::eMediaStream_Teardown) {
             break;
         }
-        usleep(1000*10);
     }
 }
 
