@@ -138,15 +138,28 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, const int
               "a=rtpmap:111 opus/48000/2\r\n";  // Opus codec details
         }else if(ServerStream::getInstance().type == ServerStreamType::Video) {
             sdp = "v=0\r\n"
-              "o=- " + std::to_string(session->GetID()) + " " + std::to_string(session->GetVersion()) +
-              " IN IP4 " + ip + "\r\n"
-              "s=H264 Video Stream\r\n"
-              "c=IN IP4 " + ip + "\r\n"
-              "t=0 0\r\n"
-              "m=video " + std::to_string(session->GetRTPPort()) + " RTP/AVP 96\r\n"
-              "a=rtpmap:96 H264/90000\r\n"
-              "a=control:track0\r\n";
+                "o=- 0 0 IN IP4 " + ip + "\r\n"
+                "s=H264 Video Stream\r\n"
+                "c=IN IP4 " + ip + "\r\n"
+                "t=0 0\r\n"
+                "a=tool:libavformat LIBAVFORMAT_VERSION\r\n"
+                "m=video " + std::to_string(session->GetRTPPort()) + " RTP/AVP 96\r\n"
+                "b=AS:40\r\n"
+                "a=rtpmap:96 H264/90000\r\n"
+                "a=fmtp:96 packetization-mode=1\r\n";
         }
+
+        // }else if(ServerStream::getInstance().type == ServerStreamType::Video) {
+        //     sdp = "v=0\r\n"
+        //       "o=- " + std::to_string(session->GetID()) + " " + std::to_string(session->GetVersion()) +
+        //       " IN IP4 " + ip + "\r\n"
+        //       "s=H264 Video Stream\r\n"
+        //       "c=IN IP4 " + ip + "\r\n"
+        //       "t=0 0\r\n"
+        //       "m=video " + std::to_string(session->GetRTPPort()) + " RTP/AVP 96\r\n"
+        //       "a=rtpmap:96 H264/90000\r\n"
+        //       "a=control:track0\r\n";
+        // }
         
 
     } else {
