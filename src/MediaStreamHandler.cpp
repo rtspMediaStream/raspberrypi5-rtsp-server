@@ -52,11 +52,20 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
         rtpPacket.get_payload()[1] = nalHeader & NALU_TYPE_MASK;
         rtpPacket.get_header().set_marker(0);
 
-        // FU Header 생성
-        if(i == 0) {    //처음 조각
-            rtpPacket.get_payload()[1] |= FU_S_MASK;
-        }else if(i == packetNum-1 && remainPacketSize == 0) {    //마지막 조각
-            rtpPacket.get_payload()[1] |= FU_E_MASK;
+        if (i == 0)
+        {
+            // 첫 번째 조각: FU-A Start
+            rtpPacket.get_payload()[1] = (nalHeader & NALU_TYPE_MASK) | FU_S_MASK;
+        }
+        else if (i == packetNum - 1 && remainPacketSize == 0)
+        {
+            // 마지막 조각: FU-A End
+            rtpPacket.get_payload()[1] = (nalHeader & NALU_TYPE_MASK) | FU_E_MASK;
+        }
+        else
+        {
+            // 중간 조각: FU-A Middle
+            rtpPacket.get_payload()[1] = (nalHeader & NALU_TYPE_MASK);
         }
 
         // RTP 패킷 생성
@@ -112,19 +121,34 @@ void MediaStreamHandler::HandleMediaStream() {
     // 파일에서 VideoCapture Queue로 던지기
     std::thread([h264_file]() -> void
                 {
-                    while(1){
-                        std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();   //get frame img pointer & img size
-                        const auto ptr_cur_frame = cur_frame.first;
-                        const auto cur_frame_size = cur_frame.second;
-                        if(cur_frame.first == nullptr)
-                            return ;
+    constexpr int64_t target_frame_duration_us = 1000000 / 30; // 30 fps -> 33,333 microseconds per frame
 
-                        VideoCapture::getInstance().pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);       
-                        usleep(33333); //1000 * 1000 / 30.0fps
-                    }
-                    return ; })
-        .detach();
-        
+    while (true) {
+        auto frame_start_time = std::chrono::high_resolution_clock::now();
+
+        // Get the next frame
+        std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();
+        const auto ptr_cur_frame = cur_frame.first;
+        const auto cur_frame_size = cur_frame.second;
+
+        if (ptr_cur_frame == nullptr) {
+            return;
+        }
+
+        // Process the frame
+        VideoCapture::getInstance().pushImg((unsigned char *)ptr_cur_frame, cur_frame_size);
+
+        // Calculate elapsed time
+        auto frame_end_time = std::chrono::high_resolution_clock::now();
+        auto elapsed_time_us = std::chrono::duration_cast<std::chrono::microseconds>(frame_end_time - frame_start_time).count();
+
+        // Calculate remaining time to wait
+        int64_t remaining_time_us = target_frame_duration_us - elapsed_time_us;
+        if (remaining_time_us > 0) {
+            std::this_thread::sleep_for(std::chrono::microseconds(remaining_time_us));
+        }
+    } }).detach();
+
     while (true) {
         if(streamState == MediaStreamState::eMediaStream_Play) { 
             if(ServerStream::getInstance().type == Audio) {
@@ -204,9 +228,6 @@ void MediaStreamHandler::HandleMediaStream() {
 
             }
             else if (ServerStream::getInstance().type == Video) {
-                
-
-
                 while (!VideoCapture::getInstance().isEmptyBuffer())
                 {
                     std::pair<const uint8_t *, int64_t> cur_frame = VideoCapture::getInstance().popImg();
@@ -224,7 +245,7 @@ void MediaStreamHandler::HandleMediaStream() {
                     // 주기적으로 RTCP Sender Report 전송
                     packetCount++;
                     octetCount += cur_frame_size;
-                    timestamp += 2700; // 90 * 30	== 2700
+                    timestamp += 3000; // 90 * 30	== 2700
 
                     if (packetCount % 100 == 0)
                     {

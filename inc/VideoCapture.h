@@ -4,7 +4,7 @@
 
 class VideoCapture{
 public:
-    static const int buffer_max_size = 5;
+    static const int buffer_max_size = 10;
 
     static VideoCapture& getInstance() {
         static VideoCapture instance;
