@@ -6,6 +6,7 @@
 #include <string>
 #include <arpa/inet.h>
 #include <unordered_map>
+#include <vector>
 
 class TCPHandler {
 public:

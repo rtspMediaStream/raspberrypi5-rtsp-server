@@ -22,6 +22,7 @@ constexpr int64_t RTP_PAYLOAD_TYPE_H264 = 96;
 constexpr int64_t FU_SIZE = 2;
 
 constexpr int64_t MAX_UDP_PACKET_SIZE = 65535;
+//constexpr int64_t MAX_UDP_PACKET_SIZE = 1400;
 constexpr int64_t MAX_RTP_DATA_SIZE = MAX_UDP_PACKET_SIZE - IP_V4_HEADER_SIZE
                                         - UDP_HEADER_SIZE - RTP_HEADER_SIZE - FU_SIZE;
 constexpr int64_t MAX_RTP_PACKET_LEN = MAX_RTP_DATA_SIZE + RTP_HEADER_SIZE + FU_SIZE;
