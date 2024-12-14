@@ -8,16 +8,16 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-TCPHandler::TCPHandler(): tcpPort(g_serverRtpPort), tcpSocket(-1) {
+TCPHandler::TCPHandler(): tcpPort(g_serverRtpPort) {
     CreateTCPSocket();
 }
 
-TCPHandler::~TCPHandler() {
-    if (tcpSocket != -1) close(tcpSocket);
-}
+TCPHandler::~TCPHandler() {}
 
 void TCPHandler::CreateTCPSocket() {
     tcpSocket = socket(AF_INET, SOCK_STREAM, 0);
+    int option = 1;          // SO_REUSEADDR 의 옵션 값을 TRUE 로
+    setsockopt( tcpSocket, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option) );
     if (tcpSocket == -1) {
         std::cerr << "Error: fail to create TCP socket" << std::endl;
         exit(1);
