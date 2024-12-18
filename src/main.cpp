@@ -40,6 +40,7 @@ static void processRequest(Request *request)
     }
 
     // Request에서 스트림과 버퍼를 가져옴
+    VCImage newframe;
     for (const auto &bufferPair : request->buffers()) {
         const FrameBuffer *buffer = bufferPair.second;
 
@@ -58,7 +59,10 @@ static void processRequest(Request *request)
         int imgSize = plane.length;
 
         // 이미지 데이터를 pushImg 함수로 전달
-        VideoCapture::getInstance().pushImg(imgData, imgSize);
+        newframe.img = imgData;
+        newframe.size = imgSize;
+        newframe.timestamp += 3000;
+        VideoCapture::getInstance().pushImg(newframe);
         std::cout << "Image data processed, size: " << imgSize << " bytes" << std::endl;
 
         // 메모리 매핑 해제
@@ -128,18 +132,12 @@ static void requestComplete(Request *request)
         } else {
             std::cerr << "Failed to save image: " << fileName.str() << std::endl;
         }
-        // OpenCV로 이미지 출력
-        
-        //cv::imshow("Camera Image", rgbImage);
-        //cv::waitKey(1); // 비디오 스트림 유지
 
         // 매핑 해제
         munmap(mappedMemory, length);
-
     }
 
     request->reuse(Request::ReuseBuffers);
-	//loop.callLater(std::bind(&processRequest, request));
 }
 
 
@@ -178,79 +176,79 @@ int main(int argc, char* argv[]) {
     signal(SIGINT, signalHandler);
 
     ///camera test
-    std::thread([]()->int {
-        //camera open
-        static std::shared_ptr<Camera> camera;
-        std::unique_ptr<CameraManager> cm = std::make_unique<CameraManager>();
-        cm->start();
-        auto cameras = cm->cameras();
-        if (cameras.empty()) {
-            std::cout << "No cameras were identified on the system."
-                    << std::endl;
-            cm->stop();
-            return EXIT_FAILURE;
-        }
+    // std::thread([]()->int {
+    //     //camera open
+    //     static std::shared_ptr<Camera> camera;
+    //     std::unique_ptr<CameraManager> cm = std::make_unique<CameraManager>();
+    //     cm->start();
+    //     auto cameras = cm->cameras();
+    //     if (cameras.empty()) {
+    //         std::cout << "No cameras were identified on the system."
+    //                 << std::endl;
+    //         cm->stop();
+    //         return EXIT_FAILURE;
+    //     }
 
-        string cameraId = cameras[0]->id();
-        camera = cm->get(cameraId);
-        camera->acquire();
-        std::unique_ptr<CameraConfiguration> config = camera->generateConfiguration( { StreamRole::Viewfinder } );
-        StreamConfiguration &streamConfig = config->at(0);
-        std::cout << "Default viewfinder configuration is: " << streamConfig.toString() << std::endl;
-        streamConfig.size.width = 640;
-        streamConfig.size.height = 480;
-        config->validate();
-        std::cout << "Validated viewfinder configuration is: " << streamConfig.toString() << std::endl;
-        camera->configure(config.get());
-        FrameBufferAllocator *allocator = new FrameBufferAllocator(camera);
+    //     string cameraId = cameras[0]->id();
+    //     camera = cm->get(cameraId);
+    //     camera->acquire();
+    //     std::unique_ptr<CameraConfiguration> config = camera->generateConfiguration( { StreamRole::Viewfinder } );
+    //     StreamConfiguration &streamConfig = config->at(0);
+    //     std::cout << "Default viewfinder configuration is: " << streamConfig.toString() << std::endl;
+    //     streamConfig.size.width = 640;
+    //     streamConfig.size.height = 480;
+    //     config->validate();
+    //     std::cout << "Validated viewfinder configuration is: " << streamConfig.toString() << std::endl;
+    //     camera->configure(config.get());
+    //     FrameBufferAllocator *allocator = new FrameBufferAllocator(camera);
 
-        for (StreamConfiguration &cfg : *config) {
-            int ret = allocator->allocate(cfg.stream());
-            if (ret < 0) {
-                std::cerr << "Can't allocate buffers" << std::endl;
-                return -ENOMEM;
-            }
+    //     for (StreamConfiguration &cfg : *config) {
+    //         int ret = allocator->allocate(cfg.stream());
+    //         if (ret < 0) {
+    //             std::cerr << "Can't allocate buffers" << std::endl;
+    //             return -ENOMEM;
+    //         }
 
-            size_t allocated = allocator->buffers(cfg.stream()).size();
-            std::cout << "Allocated " << allocated << " buffers for stream" << std::endl;
-        }
+    //         size_t allocated = allocator->buffers(cfg.stream()).size();
+    //         std::cout << "Allocated " << allocated << " buffers for stream" << std::endl;
+    //     }
 
-        Stream *stream = streamConfig.stream();
-        const std::vector<std::unique_ptr<FrameBuffer>> &buffers = allocator->buffers(stream);
-        std::vector<std::unique_ptr<Request>> requests;
+    //     Stream *stream = streamConfig.stream();
+    //     const std::vector<std::unique_ptr<FrameBuffer>> &buffers = allocator->buffers(stream);
+    //     std::vector<std::unique_ptr<Request>> requests;
 
-        for (unsigned int i = 0; i < buffers.size(); ++i) {
-            std::unique_ptr<Request> request = camera->createRequest();
-            if (!request)
-            {
-                std::cerr << "Can't create request" << std::endl;
-                return -ENOMEM;
-            }
+    //     for (unsigned int i = 0; i < buffers.size(); ++i) {
+    //         std::unique_ptr<Request> request = camera->createRequest();
+    //         if (!request)
+    //         {
+    //             std::cerr << "Can't create request" << std::endl;
+    //             return -ENOMEM;
+    //         }
 
-            const std::unique_ptr<FrameBuffer> &buffer = buffers[i];
-            int ret = request->addBuffer(stream, buffer.get());
-            if (ret < 0)
-            {
-                std::cerr << "Can't set buffer for request"
-                    << std::endl;
-                return ret;
-            }
+    //         const std::unique_ptr<FrameBuffer> &buffer = buffers[i];
+    //         int ret = request->addBuffer(stream, buffer.get());
+    //         if (ret < 0)
+    //         {
+    //             std::cerr << "Can't set buffer for request"
+    //                 << std::endl;
+    //             return ret;
+    //         }
 
-            requests.push_back(std::move(request));
-        }
+    //         requests.push_back(std::move(request));
+    //     }
 
-        camera->requestCompleted.connect(requestComplete);
+    //     camera->requestCompleted.connect(requestComplete);
 
-        camera->start();
-        while(1) {
-            for (std::unique_ptr<Request> &request : requests){
-                camera->queueRequest(request.get());
-                usleep(30*1000 * 1000000);
-            }
-        }
+    //     camera->start();
+    //     while(1) {
+    //         for (std::unique_ptr<Request> &request : requests){
+    //             camera->queueRequest(request.get());
+    //             usleep(30*1000 * 1000000);
+    //         }
+    //     }
 
-        return 0;
-    }).detach();
+    //     return 0;
+    // }).detach();
     //camera end
 
     while (true) {
