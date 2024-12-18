@@ -3,8 +3,8 @@ CXX = g++
 
 # Compiler and Linker flags
 PKG_CONFIG = pkg-config
-CXXFLAGS = -I./inc `$(PKG_CONFIG) --cflags opus alsa` -Wall -std=c++11
-LDFLAGS = `$(PKG_CONFIG) --libs opus alsa`
+CXXFLAGS = -I./inc `$(PKG_CONFIG) --cflags opus alsa opencv4 libcamera libevent_pthreads` -Wall -std=c++20
+LDFLAGS = `$(PKG_CONFIG) --libs opus alsa opencv4 libcamera libevent_pthreads`
 
 # Source and object files
 SRC_DIR = src
