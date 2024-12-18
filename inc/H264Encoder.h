@@ -6,6 +6,7 @@
 #include <cstdint>
 
 #include <sys/types.h>
+#include <opencv2/core.hpp>
 
 //constexpr uint8_t NALU_F_MASK = 0x80;
 constexpr uint8_t NALU_NRI_MASK = 0x60;

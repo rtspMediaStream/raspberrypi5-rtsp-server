@@ -2,6 +2,12 @@
 #include <queue>
 #include <mutex>
 
+struct VCImage {
+    unsigned char *img;
+    unsigned int size;
+    unsigned int timestamp;
+};
+
 class VideoCapture{
 public:
     static const int buffer_max_size = 10;
@@ -12,10 +18,10 @@ public:
     }
     inline bool isEmptyBuffer() { return (buffer_size == 0); };
     inline bool isFullBuffer() { return (buffer_size == buffer_max_size); };
-    void pushImg(unsigned char* imgPtr, int size);
-    std::pair<unsigned char*, int> popImg();
+    void pushImg(const VCImage& img);
+    VCImage popImg();
 private:
-    std::vector <std::pair<unsigned char*, int>> imgBuffer;
+    std::vector <VCImage> imgBuffer;
     int head = 0;
     int tail = 0;
     int buffer_size = 0;
@@ -24,12 +30,12 @@ private:
 
     VideoCapture()
     {
-        imgBuffer.resize(buffer_max_size, std::make_pair(nullptr, 0)); // 초기화
+        imgBuffer.resize(buffer_max_size, {nullptr, 0, 0}); // 초기화
     }
 
     ~VideoCapture() {
         for (auto& pair : imgBuffer) {
-            delete[] pair.first; // 동적 할당 해제
+            delete[] pair.img; // 동적 할당 해제
         }
     }
 };
