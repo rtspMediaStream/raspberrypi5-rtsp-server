@@ -97,43 +97,43 @@ void MediaStreamHandler::HandleMediaStream() {
     int ssrcNum = 0;
 
     // 파일에서 VideoCapture Queue로 던지기
-    std::thread([]() -> void
-               {
-        constexpr int64_t target_frame_duration_us = 1000000 / 30; // 30 fps -> 33,333 microseconds per frame
-        H264Encoder* h264_file = nullptr;
-        if(ServerStream::getInstance().type == Video) {
-            h264_file = new H264Encoder(g_inputFile.c_str());
-        }
+    // std::thread([]() -> void
+    //            {
+    //     constexpr int64_t target_frame_duration_us = 1000000 / 30; // 30 fps -> 33,333 microseconds per frame
+    //     H264Encoder* h264_file = nullptr;
+    //     if(ServerStream::getInstance().type == Video) {
+    //         h264_file = new H264Encoder(g_inputFile.c_str());
+    //     }
 
-        VCImage image;
-        while (true) {
-            auto frame_start_time = std::chrono::high_resolution_clock::now();
+    //     VCImage image;
+    //     while (true) {
+    //         auto frame_start_time = std::chrono::high_resolution_clock::now();
 
-            // Get the next frame
-            std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();
-            auto ptr_cur_frame = cur_frame.first;
-            auto cur_frame_size = cur_frame.second;
+    //         // Get the next frame
+    //         std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();
+    //         auto ptr_cur_frame = cur_frame.first;
+    //         auto cur_frame_size = cur_frame.second;
 
-            if (ptr_cur_frame == nullptr) {
-                return;
-            }
-            image.img = (unsigned char*)ptr_cur_frame;
-            image.size = cur_frame_size;
-            image.timestamp += 3000;
+    //         if (ptr_cur_frame == nullptr) {
+    //             return;
+    //         }
+    //         image.img = (unsigned char*)ptr_cur_frame;
+    //         image.size = cur_frame_size;
+    //         image.timestamp += 3000;
 
-            // Process the frame
-            VideoCapture::getInstance().pushImg(image);
+    //         // Process the frame
+    //         VideoCapture::getInstance().pushImg(image);
 
-            // Calculate elapsed time
-            auto frame_end_time = std::chrono::high_resolution_clock::now();
-            auto elapsed_time_us = std::chrono::duration_cast<std::chrono::microseconds>(frame_end_time - frame_start_time).count();
-            // Calculate remaining time to wait
-            int64_t remaining_time_us = target_frame_duration_us - elapsed_time_us;
-            if (remaining_time_us > 0) {
-                std::this_thread::sleep_for(std::chrono::microseconds(remaining_time_us));
-            }
-     } })
-        .detach();
+    //         // Calculate elapsed time
+    //         auto frame_end_time = std::chrono::high_resolution_clock::now();
+    //         auto elapsed_time_us = std::chrono::duration_cast<std::chrono::microseconds>(frame_end_time - frame_start_time).count();
+    //         // Calculate remaining time to wait
+    //         int64_t remaining_time_us = target_frame_duration_us - elapsed_time_us;
+    //         if (remaining_time_us > 0) {
+    //             std::this_thread::sleep_for(std::chrono::microseconds(remaining_time_us));
+    //         }
+    //  } })
+    //     .detach();
 
     // RTP 헤더 생성
     RtpHeader rtpHeader(0, 0, ssrcNum);

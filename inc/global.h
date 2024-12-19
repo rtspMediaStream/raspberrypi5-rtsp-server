@@ -8,6 +8,7 @@ const int g_serverRtpPort = 554;
 enum ServerStreamType{
     Audio = 1,
     Video,
+    Camera,
 };
 
 class ServerStream{
