@@ -5,7 +5,6 @@
 #include "RequestHandler.h"
 #include "MediaStreamHandler.h"
 #include "global.h"
-#include "event_loop.h"
 #include "VideoCapture.h"
 
 #include <string>
@@ -17,20 +16,157 @@
 #include <iomanip>
 #include <memory>
 #include <sys/mman.h> // mmap, munmap
-
-/// camera check in raspberry pi
 #include <opencv2/opencv.hpp>
-#include <libcamera/libcamera.h>
+#include "libcamera/libcamera.h"
+#include "FFmpegEncoder.h"
+/// camera check in raspberry pi
+extern "C"
+{
+    #include "libavformat/avformat.h"
+    #include "libavcodec/avcodec.h"
+    #include "libavutil/avutil.h"
+    #include "libavutil/opt.h"
+    #include "libswscale/swscale.h"
+}
 using namespace libcamera;
 using namespace std;
-#define TIMEOUT_SEC 30
-static std::shared_ptr<Camera> camera;
-static EventLoop loop;
+static std::shared_ptr<libcamera::Camera> camera;
 
 void showHelp(const char *thisName);
 bool isPrivilegedPort(int port);
 bool isRunningAsRoot();
 void signalHandler(int signal);
+
+void encode_video() {
+    // FFmpeg 5.x는 자동 초기화를 제공 (av_register_all() 필요 없음)
+    AVFormatContext *formatContext = nullptr;
+    AVCodecContext *codecContext = nullptr;
+    const AVCodec *codec = nullptr;
+    AVStream *stream = nullptr;
+    AVFrame *frame = nullptr;
+    int ret;
+
+    // H.264 코덱 찾기
+    codec = avcodec_find_encoder(AV_CODEC_ID_H264);
+    if (!codec) {
+        std::cerr << "H.264 encoder not found!" << std::endl;
+        return;
+    }
+
+    // 코덱 컨텍스트 초기화
+    codecContext = avcodec_alloc_context3(codec);
+    if (!codecContext) {
+        std::cerr << "Failed to allocate codec context!" << std::endl;
+        return;
+    }
+
+    // 코덱 설정
+    codecContext->codec_id = AV_CODEC_ID_H264;
+    codecContext->codec_type = AVMEDIA_TYPE_VIDEO;
+    codecContext->width = 640;
+    codecContext->height = 480;
+    codecContext->pix_fmt = AV_PIX_FMT_YUV420P; // H.264는 YUV420P를 기본적으로 사용
+    codecContext->time_base = {1, 30};          // 30 FPS
+    codecContext->bit_rate = 2000000;           // 2 Mbps 비트레이트
+
+    // AVFormatContext 생성
+    ret = avformat_alloc_output_context2(&formatContext, nullptr, "mp4", "output.mp4");
+    if (!formatContext || ret < 0) {
+        std::cerr << "Failed to allocate format context!" << std::endl;
+        avcodec_free_context(&codecContext);
+        return;
+    }
+
+    // 스트림 추가
+    stream = avformat_new_stream(formatContext, nullptr);
+    if (!stream) {
+        std::cerr << "Failed to create video stream!" << std::endl;
+        avcodec_free_context(&codecContext);
+        avformat_free_context(formatContext);
+        return;
+    }
+    stream->time_base = codecContext->time_base;
+
+    // 스트림 코덱 파라미터 설정
+    ret = avcodec_parameters_from_context(stream->codecpar, codecContext);
+    if (ret < 0) {
+        std::cerr << "Failed to copy codec parameters to stream!" << std::endl;
+        avcodec_free_context(&codecContext);
+        avformat_free_context(formatContext);
+        return;
+    }
+
+    // 코덱 열기
+    ret = avcodec_open2(codecContext, codec, nullptr);
+    if (ret < 0) {
+        std::cerr << "Failed to open codec!" << std::endl;
+        avcodec_free_context(&codecContext);
+        avformat_free_context(formatContext);
+        return;
+    }
+
+    // 출력 파일 열기
+    if (!(formatContext->flags & AVFMT_NOFILE)) {
+        ret = avio_open(&formatContext->pb, "output.mp4", AVIO_FLAG_WRITE);
+        if (ret < 0) {
+            std::cerr << "Failed to open output file!" << std::endl;
+            avcodec_free_context(&codecContext);
+            avformat_free_context(formatContext);
+            return;
+        }
+    }
+
+    // 포맷 헤더 쓰기
+    ret = avformat_write_header(formatContext, nullptr);
+    if (ret < 0) {
+        std::cerr << "Error occurred when writing header!" << std::endl;
+        avcodec_free_context(&codecContext);
+        avformat_free_context(formatContext);
+        avio_close(formatContext->pb);
+        return;
+    }
+
+    // 프레임 생성 및 초기화
+    frame = av_frame_alloc();
+    if (!frame) {
+        std::cerr << "Failed to allocate frame!" << std::endl;
+        avcodec_free_context(&codecContext);
+        avformat_free_context(formatContext);
+        avio_close(formatContext->pb);
+        return;
+    }
+
+    frame->format = codecContext->pix_fmt;
+    frame->width = codecContext->width;
+    frame->height = codecContext->height;
+
+    ret = av_frame_get_buffer(frame, 32); // 32-byte alignment
+    if (ret < 0) {
+        std::cerr << "Failed to allocate frame buffer!" << std::endl;
+        av_frame_free(&frame);
+        avcodec_free_context(&codecContext);
+        avformat_free_context(formatContext);
+        avio_close(formatContext->pb);
+        return;
+    }
+
+    // --- 인코딩 루프 작성 가능 ---
+    // 여기에 실제 데이터를 frame->data에 채워 넣고,
+    // avcodec_send_frame 및 avcodec_receive_packet을 호출하여 패킷을 생성 및 출력.
+    // ---------------------------
+
+    // 리소스 정리
+    av_frame_free(&frame);
+    avcodec_free_context(&codecContext);
+    avformat_free_context(formatContext);
+    if (!(formatContext->flags & AVFMT_NOFILE)) {
+        avio_close(formatContext->pb);
+    }
+
+    std::cout << "Video encoding completed successfully!" << std::endl;
+}
+
+FFmpegEncoder ffmpegEncoder("output.h264",640, 480, 30.0);
 
 static void processRequest(Request *request)
 {
@@ -104,13 +240,16 @@ static void requestComplete(Request *request)
             continue;
         }
 
-        // 포맷에 따라 OpenCV 처리
         int width = 640;  // 기본값: 640x480
         int height = 480;
 
-        // XRGB8888 -> RGB888 변환
+        // XRGB8888 -> YUV420p 변환
         uint8_t *src = static_cast<uint8_t *>(mappedMemory);
-        cv::Mat rgbImage(height, width, CV_8UC3); // RGB888 형식의 OpenCV Mat
+        cv::Mat yuvImage(height + height / 2, width, CV_8UC1); // YUV420p 데이터를 하나의 Mat로 저장
+
+        uint8_t *yPlane = yuvImage.data;                       // Y 채널 시작
+        uint8_t *uPlane = yPlane + (height * width);           // U 채널 시작
+        uint8_t *vPlane = uPlane + (height * width) / 4;       // V 채널 시작
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -119,19 +258,22 @@ static void requestComplete(Request *request)
                 uint8_t g = (pixel >> 8) & 0xFF;  // G 추출
                 uint8_t b = pixel & 0xFF;         // B 추출
 
-                // RGB888 포맷으로 저장
-                rgbImage.at<cv::Vec3b>(y, x) = cv::Vec3b(b, g, r); // OpenCV는 BGR 순서
+                // YUV420p의 Y 계산
+                yPlane[y * width + x] = static_cast<uint8_t>(0.299 * r + 0.587 * g + 0.114 * b);
+
+                // U와 V는 2x2 블록마다 계산
+                if (y % 2 == 0 && x % 2 == 0) {
+                    int uvIndex = (y / 2) * (width / 2) + (x / 2);
+
+                    // U와 V 계산 (다운샘플링)
+                    uPlane[uvIndex] = static_cast<uint8_t>(-0.169 * r - 0.331 * g + 0.5 * b + 128);
+                    vPlane[uvIndex] = static_cast<uint8_t>(0.5 * r - 0.419 * g - 0.081 * b + 128);
+                }
             }
         }
-        
-        // 이미지 파일로 저장
-        std::ostringstream fileName;
-        fileName << "frame_" << std::setw(6) << std::setfill('0') << metadata.sequence << ".png";
-        if (cv::imwrite(fileName.str(), rgbImage)) {
-            std::cout << "Saved image: " << fileName.str() << std::endl;
-        } else {
-            std::cerr << "Failed to save image: " << fileName.str() << std::endl;
-        }
+        // yuvImage는 YUV420p 데이터를 포함하며, 각 채널은 Y, U, V 순서로 저장되어 있습니다.
+
+        ffmpegEncoder.encode(yuvImage, 30);
 
         // 매핑 해제
         munmap(mappedMemory, length);
@@ -159,9 +301,11 @@ int main(int argc, char* argv[]) {
         case 'm':
             std::string mode(optarg);
             if(mode == "Audio") {
-                ServerStream::getInstance().type = Audio;
+                ServerStream::getInstance().type = ServerStreamType::Audio;
             }else if(mode == "Video") {
-                ServerStream::getInstance().type = Video;
+                ServerStream::getInstance().type = ServerStreamType::Video;
+            }else if(mode == "Camera") {
+                ServerStream::getInstance().type = ServerStreamType::Camera;
             }
             break;
         }
@@ -176,79 +320,77 @@ int main(int argc, char* argv[]) {
     signal(SIGINT, signalHandler);
 
     ///camera test
-    // std::thread([]()->int {
-    //     //camera open
-    //     static std::shared_ptr<Camera> camera;
-    //     std::unique_ptr<CameraManager> cm = std::make_unique<CameraManager>();
-    //     cm->start();
-    //     auto cameras = cm->cameras();
-    //     if (cameras.empty()) {
-    //         std::cout << "No cameras were identified on the system."
-    //                 << std::endl;
-    //         cm->stop();
-    //         return EXIT_FAILURE;
-    //     }
+     std::thread([]()->int {
+         //camera open
+         static std::shared_ptr<libcamera::Camera> camera;
+         std::unique_ptr<CameraManager> cm = std::make_unique<CameraManager>();
+         cm->start();
+         auto cameras = cm->cameras();
+         if (cameras.empty()) {
+             std::cout << "No cameras were identified on the system."
+                     << std::endl;
+             cm->stop();
+             return EXIT_FAILURE;
+         }
 
-    //     string cameraId = cameras[0]->id();
-    //     camera = cm->get(cameraId);
-    //     camera->acquire();
-    //     std::unique_ptr<CameraConfiguration> config = camera->generateConfiguration( { StreamRole::Viewfinder } );
-    //     StreamConfiguration &streamConfig = config->at(0);
-    //     std::cout << "Default viewfinder configuration is: " << streamConfig.toString() << std::endl;
-    //     streamConfig.size.width = 640;
-    //     streamConfig.size.height = 480;
-    //     config->validate();
-    //     std::cout << "Validated viewfinder configuration is: " << streamConfig.toString() << std::endl;
-    //     camera->configure(config.get());
-    //     FrameBufferAllocator *allocator = new FrameBufferAllocator(camera);
+         string cameraId = cameras[0]->id();
+         camera = cm->get(cameraId);
+         camera->acquire();
+         std::unique_ptr<CameraConfiguration> config = camera->generateConfiguration( { StreamRole::Viewfinder } );
+         StreamConfiguration &streamConfig = config->at(0);
+         std::cout << "Default viewfinder configuration is: " << streamConfig.toString() << std::endl;
+         streamConfig.size.width = 640;
+         streamConfig.size.height = 480;
+         config->validate();
+         std::cout << "Validated viewfinder configuration is: " << streamConfig.toString() << std::endl;
+         camera->configure(config.get());
+         FrameBufferAllocator *allocator = new FrameBufferAllocator(camera);
 
-    //     for (StreamConfiguration &cfg : *config) {
-    //         int ret = allocator->allocate(cfg.stream());
-    //         if (ret < 0) {
-    //             std::cerr << "Can't allocate buffers" << std::endl;
-    //             return -ENOMEM;
-    //         }
+         for (StreamConfiguration &cfg : *config) {
+             int ret = allocator->allocate(cfg.stream());
+             if (ret < 0) {
+                 std::cerr << "Can't allocate buffers" << std::endl;
+                 return -ENOMEM;
+             }
 
-    //         size_t allocated = allocator->buffers(cfg.stream()).size();
-    //         std::cout << "Allocated " << allocated << " buffers for stream" << std::endl;
-    //     }
+             size_t allocated = allocator->buffers(cfg.stream()).size();
+             std::cout << "Allocated " << allocated << " buffers for stream" << std::endl;
+         }
 
-    //     Stream *stream = streamConfig.stream();
-    //     const std::vector<std::unique_ptr<FrameBuffer>> &buffers = allocator->buffers(stream);
-    //     std::vector<std::unique_ptr<Request>> requests;
+         Stream *stream = streamConfig.stream();
+         const std::vector<std::unique_ptr<FrameBuffer>> &buffers = allocator->buffers(stream);
+         std::vector<std::unique_ptr<Request>> requests;
 
-    //     for (unsigned int i = 0; i < buffers.size(); ++i) {
-    //         std::unique_ptr<Request> request = camera->createRequest();
-    //         if (!request)
-    //         {
-    //             std::cerr << "Can't create request" << std::endl;
-    //             return -ENOMEM;
-    //         }
+        for (unsigned int i = 0; i < buffers.size(); ++i) {
+            std::unique_ptr<Request> request = camera->createRequest();
+            if (!request)
+            {
+                std::cerr << "Can't create request" << std::endl;
+                return -ENOMEM;
+            }
+            const std::unique_ptr<FrameBuffer> &buffer = buffers[i];
+            int ret = request->addBuffer(stream, buffer.get());
+            if (ret < 0)
+            {
+                std::cerr << "Can't set buffer for request"
+                    << std::endl;
+                return ret;
+            }
+            requests.push_back(std::move(request));
+        }
 
-    //         const std::unique_ptr<FrameBuffer> &buffer = buffers[i];
-    //         int ret = request->addBuffer(stream, buffer.get());
-    //         if (ret < 0)
-    //         {
-    //             std::cerr << "Can't set buffer for request"
-    //                 << std::endl;
-    //             return ret;
-    //         }
+         camera->requestCompleted.connect(requestComplete);
 
-    //         requests.push_back(std::move(request));
-    //     }
+         camera->start();
+         while(1) {
+             for (std::unique_ptr<Request> &request : requests){
+                 camera->queueRequest(request.get());
+                 usleep(30*1000);
+             }
+         }
 
-    //     camera->requestCompleted.connect(requestComplete);
-
-    //     camera->start();
-    //     while(1) {
-    //         for (std::unique_ptr<Request> &request : requests){
-    //             camera->queueRequest(request.get());
-    //             usleep(30*1000 * 1000000);
-    //         }
-    //     }
-
-    //     return 0;
-    // }).detach();
+         return 0;
+     }).detach();
     //camera end
 
     while (true) {

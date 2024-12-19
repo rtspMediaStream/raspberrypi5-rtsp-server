@@ -3,9 +3,15 @@ CXX = g++
 
 # Compiler and Linker flags
 PKG_CONFIG = pkg-config
-PKG_LIBS = opus alsa libavcodec libavformat libswscale opencv4 libcamera libevent_pthreads
-CXXFLAGS = -I./inc `$(PKG_CONFIG) --cflags $(PKG_LIBS)` -Wall -std=c++20
-LDFLAGS = `$(PKG_CONFIG) --libs $(PKG_LIBS)`
+PKG_LIBS = opus alsa opencv4 libcamera libevent_pthreads libavcodec libavformat libswscale
+CXXFLAGS = -I./inc \
+           -I/usr/include/opencv4 \
+           -I/usr/include/opencv4/opencv2 \
+           -I/usr/include/libcamera \
+		   -I/usr/include/aarch64-linux-gnu/ \
+           `$(PKG_CONFIG) --cflags $(PKG_LIBS)` \
+           -Wall -std=gnu++17
+LDFLAGS = `$(PKG_CONFIG) --libs $(PKG_LIBS)` -lavcodec -lavformat -lavutil -lswscale
 
 # Source and object files
 SRC_DIR = src
