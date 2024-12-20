@@ -20,8 +20,8 @@ public:
     }
     inline bool isEmptyBuffer() { return (buffer_size == 0); };
     inline bool isFullBuffer() { return (buffer_size == buffer_max_size); };
-    void pushFrame(const DataCaptureFrame& frame);
-    DataCaptureFrame popFrame();
+    virtual void pushFrame(const DataCaptureFrame& frame);
+    virtual DataCaptureFrame popFrame();
 protected:
     std::vector <DataCaptureFrame> frameBuffer;
     int head = 0;

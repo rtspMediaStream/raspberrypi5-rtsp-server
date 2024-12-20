@@ -36,8 +36,7 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
         memcpy(rtpPacket.get_payload(), payload, payloadSize); // NAL 데이터 복사
 
         rtpPacket.get_header().set_timestamp(timeStamp);
-        rtpPacket.rtp_sendto(udpHandler->GetRTPSocket(), MAX_RTP_PACKET_LEN, 0, (struct sockaddr*)(&udpHandler->GetRTPAddr()));
-
+        rtpPacket.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + payloadSize, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
         return;
     }
 
@@ -90,7 +89,6 @@ void MediaStreamHandler::HandleMediaStream() {
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
     uint16_t seqNum = (uint16_t)utils::GetRanNum(16);
-    unsigned int timestamp = (unsigned int)utils::GetRanNum(16);
 
     Protos::SenderReport sr;
     int ssrcNum = 0;
@@ -99,93 +97,47 @@ void MediaStreamHandler::HandleMediaStream() {
     RtpHeader rtpHeader(0, 0, ssrcNum);
     rtpHeader.set_payloadType(RTSPServer::getInstance().getProtocol());
     rtpHeader.set_seq(seqNum);
-    rtpHeader.set_timestamp(timestamp);
 
     // RTP 패킷 생성
     RtpPacket rtpPack{rtpHeader};
 
     while (true) {
-        if(streamState == MediaStreamState::eMediaStream_Play) { 
-            //  if(ServerStream::getInstance().type == Audio) {
-            //     
-
-            //     unsigned short seq_num = 0;
-            //     unsigned int ssrc = 0;
-            //     while (1)
-            //     {
-            //         while ( !AudioCapture::getInstance().isBufferEmpty())
-            //         {
-            //             // RTPHeader::rtp_header header;
-            //             // RTPHeader::create(header, seq_num, timestamp, ssrc);
-
-            //             // std::pair<const unsigned char *, int> frame = AudioCapture::getInstance().popData();
-
-            //             // unsigned char packet[1500];
-            //             // memcpy(packet, &header, sizeof(header));
-            //             // memcpy(packet + sizeof(header), frame.first, frame.second);
-
-            //             // int packet_size = sizeof(header) + frame.second;
-            //             // if (sendto(udpHandler->GetRTPSocket(), packet, packet_size, 0, (struct sockaddr *)&udpHandler->GetRTPAddr(), sizeof(udpHandler->GetRTPAddr())) < 0)
-            //             // {
-            //             //     throw std::runtime_error("RTP 패킷 전송 오류");
-            //             // }
-
-            //             // make RTP Packet.
-            //             rtpPack.get_header().set_timestamp(timestamp);
-            //             rtpPack.get_header().set_marker(true);
-            //             // if(seq_num %100 == 0){
-            //             //     rtpPack.get_header().set_marker(true);
-            //             // }else{
-            //             //     rtpPack.get_header().set_marker(false);
-            //             // }
-
-            //             std::pair<const uint8_t *, int64_t> frame = AudioCapture::getInstance().popData();
-            //             memcpy(rtpPack.get_payload(), frame.first, frame.second);
-            //             rtpPack.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + frame.second, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
-            //             delete(frame.first);
-
-            //             seq_num++;
-            //             timestamp += OPUS_FRAME_SIZE;
-            //             packetCount++;
-            //             octetCount += frame.second;
-
-            //             // if (packetCount % 100 == 0)
-            //             // {
-            //             //     std::cout << "RTCP sent" << std::endl;
-            //             //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_OPUS);
-            //             //     udpHandler->SendSenderReport(&sr, sizeof(sr));
-            //             // }
-            //         }
-            //     }
-
-            // }
-            //else if (ServerStream::getInstance().type == Video) {
-                while (!DataCapture::getInstance().isEmptyBuffer())
+        if(streamState == MediaStreamState::eMediaStream_Play) {
+            while (!DataCapture::getInstance().isEmptyBuffer())
+            {
+                DataCaptureFrame cur_frame = DataCapture::getInstance().popFrame();
+                const auto frame_ptr = cur_frame.dataPtr;
+                const auto frame_size = cur_frame.size;
+                const auto timestamp = cur_frame.timestamp;
+                if (frame_ptr == nullptr || frame_size <= 0)
                 {
-                    DataCaptureFrame cur_frame = DataCapture::getInstance().popFrame();
-                    const auto frame_ptr = cur_frame.dataPtr;
-                    const auto frame_size = cur_frame.size;
-                    const auto timestamp = cur_frame.timestamp;
-                    if (frame_ptr == nullptr || frame_size <= 0)
-                    {
-                        std::cout << "Not Ready\n";
-                        continue;
-                    }
-                    //split FU-A
-                    SendFragmentedRTPPackets((unsigned char *)frame_ptr, frame_size, rtpPack, timestamp);
-
-                    // 주기적으로 RTCP Sender Report 전송
-                    packetCount++;
-                    octetCount += frame_size;
-
-                    // if (packetCount % 100 == 0)
-                    // {
-                    //     std::cout << "RTCP sent" << std::endl;
-                    //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
-                    //     udpHandler->SendSenderReport(&sr, sizeof(sr));
-                    // }
+                    std::cout << "Not Ready\n";
+                    continue;
                 }
-            //}
+
+                if (packetCount % 100 == 0)
+                {
+                    rtpPack.get_header().set_marker(true);
+                }
+                else
+                {
+                    rtpPack.get_header().set_marker(false);
+                }
+
+                // split FU-A
+                SendFragmentedRTPPackets((unsigned char *)frame_ptr, frame_size, rtpPack, timestamp);
+
+                // 주기적으로 RTCP Sender Report 전송
+                packetCount++;
+                octetCount += frame_size;
+
+                // if (packetCount % 100 == 0)
+                // {
+                //     std::cout << "RTCP sent" << std::endl;
+                //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
+                //     udpHandler->SendSenderReport(&sr, sizeof(sr));
+                // }
+            }
         }else if(streamState == MediaStreamState::eMediaStream_Pause) {
             std::unique_lock<std::mutex> lck(streamMutex);
             condition.wait(lck);
