@@ -15,22 +15,27 @@ void LoadH264File()
             constexpr int64_t target_frame_duration_us = 1000000 / 30; // 30 fps -> 33,333 microseconds per frame
             H264Encoder* h264_file = new H264Encoder("../dragon.h264");
 
-            DataCaptureFrame image;
+            DataCaptureFrame frame;
             while (true) {
                 auto frame_start_time = std::chrono::high_resolution_clock::now();
 
                 // Get the next frame
                 std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();
-
-                if (cur_frame.first == nullptr) {
+                const uint8_t * framePtr = cur_frame.first;
+                int64_t frameSize = cur_frame.second;
+                if (framePtr == nullptr) {
                     return;
                 }
-                image.dataPtr = (unsigned char*)cur_frame.first;
-                image.size = cur_frame.second;
-                image.timestamp += 3000;
+
+                // split nalu start code 3 or 4 byte
+                const int64_t naluStartLen = H264Encoder::is_start_code(framePtr, frameSize, 4) ? 4 : 3;
+
+                frame.dataPtr = (unsigned char *)framePtr + naluStartLen;
+                frame.size = frameSize - naluStartLen;
+                frame.timestamp += 3000;
 
                 // Process the frame
-                DataCapture::getInstance().pushFrame(image);
+                DataCapture::getInstance().pushFrame(frame);
 
                 // Calculate elapsed time
                 auto frame_end_time = std::chrono::high_resolution_clock::now();
