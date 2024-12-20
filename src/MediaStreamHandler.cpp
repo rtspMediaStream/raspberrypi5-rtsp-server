@@ -97,7 +97,7 @@ void MediaStreamHandler::HandleMediaStream() {
 
     // RTP 헤더 생성
     RtpHeader rtpHeader(0, 0, ssrcNum);
-    rtpHeader.set_payloadType(96);
+    rtpHeader.set_payloadType(RTSPServer::getInstance().getProtocol());
     rtpHeader.set_seq(seqNum);
     rtpHeader.set_timestamp(timestamp);
 
@@ -163,21 +163,20 @@ void MediaStreamHandler::HandleMediaStream() {
                 while (!DataCapture::getInstance().isEmptyBuffer())
                 {
                     DataCaptureFrame cur_frame = DataCapture::getInstance().popFrame();
-                    const auto ptr_cur_frame = cur_frame.dataPtr;
-                    const auto cur_frame_size = cur_frame.size;
+                    const auto frame_ptr = cur_frame.dataPtr;
+                    const auto frame_size = cur_frame.size;
                     const auto timestamp = cur_frame.timestamp;
-                    if (ptr_cur_frame == nullptr || cur_frame_size <= 0)
+                    if (frame_ptr == nullptr || frame_size <= 0)
                     {
                         std::cout << "Not Ready\n";
                         continue;
                     }
-                    // RTP 패킷 전송 (FU-A 분할 포함)
-                    const int64_t start_code_len = H264Encoder::is_start_code(ptr_cur_frame, cur_frame_size, 4) ? 4 : 3;
-                    SendFragmentedRTPPackets((unsigned char *)ptr_cur_frame + start_code_len, cur_frame_size - start_code_len, rtpPack, timestamp);
+                    //split FU-A
+                    SendFragmentedRTPPackets((unsigned char *)frame_ptr, frame_size, rtpPack, timestamp);
 
                     // 주기적으로 RTCP Sender Report 전송
                     packetCount++;
-                    octetCount += cur_frame_size;
+                    octetCount += frame_size;
 
                     // if (packetCount % 100 == 0)
                     // {

@@ -23,6 +23,7 @@ public:
     RTSPServer();
     ~RTSPServer();
     int startServerThread();
+    inline Protocol getProtocol() { return protocol; };
     void setProtocol(Protocol _ptorocol) { protocol = _ptorocol; };
     std::function<void()> onInitEvent;
 };
