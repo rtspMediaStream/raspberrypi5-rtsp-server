@@ -33,7 +33,7 @@ sudo ./rtsp-server.out -m Video
 
 ### Check the sound by entering the speaker number in ffmpeg (Receive)
 ```bash
-ffmpeg -i rtsp://localhost:554 -f alsa default
+ffmpeg -i rtsp://localhost:8554 -f alsa default
 ```
 ### Check the video by vlc (Receive)
 ```bash

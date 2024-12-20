@@ -3,8 +3,7 @@
 #include "TCPHandler.h"
 #include "UDPHandler.h"
 #include "MediaStreamHandler.h"
-#include "AudioCapture.h"
-#include "VideoCapture.h"
+#include "DataCapture.h"
 #include "OpusEncoder.h"
 #include "H264Encoder.h"
 #include "global.h"
@@ -96,51 +95,9 @@ void MediaStreamHandler::HandleMediaStream() {
     Protos::SenderReport sr;
     int ssrcNum = 0;
 
-    // 파일에서 VideoCapture Queue로 던지기
-    // std::thread([]() -> void
-    //            {
-    //     constexpr int64_t target_frame_duration_us = 1000000 / 30; // 30 fps -> 33,333 microseconds per frame
-    //     H264Encoder* h264_file = nullptr;
-    //     if(ServerStream::getInstance().type == Video) {
-    //         h264_file = new H264Encoder(g_inputFile.c_str());
-    //     }
-
-    //     VCImage image;
-    //     while (true) {
-    //         auto frame_start_time = std::chrono::high_resolution_clock::now();
-
-    //         // Get the next frame
-    //         std::pair<const uint8_t *, int64_t> cur_frame = h264_file->get_next_frame();
-    //         auto ptr_cur_frame = cur_frame.first;
-    //         auto cur_frame_size = cur_frame.second;
-
-    //         if (ptr_cur_frame == nullptr) {
-    //             return;
-    //         }
-    //         image.img = (unsigned char*)ptr_cur_frame;
-    //         image.size = cur_frame_size;
-    //         image.timestamp += 3000;
-
-    //         // Process the frame
-    //         VideoCapture::getInstance().pushImg(image);
-
-    //         // Calculate elapsed time
-    //         auto frame_end_time = std::chrono::high_resolution_clock::now();
-    //         auto elapsed_time_us = std::chrono::duration_cast<std::chrono::microseconds>(frame_end_time - frame_start_time).count();
-    //         // Calculate remaining time to wait
-    //         int64_t remaining_time_us = target_frame_duration_us - elapsed_time_us;
-    //         if (remaining_time_us > 0) {
-    //             std::this_thread::sleep_for(std::chrono::microseconds(remaining_time_us));
-    //         }
-    //  } })
-    //     .detach();
-
     // RTP 헤더 생성
     RtpHeader rtpHeader(0, 0, ssrcNum);
-    if(ServerStream::getInstance().type == Audio)
-        rtpHeader.set_payloadType(PROTO_OPUS);
-    else if(ServerStream::getInstance().type == Video)
-        rtpHeader.set_payloadType(PROTO_H264);
+    rtpHeader.set_payloadType(96);
     rtpHeader.set_seq(seqNum);
     rtpHeader.set_timestamp(timestamp);
 
@@ -149,87 +106,64 @@ void MediaStreamHandler::HandleMediaStream() {
 
     while (true) {
         if(streamState == MediaStreamState::eMediaStream_Play) { 
-            if(ServerStream::getInstance().type == Audio) {
-                std::thread([]()->void {
-                    short pcmBuffer[OPUS_FRAME_SIZE * OPUS_CHANNELS];
-                    OpusEncoder opusEncoder;
-                    while(1){
-                        unsigned char *encodedBuffer = new unsigned char[MAX_PACKET_SIZE];
-                        int rc = AudioCapture::getInstance().read(pcmBuffer, OPUS_FRAME_SIZE);
-                        if (rc != OPUS_FRAME_SIZE)
-                        {
-                            std::cout << "occur audio packet skip." << std::endl;
-                            continue;
-                        }
-                        
-                        int bufferSize = opusEncoder.encode(pcmBuffer, OPUS_FRAME_SIZE, encodedBuffer);
-                        if (bufferSize < 0)
-                        {
-                            std::cerr << "Opus encoding error: " << bufferSize << std::endl;
-                            delete[] encodedBuffer;
-                            continue;
-                        }
+            //  if(ServerStream::getInstance().type == Audio) {
+            //     
 
-                        AudioCapture::getInstance().pushData(encodedBuffer, bufferSize);
-                    }
-                    return ;
-                } ).detach();
+            //     unsigned short seq_num = 0;
+            //     unsigned int ssrc = 0;
+            //     while (1)
+            //     {
+            //         while ( !AudioCapture::getInstance().isBufferEmpty())
+            //         {
+            //             // RTPHeader::rtp_header header;
+            //             // RTPHeader::create(header, seq_num, timestamp, ssrc);
 
-                unsigned short seq_num = 0;
-                unsigned int ssrc = 0;
-                while (1)
+            //             // std::pair<const unsigned char *, int> frame = AudioCapture::getInstance().popData();
+
+            //             // unsigned char packet[1500];
+            //             // memcpy(packet, &header, sizeof(header));
+            //             // memcpy(packet + sizeof(header), frame.first, frame.second);
+
+            //             // int packet_size = sizeof(header) + frame.second;
+            //             // if (sendto(udpHandler->GetRTPSocket(), packet, packet_size, 0, (struct sockaddr *)&udpHandler->GetRTPAddr(), sizeof(udpHandler->GetRTPAddr())) < 0)
+            //             // {
+            //             //     throw std::runtime_error("RTP 패킷 전송 오류");
+            //             // }
+
+            //             // make RTP Packet.
+            //             rtpPack.get_header().set_timestamp(timestamp);
+            //             rtpPack.get_header().set_marker(true);
+            //             // if(seq_num %100 == 0){
+            //             //     rtpPack.get_header().set_marker(true);
+            //             // }else{
+            //             //     rtpPack.get_header().set_marker(false);
+            //             // }
+
+            //             std::pair<const uint8_t *, int64_t> frame = AudioCapture::getInstance().popData();
+            //             memcpy(rtpPack.get_payload(), frame.first, frame.second);
+            //             rtpPack.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + frame.second, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
+            //             delete(frame.first);
+
+            //             seq_num++;
+            //             timestamp += OPUS_FRAME_SIZE;
+            //             packetCount++;
+            //             octetCount += frame.second;
+
+            //             // if (packetCount % 100 == 0)
+            //             // {
+            //             //     std::cout << "RTCP sent" << std::endl;
+            //             //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_OPUS);
+            //             //     udpHandler->SendSenderReport(&sr, sizeof(sr));
+            //             // }
+            //         }
+            //     }
+
+            // }
+            //else if (ServerStream::getInstance().type == Video) {
+                while (!DataCapture::getInstance().isEmptyBuffer())
                 {
-                    while ( !AudioCapture::getInstance().isBufferEmpty())
-                    {
-                        // RTPHeader::rtp_header header;
-                        // RTPHeader::create(header, seq_num, timestamp, ssrc);
-
-                        // std::pair<const unsigned char *, int> frame = AudioCapture::getInstance().popData();
-
-                        // unsigned char packet[1500];
-                        // memcpy(packet, &header, sizeof(header));
-                        // memcpy(packet + sizeof(header), frame.first, frame.second);
-
-                        // int packet_size = sizeof(header) + frame.second;
-                        // if (sendto(udpHandler->GetRTPSocket(), packet, packet_size, 0, (struct sockaddr *)&udpHandler->GetRTPAddr(), sizeof(udpHandler->GetRTPAddr())) < 0)
-                        // {
-                        //     throw std::runtime_error("RTP 패킷 전송 오류");
-                        // }
-
-                        // make RTP Packet.
-                        rtpPack.get_header().set_timestamp(timestamp);
-                        rtpPack.get_header().set_marker(true);
-                        // if(seq_num %100 == 0){
-                        //     rtpPack.get_header().set_marker(true);
-                        // }else{
-                        //     rtpPack.get_header().set_marker(false);
-                        // }
-
-                        std::pair<const uint8_t *, int64_t> frame = AudioCapture::getInstance().popData();
-                        memcpy(rtpPack.get_payload(), frame.first, frame.second);
-                        rtpPack.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + frame.second, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
-                        delete(frame.first);
-
-                        seq_num++;
-                        timestamp += OPUS_FRAME_SIZE;
-                        packetCount++;
-                        octetCount += frame.second;
-
-                        // if (packetCount % 100 == 0)
-                        // {
-                        //     std::cout << "RTCP sent" << std::endl;
-                        //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_OPUS);
-                        //     udpHandler->SendSenderReport(&sr, sizeof(sr));
-                        // }
-                    }
-                }
-
-            }
-            else if (ServerStream::getInstance().type == Video) {
-                while (!VideoCapture::getInstance().isEmptyBuffer())
-                {
-                    VCImage cur_frame = VideoCapture::getInstance().popImg();
-                    const auto ptr_cur_frame = cur_frame.img;
+                    DataCaptureFrame cur_frame = DataCapture::getInstance().popFrame();
+                    const auto ptr_cur_frame = cur_frame.dataPtr;
                     const auto cur_frame_size = cur_frame.size;
                     const auto timestamp = cur_frame.timestamp;
                     if (ptr_cur_frame == nullptr || cur_frame_size <= 0)
@@ -252,7 +186,7 @@ void MediaStreamHandler::HandleMediaStream() {
                     //     udpHandler->SendSenderReport(&sr, sizeof(sr));
                     // }
                 }
-            }
+            //}
         }else if(streamState == MediaStreamState::eMediaStream_Pause) {
             std::unique_lock<std::mutex> lck(streamMutex);
             condition.wait(lck);

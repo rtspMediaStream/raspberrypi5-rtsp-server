@@ -1,7 +1,7 @@
 #include "FFmpegEncoder.h"
 #include <iostream>
 #include <thread>
-#include <VideoCapture.h>
+#include "DataCapture.h"
 extern "C"
 {
     #include "libavformat/avformat.h"
@@ -133,7 +133,7 @@ void FFmpegEncoder::encode(const cv::Mat& inputFrame, double fps) {
     }
 
     // 인코딩된 패킷을 가져오기
-    VCImage newframe;
+    DataCaptureFrame newframe;
     while ( ret >=  0) {
         ret = avcodec_receive_packet(codec_ctx, packet);
 
@@ -150,7 +150,7 @@ void FFmpegEncoder::encode(const cv::Mat& inputFrame, double fps) {
 //         av_interleaved_write_frame(fmt_ctx, packet);      // 패킷을 파일에 기록
         // 패킷에 할당된 메모리를 해제. 인코딩된 데이터를 파일에 기록한 후 메모리 해제해야함
         if (packet->size > 0 && packet->data) {
-            newframe.img = (unsigned char*)packet->data;
+            newframe.dataPtr = (unsigned char*)packet->data;
             newframe.size = packet->size;
             // PTS를 사용하여 초 단위로 변환
             double seconds = packet->pts * av_q2d(stream->time_base);
@@ -161,7 +161,7 @@ void FFmpegEncoder::encode(const cv::Mat& inputFrame, double fps) {
             std::cout << "timestamp :" << duration.count()*100 << std::endl;
             newframe.timestamp = duration.count()*100; // 밀리초 단위 timestamp
 
-            VideoCapture::getInstance().pushImg(newframe);
+            DataCapture::getInstance().pushFrame(newframe);
         }
         av_packet_unref(packet);
     }

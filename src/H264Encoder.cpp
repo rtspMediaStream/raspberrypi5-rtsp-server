@@ -14,10 +14,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
-#include <libavformat/avformat.h>
-#include <libavcodec/avcodec.h>
-#include <libswscale/swscale.h>
-#include <opencv2/opencv.hpp>
 
 H264Encoder::H264Encoder(const char *filename)
 {
