@@ -1,17 +1,15 @@
+#include "DataCapture.h"
 #include <alsa/asoundlib.h>
 #include <queue>
 #include <mutex>
 
-class AudioCapture {
+class AudioCapture : public DataCapture{
 public:
     static AudioCapture& getInstance() {
         static AudioCapture instance;
         return instance;
     }
-    
-    inline bool isBufferEmpty() { return buffer.empty(); };
-    void pushData(unsigned char* dataPtr, int size);
-    std::pair<unsigned char*, int> popData();
+
     AudioCapture();
     int read(short *buffer, int frames);
     ~AudioCapture();

@@ -6,7 +6,7 @@
 Protos::Protos() {}
 
 
-void Protos::CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, ssrc payloadType) {
+void Protos::CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, Protocol payloadType) {
     sr->version = 2;
     sr->p = 0;
     sr->rc = 0;

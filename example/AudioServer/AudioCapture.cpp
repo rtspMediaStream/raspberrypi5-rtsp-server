@@ -3,21 +3,6 @@
 #include <opus/opus.h>
 #include <iostream>
 
-void AudioCapture::pushData(unsigned char* dataPtr, int size) {
-    bufferMutex.lock();
-    buffer.push(std::make_pair(dataPtr, size));
-    bufferMutex.unlock();
-}
-    
-    
-std::pair<unsigned char*, int> AudioCapture::popData() {
-    std::pair<unsigned char*, int> ret = buffer.front();
-    bufferMutex.lock();
-    buffer.pop();
-    bufferMutex.unlock();
-    return ret;
-}
-
 AudioCapture::AudioCapture()
 {
     sample_rate = OPUS_SAMPLE_RATE;

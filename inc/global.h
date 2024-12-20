@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-const int g_serverRtpPort = 554;
+const int g_serverRtpPort = 8554;
 
 enum ServerStreamType{
     Audio = 1,
@@ -19,7 +19,5 @@ class ServerStream{
         return instance;
     }
 };
-
-static std::string g_inputFile = "example/dragon.h264";
 
 #endif //GLOBAL_H

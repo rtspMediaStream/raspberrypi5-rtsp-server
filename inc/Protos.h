@@ -3,12 +3,7 @@
 
 #include <cstdint>
 #include <cstddef>
-
-enum ssrc
-{
-    PROTO_OPUS = 111,
-    PROTO_H264 = 96,
-};
+#include "RTSPServer.h"
 
 class Protos
 {
@@ -37,7 +32,7 @@ public:
         uint32_t senderOctetCount;
     } __attribute__((packed));
 
-    void CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, ssrc payloadType);
+    void CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, Protocol payloadType);
 };
 
 #endif //RTSP_PROTOS_H
