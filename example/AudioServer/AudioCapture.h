@@ -5,11 +5,6 @@
 
 class AudioCapture : public DataCapture{
 public:
-    static AudioCapture& getInstance() {
-        static AudioCapture instance;
-        return instance;
-    }
-
     AudioCapture();
     int read(short *buffer, int frames);
     ~AudioCapture();
