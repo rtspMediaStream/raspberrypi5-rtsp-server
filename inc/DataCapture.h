@@ -1,3 +1,18 @@
+/**
+ * @file DataCapture.h
+ * @brief 미디어 프레임 캡처 및 버퍼 관리 클래스 헤더
+ * @details 미디어 스트리밍을 위한 프레임 캡처 및 버퍼 관리 시스템을 제공하는 클래스
+ *          - 순환 큐를 사용한 프레임 데이터 관리
+ *          - 스레드를 통한 안전한 프레임 데이터 접근
+ *          - FIFO 방식의 프레임 처리
+ * 
+ * @organization rtspMediaStream
+ * @repository https://github.com/rtspMediaStream/raspberrypi5-rtsp-server
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #ifndef __DATACAPTURE_H__
 #define __DATACAPTURE_H__
 #include <vector>

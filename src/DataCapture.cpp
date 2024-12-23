@@ -1,3 +1,11 @@
+/**
+ * @file DataCapture.cpp
+ * @brief DataCapture 클래스의 구현부
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #include "DataCapture.h"
 #include <cstring>
 #include <iostream>
