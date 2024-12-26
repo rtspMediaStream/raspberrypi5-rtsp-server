@@ -18,7 +18,10 @@ cp librtspserver.so /usr/local/lib/
 # Example Start
 
 ### Audio RTSP-server
-![제목 없는 다이어그램 drawio (2)](https://github.com/user-attachments/assets/a30fcb3f-e982-425b-9e5e-d2a5ad302182)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/14d123ca-4a1a-4d39-8c45-53528003d27b" alt="AudioServerDevice" height="300" />
+</div>
+
 - Install
 ```bash
 sudo apt update
@@ -42,9 +45,7 @@ ffmpeg -i rtsp://localhost:8554 -f alsa default
 
 ### Video RTSP-server
 - Install
-```bash
-sudo apt update
-```
+No installation required
 - Build (Server)
 ```bash
 cd raspberrypi5-rtsp-server/example/VideoServer
@@ -60,5 +61,27 @@ vlc rtsp://127.0.0.1:8554
 ```
 
 ### Camera RTSP-server
-![제목 없는 다이어그램 drawio (1)](https://github.com/user-attachments/assets/102342bb-1b1e-4624-9c19-4ff910f6aa72)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/0a438fdb-1738-43e6-be2e-4464f8646a80" alt="CameraServerDevice" height="300" />
+</div>
+
+- Install
+```bash
+sudo apt update
+sudo apt install libcamera-dev
+sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
+```
+- Build (Server)
+```bash
+cd raspberrypi5-rtsp-server/example/CameraServer
+mkdir build
+cd build
+cmake ..
+make
+./CameraServer
+```
+- Test (Client)
+```bash
+vlc rtsp://127.0.0.1:8554
+```
 
