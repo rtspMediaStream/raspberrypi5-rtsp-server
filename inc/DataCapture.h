@@ -24,9 +24,9 @@
  * @brief 캡처된 프레임 데이터를 저장하는 구조체
  */
 struct DataCaptureFrame {
-    unsigned char *dataPtr; /// 프레임 데이터 포인터
-    unsigned int size; /// 프레임 데이터 크기
-    unsigned int timestamp; /// 프레임 타임스탬프
+    unsigned char *dataPtr; ///< 프레임 데이터 포인터
+    unsigned int size;      ///< 프레임 데이터 크기
+    unsigned int timestamp; ///< 프레임 타임스탬프
 };
 
 /**
@@ -37,7 +37,7 @@ struct DataCaptureFrame {
  */
 class DataCapture {
 public:
-    static const int buffer_max_size = 10; /// 프레임 버퍼 최대 크기
+    static const int buffer_max_size = 10; ///< 프레임 버퍼 최대 크기
 
     /**
      * @brief 싱글톤 인스턴스를 반환하는 정적 메서드
@@ -75,12 +75,12 @@ public:
     virtual DataCaptureFrame popFrame();
 
 protected:
-    std::vector <DataCaptureFrame> frameBuffer; /// 프레임 데이터를 저장하는 버퍼
-    int head = 0; /// 버퍼의 시작 위치
-    int tail = 0; /// 버퍼의 끝 위치
-    int buffer_size = 0; /// 버퍼에 저장된 프레임 수
+    std::vector <DataCaptureFrame> frameBuffer; ///< 프레임 데이터를 저장하는 버퍼
+    int head = 0; ///< 버퍼의 시작 위치
+    int tail = 0; ///< 버퍼의 끝 위치
+    int buffer_size = 0; ///< 버퍼에 저장된 프레임 수
 
-    std::mutex bufferMutex; /// 버퍼에 대한 스레드 안전성을 보장하는 뮤텍스
+    std::mutex bufferMutex; ///< 버퍼에 대한 스레드 안전성을 보장하는 뮤텍스
 
     /**
      * @brief 생성자 - 버퍼 초기화

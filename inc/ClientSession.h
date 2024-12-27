@@ -97,14 +97,14 @@ public:
     inline void SetRTCPPort(int rtcpPort) { this->rtcpPort = rtcpPort; };
 
 private:
-    int id; /// 클라이언트 세션 ID
-    int version; /// 클라이언트 세션 버전 정보
-    int tcpSocket; /// TCP 소켓 디스크립터
-    int rtpPort; /// RTP 스트리밍을 위한 포트 번호
-    int rtcpPort; /// RTCP 제어를 위한 포트 번호
-    std::string ip; /// 클라이언트 IP 주소
+    int id;         ///< 클라이언트 세션 ID
+    int version;    ///< 클라이언트 세션 버전 정보
+    int tcpSocket;  ///< TCP 소켓 디스크립터
+    int rtpPort;    ///< RTP 스트리밍을 위한 포트 번호
+    int rtcpPort;   ///< RTCP 제어를 위한 포트 번호
+    std::string ip; ///< 클라이언트 IP 주소
     
-    RequestHandler* requestHandler; /// 클라이언트 요청 처리를 위한 핸들러
+    RequestHandler* requestHandler; ///< 클라이언트 요청 처리를 위한 핸들러
 };
 
 #endif //RTSP_CLIENTSESSION_H

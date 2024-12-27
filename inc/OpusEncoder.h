@@ -14,11 +14,11 @@
 #include <iostream>
 
 // Opus 인코더 설정 상수
-const static int OPUS_SAMPLE_RATE = 48000;                  /// 샘플링 레이트 (Hz)
-const static int OPUS_CHANNELS = 2;                         /// 오디오 채널 수 (2: 스테레오)
-const static int OPUS_FRAME_SIZE = 960;                     /// 프레임 크기 (20ms)
-const static int APPLICATION = OPUS_APPLICATION_AUDIO;      /// Opus 애플리케이션 모드 (음악 및 음성)
-const static int MAX_PACKET_SIZE = 1500;                    /// 최대 패킷 크기 (bytes)
+const static int OPUS_SAMPLE_RATE = 48000;                  ///< 샘플링 레이트 (Hz)
+const static int OPUS_CHANNELS = 2;                         ///< 오디오 채널 수 (2: 스테레오)
+const static int OPUS_FRAME_SIZE = 960;                     ///< 프레임 크기 (20ms)
+const static int APPLICATION = OPUS_APPLICATION_AUDIO;      ///< Opus 애플리케이션 모드 (음악 및 음성)
+const static int MAX_PACKET_SIZE = 1500;                    ///< 최대 패킷 크기 (bytes)
 
 /**
  * @class OpusEncoder
@@ -27,9 +27,9 @@ const static int MAX_PACKET_SIZE = 1500;                    /// 최대 패킷 �
  */
 class OpusEncoder {
 private:
-    OpusEncoder* encoder;                           /// Opus 인코더 인스턴스
-    unsigned char encoded_buffer[MAX_PACKET_SIZE];  /// 인코딩된 데이터 버퍼 [최대 패킷 크기]
-    int error;                                      /// 인코딩 에러 코드
+    OpusEncoder* encoder;                           ///< Opus 인코더 인스턴스
+    unsigned char encoded_buffer[MAX_PACKET_SIZE];  ///< 인코딩된 데이터 버퍼 [최대 패킷 크기]
+    int error;                                      ///< 인코딩 에러 코드
 
 public:
     /**

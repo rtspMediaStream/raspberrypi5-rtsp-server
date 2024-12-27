@@ -26,13 +26,13 @@
 //constexpr uint8_t NALU_F_MASK = 0x80;
 
 // NAL Unit Type 관련 상수
-constexpr uint8_t NALU_NRI_MASK = 0x60;     /// NALU 중요도 관련 비트 마스크
-constexpr uint8_t NALU_F_NRI_MASK = 0xE0;   /// NALU 금지 비트와 참조 중요도 마스크
-constexpr uint8_t NALU_TYPE_MASK = 0x1F;    /// NALU 타입 마스크
+constexpr uint8_t NALU_NRI_MASK = 0x60;     ///< NALU 중요도 관련 비트 마스크
+constexpr uint8_t NALU_F_NRI_MASK = 0xE0;   ///< NALU 금지 비트와 참조 중요도 마스크
+constexpr uint8_t NALU_TYPE_MASK = 0x1F;    ///< NALU 타입 마스크
 
-constexpr uint8_t FU_S_MASK = 0x80;         /// FU 헤더 시작 비트 마스크
-constexpr uint8_t FU_E_MASK = 0x40;         /// FU 헤더 끝 비트 마스크
-constexpr uint8_t SET_FU_A_MASK = 0x1C;     /// FU 헤더 플래그 비트 마스크
+constexpr uint8_t FU_S_MASK = 0x80;         ///< FU 헤더 시작 비트 마스크
+constexpr uint8_t FU_E_MASK = 0x40;         ///< FU 헤더 끝 비트 마스크
+constexpr uint8_t SET_FU_A_MASK = 0x1C;     ///< FU 헤더 플래그 비트 마스크
 
 /**
  * @class H264Encoder
@@ -53,10 +53,10 @@ private:
      */
     static const uint8_t *find_next_start_code(const uint8_t *_buffer, const int64_t _bufLen);
 
-    uint8_t *ptr_mapped_file_cur = nullptr;     /// 현재 매핑된 파일 위치 포인터
-    uint8_t *ptr_mapped_file_start = nullptr;   /// 매핑된 파일 시작 포인터 
-    uint8_t *ptr_mapped_file_end = nullptr;     /// 매핑된 파일 끝 포인터
-    int64_t file_size = 0;                      /// 파일 크기
+    uint8_t *ptr_mapped_file_cur = nullptr;     ///< 현재 매핑된 파일 위치 포인터
+    uint8_t *ptr_mapped_file_start = nullptr;   ///< 매핑된 파일 시작 포인터 
+    uint8_t *ptr_mapped_file_end = nullptr;     ///< 매핑된 파일 끝 포인터
+    int64_t file_size = 0;                      ///< 파일 크기
 
 public:
     /**
