@@ -1,3 +1,12 @@
+/**
+ * @file MediaStreamHandler.cpp
+ * @brief MediaStreamHandler 클래스의 구현부
+ * @details MediaStreamHandler 클래스의 멤버 함수를 구현한 소스 파일
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #include "Protos.h"
 #include "utils.h"
 #include "TCPHandler.h"
@@ -23,8 +32,23 @@
 #include <random>
 #include <algorithm>
 
+/**
+ * @brief MediaStreamHandler 생성자
+ * @details 스트림 상태를 초기화 상태로 설정
+ */
 MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaStream_Init){}
 
+/**
+ * @brief RTP 패킷을 프래그먼트화하여 전송하는 메서드
+ * @param payload 전송할 페이로드 데이터
+ * @param payloadSize 전송할 페이로드 데이터 크기
+ * @param rtpPacket RTP 패킷 객체
+ * @param timeStamp RTP 패킷의 타임스탬프
+ * @details
+ *   - 페이로드 크기에 따라 단일 패킷 또는 분할 패킷으로 전송
+ *   - FU-A 형식으로 NAL 단위 분할 처리
+ *   - RTP 헤더 마커 비트 설정
+ */
 void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RtpPacket& rtpPacket, const uint32_t timeStamp) {
     unsigned char nalHeader = payload[0]; // NAL 헤더 (첫 바이트)
 
@@ -72,6 +96,7 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
 
         pos += MAX_RTP_DATA_SIZE;
     }
+    // 남은 데이터 처리
     if(remainPacketSize > 0) {
         rtpPacket.get_payload()[0] = (nalHeader & NALU_F_NRI_MASK) | SET_FU_A_MASK;
         rtpPacket.get_payload()[1]= (nalHeader & NALU_TYPE_MASK) | FU_E_MASK;
@@ -83,6 +108,14 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
     }
 }
 
+/**
+ * @brief 미디어 스트림을 처리하는 메인 메서드
+ * @details
+ *   - 스트림 상태에 따라 미디어 데이터 처리
+ *   - DataCapture로부터 프레임 데이터 획득
+ *   - RTP 패킷 생성 및 전송
+ *   - RTCP Sender Report 주기적 전송
+ */
 void MediaStreamHandler::HandleMediaStream() {
     Protos protos;
 
@@ -148,6 +181,13 @@ void MediaStreamHandler::HandleMediaStream() {
     }
 }
 
+/**
+ * @brief 스트리밍 명령을 설정하는 메서드
+ * @param cmd 설정할 명령 ("PLAY", "PAUSE", "TEARDOWN")
+ * @details
+ *   - 스트림 상태를 변경하고 조건 변수를 통해 스레드 제어
+ *   - 뮤텍스를 사용하여 스레드 안전성 보장
+ */
 void MediaStreamHandler::SetCmd(const std::string& cmd) {
     std::lock_guard<std::mutex> lock(streamMutex);
     if (cmd == "PLAY") {
