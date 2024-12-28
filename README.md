@@ -1,6 +1,8 @@
-# Try develop RTSP server on raspberryPi.
+# Stream video or audio on raspberryPi5.
+You can create CCTV or call applications.
+
 Use this repository to start developing an RTSP server on raspberrypi5.
-Develop a server that streams audio and video.
+![VideoServerExample](https://github.com/user-attachments/assets/5e84ad7b-d117-45f4-bb3a-c74ff88f51db)
 
 # Manual 
 
