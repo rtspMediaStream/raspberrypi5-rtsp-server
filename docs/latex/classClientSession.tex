@@ -1,0 +1,308 @@
+\hypertarget{classClientSession}{}\doxysection{Client\+Session Class Reference}
+\label{classClientSession}\index{ClientSession@{ClientSession}}
+
+
+RTSP 클라이언트 세션을 관리하는 클래스  
+
+
+
+
+{\ttfamily \#include $<$Client\+Session.\+h$>$}
+
+
+
+Collaboration diagram for Client\+Session\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{classClientSession__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classClientSession_aa72842ab3124cbd077a8e578211512d9}{Client\+Session}} (const int \mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcp\+Socket}}, const std\+::string \mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}})
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션 생성자 -\/ 새로운 클라이언트 세션 초기화 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_aaf0142819e005e859760309a2f967261}{Get\+Session\+Id}} () const
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션 ID를 반환하는 메서드 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a8df99ce608ca9291620afd423335faea}{Get\+Version}} () const
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션 버전 정보를 반환하는 메서드 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a1d9cd0096be8d56a5fed63fcac884791}{Get\+ID}} ()
+\begin{DoxyCompactList}\small\item\em 클라이언트 ID를 반환하는 메서드 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_ad91b07a5a04b428b1321cdec5cc9ee31}{Get\+TCPSocket}} ()
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션의 TCP 소켓 정보를 반환하는 메서드 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a4952f07ee43e08f20de10e627f342728}{Get\+RTPPort}} ()
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션의 RTP 포트 번호를 반환하는 메서드 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a449f195ca418582435f1bb444efbe28a}{Get\+RTCPPort}} ()
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션의 RTCP 포트 번호를 반환하는 메서드 \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classClientSession_a25215c61de3a450ea4b2536520502ab1}{Get\+IP}} ()
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션의 IP 주소를 반환하는 메서드 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classClientSession_ac52b4a76d1aca6dbda875ced7ff0b3db}{Set\+RTPPort}} (int \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtp\+Port}})
+\begin{DoxyCompactList}\small\item\em RTP 포트 번호를 설정하는 메서드 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classClientSession_a42be9f9d12fdcead28509268bb56904b}{Set\+RTCPPort}} (int \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcp\+Port}})
+\begin{DoxyCompactList}\small\item\em RTCP 포트 번호를 설정하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}{id}}
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션 ID \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a9bf21cf0408fae916ad3d4999f2e5ba3}{version}}
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션 버전 정보 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcp\+Socket}}
+\begin{DoxyCompactList}\small\item\em TCP 소켓 디스크립터 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtp\+Port}}
+\begin{DoxyCompactList}\small\item\em RTP 스트리밍을 위한 포트 번호 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcp\+Port}}
+\begin{DoxyCompactList}\small\item\em RTCP 제어를 위한 포트 번호 \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}}
+\begin{DoxyCompactList}\small\item\em 클라이언트 IP 주소 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRequestHandler}{Request\+Handler}} $\ast$ \mbox{\hyperlink{classClientSession_ab419704c6ee8e72948ab2cd1415cc72b}{request\+Handler}}
+\begin{DoxyCompactList}\small\item\em 클라이언트 요청 처리를 위한 핸들러 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTSP 클라이언트 세션을 관리하는 클래스 
+
+각 클라이언트 연결에 대한 세션 정보를 저장하고 관리하는 클래스로, 클라이언트의 연결 정보, 스트리밍 상태, 미디어 전송을 위한 소켓 정보 등을 관리한다. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classClientSession_aa72842ab3124cbd077a8e578211512d9}\label{classClientSession_aa72842ab3124cbd077a8e578211512d9}} 
+\index{ClientSession@{ClientSession}!ClientSession@{ClientSession}}
+\index{ClientSession@{ClientSession}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{ClientSession()}{ClientSession()}}
+{\footnotesize\ttfamily Client\+Session\+::\+Client\+Session (\begin{DoxyParamCaption}\item[{const int}]{tcp\+Socket,  }\item[{const std\+::string}]{ip }\end{DoxyParamCaption})}
+
+
+
+클라이언트 세션 생성자 -\/ 새로운 클라이언트 세션 초기화 
+
+\mbox{\hyperlink{classClientSession}{Client\+Session}} 클래스의 생성자
+
+
+\begin{DoxyParams}{Parameters}
+{\em tcp\+Socket} & 클라이언트와 연결된 TCP 소켓 \\
+\hline
+{\em ip} & 클라이언트 IP 주소\\
+\hline
+{\em tcp\+Socket} & 클라이언트와 연결된 TCP 소켓 디스크립터 \\
+\hline
+{\em ip} & 클라이언트의 IP 주소\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item 보안과 고유한 세션 ID를 위해 랜덤하게 생성
+\item 세션 버전 초기화
+\item TCP 소켓과 IP 주소 설정
+\item RTP/\+RTCP 포트를 초기값(-\/1)으로 설정 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classClientSession_a1d9cd0096be8d56a5fed63fcac884791}\label{classClientSession_a1d9cd0096be8d56a5fed63fcac884791}} 
+\index{ClientSession@{ClientSession}!GetID@{GetID}}
+\index{GetID@{GetID}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetID()}{GetID()}}
+{\footnotesize\ttfamily int Client\+Session\+::\+Get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+클라이언트 ID를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int 랜덤하게 생성된 클라이언트의 고유 ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_a25215c61de3a450ea4b2536520502ab1}\label{classClientSession_a25215c61de3a450ea4b2536520502ab1}} 
+\index{ClientSession@{ClientSession}!GetIP@{GetIP}}
+\index{GetIP@{GetIP}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetIP()}{GetIP()}}
+{\footnotesize\ttfamily std\+::string Client\+Session\+::\+Get\+IP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+클라이언트 세션의 IP 주소를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+std\+::string 클라이언트 세션의 IP 주소 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_a449f195ca418582435f1bb444efbe28a}\label{classClientSession_a449f195ca418582435f1bb444efbe28a}} 
+\index{ClientSession@{ClientSession}!GetRTCPPort@{GetRTCPPort}}
+\index{GetRTCPPort@{GetRTCPPort}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetRTCPPort()}{GetRTCPPort()}}
+{\footnotesize\ttfamily int Client\+Session\+::\+Get\+RTCPPort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+클라이언트 세션의 RTCP 포트 번호를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int 클라이언트 세션의 RTCP 포트 번호 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_a4952f07ee43e08f20de10e627f342728}\label{classClientSession_a4952f07ee43e08f20de10e627f342728}} 
+\index{ClientSession@{ClientSession}!GetRTPPort@{GetRTPPort}}
+\index{GetRTPPort@{GetRTPPort}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetRTPPort()}{GetRTPPort()}}
+{\footnotesize\ttfamily int Client\+Session\+::\+Get\+RTPPort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+클라이언트 세션의 RTP 포트 번호를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int 클라이언트 세션의 RTP 포트 번호 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_aaf0142819e005e859760309a2f967261}\label{classClientSession_aaf0142819e005e859760309a2f967261}} 
+\index{ClientSession@{ClientSession}!GetSessionId@{GetSessionId}}
+\index{GetSessionId@{GetSessionId}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetSessionId()}{GetSessionId()}}
+{\footnotesize\ttfamily int Client\+Session\+::\+Get\+Session\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+클라이언트 세션 ID를 반환하는 메서드 
+
+세션 ID를 반환하는 메서드
+
+\begin{DoxyReturn}{Returns}
+int 클라이언트 세션 ID
+
+int 현재 세션의 고유 ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_ad91b07a5a04b428b1321cdec5cc9ee31}\label{classClientSession_ad91b07a5a04b428b1321cdec5cc9ee31}} 
+\index{ClientSession@{ClientSession}!GetTCPSocket@{GetTCPSocket}}
+\index{GetTCPSocket@{GetTCPSocket}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetTCPSocket()}{GetTCPSocket()}}
+{\footnotesize\ttfamily int Client\+Session\+::\+Get\+TCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+클라이언트 세션의 TCP 소켓 정보를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int 클라이언트 세션의 TCP 소켓 디스크립터 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_a8df99ce608ca9291620afd423335faea}\label{classClientSession_a8df99ce608ca9291620afd423335faea}} 
+\index{ClientSession@{ClientSession}!GetVersion@{GetVersion}}
+\index{GetVersion@{GetVersion}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{GetVersion()}{GetVersion()}}
+{\footnotesize\ttfamily int Client\+Session\+::\+Get\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+클라이언트 세션 버전 정보를 반환하는 메서드 
+
+세션 버전을 반환하는 메서드
+
+\begin{DoxyReturn}{Returns}
+int 클라이언트 세션 버전 정보
+
+int 현재 세션의 버전 번호 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClientSession_a42be9f9d12fdcead28509268bb56904b}\label{classClientSession_a42be9f9d12fdcead28509268bb56904b}} 
+\index{ClientSession@{ClientSession}!SetRTCPPort@{SetRTCPPort}}
+\index{SetRTCPPort@{SetRTCPPort}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{SetRTCPPort()}{SetRTCPPort()}}
+{\footnotesize\ttfamily void Client\+Session\+::\+Set\+RTCPPort (\begin{DoxyParamCaption}\item[{int}]{rtcp\+Port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+RTCP 포트 번호를 설정하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtcp\+Port를} & 설정할 RTCP 포트 번호 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classClientSession_ac52b4a76d1aca6dbda875ced7ff0b3db}\label{classClientSession_ac52b4a76d1aca6dbda875ced7ff0b3db}} 
+\index{ClientSession@{ClientSession}!SetRTPPort@{SetRTPPort}}
+\index{SetRTPPort@{SetRTPPort}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{SetRTPPort()}{SetRTPPort()}}
+{\footnotesize\ttfamily void Client\+Session\+::\+Set\+RTPPort (\begin{DoxyParamCaption}\item[{int}]{rtp\+Port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+RTP 포트 번호를 설정하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtp\+Port를} & 설정할 RTP 포트 번호 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}\label{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}} 
+\index{ClientSession@{ClientSession}!id@{id}}
+\index{id@{id}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int Client\+Session\+::id\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+클라이언트 세션 ID 
+
+\mbox{\Hypertarget{classClientSession_a60fbda694c50003d0adadc9a64fe570d}\label{classClientSession_a60fbda694c50003d0adadc9a64fe570d}} 
+\index{ClientSession@{ClientSession}!ip@{ip}}
+\index{ip@{ip}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{ip}{ip}}
+{\footnotesize\ttfamily std\+::string Client\+Session\+::ip\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+클라이언트 IP 주소 
+
+\mbox{\Hypertarget{classClientSession_ab419704c6ee8e72948ab2cd1415cc72b}\label{classClientSession_ab419704c6ee8e72948ab2cd1415cc72b}} 
+\index{ClientSession@{ClientSession}!requestHandler@{requestHandler}}
+\index{requestHandler@{requestHandler}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{requestHandler}{requestHandler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRequestHandler}{Request\+Handler}}$\ast$ Client\+Session\+::request\+Handler\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+클라이언트 요청 처리를 위한 핸들러 
+
+\mbox{\Hypertarget{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}\label{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}} 
+\index{ClientSession@{ClientSession}!rtcpPort@{rtcpPort}}
+\index{rtcpPort@{rtcpPort}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{rtcpPort}{rtcpPort}}
+{\footnotesize\ttfamily int Client\+Session\+::rtcp\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+RTCP 제어를 위한 포트 번호 
+
+\mbox{\Hypertarget{classClientSession_a7323e6c733d12c025b757299dfcbc06c}\label{classClientSession_a7323e6c733d12c025b757299dfcbc06c}} 
+\index{ClientSession@{ClientSession}!rtpPort@{rtpPort}}
+\index{rtpPort@{rtpPort}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{rtpPort}{rtpPort}}
+{\footnotesize\ttfamily int Client\+Session\+::rtp\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+RTP 스트리밍을 위한 포트 번호 
+
+\mbox{\Hypertarget{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}\label{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}} 
+\index{ClientSession@{ClientSession}!tcpSocket@{tcpSocket}}
+\index{tcpSocket@{tcpSocket}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{tcpSocket}{tcpSocket}}
+{\footnotesize\ttfamily int Client\+Session\+::tcp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+TCP 소켓 디스크립터 
+
+\mbox{\Hypertarget{classClientSession_a9bf21cf0408fae916ad3d4999f2e5ba3}\label{classClientSession_a9bf21cf0408fae916ad3d4999f2e5ba3}} 
+\index{ClientSession@{ClientSession}!version@{version}}
+\index{version@{version}!ClientSession@{ClientSession}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily int Client\+Session\+::version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+클라이언트 세션 버전 정보 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{ClientSession_8h}{Client\+Session.\+h}}\item 
+src/\mbox{\hyperlink{ClientSession_8cpp}{Client\+Session.\+cpp}}\end{DoxyCompactItemize}

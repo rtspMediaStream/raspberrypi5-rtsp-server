@@ -1,0 +1,134 @@
+\hypertarget{classFFmpegEncoder}{}\doxysection{FFmpeg\+Encoder Class Reference}
+\label{classFFmpegEncoder}\index{FFmpegEncoder@{FFmpegEncoder}}
+
+
+{\ttfamily \#include $<$FFmpeg\+Encoder.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}{FFmpeg\+Encoder}} (const std\+::string \&filename, int \mbox{\hyperlink{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}{width}}, int \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{height}}, double fps)
+\item 
+\mbox{\hyperlink{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}{$\sim$\+FFmpeg\+Encoder}} ()
+\item 
+void \mbox{\hyperlink{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}{encode}} (const cv\+::\+Mat \&\mbox{\hyperlink{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}{frame}}, double fps)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}{init\+FFmpeg}} (const std\+::string \&filename, double fps)
+\item 
+void \mbox{\hyperlink{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}{release\+FFmpeg}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+struct AVCodec\+Context $\ast$ \mbox{\hyperlink{classFFmpegEncoder_a260d3d601487435e9befea401ea31dd2}{codec\+\_\+ctx}} = nullptr
+\item 
+struct AVFormat\+Context $\ast$ \mbox{\hyperlink{classFFmpegEncoder_a87ccbc2afcb3b5b13b7bafde56f6f79f}{fmt\+\_\+ctx}} = nullptr
+\item 
+struct AVPacket $\ast$ \mbox{\hyperlink{classFFmpegEncoder_a2691315b8df7790863c154c4bb6a34a7}{packet}} = nullptr
+\item 
+struct AVFrame $\ast$ \mbox{\hyperlink{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}{frame}} = nullptr
+\item 
+int \mbox{\hyperlink{classFFmpegEncoder_aa2c92dffda6390afb9c1ee038f81ee35}{frame\+\_\+index}} = 0
+\item 
+AVStream $\ast$ \mbox{\hyperlink{classFFmpegEncoder_a6a3fd4f93679f6f86a07cde7184fe520}{stream}} = nullptr
+\item 
+int \mbox{\hyperlink{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}{width}}
+\item 
+int \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{height}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}\label{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!FFmpegEncoder@{FFmpegEncoder}}
+\index{FFmpegEncoder@{FFmpegEncoder}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{FFmpegEncoder()}{FFmpegEncoder()}}
+{\footnotesize\ttfamily FFmpeg\+Encoder\+::\+FFmpeg\+Encoder (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{double}]{fps }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}\label{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!````~FFmpegEncoder@{$\sim$FFmpegEncoder}}
+\index{````~FFmpegEncoder@{$\sim$FFmpegEncoder}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{$\sim$FFmpegEncoder()}{~FFmpegEncoder()}}
+{\footnotesize\ttfamily FFmpeg\+Encoder\+::$\sim$\+FFmpeg\+Encoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}\label{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!encode@{encode}}
+\index{encode@{encode}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily void FFmpeg\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{frame,  }\item[{double}]{fps }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}\label{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!initFFmpeg@{initFFmpeg}}
+\index{initFFmpeg@{initFFmpeg}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{initFFmpeg()}{initFFmpeg()}}
+{\footnotesize\ttfamily void FFmpeg\+Encoder\+::init\+FFmpeg (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{double}]{fps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}\label{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!releaseFFmpeg@{releaseFFmpeg}}
+\index{releaseFFmpeg@{releaseFFmpeg}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{releaseFFmpeg()}{releaseFFmpeg()}}
+{\footnotesize\ttfamily void FFmpeg\+Encoder\+::release\+FFmpeg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classFFmpegEncoder_a260d3d601487435e9befea401ea31dd2}\label{classFFmpegEncoder_a260d3d601487435e9befea401ea31dd2}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!codec\_ctx@{codec\_ctx}}
+\index{codec\_ctx@{codec\_ctx}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{codec\_ctx}{codec\_ctx}}
+{\footnotesize\ttfamily struct AVCodec\+Context$\ast$ FFmpeg\+Encoder\+::codec\+\_\+ctx = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a87ccbc2afcb3b5b13b7bafde56f6f79f}\label{classFFmpegEncoder_a87ccbc2afcb3b5b13b7bafde56f6f79f}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!fmt\_ctx@{fmt\_ctx}}
+\index{fmt\_ctx@{fmt\_ctx}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{fmt\_ctx}{fmt\_ctx}}
+{\footnotesize\ttfamily struct AVFormat\+Context$\ast$ FFmpeg\+Encoder\+::fmt\+\_\+ctx = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}\label{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!frame@{frame}}
+\index{frame@{frame}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily struct AVFrame$\ast$ FFmpeg\+Encoder\+::frame = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_aa2c92dffda6390afb9c1ee038f81ee35}\label{classFFmpegEncoder_aa2c92dffda6390afb9c1ee038f81ee35}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!frame\_index@{frame\_index}}
+\index{frame\_index@{frame\_index}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{frame\_index}{frame\_index}}
+{\footnotesize\ttfamily int FFmpeg\+Encoder\+::frame\+\_\+index = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}\label{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!height@{height}}
+\index{height@{height}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily int FFmpeg\+Encoder\+::height\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a2691315b8df7790863c154c4bb6a34a7}\label{classFFmpegEncoder_a2691315b8df7790863c154c4bb6a34a7}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!packet@{packet}}
+\index{packet@{packet}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{packet}{packet}}
+{\footnotesize\ttfamily struct AVPacket$\ast$ FFmpeg\+Encoder\+::packet = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_a6a3fd4f93679f6f86a07cde7184fe520}\label{classFFmpegEncoder_a6a3fd4f93679f6f86a07cde7184fe520}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!stream@{stream}}
+\index{stream@{stream}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{stream}{stream}}
+{\footnotesize\ttfamily AVStream$\ast$ FFmpeg\+Encoder\+::stream = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}\label{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}} 
+\index{FFmpegEncoder@{FFmpegEncoder}!width@{width}}
+\index{width@{width}!FFmpegEncoder@{FFmpegEncoder}}
+\doxysubsubsection{\texorpdfstring{width}{width}}
+{\footnotesize\ttfamily int FFmpeg\+Encoder\+::width\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+example/\+Camera\+Server/\mbox{\hyperlink{FFmpegEncoder_8h}{FFmpeg\+Encoder.\+h}}\item 
+example/\+Camera\+Server/\mbox{\hyperlink{FFmpegEncoder_8cpp}{FFmpeg\+Encoder.\+cpp}}\end{DoxyCompactItemize}

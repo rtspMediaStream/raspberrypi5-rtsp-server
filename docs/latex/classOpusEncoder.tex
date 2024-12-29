@@ -1,0 +1,151 @@
+\hypertarget{classOpusEncoder}{}\doxysection{Opus\+Encoder Class Reference}
+\label{classOpusEncoder}\index{OpusEncoder@{OpusEncoder}}
+
+
+Opus 오디오 인코딩 클래스  
+
+
+
+
+{\ttfamily \#include $<$Opus\+Encoder.\+h$>$}
+
+
+
+Collaboration diagram for Opus\+Encoder\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=221pt]{classOpusEncoder__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOpusEncoder_a4a5ee42c4a3d1546fd7c129d0891caac}{Opus\+Encoder}} ()
+\begin{DoxyCompactList}\small\item\em 생성자 -\/ Opus 인코더 초기화 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOpusEncoder_affbd89f0993254a8f4e6f67581256ad3}{encode}} (const short $\ast$pcm\+\_\+buffer, int frame\+\_\+size, unsigned char $\ast$encoded\+\_\+data)
+\begin{DoxyCompactList}\small\item\em PCM 데이터를 Opus 포맷으로 인코딩 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classOpusEncoder_a920c87c8c2a7770bf69cc5002bc71704}{$\sim$\+Opus\+Encoder}} ()
+\begin{DoxyCompactList}\small\item\em 소멸자 -\/ 인코더 리소스 해제 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOpusEncoder}{Opus\+Encoder}} $\ast$ \mbox{\hyperlink{classOpusEncoder_a1be3243b9613ecd93bf8ce2987adf860}{encoder}}
+\begin{DoxyCompactList}\small\item\em Opus 인코더 인스턴스 \end{DoxyCompactList}\item 
+unsigned char \mbox{\hyperlink{classOpusEncoder_ac50d0999c09f11a031ca7d15830e6c77}{encoded\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{OpusEncoder_8h_a0c30828d4cc483a0fbf6de0696834909}{MAX\+\_\+\+PACKET\+\_\+\+SIZE}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em 인코딩된 데이터 버퍼 \mbox{[}최대 패킷 크기\mbox{]} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classOpusEncoder_a5d97ade69f9fde05cbf946d7947588ff}{error}}
+\begin{DoxyCompactList}\small\item\em 인코딩 에러 코드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Opus 오디오 인코딩 클래스 
+
+PCM 오디오 데이터를 Opus 포맷으로 인코딩하는 기능을 제공하는 클래스 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classOpusEncoder_a4a5ee42c4a3d1546fd7c129d0891caac}\label{classOpusEncoder_a4a5ee42c4a3d1546fd7c129d0891caac}} 
+\index{OpusEncoder@{OpusEncoder}!OpusEncoder@{OpusEncoder}}
+\index{OpusEncoder@{OpusEncoder}!OpusEncoder@{OpusEncoder}}
+\doxysubsubsection{\texorpdfstring{OpusEncoder()}{OpusEncoder()}}
+{\footnotesize\ttfamily Opus\+Encoder\+::\+Opus\+Encoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+생성자 -\/ Opus 인코더 초기화 
+
+\mbox{\hyperlink{classOpusEncoder}{Opus\+Encoder}} 생성자
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 인코더 생성 실패 시\\
+\hline
+\end{DoxyExceptions}
+48k\+Hz 샘플링 레이트, 스테레오 채널로 Opus 인코더를 초기화하고 비트레이트를 128kbps로 설정 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 인코더 생성 실패 시 \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classOpusEncoder_a920c87c8c2a7770bf69cc5002bc71704}\label{classOpusEncoder_a920c87c8c2a7770bf69cc5002bc71704}} 
+\index{OpusEncoder@{OpusEncoder}!````~OpusEncoder@{$\sim$OpusEncoder}}
+\index{````~OpusEncoder@{$\sim$OpusEncoder}!OpusEncoder@{OpusEncoder}}
+\doxysubsubsection{\texorpdfstring{$\sim$OpusEncoder()}{~OpusEncoder()}}
+{\footnotesize\ttfamily Opus\+Encoder\+::$\sim$\+Opus\+Encoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+소멸자 -\/ 인코더 리소스 해제 
+
+\mbox{\hyperlink{classOpusEncoder}{Opus\+Encoder}} 소멸자
+
+Opus 인코더 리소스 해제 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpusEncoder_affbd89f0993254a8f4e6f67581256ad3}\label{classOpusEncoder_affbd89f0993254a8f4e6f67581256ad3}} 
+\index{OpusEncoder@{OpusEncoder}!encode@{encode}}
+\index{encode@{encode}!OpusEncoder@{OpusEncoder}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily int Opus\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{const short $\ast$}]{pcm\+\_\+buffer,  }\item[{int}]{frame\+\_\+size,  }\item[{unsigned char $\ast$}]{encoded\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+PCM 데이터를 Opus 포맷으로 인코딩 
+
+PCM 오디오 데이터를 Opus 포맷으로 인코딩
+
+
+\begin{DoxyParams}{Parameters}
+{\em pcm\+\_\+buffer} & PCM 오디오 데이터 버퍼 \\
+\hline
+{\em frame\+\_\+size} & 프레임 크기 (samples) \\
+\hline
+{\em encoded\+\_\+data} & 인코딩된 데이터를 저장할 버퍼 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 인코딩된 데이터의 크기 (bytes) 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 인코딩 실패 시 \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classOpusEncoder_ac50d0999c09f11a031ca7d15830e6c77}\label{classOpusEncoder_ac50d0999c09f11a031ca7d15830e6c77}} 
+\index{OpusEncoder@{OpusEncoder}!encoded\_buffer@{encoded\_buffer}}
+\index{encoded\_buffer@{encoded\_buffer}!OpusEncoder@{OpusEncoder}}
+\doxysubsubsection{\texorpdfstring{encoded\_buffer}{encoded\_buffer}}
+{\footnotesize\ttfamily unsigned char Opus\+Encoder\+::encoded\+\_\+buffer\mbox{[}\mbox{\hyperlink{OpusEncoder_8h_a0c30828d4cc483a0fbf6de0696834909}{MAX\+\_\+\+PACKET\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+인코딩된 데이터 버퍼 \mbox{[}최대 패킷 크기\mbox{]} 
+
+\mbox{\Hypertarget{classOpusEncoder_a1be3243b9613ecd93bf8ce2987adf860}\label{classOpusEncoder_a1be3243b9613ecd93bf8ce2987adf860}} 
+\index{OpusEncoder@{OpusEncoder}!encoder@{encoder}}
+\index{encoder@{encoder}!OpusEncoder@{OpusEncoder}}
+\doxysubsubsection{\texorpdfstring{encoder}{encoder}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classOpusEncoder}{Opus\+Encoder}}$\ast$ Opus\+Encoder\+::encoder\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Opus 인코더 인스턴스 
+
+\mbox{\Hypertarget{classOpusEncoder_a5d97ade69f9fde05cbf946d7947588ff}\label{classOpusEncoder_a5d97ade69f9fde05cbf946d7947588ff}} 
+\index{OpusEncoder@{OpusEncoder}!error@{error}}
+\index{error@{error}!OpusEncoder@{OpusEncoder}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily int Opus\+Encoder\+::error\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+인코딩 에러 코드 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{OpusEncoder_8h}{Opus\+Encoder.\+h}}\item 
+src/\mbox{\hyperlink{OpusEncoder_8cpp}{Opus\+Encoder.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,29 @@
+\hypertarget{global_8h_source}{}\doxysection{global.\+h}
+\label{global_8h_source}\index{inc/global.h@{inc/global.h}}
+\mbox{\hyperlink{global_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef GLOBAL\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define GLOBAL\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{global_8h_ad240dde20c838d79944e1d54a0109099}{g\_serverRtpPort}} = 8554;}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{enum} \mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0}{ServerStreamType}}\{}
+\DoxyCodeLine{9     \mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0ad3c111fe8a0e835609a6187d6e9d2e57}{Audio}} = 1,}
+\DoxyCodeLine{10     \mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0aff13e87d7cbbe18fface435a5b84aaec}{Video}},}
+\DoxyCodeLine{11     \mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0a72159b99f162eb7444ea0810dcce4442}{Camera}},}
+\DoxyCodeLine{12 \};}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{classServerStream}{ServerStream}}\{}
+\DoxyCodeLine{15     \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     \mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0}{ServerStreamType}} \mbox{\hyperlink{classServerStream_afc4eb02eb9ea3fdbd2952e346245e069}{type}};}
+\DoxyCodeLine{17     \textcolor{keyword}{static} \mbox{\hyperlink{classServerStream}{ServerStream}}\& \mbox{\hyperlink{classServerStream_aff074ef773b5c7fed7dcfa75b6c22d67}{getInstance}}()\{}
+\DoxyCodeLine{18         \textcolor{keyword}{static} \mbox{\hyperlink{classServerStream}{ServerStream}} instance;}
+\DoxyCodeLine{19         \textcolor{keywordflow}{return} instance;}
+\DoxyCodeLine{20     \}}
+\DoxyCodeLine{21 \};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//GLOBAL\_H}}
+
+\end{DoxyCode}

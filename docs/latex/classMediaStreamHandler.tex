@@ -1,0 +1,214 @@
+\hypertarget{classMediaStreamHandler}{}\doxysection{Media\+Stream\+Handler Class Reference}
+\label{classMediaStreamHandler}\index{MediaStreamHandler@{MediaStreamHandler}}
+
+
+미디어 스트리밍 처리를 담당하는 클래스  
+
+
+
+
+{\ttfamily \#include $<$Media\+Stream\+Handler.\+h$>$}
+
+
+
+Collaboration diagram for Media\+Stream\+Handler\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{classMediaStreamHandler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMediaStreamHandler_ab8b368bab8d774050daab184872bc553}{Media\+Stream\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em 생성자 -\/ 스트림 핸들러 초기화 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMediaStreamHandler_a2462f2771df761cdfa1806a1c4d5815e}{Handle\+Media\+Stream}} ()
+\begin{DoxyCompactList}\small\item\em 미디어 스트림을 처리하는 메인 메서드 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}{Set\+Cmd}} (const std\+::string \&cmd)
+\begin{DoxyCompactList}\small\item\em 스트리밍 명령을 설정하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUDPHandler}{UDPHandler}} $\ast$ \mbox{\hyperlink{classMediaStreamHandler_ac193a65ab24f9041080054412fa6fb2a}{udp\+Handler}}
+\begin{DoxyCompactList}\small\item\em UDP 통신을 위한 핸들러 ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}{Send\+Fragmented\+RTPPackets}} (unsigned char $\ast$payload, size\+\_\+t payload\+Size, \mbox{\hyperlink{classRtpPacket}{Rtp\+Packet}} \&rtp\+Packet, const uint32\+\_\+t time\+Stamp)
+\begin{DoxyCompactList}\small\item\em 오디오 스트림을 처리하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classMediaStreamHandler_a3ca21c7a10431081078d808fb2f54492}{thread\+Run}} = true
+\begin{DoxyCompactList}\small\item\em 스트림 실행 상태 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}{Media\+Stream\+State}} \mbox{\hyperlink{classMediaStreamHandler_abe9e20473f7b4e47fff523506b5cfabb}{stream\+State}}
+\begin{DoxyCompactList}\small\item\em 현재 스트림 상태 \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{classMediaStreamHandler_ad4ed6832e724123cfc778af5f014f3c2}{stream\+Mutex}}
+\begin{DoxyCompactList}\small\item\em 스트림 동기화를 위한 뮤텍스 \end{DoxyCompactList}\item 
+std\+::condition\+\_\+variable \mbox{\hyperlink{classMediaStreamHandler_a4b484970656f9a92fd2bb699e5dab52c}{condition}}
+\begin{DoxyCompactList}\small\item\em 스트림 상태 제어을 위한 조건 변수 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+미디어 스트리밍 처리를 담당하는 클래스 
+
+미디어 스트림의 상태 관리, RTP 패킷 생성 및 전송, 스트리밍 제어 기능을 제공하는 클래스 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classMediaStreamHandler_ab8b368bab8d774050daab184872bc553}\label{classMediaStreamHandler_ab8b368bab8d774050daab184872bc553}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!MediaStreamHandler@{MediaStreamHandler}}
+\index{MediaStreamHandler@{MediaStreamHandler}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{MediaStreamHandler()}{MediaStreamHandler()}}
+{\footnotesize\ttfamily Media\+Stream\+Handler\+::\+Media\+Stream\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+생성자 -\/ 스트림 핸들러 초기화 
+
+\mbox{\hyperlink{classMediaStreamHandler}{Media\+Stream\+Handler}} 생성자
+
+스트림 상태를 초기화 상태로 설정 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMediaStreamHandler_a2462f2771df761cdfa1806a1c4d5815e}\label{classMediaStreamHandler_a2462f2771df761cdfa1806a1c4d5815e}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!HandleMediaStream@{HandleMediaStream}}
+\index{HandleMediaStream@{HandleMediaStream}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{HandleMediaStream()}{HandleMediaStream()}}
+{\footnotesize\ttfamily void Media\+Stream\+Handler\+::\+Handle\+Media\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+미디어 스트림을 처리하는 메인 메서드 
+
+스트림의 상태에 따라 미디어 데이터를 처리하고 전송
+
+
+\begin{DoxyItemize}
+\item 스트림 상태에 따라 미디어 데이터 처리
+\item Data\+Capture로부터 프레임 데이터 획득
+\item RTP 패킷 생성 및 전송
+\item RTCP Sender Report 주기적 전송 
+\end{DoxyItemize}\mbox{\Hypertarget{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}\label{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!SendFragmentedRTPPackets@{SendFragmentedRTPPackets}}
+\index{SendFragmentedRTPPackets@{SendFragmentedRTPPackets}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{SendFragmentedRTPPackets()}{SendFragmentedRTPPackets()}}
+{\footnotesize\ttfamily void Media\+Stream\+Handler\+::\+Send\+Fragmented\+RTPPackets (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{payload,  }\item[{size\+\_\+t}]{payload\+Size,  }\item[{\mbox{\hyperlink{classRtpPacket}{Rtp\+Packet}} \&}]{rtp\+Packet,  }\item[{const uint32\+\_\+t}]{time\+Stamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+오디오 스트림을 처리하는 메서드 
+
+RTP 패킷을 프래그먼트화하여 전송하는 메서드
+
+
+\begin{DoxyParams}{Parameters}
+{\em payload} & 전송할 페이로드 데이터 \\
+\hline
+{\em payload\+Size} & 전송할 페이로드 데이터 크기 \\
+\hline
+{\em rtp\+Packet} & RTP 패킷 객체 \\
+\hline
+{\em time\+Stamp} & RTP 패킷의 타임스탬프\\
+\hline
+\end{DoxyParams}
+오디오 데이터를 MTU 크기에 따라 단일 또는 분할하여 RTP 패킷으로 생성하고 전송
+
+
+\begin{DoxyParams}{Parameters}
+{\em payload} & 전송할 페이로드 데이터 \\
+\hline
+{\em payload\+Size} & 전송할 페이로드 데이터 크기 \\
+\hline
+{\em rtp\+Packet} & RTP 패킷 객체 \\
+\hline
+{\em time\+Stamp} & RTP 패킷의 타임스탬프\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item 페이로드 크기에 따라 단일 패킷 또는 분할 패킷으로 전송
+\item FU-\/A 형식으로 NAL 단위 분할 처리
+\item RTP 헤더 마커 비트 설정 
+\end{DoxyItemize}\mbox{\Hypertarget{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}\label{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!SetCmd@{SetCmd}}
+\index{SetCmd@{SetCmd}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{SetCmd()}{SetCmd()}}
+{\footnotesize\ttfamily void Media\+Stream\+Handler\+::\+Set\+Cmd (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{cmd }\end{DoxyParamCaption})}
+
+
+
+스트리밍 명령을 설정하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & 설정할 명령 (PLAY, PAUSE, TEARDOWN)\\
+\hline
+{\em cmd} & 설정할 명령 (\char`\"{}\+PLAY\char`\"{}, \char`\"{}\+PAUSE\char`\"{}, \char`\"{}\+TEARDOWN\char`\"{})\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item 스트림 상태를 변경하고 조건 변수를 통해 스레드 제어
+\item 뮤텍스를 사용하여 스레드 안전성 보장 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classMediaStreamHandler_a4b484970656f9a92fd2bb699e5dab52c}\label{classMediaStreamHandler_a4b484970656f9a92fd2bb699e5dab52c}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!condition@{condition}}
+\index{condition@{condition}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{condition}{condition}}
+{\footnotesize\ttfamily std\+::condition\+\_\+variable Media\+Stream\+Handler\+::condition\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+스트림 상태 제어을 위한 조건 변수 
+
+\mbox{\Hypertarget{classMediaStreamHandler_ad4ed6832e724123cfc778af5f014f3c2}\label{classMediaStreamHandler_ad4ed6832e724123cfc778af5f014f3c2}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!streamMutex@{streamMutex}}
+\index{streamMutex@{streamMutex}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{streamMutex}{streamMutex}}
+{\footnotesize\ttfamily std\+::mutex Media\+Stream\+Handler\+::stream\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+스트림 동기화를 위한 뮤텍스 
+
+\mbox{\Hypertarget{classMediaStreamHandler_abe9e20473f7b4e47fff523506b5cfabb}\label{classMediaStreamHandler_abe9e20473f7b4e47fff523506b5cfabb}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!streamState@{streamState}}
+\index{streamState@{streamState}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{streamState}{streamState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}{Media\+Stream\+State}} Media\+Stream\+Handler\+::stream\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+현재 스트림 상태 
+
+\mbox{\Hypertarget{classMediaStreamHandler_a3ca21c7a10431081078d808fb2f54492}\label{classMediaStreamHandler_a3ca21c7a10431081078d808fb2f54492}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!threadRun@{threadRun}}
+\index{threadRun@{threadRun}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{threadRun}{threadRun}}
+{\footnotesize\ttfamily bool Media\+Stream\+Handler\+::thread\+Run = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+스트림 실행 상태 
+
+\mbox{\Hypertarget{classMediaStreamHandler_ac193a65ab24f9041080054412fa6fb2a}\label{classMediaStreamHandler_ac193a65ab24f9041080054412fa6fb2a}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!udpHandler@{udpHandler}}
+\index{udpHandler@{udpHandler}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{udpHandler}{udpHandler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classUDPHandler}{UDPHandler}}$\ast$ Media\+Stream\+Handler\+::udp\+Handler}
+
+
+
+UDP 통신을 위한 핸들러 ~\newline
+ 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{MediaStreamHandler_8h}{Media\+Stream\+Handler.\+h}}\item 
+src/\mbox{\hyperlink{MediaStreamHandler_8cpp}{Media\+Stream\+Handler.\+cpp}}\end{DoxyCompactItemize}

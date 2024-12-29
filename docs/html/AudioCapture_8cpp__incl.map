@@ -1,0 +1,12 @@
+<map id="example/AudioServer/AudioCapture.cpp" name="example/AudioServer/AudioCapture.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="303,5,466,47"/>
+<area shape="rect" id="node2" href="$AudioCapture_8h.html" title=" " alt="" coords="173,95,295,121"/>
+<area shape="rect" id="node8" href="$OpusEncoder_8h.html" title="Opus 오디오 인코딩 클래스 헤더" alt="" coords="375,95,493,121"/>
+<area shape="rect" id="node9" title=" " alt="" coords="368,169,468,196"/>
+<area shape="rect" id="node10" title=" " alt="" coords="491,169,571,196"/>
+<area shape="rect" id="node3" href="$DataCapture_8h.html" title="미디어 프레임 캡처 및 버퍼 관리 클래스 헤더" alt="" coords="176,169,292,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="293,244,356,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="34,244,98,271"/>
+<area shape="rect" id="node7" title=" " alt="" coords="23,169,151,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="203,244,265,271"/>
+</map>

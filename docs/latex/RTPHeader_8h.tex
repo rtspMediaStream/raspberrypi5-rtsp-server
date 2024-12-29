@@ -1,0 +1,165 @@
+\hypertarget{RTPHeader_8h}{}\doxysection{inc/\+RTPHeader.h File Reference}
+\label{RTPHeader_8h}\index{inc/RTPHeader.h@{inc/RTPHeader.h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$alsa/asoundlib.\+h$>$}\newline
+{\ttfamily \#include $<$opus/opus.\+h$>$}\newline
+Include dependency graph for RTPHeader.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{RTPHeader_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{RTPHeader_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRTPHeader}{RTPHeader}}
+\item 
+struct \mbox{\hyperlink{structRTPHeader_1_1rtp__header}{RTPHeader\+::rtp\+\_\+header}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{RTPHeader_8h_a31ffda28aaf1dbb947a934fe8144e6db}{DEST\+\_\+\+IP}}~\char`\"{}127.\+0.\+0.\+1\char`\"{}
+\item 
+\#define \mbox{\hyperlink{RTPHeader_8h_ab59e6dd36f2591b3020f01509eabc8a7}{RTP\+\_\+\+PORT}}~5004
+\item 
+\#define \mbox{\hyperlink{RTPHeader_8h_af05b99308f5c6f713b4610d46505d17d}{RTCP\+\_\+\+PORT}}~5005
+\item 
+\#define \mbox{\hyperlink{RTPHeader_8h_ad3600ed1f35ebf1cadf2d689af42986d}{PCM\+\_\+\+FRAME\+\_\+\+SIZE}}~1152
+\item 
+\#define \mbox{\hyperlink{RTPHeader_8h_a796bd7c6ba2e59281760fb155c6287e8}{APPLICATION}}~OPUS\+\_\+\+APPLICATION\+\_\+\+AUDIO
+\item 
+\#define \mbox{\hyperlink{RTPHeader_8h_a879456c3b8e2853f7044d764e9c180d4}{MAX\+\_\+\+PACKET\+\_\+\+SIZE}}~4000
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a622e15900f3d90f1391cf9812d1a8078}{cc}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a0f561e77fa0f040b637f4e04f6cd8078}{x}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a6519522ad9a6f45e7a8d25d31392a977}{p}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{RTPHeader_8h_ab22abc2906422da61885ac6c8e6a1a59}{version}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a1cb44f49983d07cd3dd52552aa930799}{pt}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a6b3284d8492267a77ca46948daf5545e}{m}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a98d07458cfe1557cbc2a1b1b2310b428}{seq\+\_\+num}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}{timestamp}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{RTPHeader_8h_a7728cdfcf33cc14c0d7ba2dcdcbcdf2e}{ssrc}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{RTPHeader_8h_a796bd7c6ba2e59281760fb155c6287e8}\label{RTPHeader_8h_a796bd7c6ba2e59281760fb155c6287e8}} 
+\index{RTPHeader.h@{RTPHeader.h}!APPLICATION@{APPLICATION}}
+\index{APPLICATION@{APPLICATION}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{APPLICATION}{APPLICATION}}
+{\footnotesize\ttfamily \#define APPLICATION~OPUS\+\_\+\+APPLICATION\+\_\+\+AUDIO}
+
+\mbox{\Hypertarget{RTPHeader_8h_a31ffda28aaf1dbb947a934fe8144e6db}\label{RTPHeader_8h_a31ffda28aaf1dbb947a934fe8144e6db}} 
+\index{RTPHeader.h@{RTPHeader.h}!DEST\_IP@{DEST\_IP}}
+\index{DEST\_IP@{DEST\_IP}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{DEST\_IP}{DEST\_IP}}
+{\footnotesize\ttfamily \#define DEST\+\_\+\+IP~\char`\"{}127.\+0.\+0.\+1\char`\"{}}
+
+\mbox{\Hypertarget{RTPHeader_8h_a879456c3b8e2853f7044d764e9c180d4}\label{RTPHeader_8h_a879456c3b8e2853f7044d764e9c180d4}} 
+\index{RTPHeader.h@{RTPHeader.h}!MAX\_PACKET\_SIZE@{MAX\_PACKET\_SIZE}}
+\index{MAX\_PACKET\_SIZE@{MAX\_PACKET\_SIZE}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PACKET\_SIZE}{MAX\_PACKET\_SIZE}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+PACKET\+\_\+\+SIZE~4000}
+
+\mbox{\Hypertarget{RTPHeader_8h_ad3600ed1f35ebf1cadf2d689af42986d}\label{RTPHeader_8h_ad3600ed1f35ebf1cadf2d689af42986d}} 
+\index{RTPHeader.h@{RTPHeader.h}!PCM\_FRAME\_SIZE@{PCM\_FRAME\_SIZE}}
+\index{PCM\_FRAME\_SIZE@{PCM\_FRAME\_SIZE}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{PCM\_FRAME\_SIZE}{PCM\_FRAME\_SIZE}}
+{\footnotesize\ttfamily \#define PCM\+\_\+\+FRAME\+\_\+\+SIZE~1152}
+
+\mbox{\Hypertarget{RTPHeader_8h_af05b99308f5c6f713b4610d46505d17d}\label{RTPHeader_8h_af05b99308f5c6f713b4610d46505d17d}} 
+\index{RTPHeader.h@{RTPHeader.h}!RTCP\_PORT@{RTCP\_PORT}}
+\index{RTCP\_PORT@{RTCP\_PORT}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{RTCP\_PORT}{RTCP\_PORT}}
+{\footnotesize\ttfamily \#define RTCP\+\_\+\+PORT~5005}
+
+\mbox{\Hypertarget{RTPHeader_8h_ab59e6dd36f2591b3020f01509eabc8a7}\label{RTPHeader_8h_ab59e6dd36f2591b3020f01509eabc8a7}} 
+\index{RTPHeader.h@{RTPHeader.h}!RTP\_PORT@{RTP\_PORT}}
+\index{RTP\_PORT@{RTP\_PORT}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{RTP\_PORT}{RTP\_PORT}}
+{\footnotesize\ttfamily \#define RTP\+\_\+\+PORT~5004}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{RTPHeader_8h_a622e15900f3d90f1391cf9812d1a8078}\label{RTPHeader_8h_a622e15900f3d90f1391cf9812d1a8078}} 
+\index{RTPHeader.h@{RTPHeader.h}!cc@{cc}}
+\index{cc@{cc}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{cc}{cc}}
+{\footnotesize\ttfamily uint8\+\_\+t cc}
+
+\mbox{\Hypertarget{RTPHeader_8h_a6b3284d8492267a77ca46948daf5545e}\label{RTPHeader_8h_a6b3284d8492267a77ca46948daf5545e}} 
+\index{RTPHeader.h@{RTPHeader.h}!m@{m}}
+\index{m@{m}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily uint8\+\_\+t m}
+
+\mbox{\Hypertarget{RTPHeader_8h_a6519522ad9a6f45e7a8d25d31392a977}\label{RTPHeader_8h_a6519522ad9a6f45e7a8d25d31392a977}} 
+\index{RTPHeader.h@{RTPHeader.h}!p@{p}}
+\index{p@{p}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily uint8\+\_\+t p}
+
+\mbox{\Hypertarget{RTPHeader_8h_a1cb44f49983d07cd3dd52552aa930799}\label{RTPHeader_8h_a1cb44f49983d07cd3dd52552aa930799}} 
+\index{RTPHeader.h@{RTPHeader.h}!pt@{pt}}
+\index{pt@{pt}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{pt}{pt}}
+{\footnotesize\ttfamily uint8\+\_\+t pt}
+
+\mbox{\Hypertarget{RTPHeader_8h_a98d07458cfe1557cbc2a1b1b2310b428}\label{RTPHeader_8h_a98d07458cfe1557cbc2a1b1b2310b428}} 
+\index{RTPHeader.h@{RTPHeader.h}!seq\_num@{seq\_num}}
+\index{seq\_num@{seq\_num}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{seq\_num}{seq\_num}}
+{\footnotesize\ttfamily uint16\+\_\+t seq\+\_\+num}
+
+\mbox{\Hypertarget{RTPHeader_8h_a7728cdfcf33cc14c0d7ba2dcdcbcdf2e}\label{RTPHeader_8h_a7728cdfcf33cc14c0d7ba2dcdcbcdf2e}} 
+\index{RTPHeader.h@{RTPHeader.h}!ssrc@{ssrc}}
+\index{ssrc@{ssrc}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{ssrc}{ssrc}}
+{\footnotesize\ttfamily uint32\+\_\+t ssrc}
+
+\mbox{\Hypertarget{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}\label{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}} 
+\index{RTPHeader.h@{RTPHeader.h}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily uint32\+\_\+t timestamp}
+
+\mbox{\Hypertarget{RTPHeader_8h_ab22abc2906422da61885ac6c8e6a1a59}\label{RTPHeader_8h_ab22abc2906422da61885ac6c8e6a1a59}} 
+\index{RTPHeader.h@{RTPHeader.h}!version@{version}}
+\index{version@{version}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily uint8\+\_\+t version}
+
+\mbox{\Hypertarget{RTPHeader_8h_a0f561e77fa0f040b637f4e04f6cd8078}\label{RTPHeader_8h_a0f561e77fa0f040b637f4e04f6cd8078}} 
+\index{RTPHeader.h@{RTPHeader.h}!x@{x}}
+\index{x@{x}!RTPHeader.h@{RTPHeader.h}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily uint8\+\_\+t x}
+

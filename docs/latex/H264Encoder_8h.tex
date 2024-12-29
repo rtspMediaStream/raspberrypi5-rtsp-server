@@ -1,0 +1,122 @@
+\hypertarget{H264Encoder_8h}{}\doxysection{inc/\+H264\+Encoder.h File Reference}
+\label{H264Encoder_8h}\index{inc/H264Encoder.h@{inc/H264Encoder.h}}
+
+
+H264 비디오 프레임 파싱 및 인코딩 클래스 헤더  
+
+
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$sys/types.\+h$>$}\newline
+Include dependency graph for H264\+Encoder.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{H264Encoder_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{H264Encoder_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classH264Encoder}{H264\+Encoder}}
+\begin{DoxyCompactList}\small\item\em H264 비디오 프레임을 처리하는 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{H264Encoder_8h_af4b3d40f7638ada42a0e945ab262725b}{NALU\+\_\+\+NRI\+\_\+\+MASK}} = 0x60
+\begin{DoxyCompactList}\small\item\em NALU 중요도 관련 비트 마스크 \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{H264Encoder_8h_ab5ba38bbbcb67b9c846a6f11b34037b5}{NALU\+\_\+\+F\+\_\+\+NRI\+\_\+\+MASK}} = 0x\+E0
+\begin{DoxyCompactList}\small\item\em NALU 금지 비트와 참조 중요도 마스크 \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{H264Encoder_8h_adaccfe0bb3b98530348155556cf08840}{NALU\+\_\+\+TYPE\+\_\+\+MASK}} = 0x1F
+\begin{DoxyCompactList}\small\item\em NALU 타입 마스크 \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{H264Encoder_8h_aeb8671fc0b55a5c7f4dc65fbd7878e11}{FU\+\_\+\+S\+\_\+\+MASK}} = 0x80
+\begin{DoxyCompactList}\small\item\em FU 헤더 시작 비트 마스크 \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{H264Encoder_8h_aa6134cba4054682b679066ad57413a59}{FU\+\_\+\+E\+\_\+\+MASK}} = 0x40
+\begin{DoxyCompactList}\small\item\em FU 헤더 끝 비트 마스크 \end{DoxyCompactList}\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{H264Encoder_8h_adce44a032818edf120eb284a7ab5ad68}{SET\+\_\+\+FU\+\_\+\+A\+\_\+\+MASK}} = 0x1C
+\begin{DoxyCompactList}\small\item\em FU 헤더 플래그 비트 마스크 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+H264 비디오 프레임 파싱 및 인코딩 클래스 헤더 
+
+H264 포맷의 비디오 파일을 NAL(\+Network Abstraction Layer) Unit으로 파싱하고 프레임을 추출하는 기능을 제공하는 클래스
+\begin{DoxyItemize}
+\item mmap을 사용한 효율적인 파일 접근
+\item H264 start code 인식 및 처리
+\item NAL Unit 프레임 추출
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{H264Encoder_8h_aa6134cba4054682b679066ad57413a59}\label{H264Encoder_8h_aa6134cba4054682b679066ad57413a59}} 
+\index{H264Encoder.h@{H264Encoder.h}!FU\_E\_MASK@{FU\_E\_MASK}}
+\index{FU\_E\_MASK@{FU\_E\_MASK}!H264Encoder.h@{H264Encoder.h}}
+\doxysubsubsection{\texorpdfstring{FU\_E\_MASK}{FU\_E\_MASK}}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t FU\+\_\+\+E\+\_\+\+MASK = 0x40\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+FU 헤더 끝 비트 마스크 
+
+\mbox{\Hypertarget{H264Encoder_8h_aeb8671fc0b55a5c7f4dc65fbd7878e11}\label{H264Encoder_8h_aeb8671fc0b55a5c7f4dc65fbd7878e11}} 
+\index{H264Encoder.h@{H264Encoder.h}!FU\_S\_MASK@{FU\_S\_MASK}}
+\index{FU\_S\_MASK@{FU\_S\_MASK}!H264Encoder.h@{H264Encoder.h}}
+\doxysubsubsection{\texorpdfstring{FU\_S\_MASK}{FU\_S\_MASK}}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t FU\+\_\+\+S\+\_\+\+MASK = 0x80\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+FU 헤더 시작 비트 마스크 
+
+\mbox{\Hypertarget{H264Encoder_8h_ab5ba38bbbcb67b9c846a6f11b34037b5}\label{H264Encoder_8h_ab5ba38bbbcb67b9c846a6f11b34037b5}} 
+\index{H264Encoder.h@{H264Encoder.h}!NALU\_F\_NRI\_MASK@{NALU\_F\_NRI\_MASK}}
+\index{NALU\_F\_NRI\_MASK@{NALU\_F\_NRI\_MASK}!H264Encoder.h@{H264Encoder.h}}
+\doxysubsubsection{\texorpdfstring{NALU\_F\_NRI\_MASK}{NALU\_F\_NRI\_MASK}}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t NALU\+\_\+\+F\+\_\+\+NRI\+\_\+\+MASK = 0x\+E0\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+NALU 금지 비트와 참조 중요도 마스크 
+
+\mbox{\Hypertarget{H264Encoder_8h_af4b3d40f7638ada42a0e945ab262725b}\label{H264Encoder_8h_af4b3d40f7638ada42a0e945ab262725b}} 
+\index{H264Encoder.h@{H264Encoder.h}!NALU\_NRI\_MASK@{NALU\_NRI\_MASK}}
+\index{NALU\_NRI\_MASK@{NALU\_NRI\_MASK}!H264Encoder.h@{H264Encoder.h}}
+\doxysubsubsection{\texorpdfstring{NALU\_NRI\_MASK}{NALU\_NRI\_MASK}}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t NALU\+\_\+\+NRI\+\_\+\+MASK = 0x60\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+NALU 중요도 관련 비트 마스크 
+
+\mbox{\Hypertarget{H264Encoder_8h_adaccfe0bb3b98530348155556cf08840}\label{H264Encoder_8h_adaccfe0bb3b98530348155556cf08840}} 
+\index{H264Encoder.h@{H264Encoder.h}!NALU\_TYPE\_MASK@{NALU\_TYPE\_MASK}}
+\index{NALU\_TYPE\_MASK@{NALU\_TYPE\_MASK}!H264Encoder.h@{H264Encoder.h}}
+\doxysubsubsection{\texorpdfstring{NALU\_TYPE\_MASK}{NALU\_TYPE\_MASK}}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t NALU\+\_\+\+TYPE\+\_\+\+MASK = 0x1F\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+NALU 타입 마스크 
+
+\mbox{\Hypertarget{H264Encoder_8h_adce44a032818edf120eb284a7ab5ad68}\label{H264Encoder_8h_adce44a032818edf120eb284a7ab5ad68}} 
+\index{H264Encoder.h@{H264Encoder.h}!SET\_FU\_A\_MASK@{SET\_FU\_A\_MASK}}
+\index{SET\_FU\_A\_MASK@{SET\_FU\_A\_MASK}!H264Encoder.h@{H264Encoder.h}}
+\doxysubsubsection{\texorpdfstring{SET\_FU\_A\_MASK}{SET\_FU\_A\_MASK}}
+{\footnotesize\ttfamily constexpr uint8\+\_\+t SET\+\_\+\+FU\+\_\+\+A\+\_\+\+MASK = 0x1C\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+FU 헤더 플래그 비트 마스크 
+

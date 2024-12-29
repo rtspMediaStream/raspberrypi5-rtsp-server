@@ -1,0 +1,118 @@
+\hypertarget{classAudioCapture}{}\doxysection{Audio\+Capture Class Reference}
+\label{classAudioCapture}\index{AudioCapture@{AudioCapture}}
+
+
+{\ttfamily \#include $<$Audio\+Capture.\+h$>$}
+
+
+
+Inheritance diagram for Audio\+Capture\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classAudioCapture__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Audio\+Capture\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classAudioCapture__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}{Audio\+Capture}} ()
+\item 
+int \mbox{\hyperlink{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}{read}} (short $\ast$\mbox{\hyperlink{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}{buffer}}, int frames)
+\item 
+\mbox{\hyperlink{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}{$\sim$\+Audio\+Capture}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::queue$<$ std\+::pair$<$ unsigned char $\ast$, int $>$ $>$ \mbox{\hyperlink{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}{buffer}}
+\item 
+std\+::mutex \mbox{\hyperlink{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}{buffer\+Mutex}}
+\item 
+snd\+\_\+pcm\+\_\+t $\ast$ \mbox{\hyperlink{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}{pcm\+\_\+handle}}
+\item 
+snd\+\_\+pcm\+\_\+hw\+\_\+params\+\_\+t $\ast$ \mbox{\hyperlink{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}{params}}
+\item 
+unsigned int \mbox{\hyperlink{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}{sample\+\_\+rate}}
+\item 
+int \mbox{\hyperlink{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}{dir}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}\label{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}} 
+\index{AudioCapture@{AudioCapture}!AudioCapture@{AudioCapture}}
+\index{AudioCapture@{AudioCapture}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{AudioCapture()}{AudioCapture()}}
+{\footnotesize\ttfamily Audio\+Capture\+::\+Audio\+Capture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}\label{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}} 
+\index{AudioCapture@{AudioCapture}!````~AudioCapture@{$\sim$AudioCapture}}
+\index{````~AudioCapture@{$\sim$AudioCapture}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{$\sim$AudioCapture()}{~AudioCapture()}}
+{\footnotesize\ttfamily Audio\+Capture\+::$\sim$\+Audio\+Capture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}\label{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}} 
+\index{AudioCapture@{AudioCapture}!read@{read}}
+\index{read@{read}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily int Audio\+Capture\+::read (\begin{DoxyParamCaption}\item[{short $\ast$}]{buffer,  }\item[{int}]{frames }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}\label{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}} 
+\index{AudioCapture@{AudioCapture}!buffer@{buffer}}
+\index{buffer@{buffer}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily std\+::queue$<$std\+::pair$<$unsigned char$\ast$, int$>$ $>$ Audio\+Capture\+::buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}\label{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}} 
+\index{AudioCapture@{AudioCapture}!bufferMutex@{bufferMutex}}
+\index{bufferMutex@{bufferMutex}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{bufferMutex}{bufferMutex}}
+{\footnotesize\ttfamily std\+::mutex Audio\+Capture\+::buffer\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}\label{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}} 
+\index{AudioCapture@{AudioCapture}!dir@{dir}}
+\index{dir@{dir}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{dir}{dir}}
+{\footnotesize\ttfamily int Audio\+Capture\+::dir\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}\label{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}} 
+\index{AudioCapture@{AudioCapture}!params@{params}}
+\index{params@{params}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{params}{params}}
+{\footnotesize\ttfamily snd\+\_\+pcm\+\_\+hw\+\_\+params\+\_\+t$\ast$ Audio\+Capture\+::params\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}\label{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}} 
+\index{AudioCapture@{AudioCapture}!pcm\_handle@{pcm\_handle}}
+\index{pcm\_handle@{pcm\_handle}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{pcm\_handle}{pcm\_handle}}
+{\footnotesize\ttfamily snd\+\_\+pcm\+\_\+t$\ast$ Audio\+Capture\+::pcm\+\_\+handle\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}\label{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}} 
+\index{AudioCapture@{AudioCapture}!sample\_rate@{sample\_rate}}
+\index{sample\_rate@{sample\_rate}!AudioCapture@{AudioCapture}}
+\doxysubsubsection{\texorpdfstring{sample\_rate}{sample\_rate}}
+{\footnotesize\ttfamily unsigned int Audio\+Capture\+::sample\+\_\+rate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+example/\+Audio\+Server/\mbox{\hyperlink{AudioCapture_8h}{Audio\+Capture.\+h}}\item 
+example/\+Audio\+Server/\mbox{\hyperlink{AudioCapture_8cpp}{Audio\+Capture.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\hypertarget{RTPHeader_8h_source}{}\doxysection{RTPHeader.\+h}
+\label{RTPHeader_8h_source}\index{inc/RTPHeader.h@{inc/RTPHeader.h}}
+\mbox{\hyperlink{RTPHeader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// RTP, RTCP, 오디오 캡처 및 MP3 인코딩을 처리하는 C++ 클래스 기반 프로그램 (싱글톤 패턴 적용)}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <cstring>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <sys/socket.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <unistd.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <time.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <stdint.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <alsa/asoundlib.h>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <opus/opus.h>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define DEST\_IP "{}127.0.0.1"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define RTP\_PORT 5004}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RTCP\_PORT 5005}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define PCM\_FRAME\_SIZE 1152}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define APPLICATION OPUS\_APPLICATION\_AUDIO}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define MAX\_PACKET\_SIZE 4000}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{class }\mbox{\hyperlink{classRTPHeader}{RTPHeader}} \{}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{23     \textcolor{keyword}{struct }\mbox{\hyperlink{structRTPHeader_1_1rtp__header}{rtp\_header}} \{}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#if \_\_BYTE\_ORDER == \_\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{25         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a05a6a90681bb76b0423e12b65523e431}{cc}}:4;}
+\DoxyCodeLine{26         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_aa52007a3ceeb4c3b3709a79dc03d33aa}{x}}:1;}
+\DoxyCodeLine{27         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a93189db79e59200ddb00d207e0c51f51}{p}}:1;}
+\DoxyCodeLine{28         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_ab8aaea4adc778d363a9b4399774500fa}{version}}:2;}
+\DoxyCodeLine{29         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a80fc5a80b05a5c66276774daf807c75f}{pt}}:7;}
+\DoxyCodeLine{30         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_aada7ce9440cc4b4c8d7cd537c2700516}{m}}:1;}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#elif \_\_BYTE\_ORDER == \_\_BIG\_ENDIAN}}
+\DoxyCodeLine{32         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_ab8aaea4adc778d363a9b4399774500fa}{version}}:2;}
+\DoxyCodeLine{33         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a93189db79e59200ddb00d207e0c51f51}{p}}:1;}
+\DoxyCodeLine{34         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_aa52007a3ceeb4c3b3709a79dc03d33aa}{x}}:1;}
+\DoxyCodeLine{35         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a05a6a90681bb76b0423e12b65523e431}{cc}}:4;}
+\DoxyCodeLine{36         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_aada7ce9440cc4b4c8d7cd537c2700516}{m}}:1;}
+\DoxyCodeLine{37         uint8\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a80fc5a80b05a5c66276774daf807c75f}{pt}}:7;}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#error "{}Please fix <bits/endian.h>"{}}}
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{41         uint16\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_a7bb188b96231d4060d09c413830ac4b2}{seq\_num}};}
+\DoxyCodeLine{42         uint32\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_ade70c6d8acedffd765025cf51d787412}{timestamp}};}
+\DoxyCodeLine{43         uint32\_t \mbox{\hyperlink{structRTPHeader_1_1rtp__header_ac379b35b15ae93a33d7e5efe10ee78ad}{ssrc}};}
+\DoxyCodeLine{44     \} \mbox{\hyperlink{classRTPHeader_a1d2cada8803aae72ab5dda6f0d1b9084}{\_\_attribute\_\_}}((packed));}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPHeader_aa665e085b7706e1693d91551222663be}{create}}(\mbox{\hyperlink{structRTPHeader_1_1rtp__header}{rtp\_header}} \&header, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{short} \mbox{\hyperlink{RTPHeader_8h_a98d07458cfe1557cbc2a1b1b2310b428}{seq\_num}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}{timestamp}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{RTPHeader_8h_a7728cdfcf33cc14c0d7ba2dcdcbcdf2e}{ssrc}}) \{}
+\DoxyCodeLine{47         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_ab8aaea4adc778d363a9b4399774500fa}{version}} = 2;}
+\DoxyCodeLine{48         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_a93189db79e59200ddb00d207e0c51f51}{p}} = 0;}
+\DoxyCodeLine{49         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_aa52007a3ceeb4c3b3709a79dc03d33aa}{x}} = 0;}
+\DoxyCodeLine{50         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_a05a6a90681bb76b0423e12b65523e431}{cc}} = 0;}
+\DoxyCodeLine{51         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_aada7ce9440cc4b4c8d7cd537c2700516}{m}} = 0;}
+\DoxyCodeLine{52         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_a80fc5a80b05a5c66276774daf807c75f}{pt}} = 111;  }
+\DoxyCodeLine{53         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_a7bb188b96231d4060d09c413830ac4b2}{seq\_num}} = htons(\mbox{\hyperlink{RTPHeader_8h_a98d07458cfe1557cbc2a1b1b2310b428}{seq\_num}});}
+\DoxyCodeLine{54         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_ade70c6d8acedffd765025cf51d787412}{timestamp}} = htonl(\mbox{\hyperlink{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}{timestamp}});}
+\DoxyCodeLine{55         header.\mbox{\hyperlink{structRTPHeader_1_1rtp__header_ac379b35b15ae93a33d7e5efe10ee78ad}{ssrc}} = htonl(\mbox{\hyperlink{RTPHeader_8h_a7728cdfcf33cc14c0d7ba2dcdcbcdf2e}{ssrc}});}
+\DoxyCodeLine{56     \}}
+\DoxyCodeLine{57 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,116 @@
+\hypertarget{classRTSPServer}{}\doxysection{RTSPServer Class Reference}
+\label{classRTSPServer}\index{RTSPServer@{RTSPServer}}
+
+
+{\ttfamily \#include $<$RTSPServer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}{RTSPServer}} ()
+\item 
+\mbox{\hyperlink{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}{$\sim$\+RTSPServer}} ()
+\item 
+int \mbox{\hyperlink{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}{start\+Server\+Thread}} ()
+\item 
+\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}{get\+Protocol}} ()
+\item 
+void \mbox{\hyperlink{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}{set\+Protocol}} (\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \+\_\+ptorocol)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classRTSPServer}{RTSPServer}} \& \mbox{\hyperlink{classRTSPServer_aa448def962b448dad50948ca971a086c}{get\+Instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ void()$>$ \mbox{\hyperlink{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}{on\+Init\+Event}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}{is\+Privileged\+Port}} (int port)
+\item 
+bool \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{is\+Running\+As\+Root}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}\label{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}} 
+\index{RTSPServer@{RTSPServer}!RTSPServer@{RTSPServer}}
+\index{RTSPServer@{RTSPServer}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{RTSPServer()}{RTSPServer()}}
+{\footnotesize\ttfamily RTSPServer\+::\+RTSPServer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}\label{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}} 
+\index{RTSPServer@{RTSPServer}!````~RTSPServer@{$\sim$RTSPServer}}
+\index{````~RTSPServer@{$\sim$RTSPServer}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{$\sim$RTSPServer()}{~RTSPServer()}}
+{\footnotesize\ttfamily RTSPServer\+::$\sim$\+RTSPServer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRTSPServer_aa448def962b448dad50948ca971a086c}\label{classRTSPServer_aa448def962b448dad50948ca971a086c}} 
+\index{RTSPServer@{RTSPServer}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classRTSPServer}{RTSPServer}} \& RTSPServer\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}\label{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}} 
+\index{RTSPServer@{RTSPServer}!getProtocol@{getProtocol}}
+\index{getProtocol@{getProtocol}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{getProtocol()}{getProtocol()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} RTSPServer\+::get\+Protocol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}\label{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}} 
+\index{RTSPServer@{RTSPServer}!isPrivilegedPort@{isPrivilegedPort}}
+\index{isPrivilegedPort@{isPrivilegedPort}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{isPrivilegedPort()}{isPrivilegedPort()}}
+{\footnotesize\ttfamily bool RTSPServer\+::is\+Privileged\+Port (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}\label{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}} 
+\index{RTSPServer@{RTSPServer}!isRunningAsRoot@{isRunningAsRoot}}
+\index{isRunningAsRoot@{isRunningAsRoot}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{isRunningAsRoot()}{isRunningAsRoot()}}
+{\footnotesize\ttfamily bool RTSPServer\+::is\+Running\+As\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}\label{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}} 
+\index{RTSPServer@{RTSPServer}!setProtocol@{setProtocol}}
+\index{setProtocol@{setProtocol}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{setProtocol()}{setProtocol()}}
+{\footnotesize\ttfamily void RTSPServer\+::set\+Protocol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}}}]{\+\_\+ptorocol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}\label{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}} 
+\index{RTSPServer@{RTSPServer}!startServerThread@{startServerThread}}
+\index{startServerThread@{startServerThread}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{startServerThread()}{startServerThread()}}
+{\footnotesize\ttfamily int RTSPServer\+::start\+Server\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}\label{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}} 
+\index{RTSPServer@{RTSPServer}!onInitEvent@{onInitEvent}}
+\index{onInitEvent@{onInitEvent}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{onInitEvent}{onInitEvent}}
+{\footnotesize\ttfamily std\+::function$<$void()$>$ RTSPServer\+::on\+Init\+Event}
+
+\mbox{\Hypertarget{classRTSPServer_a58d0e93646122c12325665aa43c51616}\label{classRTSPServer_a58d0e93646122c12325665aa43c51616}} 
+\index{RTSPServer@{RTSPServer}!protocol@{protocol}}
+\index{protocol@{protocol}!RTSPServer@{RTSPServer}}
+\doxysubsubsection{\texorpdfstring{protocol}{protocol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} RTSPServer\+::protocol\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{RTSPServer_8h}{RTSPServer.\+h}}\item 
+src/\mbox{\hyperlink{RTSPServer_8cpp}{RTSPServer.\+cpp}}\end{DoxyCompactItemize}

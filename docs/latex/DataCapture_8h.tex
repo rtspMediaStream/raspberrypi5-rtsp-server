@@ -1,0 +1,46 @@
+\hypertarget{DataCapture_8h}{}\doxysection{inc/\+Data\+Capture.h File Reference}
+\label{DataCapture_8h}\index{inc/DataCapture.h@{inc/DataCapture.h}}
+
+
+미디어 프레임 캡처 및 버퍼 관리 클래스 헤더  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for Data\+Capture.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=259pt]{DataCapture_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{DataCapture_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}}
+\begin{DoxyCompactList}\small\item\em 캡처된 프레임 데이터를 저장하는 구조체 \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classDataCapture}{Data\+Capture}}
+\begin{DoxyCompactList}\small\item\em 미디어 프레임 캡처 및 버퍼 관리를 위한 싱글톤 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+미디어 프레임 캡처 및 버퍼 관리 클래스 헤더 
+
+미디어 스트리밍을 위한 프레임 캡처 및 버퍼 관리 시스템을 제공하는 클래스
+\begin{DoxyItemize}
+\item 순환 큐를 사용한 프레임 데이터 관리
+\item 스레드를 통한 안전한 프레임 데이터 접근
+\item FIFO 방식의 프레임 처리
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
