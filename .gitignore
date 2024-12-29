@@ -6,6 +6,16 @@ build/
 # MacOS
 **/.DS_Store
 
+# VSCode settings
+.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+
+# VSCode specific files
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+
 ### C++ ###
 # Prerequisites
 *.d
