@@ -1,0 +1,44 @@
+/**
+ * @mainpage RTSP Media Server Documentation
+ *
+ * @section intro 소개
+ *
+ * RTSP 프로토콜을 기반으로 한 미디어 스트리밍 서버 프로젝트입니다.
+ * 
+ * @section features 주요 기능
+ *
+ * @subsection features_list 기능 목록
+ * - RTSP 프로토콜 기반 미디어 스트리밍
+ * - H.264 비디오 스트리밍 지원
+ * - Opus 오디오 스트리밍 지원
+ * - 멀티클라이언트 세션 관리
+ * - 실시간 미디어 프레임 캡처 및 버퍼링
+ *
+ * @section architecture 아키텍처
+ *
+ * @subsection components 주요 컴포넌트
+ * - RTSPServer: 전체 서버 관리
+ * - DataCapture: 미디어 프레임 캡처 및 버퍼 관리
+ * - MediaStreamHandler: 미디어 스트리밍 처리
+ * - ClientSession: 클라이언트 세션 관리
+ *
+ * @section build 빌드 방법
+ *
+ * @verbatim
+ * mkdir build
+ * cd build
+ * cmake ..
+ * make
+ * @endverbatim
+ *
+ * @section examples 예제
+ *
+ * @subsection example_servers 서버 예제
+ * - AudioServer: 오디오 스트리밍 서버 예제
+ * - CameraServer: 카메라 스트리밍 서버 예제
+ * - VideoServer: 비디오 파일 스트리밍 서버 예제
+ *
+ * @section license 라이센스
+ *
+ * 이 프로젝트는 MIT 라이센스 하에 배포됩니다.
+ */
