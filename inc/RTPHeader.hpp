@@ -1,5 +1,5 @@
 /**
-* @file rtp_header.hpp
+* @file RTPHeader.hpp
 * @brief rtp 헤더 정의
 * @details 이 파일은 h264 페이로드의 rtp 헤더를 정의한 파일입니다.
 * @author HyunJun Song
@@ -22,24 +22,23 @@ constexpr int64_t RTP_PAYLOAD_TYPE_H264 = 96;
 constexpr int64_t FU_SIZE = 2;
 
 constexpr int64_t MAX_UDP_PACKET_SIZE = 65535;
-//constexpr int64_t MAX_UDP_PACKET_SIZE = 1400;
 constexpr int64_t MAX_RTP_DATA_SIZE = MAX_UDP_PACKET_SIZE - IP_V4_HEADER_SIZE
                                         - UDP_HEADER_SIZE - RTP_HEADER_SIZE - FU_SIZE;
 constexpr int64_t MAX_RTP_PACKET_LEN = MAX_RTP_DATA_SIZE + RTP_HEADER_SIZE + FU_SIZE;
 
 #pragma pack(1)
-class RtpHeader
+class RTPHeader
 {
 public:
-    RtpHeader(uint8_t _version,     uint8_t _padding,
+    RTPHeader(uint8_t _version,     uint8_t _padding,
               uint8_t _extension,   uint8_t _csrcCount,
               uint8_t _marker,      uint8_t _payloadType,
               uint16_t _seq,        uint32_t _timestamp,
               uint32_t _ssrc);
-    RtpHeader(uint16_t _seq, uint32_t _timestamp, uint32_t _ssrc);
-    RtpHeader(const RtpHeader &) = default;
+    RTPHeader(uint16_t _seq, uint32_t _timestamp, uint32_t _ssrc);
+    RTPHeader(const RTPHeader &) = default;
 
-    ~RtpHeader() = default;
+    ~RTPHeader() = default;
 
     inline void set_timestamp(const uint32_t _newtimestamp) { this->timestamp = htonl(_newtimestamp); };
     inline void set_ssrc(const uint32_t SSRC) { this->ssrc = htonl(SSRC); };

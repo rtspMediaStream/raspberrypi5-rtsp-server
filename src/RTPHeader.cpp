@@ -1,7 +1,7 @@
 
-#include "rtp_header.hpp"
+#include "RTPHeader.hpp"
 
-RtpHeader::RtpHeader(const uint8_t  _version,     const uint8_t  _padding,
+RTPHeader::RTPHeader(const uint8_t  _version,     const uint8_t  _padding,
                      const uint8_t  _extension,   const uint8_t  _csrcCount,
                      const uint8_t  _marker,      const uint8_t  _payloadType,
                      const uint16_t _seq,         const uint32_t _timestamp,
@@ -18,7 +18,7 @@ RtpHeader::RtpHeader(const uint8_t  _version,     const uint8_t  _padding,
     this->ssrc = htonl(_ssrc);
 }
 
-RtpHeader::RtpHeader(const uint16_t _seq, const uint32_t _timestamp, const uint32_t _ssrc)
+RTPHeader::RTPHeader(const uint16_t _seq, const uint32_t _timestamp, const uint32_t _ssrc)
 {
     this->version = RTP_VERSION;
     this->padding = 0;

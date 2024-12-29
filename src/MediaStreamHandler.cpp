@@ -15,9 +15,8 @@
 #include "DataCapture.h"
 #include "OpusEncoder.h"
 #include "H264Encoder.h"
-#include "rtp_header.hpp"
-#include "rtp_packet.hpp"
-#include "RTPHeader.h"
+#include "RTPHeader.hpp"
+#include "RTPPacket.hpp"
 
 #include <iostream>
 #include <cstdint>
@@ -48,7 +47,7 @@ MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaSt
  *   - FU-A 형식으로 NAL 단위 분할 처리
  *   - RTP 헤더 마커 비트 설정
  */
-void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RtpPacket& rtpPacket, const uint32_t timeStamp) {
+void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket, const uint32_t timeStamp) {
     unsigned char nalHeader = payload[0]; // NAL 헤더 (첫 바이트)
 
     if (payloadSize <= MAX_RTP_DATA_SIZE) {
@@ -126,12 +125,12 @@ void MediaStreamHandler::HandleMediaStream() {
     int ssrcNum = 0;
 
     // RTP 헤더 생성
-    RtpHeader rtpHeader(0, 0, ssrcNum);
+    RTPHeader rtpHeader(0, 0, ssrcNum);
     rtpHeader.set_payloadType(RTSPServer::getInstance().getProtocol());
     rtpHeader.set_seq(seqNum);
 
     // RTP 패킷 생성
-    RtpPacket rtpPack{rtpHeader};
+    RTPPacket rtpPack{rtpHeader};
 
     while (true) {
         if(streamState == MediaStreamState::eMediaStream_Play) {
