@@ -42,12 +42,6 @@ public:
      */
     ClientSession(const int tcpSocket, const std::string ip);
     
-    /** 
-     * @brief 클라이언트 세션 ID를 반환하는 메서드
-     * @return int 클라이언트 세션 ID
-     */
-    int GetSessionId() const;
-
     /**
      * @brief 클라이언트 세션 버전 정보를 반환하는 메서드
      * @return int 클라이언트 세션 버전 정보
