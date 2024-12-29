@@ -1,0 +1,34 @@
+\hypertarget{FFmpegEncoder_8h_source}{}\doxysection{FFmpeg\+Encoder.\+h}
+\label{FFmpegEncoder_8h_source}\index{example/CameraServer/FFmpegEncoder.h@{example/CameraServer/FFmpegEncoder.h}}
+\mbox{\hyperlink{FFmpegEncoder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef FFMPEG\_ENCODER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define FFMPEG\_ENCODER\_H}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <opencv2/core.hpp>}}
+\DoxyCodeLine{4 \textcolor{keyword}{class }AVStream;}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{classFFmpegEncoder}{FFmpegEncoder}} \{}
+\DoxyCodeLine{7 \textcolor{keyword}{public}:}
+\DoxyCodeLine{8     \mbox{\hyperlink{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}{FFmpegEncoder}}(\textcolor{keyword}{const} std::string\& filename, \textcolor{keywordtype}{int} \mbox{\hyperlink{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}{width}}, \textcolor{keywordtype}{int} \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{height}}, \textcolor{keywordtype}{double} fps);}
+\DoxyCodeLine{9     \mbox{\hyperlink{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}{\string~FFmpegEncoder}}();}
+\DoxyCodeLine{10     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}{encode}}(\textcolor{keyword}{const} cv::Mat\& \mbox{\hyperlink{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}{frame}}, \textcolor{keywordtype}{double} fps);}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{private}:}
+\DoxyCodeLine{13     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}{initFFmpeg}}(\textcolor{keyword}{const} std::string\& filename, \textcolor{keywordtype}{double} fps);}
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}{releaseFFmpeg}}();}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{comment}{// FFmpeg 관련 변수 선언}}
+\DoxyCodeLine{17     \textcolor{keyword}{struct }AVCodecContext *\mbox{\hyperlink{classFFmpegEncoder_a260d3d601487435e9befea401ea31dd2}{codec\_ctx}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{18     \textcolor{keyword}{struct }AVFormatContext *\mbox{\hyperlink{classFFmpegEncoder_a87ccbc2afcb3b5b13b7bafde56f6f79f}{fmt\_ctx}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{19     \textcolor{keyword}{struct }AVPacket *\mbox{\hyperlink{classFFmpegEncoder_a2691315b8df7790863c154c4bb6a34a7}{packet}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{20     \textcolor{keyword}{struct }AVFrame *\mbox{\hyperlink{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}{frame}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{21     \textcolor{keywordtype}{int} \mbox{\hyperlink{classFFmpegEncoder_aa2c92dffda6390afb9c1ee038f81ee35}{frame\_index}} = 0;}
+\DoxyCodeLine{22     AVStream *\mbox{\hyperlink{classFFmpegEncoder_a6a3fd4f93679f6f86a07cde7184fe520}{stream}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     \textcolor{keywordtype}{int} \mbox{\hyperlink{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}{width}};}
+\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{height}};}
+\DoxyCodeLine{26 \};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// FFMPEG\_ENCODER\_H}}
+
+\end{DoxyCode}

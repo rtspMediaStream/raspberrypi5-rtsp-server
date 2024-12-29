@@ -1,0 +1,78 @@
+\hypertarget{MediaStreamHandler_8h}{}\doxysection{inc/\+Media\+Stream\+Handler.h File Reference}
+\label{MediaStreamHandler_8h}\index{inc/MediaStreamHandler.h@{inc/MediaStreamHandler.h}}
+
+
+미디어 스트림 처리 클래스 헤더  
+
+
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$alsa/asoundlib.\+h$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+Include dependency graph for Media\+Stream\+Handler.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{MediaStreamHandler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{MediaStreamHandler_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classMediaStreamHandler}{Media\+Stream\+Handler}}
+\begin{DoxyCompactList}\small\item\em 미디어 스트리밍 처리를 담당하는 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}{Media\+Stream\+State}} \{ \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a9f7ffaa758a004b6e1864e388ed6734f}{e\+Media\+Stream\+\_\+\+Init}}
+, \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758ac54818390f5e68ae9685a78d89699958}{e\+Media\+Stream\+\_\+\+Play}}
+, \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758ac60071b52c3cc6b6989f719b6eaabafa}{e\+Media\+Stream\+\_\+\+Pause}}
+, \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a2c5ac8f51e7195f6a9c2a8125ed21822}{e\+Media\+Stream\+\_\+\+Teardown}}
+ \}
+\begin{DoxyCompactList}\small\item\em 미디어 스트림의 상태를 나타내는 열거형 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+미디어 스트림 처리 클래스 헤더 
+
+RTSP 프로토콜을 통한 미디어 스트리밍을 처리하는 클래스로, 비디오/오디오 스트림의 상태 관리 및 RTP 패킷 전송을 담당
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}\label{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}} 
+\index{MediaStreamHandler.h@{MediaStreamHandler.h}!MediaStreamState@{MediaStreamState}}
+\index{MediaStreamState@{MediaStreamState}!MediaStreamHandler.h@{MediaStreamHandler.h}}
+\doxysubsubsection{\texorpdfstring{MediaStreamState}{MediaStreamState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}{Media\+Stream\+State}}}
+
+
+
+미디어 스트림의 상태를 나타내는 열거형 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{eMediaStream\_Init@{eMediaStream\_Init}!MediaStreamHandler.h@{MediaStreamHandler.h}}\index{MediaStreamHandler.h@{MediaStreamHandler.h}!eMediaStream\_Init@{eMediaStream\_Init}}}\mbox{\Hypertarget{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a9f7ffaa758a004b6e1864e388ed6734f}\label{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a9f7ffaa758a004b6e1864e388ed6734f}} 
+e\+Media\+Stream\+\_\+\+Init&초기화 상태 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{eMediaStream\_Play@{eMediaStream\_Play}!MediaStreamHandler.h@{MediaStreamHandler.h}}\index{MediaStreamHandler.h@{MediaStreamHandler.h}!eMediaStream\_Play@{eMediaStream\_Play}}}\mbox{\Hypertarget{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758ac54818390f5e68ae9685a78d89699958}\label{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758ac54818390f5e68ae9685a78d89699958}} 
+e\+Media\+Stream\+\_\+\+Play&재생 상태 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{eMediaStream\_Pause@{eMediaStream\_Pause}!MediaStreamHandler.h@{MediaStreamHandler.h}}\index{MediaStreamHandler.h@{MediaStreamHandler.h}!eMediaStream\_Pause@{eMediaStream\_Pause}}}\mbox{\Hypertarget{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758ac60071b52c3cc6b6989f719b6eaabafa}\label{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758ac60071b52c3cc6b6989f719b6eaabafa}} 
+e\+Media\+Stream\+\_\+\+Pause&일시 정지 상태 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{eMediaStream\_Teardown@{eMediaStream\_Teardown}!MediaStreamHandler.h@{MediaStreamHandler.h}}\index{MediaStreamHandler.h@{MediaStreamHandler.h}!eMediaStream\_Teardown@{eMediaStream\_Teardown}}}\mbox{\Hypertarget{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a2c5ac8f51e7195f6a9c2a8125ed21822}\label{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a2c5ac8f51e7195f6a9c2a8125ed21822}} 
+e\+Media\+Stream\+\_\+\+Teardown&종료 상태 \\
+\hline
+
+\end{DoxyEnumFields}

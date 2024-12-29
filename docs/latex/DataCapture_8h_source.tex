@@ -1,0 +1,58 @@
+\hypertarget{DataCapture_8h_source}{}\doxysection{Data\+Capture.\+h}
+\label{DataCapture_8h_source}\index{inc/DataCapture.h@{inc/DataCapture.h}}
+\mbox{\hyperlink{DataCapture_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef \_\_DATACAPTURE\_H\_\_}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define \_\_DATACAPTURE\_H\_\_}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <mutex>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{26 \textcolor{keyword}{struct }\mbox{\hyperlink{structDataCaptureFrame}{DataCaptureFrame}} \{}
+\DoxyCodeLine{27     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *\mbox{\hyperlink{structDataCaptureFrame_aa83d69bf537b8d18275075cf4ef31725}{dataPtr}}; }
+\DoxyCodeLine{28     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structDataCaptureFrame_a4b5b6cc716314e355152ea26249c43bf}{size}};      }
+\DoxyCodeLine{29     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{structDataCaptureFrame_a0fe7ea4fc80a729b09381f7a491ac74c}{timestamp}}; }
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{38 \textcolor{keyword}{class }\mbox{\hyperlink{classDataCapture}{DataCapture}} \{}
+\DoxyCodeLine{39 \textcolor{keyword}{public}:}
+\DoxyCodeLine{40     \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classDataCapture_ad77b6624080b754c636a506e532e583f}{buffer\_max\_size}} = 10; }
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46     \textcolor{keyword}{static} \mbox{\hyperlink{classDataCapture}{DataCapture}} \&\mbox{\hyperlink{classDataCapture_a8a2011bfb043cf3b7c35612d2002d68c}{getInstance}}()}
+\DoxyCodeLine{47     \{}
+\DoxyCodeLine{48         \textcolor{keyword}{static} \mbox{\hyperlink{classDataCapture}{DataCapture}} instance;}
+\DoxyCodeLine{49         \textcolor{keywordflow}{return} instance;}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{57     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classDataCapture_a66fdb6c70cd8f8a49ac64fe4cbc13fff}{isEmptyBuffer}}() \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{classDataCapture_a38bd97e3697ed19e1ed7cdbb8bb56694}{buffer\_size}} == 0); \};}
+\DoxyCodeLine{63     \textcolor{keyword}{inline} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classDataCapture_af60c9ec57acdf46523573926d146d943}{isFullBuffer}}() \{ \textcolor{keywordflow}{return} (\mbox{\hyperlink{classDataCapture_a38bd97e3697ed19e1ed7cdbb8bb56694}{buffer\_size}} == \mbox{\hyperlink{classDataCapture_ad77b6624080b754c636a506e532e583f}{buffer\_max\_size}}); \};}
+\DoxyCodeLine{64     }
+\DoxyCodeLine{69     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classDataCapture_ade8a8e0426287f848090d86ee1482040}{pushFrame}}(\textcolor{keyword}{const} \mbox{\hyperlink{structDataCaptureFrame}{DataCaptureFrame}}\& frame);}
+\DoxyCodeLine{70     }
+\DoxyCodeLine{75     \textcolor{keyword}{virtual} \mbox{\hyperlink{structDataCaptureFrame}{DataCaptureFrame}} \mbox{\hyperlink{classDataCapture_aa5aa6aed1e507cabe27568e261d27994}{popFrame}}();}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{78     std::vector <DataCaptureFrame> \mbox{\hyperlink{classDataCapture_a6a792815a7654939c84e5c63f37c3dea}{frameBuffer}}; }
+\DoxyCodeLine{79     \textcolor{keywordtype}{int} \mbox{\hyperlink{classDataCapture_ab5e56bdaa6195a873e18e356d6220667}{head}} = 0; }
+\DoxyCodeLine{80     \textcolor{keywordtype}{int} \mbox{\hyperlink{classDataCapture_aa697933a8285a95f563c8a7c235faa80}{tail}} = 0; }
+\DoxyCodeLine{81     \textcolor{keywordtype}{int} \mbox{\hyperlink{classDataCapture_a38bd97e3697ed19e1ed7cdbb8bb56694}{buffer\_size}} = 0; }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     std::mutex \mbox{\hyperlink{classDataCapture_ad362952f7455e6e51c392fb5e816b156}{bufferMutex}}; }
+\DoxyCodeLine{84 }
+\DoxyCodeLine{88     \mbox{\hyperlink{classDataCapture_ab32a20f44bdec07f01ea7af5beab3839}{DataCapture}}()}
+\DoxyCodeLine{89     \{}
+\DoxyCodeLine{90         \mbox{\hyperlink{classDataCapture_a6a792815a7654939c84e5c63f37c3dea}{frameBuffer}}.resize(\mbox{\hyperlink{classDataCapture_ad77b6624080b754c636a506e532e583f}{buffer\_max\_size}}, \{\textcolor{keyword}{nullptr}, 0 , 0\});}
+\DoxyCodeLine{91     \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{96     \mbox{\hyperlink{classDataCapture_ac56ecdbf89fa37b6d6888001472ddce8}{\string~DataCapture}}()}
+\DoxyCodeLine{97     \{}
+\DoxyCodeLine{98         \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\& pair : \mbox{\hyperlink{classDataCapture_a6a792815a7654939c84e5c63f37c3dea}{frameBuffer}}) \{}
+\DoxyCodeLine{99             \textcolor{keyword}{delete}[] pair.dataPtr;}
+\DoxyCodeLine{100         \}}
+\DoxyCodeLine{101     \}}
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//\_\_DATACAPTURE\_H\_\_}}
+
+\end{DoxyCode}

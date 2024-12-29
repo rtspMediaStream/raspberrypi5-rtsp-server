@@ -1,0 +1,54 @@
+\hypertarget{TCPHandler_8h_source}{}\doxysection{TCPHandler.\+h}
+\label{TCPHandler_8h_source}\index{inc/TCPHandler.h@{inc/TCPHandler.h}}
+\mbox{\hyperlink{TCPHandler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef RTSP\_TCPHANDLER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define RTSP\_TCPHANDLER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Protos_8h}{Protos.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{classTCPHandler}{TCPHandler}} \{}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{13     \mbox{\hyperlink{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}{TCPHandler}}(\textcolor{keyword}{const} \mbox{\hyperlink{classTCPHandler}{TCPHandler}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{14     \mbox{\hyperlink{classTCPHandler}{TCPHandler}}\& \mbox{\hyperlink{classTCPHandler_a011aac5db737403ed5b22b69a8479499}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classTCPHandler}{TCPHandler}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keyword}{static} \mbox{\hyperlink{classTCPHandler}{TCPHandler}}\& \mbox{\hyperlink{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}{GetInstance}}() \{}
+\DoxyCodeLine{17         \textcolor{keyword}{static} \mbox{\hyperlink{classTCPHandler}{TCPHandler}} instance;}
+\DoxyCodeLine{18         \textcolor{keywordflow}{return} instance;}
+\DoxyCodeLine{19     \};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} \mbox{\hyperlink{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}{CreateTCPSocket}}();}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} \mbox{\hyperlink{classTCPHandler_abce89659421235566b3f28c80707b502}{AcceptClientConnection}}(std::string \&\_clientIp);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} \mbox{\hyperlink{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}{CloseClientConnection}}();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     std::string \mbox{\hyperlink{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}{ReceiveRTSPRequest}}(\textcolor{keywordtype}{int} sessionId);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} \mbox{\hyperlink{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}{SendRTSPResponse}}(\textcolor{keywordtype}{int} clientSocket, std::string\& response);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keywordtype}{int}\& \mbox{\hyperlink{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}{GetTCPSocket}}();}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     sockaddr\_in\& \mbox{\hyperlink{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}{GetTCPAddr}}();}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{private}:}
+\DoxyCodeLine{37     \mbox{\hyperlink{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}{TCPHandler}}();}
+\DoxyCodeLine{38     \mbox{\hyperlink{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}{\string~TCPHandler}}();}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40     \textcolor{keywordtype}{int} \mbox{\hyperlink{classTCPHandler_a705214e294e4e7fb56f667499784cfae}{tcpPort}};}
+\DoxyCodeLine{41     \textcolor{keywordtype}{int} \mbox{\hyperlink{classTCPHandler_a70c042292e2cf941369256d8affc7c74}{tcpSocket}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     sockaddr\_in \mbox{\hyperlink{classTCPHandler_a294fc26391c01530d299281f791fd728}{tcpAddr}};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45     std::unordered\_map<int, int> \mbox{\hyperlink{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}{socketTable}};}
+\DoxyCodeLine{46 \};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_TCPHANDLER\_H}}
+
+\end{DoxyCode}

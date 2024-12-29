@@ -1,0 +1,44 @@
+\hypertarget{UDPHandler_8h_source}{}\doxysection{UDPHandler.\+h}
+\label{UDPHandler_8h_source}\index{inc/UDPHandler.h@{inc/UDPHandler.h}}
+\mbox{\hyperlink{UDPHandler_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef RTSP\_UDPHANDLER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define RTSP\_UDPHANDLER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Protos_8h}{Protos.h}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classClientSession}{ClientSession}};}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classUDPHandler}{UDPHandler}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{14     \mbox{\hyperlink{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}{UDPHandler}}(std::shared\_ptr<ClientSession> \mbox{\hyperlink{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}{client}});}
+\DoxyCodeLine{15     \mbox{\hyperlink{classUDPHandler_a3954df271b184ace20f867c1de79d742}{\string~UDPHandler}}();}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}{CreateUDPSocket}}();}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} \mbox{\hyperlink{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}{SendSenderReport}}(\mbox{\hyperlink{structProtos_1_1SenderReport}{Protos::SenderReport}}* senderReport, \textcolor{keywordtype}{size\_t} srSize);}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keywordtype}{int}\& \mbox{\hyperlink{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}{GetRTPSocket}}();}
+\DoxyCodeLine{22     \textcolor{keywordtype}{int}\& \mbox{\hyperlink{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}{GetRTCPSocket}}();}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24     sockaddr\_in\& \mbox{\hyperlink{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}{GetRTPAddr}}();}
+\DoxyCodeLine{25     sockaddr\_in\& \mbox{\hyperlink{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}{GetRTCPAddr}}();}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{private}:}
+\DoxyCodeLine{29     std::shared\_ptr<ClientSession> \mbox{\hyperlink{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}{client}};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     \textcolor{keywordtype}{int} \mbox{\hyperlink{classUDPHandler_a402334de669d7828576569eb4fea5a26}{rtpSocket}};}
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} \mbox{\hyperlink{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}{rtcpSocket}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     sockaddr\_in \mbox{\hyperlink{classUDPHandler_ae97c97f827990902784e635e22effbc2}{rtpAddr}};}
+\DoxyCodeLine{35     sockaddr\_in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}{rtcpAddr}};}
+\DoxyCodeLine{36 \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_UDPHANDLER\_H}}
+
+\end{DoxyCode}

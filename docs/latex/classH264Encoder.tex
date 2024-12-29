@@ -1,0 +1,260 @@
+\hypertarget{classH264Encoder}{}\doxysection{H264\+Encoder Class Reference}
+\label{classH264Encoder}\index{H264Encoder@{H264Encoder}}
+
+
+H264 비디오 프레임을 처리하는 클래스  
+
+
+
+
+{\ttfamily \#include $<$H264\+Encoder.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classH264Encoder_a08ea0897ef62d49086990f8a9e6ef7c3}{H264\+Encoder}} (const char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em 생성자 -\/ 비디오 파일을 열고 메모리에 매핑 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classH264Encoder_a222f93640e29089d63a0e47d8749e765}{$\sim$\+H264\+Encoder}} ()
+\begin{DoxyCompactList}\small\item\em 소멸자 -\/ 할당된 자원 해제 \end{DoxyCompactList}\item 
+std\+::pair$<$ const uint8\+\_\+t $\ast$, int64\+\_\+t $>$ \mbox{\hyperlink{classH264Encoder_ae903d2ce79e9c9e6ea49d67bcb6908a9}{get\+\_\+next\+\_\+frame}} ()
+\begin{DoxyCompactList}\small\item\em 다음 H264 프레임을 가져오는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classH264Encoder_a293e4450d0323f41ab3d1dccce91fa48}{is\+\_\+start\+\_\+code}} (const uint8\+\_\+t $\ast$\+\_\+buffer, int64\+\_\+t \+\_\+buf\+Len, uint8\+\_\+t start\+\_\+code\+\_\+type)
+\begin{DoxyCompactList}\small\item\em H264 start code 여부를 확인하는 정적 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static const uint8\+\_\+t $\ast$ \mbox{\hyperlink{classH264Encoder_a8ab9f745a1e6c9a3e6d692f56af1474d}{find\+\_\+next\+\_\+start\+\_\+code}} (const uint8\+\_\+t $\ast$\+\_\+buffer, const int64\+\_\+t \+\_\+buf\+Len)
+\begin{DoxyCompactList}\small\item\em 파일 디스크립터 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classH264Encoder_ab57b84a3fb754b1262727216f06303d5}{fd}} = -\/1
+\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{classH264Encoder_af6ef0001b61182b67c6c0740601cf2db}{ptr\+\_\+mapped\+\_\+file\+\_\+cur}} = nullptr
+\begin{DoxyCompactList}\small\item\em 현재 매핑된 파일 위치 포인터 \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{classH264Encoder_a8b27e560e952dbe6f881f220654b4569}{ptr\+\_\+mapped\+\_\+file\+\_\+start}} = nullptr
+\begin{DoxyCompactList}\small\item\em 매핑된 파일 시작 포인터 \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{classH264Encoder_a94a29a19f975130856e3a01bf875d0cd}{ptr\+\_\+mapped\+\_\+file\+\_\+end}} = nullptr
+\begin{DoxyCompactList}\small\item\em 매핑된 파일 끝 포인터 \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{classH264Encoder_a818347fbe2037c6adbb641296a09cf4c}{file\+\_\+size}} = 0
+\begin{DoxyCompactList}\small\item\em 파일 크기 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+H264 비디오 프레임을 처리하는 클래스 
+
+H264 포맷의 비디오 파일을 읽고 NAL 단위로 프레임을 추출하는 기능을 제공하는 클래스. mmap을 사용하여 파일을 메모리에 매핑하고, start code를 찾아 NAL 단위로 프레임을 파싱한다. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classH264Encoder_a08ea0897ef62d49086990f8a9e6ef7c3}\label{classH264Encoder_a08ea0897ef62d49086990f8a9e6ef7c3}} 
+\index{H264Encoder@{H264Encoder}!H264Encoder@{H264Encoder}}
+\index{H264Encoder@{H264Encoder}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{H264Encoder()}{H264Encoder()}}
+{\footnotesize\ttfamily H264\+Encoder\+::\+H264\+Encoder (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+생성자 -\/ 비디오 파일을 열고 메모리에 매핑 
+
+\mbox{\hyperlink{classH264Encoder}{H264\+Encoder}} 클래스 생성자
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & 처리할 H264 비디오 파일 경로 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 파일 열기 또는 메모리 매핑 실패 시\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & 처리할 H264 비디오 파일 경로\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item 파일을 읽기 전용으로 열기
+\item 파일 크기 확인
+\item mmap을 사용하여 파일을 메모리에 매핑
+\item 초기 포인터 설정 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 파일 열기 또는 메모리 매핑 실패 시 \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classH264Encoder_a222f93640e29089d63a0e47d8749e765}\label{classH264Encoder_a222f93640e29089d63a0e47d8749e765}} 
+\index{H264Encoder@{H264Encoder}!````~H264Encoder@{$\sim$H264Encoder}}
+\index{````~H264Encoder@{$\sim$H264Encoder}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{$\sim$H264Encoder()}{~H264Encoder()}}
+{\footnotesize\ttfamily H264\+Encoder\+::$\sim$\+H264\+Encoder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+소멸자 -\/ 할당된 자원 해제 
+
+\mbox{\hyperlink{classH264Encoder}{H264\+Encoder}} 클래스 소멸자
+
+
+\begin{DoxyItemize}
+\item 매핑된 메모리 해제
+\item 파일 디스크립터 닫기 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classH264Encoder_a8ab9f745a1e6c9a3e6d692f56af1474d}\label{classH264Encoder_a8ab9f745a1e6c9a3e6d692f56af1474d}} 
+\index{H264Encoder@{H264Encoder}!find\_next\_start\_code@{find\_next\_start\_code}}
+\index{find\_next\_start\_code@{find\_next\_start\_code}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{find\_next\_start\_code()}{find\_next\_start\_code()}}
+{\footnotesize\ttfamily const uint8\+\_\+t $\ast$ H264\+Encoder\+::find\+\_\+next\+\_\+start\+\_\+code (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{\+\_\+buffer,  }\item[{const int64\+\_\+t}]{buffer\+\_\+len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+파일 디스크립터 
+
+다음 start code의 위치를 찾는 정적 메서드
+
+다음 start code의 위치를 찾는 메서드 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+buffer} & start code를 찾을 버퍼 \\
+\hline
+{\em \+\_\+buf\+Len} & 버퍼의 길이 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const uint8\+\_\+t$\ast$ 다음 start code의 위치를 반환
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+buffer} & 검색할 버퍼의 시작 포인터 \\
+\hline
+{\em buffer\+\_\+len} & 버퍼의 길이 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+const uint8\+\_\+t$\ast$ 다음 start code의 위치를 가리키는 포인터 (없으면 nullptr)
+\end{DoxyReturn}
+버퍼 내에서 3바이트 또는 4바이트 start code를 순차적으로 검색 \mbox{\Hypertarget{classH264Encoder_ae903d2ce79e9c9e6ea49d67bcb6908a9}\label{classH264Encoder_ae903d2ce79e9c9e6ea49d67bcb6908a9}} 
+\index{H264Encoder@{H264Encoder}!get\_next\_frame@{get\_next\_frame}}
+\index{get\_next\_frame@{get\_next\_frame}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{get\_next\_frame()}{get\_next\_frame()}}
+{\footnotesize\ttfamily std\+::pair$<$ const uint8\+\_\+t $\ast$, int64\+\_\+t $>$ H264\+Encoder\+::get\+\_\+next\+\_\+frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+다음 H264 프레임을 가져오는 메서드 
+
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$const uint8\+\_\+t $\ast$, int64\+\_\+t$>$ 프레임 데이터 포인터와 크기의 쌍
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item 첫 번째 요소\+: 프레임 데이터의 시작 포인터 (nullptr if end of file)
+\item 두 번째 요소\+: 프레임 데이터의 크기 (바이트)
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+std\+::pair$<$const uint8\+\_\+t $\ast$, int64\+\_\+t$>$ 프레임 데이터 포인터와 크기의 쌍
+\end{DoxyReturn}
+파일에서 다음 NAL 유닛(\+Network Abstraction Layer)을 찾아 반환
+\begin{DoxyItemize}
+\item 정상적인 경우\+: \{프레임 포인터, 프레임 크기\} 반환
+\item 파일 끝\+: \{nullptr, 0\} 반환
+\item 잘못된 start code\+: \{nullptr, -\/1\} 반환 
+\end{DoxyItemize}\mbox{\Hypertarget{classH264Encoder_a293e4450d0323f41ab3d1dccce91fa48}\label{classH264Encoder_a293e4450d0323f41ab3d1dccce91fa48}} 
+\index{H264Encoder@{H264Encoder}!is\_start\_code@{is\_start\_code}}
+\index{is\_start\_code@{is\_start\_code}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{is\_start\_code()}{is\_start\_code()}}
+{\footnotesize\ttfamily bool H264\+Encoder\+::is\+\_\+start\+\_\+code (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{\+\_\+buffer,  }\item[{int64\+\_\+t}]{\+\_\+buf\+Len,  }\item[{uint8\+\_\+t}]{start\+\_\+code\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+H264 start code 여부를 확인하는 정적 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+buffer} & 검사할 버퍼 \\
+\hline
+{\em \+\_\+buf\+Len} & 버퍼의 길이 \\
+\hline
+{\em start\+\_\+code\+\_\+type} & start code 타입 (3 또는 4 바이트) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool start code 여부
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+buffer} & 검사할 버퍼 \\
+\hline
+{\em buffer\+\_\+len} & 버퍼의 길이 \\
+\hline
+{\em start\+\_\+code\+\_\+type} & start code 타입 (3 또는 4 바이트) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool start code 발견 여부
+\end{DoxyReturn}
+H264 start code는 다음 두 가지 형태 중 하나\+:
+\begin{DoxyItemize}
+\item 3바이트\+: 0x000001
+\item 4바이트\+: 0x00000001 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classH264Encoder_ab57b84a3fb754b1262727216f06303d5}\label{classH264Encoder_ab57b84a3fb754b1262727216f06303d5}} 
+\index{H264Encoder@{H264Encoder}!fd@{fd}}
+\index{fd@{fd}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{fd}{fd}}
+{\footnotesize\ttfamily int H264\+Encoder\+::fd = -\/1\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classH264Encoder_a818347fbe2037c6adbb641296a09cf4c}\label{classH264Encoder_a818347fbe2037c6adbb641296a09cf4c}} 
+\index{H264Encoder@{H264Encoder}!file\_size@{file\_size}}
+\index{file\_size@{file\_size}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{file\_size}{file\_size}}
+{\footnotesize\ttfamily int64\+\_\+t H264\+Encoder\+::file\+\_\+size = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+파일 크기 
+
+\mbox{\Hypertarget{classH264Encoder_af6ef0001b61182b67c6c0740601cf2db}\label{classH264Encoder_af6ef0001b61182b67c6c0740601cf2db}} 
+\index{H264Encoder@{H264Encoder}!ptr\_mapped\_file\_cur@{ptr\_mapped\_file\_cur}}
+\index{ptr\_mapped\_file\_cur@{ptr\_mapped\_file\_cur}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{ptr\_mapped\_file\_cur}{ptr\_mapped\_file\_cur}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ H264\+Encoder\+::ptr\+\_\+mapped\+\_\+file\+\_\+cur = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+현재 매핑된 파일 위치 포인터 
+
+\mbox{\Hypertarget{classH264Encoder_a94a29a19f975130856e3a01bf875d0cd}\label{classH264Encoder_a94a29a19f975130856e3a01bf875d0cd}} 
+\index{H264Encoder@{H264Encoder}!ptr\_mapped\_file\_end@{ptr\_mapped\_file\_end}}
+\index{ptr\_mapped\_file\_end@{ptr\_mapped\_file\_end}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{ptr\_mapped\_file\_end}{ptr\_mapped\_file\_end}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ H264\+Encoder\+::ptr\+\_\+mapped\+\_\+file\+\_\+end = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+매핑된 파일 끝 포인터 
+
+\mbox{\Hypertarget{classH264Encoder_a8b27e560e952dbe6f881f220654b4569}\label{classH264Encoder_a8b27e560e952dbe6f881f220654b4569}} 
+\index{H264Encoder@{H264Encoder}!ptr\_mapped\_file\_start@{ptr\_mapped\_file\_start}}
+\index{ptr\_mapped\_file\_start@{ptr\_mapped\_file\_start}!H264Encoder@{H264Encoder}}
+\doxysubsubsection{\texorpdfstring{ptr\_mapped\_file\_start}{ptr\_mapped\_file\_start}}
+{\footnotesize\ttfamily uint8\+\_\+t$\ast$ H264\+Encoder\+::ptr\+\_\+mapped\+\_\+file\+\_\+start = nullptr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+매핑된 파일 시작 포인터 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{H264Encoder_8h}{H264\+Encoder.\+h}}\item 
+src/\mbox{\hyperlink{H264Encoder_8cpp}{H264\+Encoder.\+cpp}}\end{DoxyCompactItemize}

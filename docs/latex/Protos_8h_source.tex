@@ -1,0 +1,44 @@
+\hypertarget{Protos_8h_source}{}\doxysection{Protos.\+h}
+\label{Protos_8h_source}\index{inc/Protos.h@{inc/Protos.h}}
+\mbox{\hyperlink{Protos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef RTSP\_PROTOS\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define RTSP\_PROTOS\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{RTSPServer_8h}{RTSPServer.h}}"{}}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{class }\mbox{\hyperlink{classProtos}{Protos}}}
+\DoxyCodeLine{9 \{}
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \mbox{\hyperlink{classProtos_acf7613838198853f18da16f86d329f19}{Protos}}();}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13     \textcolor{keyword}{struct }\mbox{\hyperlink{structProtos_1_1SenderReport}{SenderReport}} \{}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#if \_\_BYTE\_ORDER == \_\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{15         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a55824be2cacd52f7007caa776ab7fe75}{rc}} : 5;}
+\DoxyCodeLine{16         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_aa3d153e8588c91be97d8d58d73878e93}{p}} : 1;}
+\DoxyCodeLine{17         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a7bffa84d2e904842e3d33288bc666904}{version}} : 2;}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#elif \_\_BYTE\_ORDER == \_\_BIG\_ENDIAN}}
+\DoxyCodeLine{19         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a7bffa84d2e904842e3d33288bc666904}{version}} : 2;}
+\DoxyCodeLine{20         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_aa3d153e8588c91be97d8d58d73878e93}{p}} : 1;}
+\DoxyCodeLine{21         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a55824be2cacd52f7007caa776ab7fe75}{rc}} : 5;}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#error "{}Please fix <bits/endian.h>"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{25         uint8\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a34afc588e5774e170f9b472f4c018b07}{pt}};}
+\DoxyCodeLine{26         uint16\_t \mbox{\hyperlink{structProtos_1_1SenderReport_abfe3e6caad327722d87cb7c63b6a6388}{length}};}
+\DoxyCodeLine{27         uint32\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a902cdb6390ca95c4e6179ad1acfef70c}{ssrc}};}
+\DoxyCodeLine{28         uint32\_t \mbox{\hyperlink{structProtos_1_1SenderReport_adf070d546a33ba13dde8c4fa4f01091c}{ntpTimestampMsw}};}
+\DoxyCodeLine{29         uint32\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a74c601558b37b6984a84e7ba8b2532a2}{ntpTimestampLsw}};}
+\DoxyCodeLine{30         uint32\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a74ba56336d79408650a3cc829acd85de}{rtpTimestamp}};}
+\DoxyCodeLine{31         uint32\_t \mbox{\hyperlink{structProtos_1_1SenderReport_ad2f26b33dd7185821ca9b846cd60b967}{senderPacketCount}};}
+\DoxyCodeLine{32         uint32\_t \mbox{\hyperlink{structProtos_1_1SenderReport_a61a26fb59094e4979f6f87018d7f2cd6}{senderOctetCount}};}
+\DoxyCodeLine{33     \} \mbox{\hyperlink{classProtos_a7b92b3ad2765e4880c2947dea368bfb6}{\_\_attribute\_\_}}((packed));}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{classProtos_acfd49ede177d0deb22367537d10659d3}{CreateSR}}(\mbox{\hyperlink{structProtos_1_1SenderReport}{SenderReport}} *sr, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}{timestamp}}, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} packetCount, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} octetCount, \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} payloadType);}
+\DoxyCodeLine{36 \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_PROTOS\_H}}
+
+\end{DoxyCode}

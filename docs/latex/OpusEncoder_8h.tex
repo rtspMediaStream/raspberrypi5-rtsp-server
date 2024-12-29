@@ -1,0 +1,103 @@
+\hypertarget{OpusEncoder_8h}{}\doxysection{inc/\+Opus\+Encoder.h File Reference}
+\label{OpusEncoder_8h}\index{inc/OpusEncoder.h@{inc/OpusEncoder.h}}
+
+
+Opus 오디오 인코딩 클래스 헤더  
+
+
+{\ttfamily \#include $<$opus/opus.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for Opus\+Encoder.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=233pt]{OpusEncoder_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{OpusEncoder_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classOpusEncoder}{Opus\+Encoder}}
+\begin{DoxyCompactList}\small\item\em Opus 오디오 인코딩 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{OpusEncoder_8h_a72ae4f133e6d7150c2c1bff2182d98be}{OPUS\+\_\+\+SAMPLE\+\_\+\+RATE}} = 48000
+\begin{DoxyCompactList}\small\item\em 샘플링 레이트 (Hz) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{OpusEncoder_8h_afd083c06282722e504c7bf9bea96af65}{OPUS\+\_\+\+CHANNELS}} = 2
+\begin{DoxyCompactList}\small\item\em 오디오 채널 수 (2\+: 스테레오) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{OpusEncoder_8h_a2e789e82277b7291b82795f44f594a69}{OPUS\+\_\+\+FRAME\+\_\+\+SIZE}} = 960
+\begin{DoxyCompactList}\small\item\em 프레임 크기 (20ms) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{OpusEncoder_8h_a5a39fc65449f3c59d62b1cf73a3834c1}{APPLICATION}} = OPUS\+\_\+\+APPLICATION\+\_\+\+AUDIO
+\begin{DoxyCompactList}\small\item\em Opus 애플리케이션 모드 (음악 및 음성) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{OpusEncoder_8h_a0c30828d4cc483a0fbf6de0696834909}{MAX\+\_\+\+PACKET\+\_\+\+SIZE}} = 1500
+\begin{DoxyCompactList}\small\item\em 최대 패킷 크기 (bytes) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Opus 오디오 인코딩 클래스 헤더 
+
+Opus 코덱을 사용하여 오디오 데이터를 인코딩하는 기능을 제공하는 클래스
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{OpusEncoder_8h_a5a39fc65449f3c59d62b1cf73a3834c1}\label{OpusEncoder_8h_a5a39fc65449f3c59d62b1cf73a3834c1}} 
+\index{OpusEncoder.h@{OpusEncoder.h}!APPLICATION@{APPLICATION}}
+\index{APPLICATION@{APPLICATION}!OpusEncoder.h@{OpusEncoder.h}}
+\doxysubsubsection{\texorpdfstring{APPLICATION}{APPLICATION}}
+{\footnotesize\ttfamily const int APPLICATION = OPUS\+\_\+\+APPLICATION\+\_\+\+AUDIO\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Opus 애플리케이션 모드 (음악 및 음성) 
+
+\mbox{\Hypertarget{OpusEncoder_8h_a0c30828d4cc483a0fbf6de0696834909}\label{OpusEncoder_8h_a0c30828d4cc483a0fbf6de0696834909}} 
+\index{OpusEncoder.h@{OpusEncoder.h}!MAX\_PACKET\_SIZE@{MAX\_PACKET\_SIZE}}
+\index{MAX\_PACKET\_SIZE@{MAX\_PACKET\_SIZE}!OpusEncoder.h@{OpusEncoder.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PACKET\_SIZE}{MAX\_PACKET\_SIZE}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+PACKET\+\_\+\+SIZE = 1500\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+최대 패킷 크기 (bytes) 
+
+\mbox{\Hypertarget{OpusEncoder_8h_afd083c06282722e504c7bf9bea96af65}\label{OpusEncoder_8h_afd083c06282722e504c7bf9bea96af65}} 
+\index{OpusEncoder.h@{OpusEncoder.h}!OPUS\_CHANNELS@{OPUS\_CHANNELS}}
+\index{OPUS\_CHANNELS@{OPUS\_CHANNELS}!OpusEncoder.h@{OpusEncoder.h}}
+\doxysubsubsection{\texorpdfstring{OPUS\_CHANNELS}{OPUS\_CHANNELS}}
+{\footnotesize\ttfamily const int OPUS\+\_\+\+CHANNELS = 2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+오디오 채널 수 (2\+: 스테레오) 
+
+\mbox{\Hypertarget{OpusEncoder_8h_a2e789e82277b7291b82795f44f594a69}\label{OpusEncoder_8h_a2e789e82277b7291b82795f44f594a69}} 
+\index{OpusEncoder.h@{OpusEncoder.h}!OPUS\_FRAME\_SIZE@{OPUS\_FRAME\_SIZE}}
+\index{OPUS\_FRAME\_SIZE@{OPUS\_FRAME\_SIZE}!OpusEncoder.h@{OpusEncoder.h}}
+\doxysubsubsection{\texorpdfstring{OPUS\_FRAME\_SIZE}{OPUS\_FRAME\_SIZE}}
+{\footnotesize\ttfamily const int OPUS\+\_\+\+FRAME\+\_\+\+SIZE = 960\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+프레임 크기 (20ms) 
+
+\mbox{\Hypertarget{OpusEncoder_8h_a72ae4f133e6d7150c2c1bff2182d98be}\label{OpusEncoder_8h_a72ae4f133e6d7150c2c1bff2182d98be}} 
+\index{OpusEncoder.h@{OpusEncoder.h}!OPUS\_SAMPLE\_RATE@{OPUS\_SAMPLE\_RATE}}
+\index{OPUS\_SAMPLE\_RATE@{OPUS\_SAMPLE\_RATE}!OpusEncoder.h@{OpusEncoder.h}}
+\doxysubsubsection{\texorpdfstring{OPUS\_SAMPLE\_RATE}{OPUS\_SAMPLE\_RATE}}
+{\footnotesize\ttfamily const int OPUS\+\_\+\+SAMPLE\+\_\+\+RATE = 48000\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+샘플링 레이트 (Hz) 
+

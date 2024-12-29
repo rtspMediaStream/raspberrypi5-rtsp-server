@@ -1,0 +1,35 @@
+\hypertarget{rtp__packet_8hpp_source}{}\doxysection{rtp\+\_\+packet.\+hpp}
+\label{rtp__packet_8hpp_source}\index{inc/rtp\_packet.hpp@{inc/rtp\_packet.hpp}}
+\mbox{\hyperlink{rtp__packet_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{rtp__header_8hpp}{rtp\_header.hpp}}>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classRtpPacket}{RtpPacket}}}
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12 \textcolor{keyword}{private}:}
+\DoxyCodeLine{13     \mbox{\hyperlink{classRtpHeader}{RtpHeader}} \mbox{\hyperlink{classRtpPacket_aef4670c883f19f1f44abb05861b8d6a3}{header}};}
+\DoxyCodeLine{14     uint8\_t \mbox{\hyperlink{classRtpPacket_aa7ea63bc04299e248b87f9091d0df045}{RTP\_Payload}}[\mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}} + \mbox{\hyperlink{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\_RTP\_DATA\_SIZE}}]\{0\};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18     \textcolor{keyword}{explicit} \mbox{\hyperlink{classRtpPacket_a601db689c8177af5d152bdf84365a535}{RtpPacket}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRtpHeader}{RtpHeader}} \&rtpHeader);}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \mbox{\hyperlink{classRtpPacket_a2d4bc8498111e0bf7148ce19487f2a29}{RtpPacket}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRtpPacket}{RtpPacket}} \&) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{21     \mbox{\hyperlink{classRtpPacket_ab468a99d48ee753bf33161e872c7b2d4}{\string~RtpPacket}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRtpPacket_aea208d98d3474151bd256e5efff2ed9c}{load\_data}}(\textcolor{keyword}{const} uint8\_t *data, int64\_t dataSize, int64\_t bias = 0);}
+\DoxyCodeLine{24     int64\_t \mbox{\hyperlink{classRtpPacket_a4663060484bee4a728214a8360868d3d}{rtp\_sendto}}(\textcolor{keywordtype}{int} sockfd, int64\_t \_bufferLen, \textcolor{keywordtype}{int} flags, \textcolor{keyword}{const} sockaddr *to);}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \mbox{\hyperlink{classRtpHeader}{RtpHeader}}\& \mbox{\hyperlink{classRtpPacket_a53ec436a07a1c945d23e70f889fdc599}{get\_header}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classRtpPacket_aef4670c883f19f1f44abb05861b8d6a3}{header}}; \}}
+\DoxyCodeLine{27     uint8\_t *\mbox{\hyperlink{classRtpPacket_ae3cb52f4417ebeb7a1faf7f7a0354e56}{get\_payload}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classRtpPacket_aa7ea63bc04299e248b87f9091d0df045}{RTP\_Payload}}; \}}
+\DoxyCodeLine{28 \};}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#pragma pack()}}
+
+\end{DoxyCode}

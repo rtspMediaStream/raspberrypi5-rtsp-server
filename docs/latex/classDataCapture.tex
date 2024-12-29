@@ -1,0 +1,250 @@
+\hypertarget{classDataCapture}{}\doxysection{Data\+Capture Class Reference}
+\label{classDataCapture}\index{DataCapture@{DataCapture}}
+
+
+미디어 프레임 캡처 및 버퍼 관리를 위한 싱글톤 클래스  
+
+
+
+
+{\ttfamily \#include $<$Data\+Capture.\+h$>$}
+
+
+
+Inheritance diagram for Data\+Capture\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{classDataCapture__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classDataCapture_a66fdb6c70cd8f8a49ac64fe4cbc13fff}{is\+Empty\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em 버퍼가 비어있는지 확인 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDataCapture_af60c9ec57acdf46523573926d146d943}{is\+Full\+Buffer}} ()
+\begin{DoxyCompactList}\small\item\em 버퍼가 가득 찼는지 확인 \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classDataCapture_ade8a8e0426287f848090d86ee1482040}{push\+Frame}} (const \mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} \&frame)
+\begin{DoxyCompactList}\small\item\em 프레임 데이터를 버퍼에 저장하는 메서드 \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} \mbox{\hyperlink{classDataCapture_aa5aa6aed1e507cabe27568e261d27994}{pop\+Frame}} ()
+\begin{DoxyCompactList}\small\item\em 버퍼에서 프레임 데이터를 반환하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classDataCapture}{Data\+Capture}} \& \mbox{\hyperlink{classDataCapture_a8a2011bfb043cf3b7c35612d2002d68c}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em 싱글톤 인스턴스를 반환하는 정적 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{classDataCapture_ad77b6624080b754c636a506e532e583f}{buffer\+\_\+max\+\_\+size}} = 10
+\begin{DoxyCompactList}\small\item\em 프레임 버퍼 최대 크기 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDataCapture_ab32a20f44bdec07f01ea7af5beab3839}{Data\+Capture}} ()
+\begin{DoxyCompactList}\small\item\em 생성자 -\/ 버퍼 초기화 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classDataCapture_ac56ecdbf89fa37b6d6888001472ddce8}{$\sim$\+Data\+Capture}} ()
+\begin{DoxyCompactList}\small\item\em 소멸자 -\/ 할당된 메모리 해제 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} $>$ \mbox{\hyperlink{classDataCapture_a6a792815a7654939c84e5c63f37c3dea}{frame\+Buffer}}
+\begin{DoxyCompactList}\small\item\em 프레임 데이터를 저장하는 버퍼 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataCapture_ab5e56bdaa6195a873e18e356d6220667}{head}} = 0
+\begin{DoxyCompactList}\small\item\em 버퍼의 시작 위치 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataCapture_aa697933a8285a95f563c8a7c235faa80}{tail}} = 0
+\begin{DoxyCompactList}\small\item\em 버퍼의 끝 위치 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataCapture_a38bd97e3697ed19e1ed7cdbb8bb56694}{buffer\+\_\+size}} = 0
+\begin{DoxyCompactList}\small\item\em 버퍼에 저장된 프레임 수 \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{classDataCapture_ad362952f7455e6e51c392fb5e816b156}{buffer\+Mutex}}
+\begin{DoxyCompactList}\small\item\em 버퍼에 대한 스레드 안전성을 보장하는 뮤텍스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+미디어 프레임 캡처 및 버퍼 관리를 위한 싱글톤 클래스 
+
+순환 큐 기반의 프레임 버퍼 관리 시스템을 구현한 클래스로, 프레임 데이터를 캡처하고 버퍼에 저장하며, 필요 시 프레임 데이터를 반환하는 기능을 제공한다. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDataCapture_ab32a20f44bdec07f01ea7af5beab3839}\label{classDataCapture_ab32a20f44bdec07f01ea7af5beab3839}} 
+\index{DataCapture@{DataCapture}!DataCapture@{DataCapture}}
+\index{DataCapture@{DataCapture}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{DataCapture()}{DataCapture()}}
+{\footnotesize\ttfamily Data\+Capture\+::\+Data\+Capture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+생성자 -\/ 버퍼 초기화 
+
+\mbox{\Hypertarget{classDataCapture_ac56ecdbf89fa37b6d6888001472ddce8}\label{classDataCapture_ac56ecdbf89fa37b6d6888001472ddce8}} 
+\index{DataCapture@{DataCapture}!````~DataCapture@{$\sim$DataCapture}}
+\index{````~DataCapture@{$\sim$DataCapture}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{$\sim$DataCapture()}{~DataCapture()}}
+{\footnotesize\ttfamily Data\+Capture\+::$\sim$\+Data\+Capture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+소멸자 -\/ 할당된 메모리 해제 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataCapture_a8a2011bfb043cf3b7c35612d2002d68c}\label{classDataCapture_a8a2011bfb043cf3b7c35612d2002d68c}} 
+\index{DataCapture@{DataCapture}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classDataCapture}{Data\+Capture}} \& Data\+Capture\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+싱글톤 인스턴스를 반환하는 정적 메서드 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classDataCapture}{Data\+Capture}}\& 싱글톤 인스턴스에 대한 참조 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataCapture_a66fdb6c70cd8f8a49ac64fe4cbc13fff}\label{classDataCapture_a66fdb6c70cd8f8a49ac64fe4cbc13fff}} 
+\index{DataCapture@{DataCapture}!isEmptyBuffer@{isEmptyBuffer}}
+\index{isEmptyBuffer@{isEmptyBuffer}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{isEmptyBuffer()}{isEmptyBuffer()}}
+{\footnotesize\ttfamily bool Data\+Capture\+::is\+Empty\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+버퍼가 비어있는지 확인 
+
+\begin{DoxyReturn}{Returns}
+true 버퍼가 비어있는 경우 
+
+false 버퍼에 데이터가 있는 경우 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataCapture_af60c9ec57acdf46523573926d146d943}\label{classDataCapture_af60c9ec57acdf46523573926d146d943}} 
+\index{DataCapture@{DataCapture}!isFullBuffer@{isFullBuffer}}
+\index{isFullBuffer@{isFullBuffer}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{isFullBuffer()}{isFullBuffer()}}
+{\footnotesize\ttfamily bool Data\+Capture\+::is\+Full\+Buffer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+버퍼가 가득 찼는지 확인 
+
+\begin{DoxyReturn}{Returns}
+true 버퍼가 가득 찬 경우 
+
+false 버퍼에 여유 공간이 있는 경우 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataCapture_aa5aa6aed1e507cabe27568e261d27994}\label{classDataCapture_aa5aa6aed1e507cabe27568e261d27994}} 
+\index{DataCapture@{DataCapture}!popFrame@{popFrame}}
+\index{popFrame@{popFrame}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{popFrame()}{popFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} Data\+Capture\+::pop\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+버퍼에서 프레임 데이터를 반환하는 메서드 
+
+버퍼에서 프레임을 추출하는 메서드
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} 버퍼에서 반환된 프레임 데이터
+
+\mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} 추출된 프레임 데이터
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item 버퍼가 비어있는 경우 NULL 반환
+\item FIFO 방식으로 가장 오래된 프레임을 반환
+\item 스레드 안전성을 위한 뮤텍스 사용 
+\end{DoxyItemize}\mbox{\Hypertarget{classDataCapture_ade8a8e0426287f848090d86ee1482040}\label{classDataCapture_ade8a8e0426287f848090d86ee1482040}} 
+\index{DataCapture@{DataCapture}!pushFrame@{pushFrame}}
+\index{pushFrame@{pushFrame}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{pushFrame()}{pushFrame()}}
+{\footnotesize\ttfamily void Data\+Capture\+::push\+Frame (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}} \&}]{frame }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+프레임 데이터를 버퍼에 저장하는 메서드 
+
+프레임을 버퍼에 추가하는 메서드
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & 저장할 프레임 데이터\\
+\hline
+{\em frame} & 추가할 프레임 데이터\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item 버퍼가 가득 차지 않은 경우만 프레임 추가
+\item 필요시 새로운 메모리 할당 또는 기존 메모리 재사용
+\item 스레드 안전성을 위한 뮤텍스 사용 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classDataCapture_ad77b6624080b754c636a506e532e583f}\label{classDataCapture_ad77b6624080b754c636a506e532e583f}} 
+\index{DataCapture@{DataCapture}!buffer\_max\_size@{buffer\_max\_size}}
+\index{buffer\_max\_size@{buffer\_max\_size}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{buffer\_max\_size}{buffer\_max\_size}}
+{\footnotesize\ttfamily const int Data\+Capture\+::buffer\+\_\+max\+\_\+size = 10\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+프레임 버퍼 최대 크기 
+
+\mbox{\Hypertarget{classDataCapture_a38bd97e3697ed19e1ed7cdbb8bb56694}\label{classDataCapture_a38bd97e3697ed19e1ed7cdbb8bb56694}} 
+\index{DataCapture@{DataCapture}!buffer\_size@{buffer\_size}}
+\index{buffer\_size@{buffer\_size}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{buffer\_size}{buffer\_size}}
+{\footnotesize\ttfamily int Data\+Capture\+::buffer\+\_\+size = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+버퍼에 저장된 프레임 수 
+
+\mbox{\Hypertarget{classDataCapture_ad362952f7455e6e51c392fb5e816b156}\label{classDataCapture_ad362952f7455e6e51c392fb5e816b156}} 
+\index{DataCapture@{DataCapture}!bufferMutex@{bufferMutex}}
+\index{bufferMutex@{bufferMutex}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{bufferMutex}{bufferMutex}}
+{\footnotesize\ttfamily std\+::mutex Data\+Capture\+::buffer\+Mutex\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+버퍼에 대한 스레드 안전성을 보장하는 뮤텍스 
+
+\mbox{\Hypertarget{classDataCapture_a6a792815a7654939c84e5c63f37c3dea}\label{classDataCapture_a6a792815a7654939c84e5c63f37c3dea}} 
+\index{DataCapture@{DataCapture}!frameBuffer@{frameBuffer}}
+\index{frameBuffer@{frameBuffer}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{frameBuffer}{frameBuffer}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{structDataCaptureFrame}{Data\+Capture\+Frame}}$>$ Data\+Capture\+::frame\+Buffer\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+프레임 데이터를 저장하는 버퍼 
+
+\mbox{\Hypertarget{classDataCapture_ab5e56bdaa6195a873e18e356d6220667}\label{classDataCapture_ab5e56bdaa6195a873e18e356d6220667}} 
+\index{DataCapture@{DataCapture}!head@{head}}
+\index{head@{head}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily int Data\+Capture\+::head = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+버퍼의 시작 위치 
+
+\mbox{\Hypertarget{classDataCapture_aa697933a8285a95f563c8a7c235faa80}\label{classDataCapture_aa697933a8285a95f563c8a7c235faa80}} 
+\index{DataCapture@{DataCapture}!tail@{tail}}
+\index{tail@{tail}!DataCapture@{DataCapture}}
+\doxysubsubsection{\texorpdfstring{tail}{tail}}
+{\footnotesize\ttfamily int Data\+Capture\+::tail = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+버퍼의 끝 위치 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{DataCapture_8h}{Data\+Capture.\+h}}\item 
+src/\mbox{\hyperlink{DataCapture_8cpp}{Data\+Capture.\+cpp}}\end{DoxyCompactItemize}
