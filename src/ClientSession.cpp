@@ -7,7 +7,7 @@
  * This project is licensed under the MIT License - see the LICENSE file for details
  */
 
-#include "utils.h"
+#include "Global.h"
 #include "ClientSession.h"
 #include "RequestHandler.h"
 #include "UDPHandler.h"
@@ -25,7 +25,7 @@
  *   - RTP/RTCP 포트를 초기값(-1)으로 설정
  */
 ClientSession::ClientSession(const int tcpSocket, const std::string ip) {
-    this->id = (int)utils::GetRanNum(16);
+    this->id = (int)GetRanNum(16);
     this->version = id;
     this->tcpSocket = tcpSocket;
     this->ip = ip;

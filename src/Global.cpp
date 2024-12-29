@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "Global.h"
 
 #include <chrono>
 #include <random>
@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-uint64_t utils::GetTime() {
+uint64_t GetTime() {
     auto now = std::chrono::system_clock::now();
     auto msSinceEpoch = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count();
     uint32_t ntpSeconds = (msSinceEpoch / 1000) + 2208988800U; // 1970 to 1900
@@ -16,7 +16,7 @@ uint64_t utils::GetTime() {
     return ntpTime;
 }
 
-uint32_t utils::GetRanNum(int n) {
+uint32_t GetRanNum(int n) {
     std::random_device rd; // make random seed
     std::mt19937 generator(rd()); // init random number generator
     if (n == 32) {
@@ -30,7 +30,7 @@ uint32_t utils::GetRanNum(int n) {
     return 0;
 }
 
-std::string utils::GetServerIP() {
+std::string GetServerIP() {
     char hostbuffer[256];
     char *IPbuffer;
     struct hostent *host_entry;

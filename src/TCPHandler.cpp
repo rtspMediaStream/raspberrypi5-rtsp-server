@@ -1,5 +1,5 @@
 #include "TCPHandler.h"
-#include "global.h"
+#include "Global.h"
 
 #include <string>
 #include <cstring>

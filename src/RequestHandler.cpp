@@ -1,10 +1,9 @@
-#include "utils.h"
 #include "RequestHandler.h"
 #include "TCPHandler.h"
 #include "ClientSession.h"
 #include "MediaStreamHandler.h"
 #include "UDPHandler.h"
-#include "global.h"
+#include "Global.h"
 
 #include <iostream>
 #include <string>
@@ -120,7 +119,7 @@ void RequestHandler::HandleOptionsRequest(const int cseq) {
 }
 
 void RequestHandler::HandleDescribeRequest(const std::string& request, const int cseq) {
-    std::string ip = utils::GetServerIP();
+    std::string ip = GetServerIP();
     std::string sdp = "";
     std::string response = "";
 
