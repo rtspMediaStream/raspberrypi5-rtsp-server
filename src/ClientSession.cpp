@@ -20,13 +20,14 @@
  * @param ip 클라이언트의 IP 주소
  * @details
  *   - 보안과 고유한 세션 ID를 위해 랜덤하게 생성
- *   - 세션 버전 초기화
+ *   - SDP 규격에 따라 세션 ID와 세션 버전에 동일한 값을 사용
+ *     (RFC 4566 - 5.2. Origin ("o=") 참조)
  *   - TCP 소켓과 IP 주소 설정
  *   - RTP/RTCP 포트를 초기값(-1)으로 설정
  */
 ClientSession::ClientSession(const int tcpSocket, const std::string ip) {
-    this->id = (int)GetRanNum(16);
-    this->version = id;
+    this->id = (int)GetRanNum(16);  // 랜덤한 세션 ID 생성
+    this->version = id;             // 세션 버전은 세션 ID와 동일하게 설정
     this->tcpSocket = tcpSocket;
     this->ip = ip;
 
@@ -36,6 +37,6 @@ ClientSession::ClientSession(const int tcpSocket, const std::string ip) {
 
 /**
  * @brief 세션 버전을 반환하는 메서드
- * @return int 현재 세션의 버전 번호
+ * @return int 현재 세션의 버전 번호 (세션 ID와 동일한 값)
  */
 int ClientSession::GetVersion() const { return this->version; }
