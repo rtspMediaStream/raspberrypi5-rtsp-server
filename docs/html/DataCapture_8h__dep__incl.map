@@ -1,0 +1,11 @@
+<map id="inc/DataCapture.h" name="inc/DataCapture.h">
+<area shape="rect" id="node1" title="미디어 프레임 캡처 및 버퍼 관리 클래스 헤더" alt="" coords="529,5,668,32"/>
+<area shape="rect" id="node2" href="$AudioCapture_8h.html" title=" " alt="" coords="73,80,236,121"/>
+<area shape="rect" id="node4" href="$AudioServer_2main_8cpp.html" title=" " alt="" coords="192,169,355,211"/>
+<area shape="rect" id="node5" href="$FFmpegEncoder_8cpp.html" title=" " alt="" coords="311,80,487,121"/>
+<area shape="rect" id="node6" href="$CameraServer_2main_8cpp.html" title=" " alt="" coords="511,80,687,121"/>
+<area shape="rect" id="node7" href="$VideoServer_2main_8cpp.html" title=" " alt="" coords="711,80,873,121"/>
+<area shape="rect" id="node8" href="$DataCapture_8cpp.html" title="DataCapture 클래스의 구현부" alt="" coords="897,87,1052,114"/>
+<area shape="rect" id="node9" href="$MediaStreamHandler_8cpp.html" title="MediaStreamHandler 클래스의 구현부" alt="" coords="1077,87,1286,114"/>
+<area shape="rect" id="node3" href="$AudioCapture_8cpp.html" title=" " alt="" coords="5,169,168,211"/>
+</map>

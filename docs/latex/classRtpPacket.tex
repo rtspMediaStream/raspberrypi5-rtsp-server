@@ -1,0 +1,118 @@
+\hypertarget{classRtpPacket}{}\doxysection{Rtp\+Packet Class Reference}
+\label{classRtpPacket}\index{RtpPacket@{RtpPacket}}
+
+
+RTP 패킷 관리를 위한 클래스  
+
+
+
+
+{\ttfamily \#include $<$rtp\+\_\+packet.\+hpp$>$}
+
+
+
+Collaboration diagram for Rtp\+Packet\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{classRtpPacket__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRtpPacket_a601db689c8177af5d152bdf84365a535}{Rtp\+Packet}} (const \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \&rtp\+Header)
+\item 
+\mbox{\hyperlink{classRtpPacket_a2d4bc8498111e0bf7148ce19487f2a29}{Rtp\+Packet}} (const \mbox{\hyperlink{classRtpPacket}{Rtp\+Packet}} \&)=default
+\item 
+\mbox{\hyperlink{classRtpPacket_ab468a99d48ee753bf33161e872c7b2d4}{$\sim$\+Rtp\+Packet}} ()=default
+\item 
+void \mbox{\hyperlink{classRtpPacket_aea208d98d3474151bd256e5efff2ed9c}{load\+\_\+data}} (const uint8\+\_\+t $\ast$data, int64\+\_\+t data\+Size, int64\+\_\+t bias=0)
+\item 
+int64\+\_\+t \mbox{\hyperlink{classRtpPacket_a4663060484bee4a728214a8360868d3d}{rtp\+\_\+sendto}} (int sockfd, int64\+\_\+t \+\_\+buffer\+Len, int flags, const sockaddr $\ast$to)
+\item 
+\mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \& \mbox{\hyperlink{classRtpPacket_a53ec436a07a1c945d23e70f889fdc599}{get\+\_\+header}} ()
+\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{classRtpPacket_ae3cb52f4417ebeb7a1faf7f7a0354e56}{get\+\_\+payload}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \mbox{\hyperlink{classRtpPacket_aef4670c883f19f1f44abb05861b8d6a3}{header}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpPacket_aa7ea63bc04299e248b87f9091d0df045}{RTP\+\_\+\+Payload}} \mbox{[}\mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}+\mbox{\hyperlink{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]} \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTP 패킷 관리를 위한 클래스 
+
+실제 구현은 rtp\+\_\+packet.\+hpp에 정의되어 있으며, RTP 패킷의 생성, 관리, 전송 클래스 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRtpPacket_a601db689c8177af5d152bdf84365a535}\label{classRtpPacket_a601db689c8177af5d152bdf84365a535}} 
+\index{RtpPacket@{RtpPacket}!RtpPacket@{RtpPacket}}
+\index{RtpPacket@{RtpPacket}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{RtpPacket()}{RtpPacket()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Rtp\+Packet\+::\+Rtp\+Packet (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \&}]{rtp\+Header }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classRtpPacket_a2d4bc8498111e0bf7148ce19487f2a29}\label{classRtpPacket_a2d4bc8498111e0bf7148ce19487f2a29}} 
+\index{RtpPacket@{RtpPacket}!RtpPacket@{RtpPacket}}
+\index{RtpPacket@{RtpPacket}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{RtpPacket()}{RtpPacket()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Rtp\+Packet\+::\+Rtp\+Packet (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRtpPacket}{Rtp\+Packet}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classRtpPacket_ab468a99d48ee753bf33161e872c7b2d4}\label{classRtpPacket_ab468a99d48ee753bf33161e872c7b2d4}} 
+\index{RtpPacket@{RtpPacket}!````~RtpPacket@{$\sim$RtpPacket}}
+\index{````~RtpPacket@{$\sim$RtpPacket}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{$\sim$RtpPacket()}{~RtpPacket()}}
+{\footnotesize\ttfamily Rtp\+Packet\+::$\sim$\+Rtp\+Packet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRtpPacket_a53ec436a07a1c945d23e70f889fdc599}\label{classRtpPacket_a53ec436a07a1c945d23e70f889fdc599}} 
+\index{RtpPacket@{RtpPacket}!get\_header@{get\_header}}
+\index{get\_header@{get\_header}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \& Rtp\+Packet\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpPacket_ae3cb52f4417ebeb7a1faf7f7a0354e56}\label{classRtpPacket_ae3cb52f4417ebeb7a1faf7f7a0354e56}} 
+\index{RtpPacket@{RtpPacket}!get\_payload@{get\_payload}}
+\index{get\_payload@{get\_payload}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{get\_payload()}{get\_payload()}}
+{\footnotesize\ttfamily uint8\+\_\+t $\ast$ Rtp\+Packet\+::get\+\_\+payload (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpPacket_aea208d98d3474151bd256e5efff2ed9c}\label{classRtpPacket_aea208d98d3474151bd256e5efff2ed9c}} 
+\index{RtpPacket@{RtpPacket}!load\_data@{load\_data}}
+\index{load\_data@{load\_data}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{load\_data()}{load\_data()}}
+{\footnotesize\ttfamily void Rtp\+Packet\+::load\+\_\+data (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{data,  }\item[{int64\+\_\+t}]{data\+Size,  }\item[{int64\+\_\+t}]{bias = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRtpPacket_a4663060484bee4a728214a8360868d3d}\label{classRtpPacket_a4663060484bee4a728214a8360868d3d}} 
+\index{RtpPacket@{RtpPacket}!rtp\_sendto@{rtp\_sendto}}
+\index{rtp\_sendto@{rtp\_sendto}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{rtp\_sendto()}{rtp\_sendto()}}
+{\footnotesize\ttfamily int64\+\_\+t Rtp\+Packet\+::rtp\+\_\+sendto (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{int64\+\_\+t}]{\+\_\+buffer\+Len,  }\item[{int}]{flags,  }\item[{const sockaddr $\ast$}]{to }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRtpPacket_aef4670c883f19f1f44abb05861b8d6a3}\label{classRtpPacket_aef4670c883f19f1f44abb05861b8d6a3}} 
+\index{RtpPacket@{RtpPacket}!header@{header}}
+\index{header@{header}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{header}{header}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} Rtp\+Packet\+::header\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpPacket_aa7ea63bc04299e248b87f9091d0df045}\label{classRtpPacket_aa7ea63bc04299e248b87f9091d0df045}} 
+\index{RtpPacket@{RtpPacket}!RTP\_Payload@{RTP\_Payload}}
+\index{RTP\_Payload@{RTP\_Payload}!RtpPacket@{RtpPacket}}
+\doxysubsubsection{\texorpdfstring{RTP\_Payload}{RTP\_Payload}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Packet\+::\+RTP\+\_\+\+Payload\mbox{[}\mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}+\mbox{\hyperlink{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]} \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{rtp__packet_8hpp}{rtp\+\_\+packet.\+hpp}}\item 
+src/\mbox{\hyperlink{rtp__packet_8cpp}{rtp\+\_\+packet.\+cpp}}\end{DoxyCompactItemize}

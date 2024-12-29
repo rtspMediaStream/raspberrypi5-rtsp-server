@@ -1,0 +1,161 @@
+\hypertarget{classTCPHandler}{}\doxysection{TCPHandler Class Reference}
+\label{classTCPHandler}\index{TCPHandler@{TCPHandler}}
+
+
+{\ttfamily \#include $<$TCPHandler.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}{TCPHandler}} (const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&)=delete
+\item 
+\mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& \mbox{\hyperlink{classTCPHandler_a011aac5db737403ed5b22b69a8479499}{operator=}} (const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&)=delete
+\item 
+void \mbox{\hyperlink{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}{Create\+TCPSocket}} ()
+\item 
+int \mbox{\hyperlink{classTCPHandler_abce89659421235566b3f28c80707b502}{Accept\+Client\+Connection}} (std\+::string \&\+\_\+client\+Ip)
+\item 
+void \mbox{\hyperlink{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}{Close\+Client\+Connection}} ()
+\item 
+std\+::string \mbox{\hyperlink{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}{Receive\+RTSPRequest}} (int session\+Id)
+\item 
+void \mbox{\hyperlink{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}{Send\+RTSPResponse}} (int client\+Socket, std\+::string \&response)
+\item 
+int \& \mbox{\hyperlink{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}{Get\+TCPSocket}} ()
+\item 
+sockaddr\+\_\+in \& \mbox{\hyperlink{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}{Get\+TCPAddr}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& \mbox{\hyperlink{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}{Get\+Instance}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}{TCPHandler}} ()
+\item 
+\mbox{\hyperlink{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}{$\sim$\+TCPHandler}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classTCPHandler_a705214e294e4e7fb56f667499784cfae}{tcp\+Port}}
+\item 
+int \mbox{\hyperlink{classTCPHandler_a70c042292e2cf941369256d8affc7c74}{tcp\+Socket}}
+\item 
+sockaddr\+\_\+in \mbox{\hyperlink{classTCPHandler_a294fc26391c01530d299281f791fd728}{tcp\+Addr}}
+\item 
+std\+::unordered\+\_\+map$<$ int, int $>$ \mbox{\hyperlink{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}{socket\+Table}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}\label{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}} 
+\index{TCPHandler@{TCPHandler}!TCPHandler@{TCPHandler}}
+\index{TCPHandler@{TCPHandler}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{TCPHandler()}{TCPHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily TCPHandler\+::\+TCPHandler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}\label{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}} 
+\index{TCPHandler@{TCPHandler}!TCPHandler@{TCPHandler}}
+\index{TCPHandler@{TCPHandler}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{TCPHandler()}{TCPHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily TCPHandler\+::\+TCPHandler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}\label{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}} 
+\index{TCPHandler@{TCPHandler}!````~TCPHandler@{$\sim$TCPHandler}}
+\index{````~TCPHandler@{$\sim$TCPHandler}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{$\sim$TCPHandler()}{~TCPHandler()}}
+{\footnotesize\ttfamily TCPHandler\+::$\sim$\+TCPHandler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTCPHandler_abce89659421235566b3f28c80707b502}\label{classTCPHandler_abce89659421235566b3f28c80707b502}} 
+\index{TCPHandler@{TCPHandler}!AcceptClientConnection@{AcceptClientConnection}}
+\index{AcceptClientConnection@{AcceptClientConnection}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{AcceptClientConnection()}{AcceptClientConnection()}}
+{\footnotesize\ttfamily int TCPHandler\+::\+Accept\+Client\+Connection (\begin{DoxyParamCaption}\item[{std\+::string \&}]{\+\_\+client\+Ip }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}\label{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}} 
+\index{TCPHandler@{TCPHandler}!CloseClientConnection@{CloseClientConnection}}
+\index{CloseClientConnection@{CloseClientConnection}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{CloseClientConnection()}{CloseClientConnection()}}
+{\footnotesize\ttfamily void TCPHandler\+::\+Close\+Client\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}\label{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}} 
+\index{TCPHandler@{TCPHandler}!CreateTCPSocket@{CreateTCPSocket}}
+\index{CreateTCPSocket@{CreateTCPSocket}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{CreateTCPSocket()}{CreateTCPSocket()}}
+{\footnotesize\ttfamily void TCPHandler\+::\+Create\+TCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}\label{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}} 
+\index{TCPHandler@{TCPHandler}!GetInstance@{GetInstance}}
+\index{GetInstance@{GetInstance}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& TCPHandler\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}\label{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}} 
+\index{TCPHandler@{TCPHandler}!GetTCPAddr@{GetTCPAddr}}
+\index{GetTCPAddr@{GetTCPAddr}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{GetTCPAddr()}{GetTCPAddr()}}
+{\footnotesize\ttfamily sockaddr\+\_\+in \& TCPHandler\+::\+Get\+TCPAddr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}\label{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}} 
+\index{TCPHandler@{TCPHandler}!GetTCPSocket@{GetTCPSocket}}
+\index{GetTCPSocket@{GetTCPSocket}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{GetTCPSocket()}{GetTCPSocket()}}
+{\footnotesize\ttfamily int \& TCPHandler\+::\+Get\+TCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTCPHandler_a011aac5db737403ed5b22b69a8479499}\label{classTCPHandler_a011aac5db737403ed5b22b69a8479499}} 
+\index{TCPHandler@{TCPHandler}!operator=@{operator=}}
+\index{operator=@{operator=}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& TCPHandler\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}\label{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}} 
+\index{TCPHandler@{TCPHandler}!ReceiveRTSPRequest@{ReceiveRTSPRequest}}
+\index{ReceiveRTSPRequest@{ReceiveRTSPRequest}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{ReceiveRTSPRequest()}{ReceiveRTSPRequest()}}
+{\footnotesize\ttfamily std\+::string TCPHandler\+::\+Receive\+RTSPRequest (\begin{DoxyParamCaption}\item[{int}]{session\+Id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}\label{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}} 
+\index{TCPHandler@{TCPHandler}!SendRTSPResponse@{SendRTSPResponse}}
+\index{SendRTSPResponse@{SendRTSPResponse}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{SendRTSPResponse()}{SendRTSPResponse()}}
+{\footnotesize\ttfamily void TCPHandler\+::\+Send\+RTSPResponse (\begin{DoxyParamCaption}\item[{int}]{client\+Socket,  }\item[{std\+::string \&}]{response }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}\label{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}} 
+\index{TCPHandler@{TCPHandler}!socketTable@{socketTable}}
+\index{socketTable@{socketTable}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{socketTable}{socketTable}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$int, int$>$ TCPHandler\+::socket\+Table\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTCPHandler_a294fc26391c01530d299281f791fd728}\label{classTCPHandler_a294fc26391c01530d299281f791fd728}} 
+\index{TCPHandler@{TCPHandler}!tcpAddr@{tcpAddr}}
+\index{tcpAddr@{tcpAddr}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{tcpAddr}{tcpAddr}}
+{\footnotesize\ttfamily sockaddr\+\_\+in TCPHandler\+::tcp\+Addr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTCPHandler_a705214e294e4e7fb56f667499784cfae}\label{classTCPHandler_a705214e294e4e7fb56f667499784cfae}} 
+\index{TCPHandler@{TCPHandler}!tcpPort@{tcpPort}}
+\index{tcpPort@{tcpPort}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{tcpPort}{tcpPort}}
+{\footnotesize\ttfamily int TCPHandler\+::tcp\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classTCPHandler_a70c042292e2cf941369256d8affc7c74}\label{classTCPHandler_a70c042292e2cf941369256d8affc7c74}} 
+\index{TCPHandler@{TCPHandler}!tcpSocket@{tcpSocket}}
+\index{tcpSocket@{tcpSocket}!TCPHandler@{TCPHandler}}
+\doxysubsubsection{\texorpdfstring{tcpSocket}{tcpSocket}}
+{\footnotesize\ttfamily int TCPHandler\+::tcp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{TCPHandler_8h}{TCPHandler.\+h}}\item 
+src/\mbox{\hyperlink{TCPHandler_8cpp}{TCPHandler.\+cpp}}\end{DoxyCompactItemize}

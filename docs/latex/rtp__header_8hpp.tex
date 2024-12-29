@@ -1,0 +1,127 @@
+\hypertarget{rtp__header_8hpp}{}\doxysection{inc/rtp\+\_\+header.hpp File Reference}
+\label{rtp__header_8hpp}\index{inc/rtp\_header.hpp@{inc/rtp\_header.hpp}}
+
+
+rtp 헤더 정의  
+
+
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+Include dependency graph for rtp\+\_\+header.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{rtp__header_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{rtp__header_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}{IP\+\_\+\+V4\+\_\+\+HEADER\+\_\+\+SIZE}} = 20
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}{UDP\+\_\+\+HEADER\+\_\+\+SIZE}} = 8
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\+\_\+\+HEADER\+\_\+\+SIZE}} = 12
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}{RTP\+\_\+\+VERSION}} = 2
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_adb2feb8b100615f535c26bb2a0b59976}{RTP\+\_\+\+PAYLOAD\+\_\+\+TYPE\+\_\+\+H264}} = 96
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}} = 2
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_ac03432f082c5d4c0fc9076532852e96d}{MAX\+\_\+\+UDP\+\_\+\+PACKET\+\_\+\+SIZE}} = 65535
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}}
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{rtp__header_8hpp_abd9bca75675e244c5401794619c5e5f1}{MAX\+\_\+\+RTP\+\_\+\+PACKET\+\_\+\+LEN}} = \mbox{\hyperlink{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}} + \mbox{\hyperlink{rtp__header_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\+\_\+\+HEADER\+\_\+\+SIZE}} + \mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+rtp 헤더 정의 
+
+이 파일은 h264 페이로드의 rtp 헤더를 정의한 파일입니다. \begin{DoxyAuthor}{Author}
+Hyun\+Jun Song 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2024/11/21 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+0.\+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}\label{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!FU\_SIZE@{FU\_SIZE}}
+\index{FU\_SIZE@{FU\_SIZE}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{FU\_SIZE}{FU\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t FU\+\_\+\+SIZE = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}\label{rtp__header_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!IP\_V4\_HEADER\_SIZE@{IP\_V4\_HEADER\_SIZE}}
+\index{IP\_V4\_HEADER\_SIZE@{IP\_V4\_HEADER\_SIZE}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{IP\_V4\_HEADER\_SIZE}{IP\_V4\_HEADER\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t IP\+\_\+\+V4\+\_\+\+HEADER\+\_\+\+SIZE = 20\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}\label{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!MAX\_RTP\_DATA\_SIZE@{MAX\_RTP\_DATA\_SIZE}}
+\index{MAX\_RTP\_DATA\_SIZE@{MAX\_RTP\_DATA\_SIZE}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_RTP\_DATA\_SIZE}{MAX\_RTP\_DATA\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \mbox{\hyperlink{rtp__header_8hpp_ac03432f082c5d4c0fc9076532852e96d}{MAX\_UDP\_PACKET\_SIZE}} -\/ \mbox{\hyperlink{rtp__header_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}{IP\_V4\_HEADER\_SIZE}}}
+\DoxyCodeLine{                                        -\/ \mbox{\hyperlink{rtp__header_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}{UDP\_HEADER\_SIZE}} -\/ \mbox{\hyperlink{rtp__header_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\_HEADER\_SIZE}} -\/ \mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{rtp__header_8hpp_abd9bca75675e244c5401794619c5e5f1}\label{rtp__header_8hpp_abd9bca75675e244c5401794619c5e5f1}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!MAX\_RTP\_PACKET\_LEN@{MAX\_RTP\_PACKET\_LEN}}
+\index{MAX\_RTP\_PACKET\_LEN@{MAX\_RTP\_PACKET\_LEN}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_RTP\_PACKET\_LEN}{MAX\_RTP\_PACKET\_LEN}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t MAX\+\_\+\+RTP\+\_\+\+PACKET\+\_\+\+LEN = \mbox{\hyperlink{rtp__header_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}} + \mbox{\hyperlink{rtp__header_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\+\_\+\+HEADER\+\_\+\+SIZE}} + \mbox{\hyperlink{rtp__header_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_ac03432f082c5d4c0fc9076532852e96d}\label{rtp__header_8hpp_ac03432f082c5d4c0fc9076532852e96d}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!MAX\_UDP\_PACKET\_SIZE@{MAX\_UDP\_PACKET\_SIZE}}
+\index{MAX\_UDP\_PACKET\_SIZE@{MAX\_UDP\_PACKET\_SIZE}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_UDP\_PACKET\_SIZE}{MAX\_UDP\_PACKET\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t MAX\+\_\+\+UDP\+\_\+\+PACKET\+\_\+\+SIZE = 65535\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_a865de8ad755a482d2ece2779879d29f9}\label{rtp__header_8hpp_a865de8ad755a482d2ece2779879d29f9}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!RTP\_HEADER\_SIZE@{RTP\_HEADER\_SIZE}}
+\index{RTP\_HEADER\_SIZE@{RTP\_HEADER\_SIZE}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{RTP\_HEADER\_SIZE}{RTP\_HEADER\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t RTP\+\_\+\+HEADER\+\_\+\+SIZE = 12\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_adb2feb8b100615f535c26bb2a0b59976}\label{rtp__header_8hpp_adb2feb8b100615f535c26bb2a0b59976}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!RTP\_PAYLOAD\_TYPE\_H264@{RTP\_PAYLOAD\_TYPE\_H264}}
+\index{RTP\_PAYLOAD\_TYPE\_H264@{RTP\_PAYLOAD\_TYPE\_H264}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{RTP\_PAYLOAD\_TYPE\_H264}{RTP\_PAYLOAD\_TYPE\_H264}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t RTP\+\_\+\+PAYLOAD\+\_\+\+TYPE\+\_\+\+H264 = 96\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}\label{rtp__header_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!RTP\_VERSION@{RTP\_VERSION}}
+\index{RTP\_VERSION@{RTP\_VERSION}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{RTP\_VERSION}{RTP\_VERSION}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t RTP\+\_\+\+VERSION = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+\mbox{\Hypertarget{rtp__header_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}\label{rtp__header_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}} 
+\index{rtp\_header.hpp@{rtp\_header.hpp}!UDP\_HEADER\_SIZE@{UDP\_HEADER\_SIZE}}
+\index{UDP\_HEADER\_SIZE@{UDP\_HEADER\_SIZE}!rtp\_header.hpp@{rtp\_header.hpp}}
+\doxysubsubsection{\texorpdfstring{UDP\_HEADER\_SIZE}{UDP\_HEADER\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t UDP\+\_\+\+HEADER\+\_\+\+SIZE = 8\hspace{0.3cm}{\ttfamily [constexpr]}}
+

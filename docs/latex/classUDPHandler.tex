@@ -1,0 +1,131 @@
+\hypertarget{classUDPHandler}{}\doxysection{UDPHandler Class Reference}
+\label{classUDPHandler}\index{UDPHandler@{UDPHandler}}
+
+
+{\ttfamily \#include $<$UDPHandler.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}{UDPHandler}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientSession}{Client\+Session}} $>$ \mbox{\hyperlink{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}{client}})
+\item 
+\mbox{\hyperlink{classUDPHandler_a3954df271b184ace20f867c1de79d742}{$\sim$\+UDPHandler}} ()
+\item 
+bool \mbox{\hyperlink{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}{Create\+UDPSocket}} ()
+\item 
+void \mbox{\hyperlink{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}{Send\+Sender\+Report}} (\mbox{\hyperlink{structProtos_1_1SenderReport}{Protos\+::\+Sender\+Report}} $\ast$sender\+Report, size\+\_\+t sr\+Size)
+\item 
+int \& \mbox{\hyperlink{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}{Get\+RTPSocket}} ()
+\item 
+int \& \mbox{\hyperlink{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}{Get\+RTCPSocket}} ()
+\item 
+sockaddr\+\_\+in \& \mbox{\hyperlink{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}{Get\+RTPAddr}} ()
+\item 
+sockaddr\+\_\+in \& \mbox{\hyperlink{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}{Get\+RTCPAddr}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientSession}{Client\+Session}} $>$ \mbox{\hyperlink{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}{client}}
+\item 
+int \mbox{\hyperlink{classUDPHandler_a402334de669d7828576569eb4fea5a26}{rtp\+Socket}}
+\item 
+int \mbox{\hyperlink{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}{rtcp\+Socket}}
+\item 
+sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_ae97c97f827990902784e635e22effbc2}{rtp\+Addr}}
+\item 
+sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}{rtcp\+Addr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}\label{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}} 
+\index{UDPHandler@{UDPHandler}!UDPHandler@{UDPHandler}}
+\index{UDPHandler@{UDPHandler}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{UDPHandler()}{UDPHandler()}}
+{\footnotesize\ttfamily UDPHandler\+::\+UDPHandler (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientSession}{Client\+Session}} $>$}]{client }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUDPHandler_a3954df271b184ace20f867c1de79d742}\label{classUDPHandler_a3954df271b184ace20f867c1de79d742}} 
+\index{UDPHandler@{UDPHandler}!````~UDPHandler@{$\sim$UDPHandler}}
+\index{````~UDPHandler@{$\sim$UDPHandler}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{$\sim$UDPHandler()}{~UDPHandler()}}
+{\footnotesize\ttfamily UDPHandler\+::$\sim$\+UDPHandler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}\label{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}} 
+\index{UDPHandler@{UDPHandler}!CreateUDPSocket@{CreateUDPSocket}}
+\index{CreateUDPSocket@{CreateUDPSocket}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{CreateUDPSocket()}{CreateUDPSocket()}}
+{\footnotesize\ttfamily bool UDPHandler\+::\+Create\+UDPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}\label{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}} 
+\index{UDPHandler@{UDPHandler}!GetRTCPAddr@{GetRTCPAddr}}
+\index{GetRTCPAddr@{GetRTCPAddr}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{GetRTCPAddr()}{GetRTCPAddr()}}
+{\footnotesize\ttfamily sockaddr\+\_\+in \& UDPHandler\+::\+Get\+RTCPAddr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}\label{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}} 
+\index{UDPHandler@{UDPHandler}!GetRTCPSocket@{GetRTCPSocket}}
+\index{GetRTCPSocket@{GetRTCPSocket}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{GetRTCPSocket()}{GetRTCPSocket()}}
+{\footnotesize\ttfamily int \& UDPHandler\+::\+Get\+RTCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}\label{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}} 
+\index{UDPHandler@{UDPHandler}!GetRTPAddr@{GetRTPAddr}}
+\index{GetRTPAddr@{GetRTPAddr}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{GetRTPAddr()}{GetRTPAddr()}}
+{\footnotesize\ttfamily sockaddr\+\_\+in \& UDPHandler\+::\+Get\+RTPAddr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}\label{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}} 
+\index{UDPHandler@{UDPHandler}!GetRTPSocket@{GetRTPSocket}}
+\index{GetRTPSocket@{GetRTPSocket}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{GetRTPSocket()}{GetRTPSocket()}}
+{\footnotesize\ttfamily int \& UDPHandler\+::\+Get\+RTPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}\label{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}} 
+\index{UDPHandler@{UDPHandler}!SendSenderReport@{SendSenderReport}}
+\index{SendSenderReport@{SendSenderReport}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{SendSenderReport()}{SendSenderReport()}}
+{\footnotesize\ttfamily void UDPHandler\+::\+Send\+Sender\+Report (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structProtos_1_1SenderReport}{Protos\+::\+Sender\+Report}} $\ast$}]{sender\+Report,  }\item[{size\+\_\+t}]{sr\+Size }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}\label{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}} 
+\index{UDPHandler@{UDPHandler}!client@{client}}
+\index{client@{client}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classClientSession}{Client\+Session}}$>$ UDPHandler\+::client\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}\label{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}} 
+\index{UDPHandler@{UDPHandler}!rtcpAddr@{rtcpAddr}}
+\index{rtcpAddr@{rtcpAddr}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{rtcpAddr}{rtcpAddr}}
+{\footnotesize\ttfamily sockaddr\+\_\+in UDPHandler\+::rtcp\+Addr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}\label{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}} 
+\index{UDPHandler@{UDPHandler}!rtcpSocket@{rtcpSocket}}
+\index{rtcpSocket@{rtcpSocket}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{rtcpSocket}{rtcpSocket}}
+{\footnotesize\ttfamily int UDPHandler\+::rtcp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUDPHandler_ae97c97f827990902784e635e22effbc2}\label{classUDPHandler_ae97c97f827990902784e635e22effbc2}} 
+\index{UDPHandler@{UDPHandler}!rtpAddr@{rtpAddr}}
+\index{rtpAddr@{rtpAddr}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{rtpAddr}{rtpAddr}}
+{\footnotesize\ttfamily sockaddr\+\_\+in UDPHandler\+::rtp\+Addr\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classUDPHandler_a402334de669d7828576569eb4fea5a26}\label{classUDPHandler_a402334de669d7828576569eb4fea5a26}} 
+\index{UDPHandler@{UDPHandler}!rtpSocket@{rtpSocket}}
+\index{rtpSocket@{rtpSocket}!UDPHandler@{UDPHandler}}
+\doxysubsubsection{\texorpdfstring{rtpSocket}{rtpSocket}}
+{\footnotesize\ttfamily int UDPHandler\+::rtp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{UDPHandler_8h}{UDPHandler.\+h}}\item 
+src/\mbox{\hyperlink{UDPHandler_8cpp}{UDPHandler.\+cpp}}\end{DoxyCompactItemize}

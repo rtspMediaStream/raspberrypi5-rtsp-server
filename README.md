@@ -14,7 +14,7 @@ mkdir build
 cd build
 cmake ..
 make
-cp librtspserver.so /usr/local/lib/
+sudo cp librtspserver.so /usr/local/lib/
 ```
 
 # Example Start
@@ -41,7 +41,7 @@ make
 - Test (Client)
 ```bash
 sudo apt install ffmpeg
-ffmpeg -i rtsp://localhost:8554 -f alsa default
+ffmpeg -i rtsp://127.0.0.1:8554 -f alsa default
 ```
 
 

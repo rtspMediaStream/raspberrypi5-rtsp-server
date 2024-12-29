@@ -1,0 +1,48 @@
+\hypertarget{H264Encoder_8h_source}{}\doxysection{H264\+Encoder.\+h}
+\label{H264Encoder_8h_source}\index{inc/H264Encoder.h@{inc/H264Encoder.h}}
+\mbox{\hyperlink{H264Encoder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <sys/types.h>}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{comment}{//constexpr uint8\_t NALU\_F\_MASK = 0x80;}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{comment}{// NAL Unit Type 관련 상수}}
+\DoxyCodeLine{29 \textcolor{keyword}{constexpr} uint8\_t \mbox{\hyperlink{H264Encoder_8h_af4b3d40f7638ada42a0e945ab262725b}{NALU\_NRI\_MASK}} = 0x60;     }
+\DoxyCodeLine{30 \textcolor{keyword}{constexpr} uint8\_t \mbox{\hyperlink{H264Encoder_8h_ab5ba38bbbcb67b9c846a6f11b34037b5}{NALU\_F\_NRI\_MASK}} = 0xE0;   }
+\DoxyCodeLine{31 \textcolor{keyword}{constexpr} uint8\_t \mbox{\hyperlink{H264Encoder_8h_adaccfe0bb3b98530348155556cf08840}{NALU\_TYPE\_MASK}} = 0x1F;    }
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33 \textcolor{keyword}{constexpr} uint8\_t \mbox{\hyperlink{H264Encoder_8h_aeb8671fc0b55a5c7f4dc65fbd7878e11}{FU\_S\_MASK}} = 0x80;         }
+\DoxyCodeLine{34 \textcolor{keyword}{constexpr} uint8\_t \mbox{\hyperlink{H264Encoder_8h_aa6134cba4054682b679066ad57413a59}{FU\_E\_MASK}} = 0x40;         }
+\DoxyCodeLine{35 \textcolor{keyword}{constexpr} uint8\_t \mbox{\hyperlink{H264Encoder_8h_adce44a032818edf120eb284a7ab5ad68}{SET\_FU\_A\_MASK}} = 0x1C;     }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{43 \textcolor{keyword}{class }\mbox{\hyperlink{classH264Encoder}{H264Encoder}}}
+\DoxyCodeLine{44 \{}
+\DoxyCodeLine{45 \textcolor{keyword}{private}:}
+\DoxyCodeLine{46     \textcolor{keywordtype}{int} \mbox{\hyperlink{classH264Encoder_ab57b84a3fb754b1262727216f06303d5}{fd}} = -\/1; }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{54     \textcolor{keyword}{static} \textcolor{keyword}{const} uint8\_t *\mbox{\hyperlink{classH264Encoder_a8ab9f745a1e6c9a3e6d692f56af1474d}{find\_next\_start\_code}}(\textcolor{keyword}{const} uint8\_t *\_buffer, \textcolor{keyword}{const} int64\_t \_bufLen);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     uint8\_t *\mbox{\hyperlink{classH264Encoder_af6ef0001b61182b67c6c0740601cf2db}{ptr\_mapped\_file\_cur}} = \textcolor{keyword}{nullptr};     }
+\DoxyCodeLine{57     uint8\_t *\mbox{\hyperlink{classH264Encoder_a8b27e560e952dbe6f881f220654b4569}{ptr\_mapped\_file\_start}} = \textcolor{keyword}{nullptr};   }
+\DoxyCodeLine{58     uint8\_t *\mbox{\hyperlink{classH264Encoder_a94a29a19f975130856e3a01bf875d0cd}{ptr\_mapped\_file\_end}} = \textcolor{keyword}{nullptr};     }
+\DoxyCodeLine{59     int64\_t \mbox{\hyperlink{classH264Encoder_a818347fbe2037c6adbb641296a09cf4c}{file\_size}} = 0;                      }
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \textcolor{keyword}{public}:}
+\DoxyCodeLine{67     \textcolor{keyword}{explicit} \mbox{\hyperlink{classH264Encoder_a08ea0897ef62d49086990f8a9e6ef7c3}{H264Encoder}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} *filename);}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{72     \mbox{\hyperlink{classH264Encoder_a222f93640e29089d63a0e47d8749e765}{\string~H264Encoder}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{81     \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classH264Encoder_a293e4450d0323f41ab3d1dccce91fa48}{is\_start\_code}}(\textcolor{keyword}{const} uint8\_t *\_buffer, int64\_t \_bufLen, uint8\_t start\_code\_type);}
+\DoxyCodeLine{82     }
+\DoxyCodeLine{90     std::pair<const uint8\_t *, int64\_t> \mbox{\hyperlink{classH264Encoder_ae903d2ce79e9c9e6ea49d67bcb6908a9}{get\_next\_frame}}();}
+\DoxyCodeLine{91 \};}
+
+\end{DoxyCode}

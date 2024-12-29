@@ -1,0 +1,195 @@
+\hypertarget{classRtpHeader}{}\doxysection{Rtp\+Header Class Reference}
+\label{classRtpHeader}\index{RtpHeader@{RtpHeader}}
+
+
+{\ttfamily \#include $<$rtp\+\_\+header.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRtpHeader_a14cf12ca9a92789ceaaf72325b28f311}{Rtp\+Header}} (uint8\+\_\+t \+\_\+version, uint8\+\_\+t \+\_\+padding, uint8\+\_\+t \+\_\+extension, uint8\+\_\+t \+\_\+csrc\+Count, uint8\+\_\+t \+\_\+marker, uint8\+\_\+t \+\_\+payload\+Type, uint16\+\_\+t \+\_\+seq, uint32\+\_\+t \+\_\+timestamp, uint32\+\_\+t \+\_\+ssrc)
+\item 
+\mbox{\hyperlink{classRtpHeader_a6ad2ee400be9cb96e1edff4fe23a5443}{Rtp\+Header}} (uint16\+\_\+t \+\_\+seq, uint32\+\_\+t \+\_\+timestamp, uint32\+\_\+t \+\_\+ssrc)
+\item 
+\mbox{\hyperlink{classRtpHeader_a247f66586359b92d89d444858708d601}{Rtp\+Header}} (const \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \&)=default
+\item 
+\mbox{\hyperlink{classRtpHeader_a16be7010cc98f898217c2d908ca70d3f}{$\sim$\+Rtp\+Header}} ()=default
+\item 
+void \mbox{\hyperlink{classRtpHeader_a9fce93178772f606e4f27c61644baf15}{set\+\_\+timestamp}} (const uint32\+\_\+t \+\_\+newtimestamp)
+\item 
+void \mbox{\hyperlink{classRtpHeader_af63abc77107b49404570194ef95d74c9}{set\+\_\+ssrc}} (const uint32\+\_\+t SSRC)
+\item 
+void \mbox{\hyperlink{classRtpHeader_a78aa10a459807d976fcead9e42017a32}{set\+\_\+seq}} (const uint32\+\_\+t \+\_\+seq)
+\item 
+void \mbox{\hyperlink{classRtpHeader_ae7730924ac70731665e9d9af15556083}{set\+\_\+marker}} (const bool \+\_\+marker)
+\item 
+void \mbox{\hyperlink{classRtpHeader_aafd962440336e524b644183e0162adc4}{set\+\_\+payload\+Type}} (const uint8\+\_\+t \+\_\+payload\+Type)
+\item 
+void $\ast$ \mbox{\hyperlink{classRtpHeader_af4b1d7a5bd80358c893ea20b1f91c448}{get\+\_\+header}} () const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classRtpHeader_a85f07400dd205b8343702f5783d6af86}{get\+\_\+timestamp}} () const
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classRtpHeader_a202133c95491829f91f57557f908c2c9}{get\+\_\+seq}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpHeader_a79e4619a5cb307c972ea31fd0fc871bb}{csrc\+Count}}\+: 4
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpHeader_ad19378f1d278bc404f5849292b6c64a8}{extension}}\+: 1
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpHeader_ad85167a2efc6410c72d6a164a72ba795}{padding}}\+: 1
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpHeader_a7ec52e7795f5e9646697060e12596a68}{version}}\+: 2
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpHeader_af88479efba0f0584445b023b91c27263}{payload\+Type}}\+: 7
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRtpHeader_a2f1db18064a1fac05de15d5384321e15}{marker}}\+: 1
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classRtpHeader_a32eb1c780ec310f2927abc8b18a840c5}{seq}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classRtpHeader_af59a149901194ad8b18cf763c3f89fd8}{timestamp}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{classRtpHeader_a465233681714f7301944500302624f4a}{ssrc}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRtpHeader_a14cf12ca9a92789ceaaf72325b28f311}\label{classRtpHeader_a14cf12ca9a92789ceaaf72325b28f311}} 
+\index{RtpHeader@{RtpHeader}!RtpHeader@{RtpHeader}}
+\index{RtpHeader@{RtpHeader}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{RtpHeader()}{RtpHeader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Rtp\+Header\+::\+Rtp\+Header (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{\+\_\+version,  }\item[{uint8\+\_\+t}]{\+\_\+padding,  }\item[{uint8\+\_\+t}]{\+\_\+extension,  }\item[{uint8\+\_\+t}]{\+\_\+csrc\+Count,  }\item[{uint8\+\_\+t}]{\+\_\+marker,  }\item[{uint8\+\_\+t}]{\+\_\+payload\+Type,  }\item[{uint16\+\_\+t}]{\+\_\+seq,  }\item[{uint32\+\_\+t}]{\+\_\+timestamp,  }\item[{uint32\+\_\+t}]{\+\_\+ssrc }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRtpHeader_a6ad2ee400be9cb96e1edff4fe23a5443}\label{classRtpHeader_a6ad2ee400be9cb96e1edff4fe23a5443}} 
+\index{RtpHeader@{RtpHeader}!RtpHeader@{RtpHeader}}
+\index{RtpHeader@{RtpHeader}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{RtpHeader()}{RtpHeader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Rtp\+Header\+::\+Rtp\+Header (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{\+\_\+seq,  }\item[{uint32\+\_\+t}]{\+\_\+timestamp,  }\item[{uint32\+\_\+t}]{\+\_\+ssrc }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classRtpHeader_a247f66586359b92d89d444858708d601}\label{classRtpHeader_a247f66586359b92d89d444858708d601}} 
+\index{RtpHeader@{RtpHeader}!RtpHeader@{RtpHeader}}
+\index{RtpHeader@{RtpHeader}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{RtpHeader()}{RtpHeader()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Rtp\+Header\+::\+Rtp\+Header (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRtpHeader}{Rtp\+Header}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\mbox{\Hypertarget{classRtpHeader_a16be7010cc98f898217c2d908ca70d3f}\label{classRtpHeader_a16be7010cc98f898217c2d908ca70d3f}} 
+\index{RtpHeader@{RtpHeader}!````~RtpHeader@{$\sim$RtpHeader}}
+\index{````~RtpHeader@{$\sim$RtpHeader}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{$\sim$RtpHeader()}{~RtpHeader()}}
+{\footnotesize\ttfamily Rtp\+Header\+::$\sim$\+Rtp\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRtpHeader_af4b1d7a5bd80358c893ea20b1f91c448}\label{classRtpHeader_af4b1d7a5bd80358c893ea20b1f91c448}} 
+\index{RtpHeader@{RtpHeader}!get\_header@{get\_header}}
+\index{get\_header@{get\_header}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+{\footnotesize\ttfamily void $\ast$ Rtp\+Header\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_a202133c95491829f91f57557f908c2c9}\label{classRtpHeader_a202133c95491829f91f57557f908c2c9}} 
+\index{RtpHeader@{RtpHeader}!get\_seq@{get\_seq}}
+\index{get\_seq@{get\_seq}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{get\_seq()}{get\_seq()}}
+{\footnotesize\ttfamily uint32\+\_\+t Rtp\+Header\+::get\+\_\+seq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_a85f07400dd205b8343702f5783d6af86}\label{classRtpHeader_a85f07400dd205b8343702f5783d6af86}} 
+\index{RtpHeader@{RtpHeader}!get\_timestamp@{get\_timestamp}}
+\index{get\_timestamp@{get\_timestamp}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{get\_timestamp()}{get\_timestamp()}}
+{\footnotesize\ttfamily uint32\+\_\+t Rtp\+Header\+::get\+\_\+timestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_ae7730924ac70731665e9d9af15556083}\label{classRtpHeader_ae7730924ac70731665e9d9af15556083}} 
+\index{RtpHeader@{RtpHeader}!set\_marker@{set\_marker}}
+\index{set\_marker@{set\_marker}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{set\_marker()}{set\_marker()}}
+{\footnotesize\ttfamily void Rtp\+Header\+::set\+\_\+marker (\begin{DoxyParamCaption}\item[{const bool}]{\+\_\+marker }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_aafd962440336e524b644183e0162adc4}\label{classRtpHeader_aafd962440336e524b644183e0162adc4}} 
+\index{RtpHeader@{RtpHeader}!set\_payloadType@{set\_payloadType}}
+\index{set\_payloadType@{set\_payloadType}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{set\_payloadType()}{set\_payloadType()}}
+{\footnotesize\ttfamily void Rtp\+Header\+::set\+\_\+payload\+Type (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{\+\_\+payload\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_a78aa10a459807d976fcead9e42017a32}\label{classRtpHeader_a78aa10a459807d976fcead9e42017a32}} 
+\index{RtpHeader@{RtpHeader}!set\_seq@{set\_seq}}
+\index{set\_seq@{set\_seq}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{set\_seq()}{set\_seq()}}
+{\footnotesize\ttfamily void Rtp\+Header\+::set\+\_\+seq (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{\+\_\+seq }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_af63abc77107b49404570194ef95d74c9}\label{classRtpHeader_af63abc77107b49404570194ef95d74c9}} 
+\index{RtpHeader@{RtpHeader}!set\_ssrc@{set\_ssrc}}
+\index{set\_ssrc@{set\_ssrc}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{set\_ssrc()}{set\_ssrc()}}
+{\footnotesize\ttfamily void Rtp\+Header\+::set\+\_\+ssrc (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{SSRC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRtpHeader_a9fce93178772f606e4f27c61644baf15}\label{classRtpHeader_a9fce93178772f606e4f27c61644baf15}} 
+\index{RtpHeader@{RtpHeader}!set\_timestamp@{set\_timestamp}}
+\index{set\_timestamp@{set\_timestamp}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{set\_timestamp()}{set\_timestamp()}}
+{\footnotesize\ttfamily void Rtp\+Header\+::set\+\_\+timestamp (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{\+\_\+newtimestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRtpHeader_a79e4619a5cb307c972ea31fd0fc871bb}\label{classRtpHeader_a79e4619a5cb307c972ea31fd0fc871bb}} 
+\index{RtpHeader@{RtpHeader}!csrcCount@{csrcCount}}
+\index{csrcCount@{csrcCount}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{csrcCount}{csrcCount}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Header\+::csrc\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_ad19378f1d278bc404f5849292b6c64a8}\label{classRtpHeader_ad19378f1d278bc404f5849292b6c64a8}} 
+\index{RtpHeader@{RtpHeader}!extension@{extension}}
+\index{extension@{extension}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{extension}{extension}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Header\+::extension\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_a2f1db18064a1fac05de15d5384321e15}\label{classRtpHeader_a2f1db18064a1fac05de15d5384321e15}} 
+\index{RtpHeader@{RtpHeader}!marker@{marker}}
+\index{marker@{marker}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{marker}{marker}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Header\+::marker\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_ad85167a2efc6410c72d6a164a72ba795}\label{classRtpHeader_ad85167a2efc6410c72d6a164a72ba795}} 
+\index{RtpHeader@{RtpHeader}!padding@{padding}}
+\index{padding@{padding}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{padding}{padding}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Header\+::padding\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_af88479efba0f0584445b023b91c27263}\label{classRtpHeader_af88479efba0f0584445b023b91c27263}} 
+\index{RtpHeader@{RtpHeader}!payloadType@{payloadType}}
+\index{payloadType@{payloadType}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{payloadType}{payloadType}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Header\+::payload\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_a32eb1c780ec310f2927abc8b18a840c5}\label{classRtpHeader_a32eb1c780ec310f2927abc8b18a840c5}} 
+\index{RtpHeader@{RtpHeader}!seq@{seq}}
+\index{seq@{seq}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{seq}{seq}}
+{\footnotesize\ttfamily uint16\+\_\+t Rtp\+Header\+::seq\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_a465233681714f7301944500302624f4a}\label{classRtpHeader_a465233681714f7301944500302624f4a}} 
+\index{RtpHeader@{RtpHeader}!ssrc@{ssrc}}
+\index{ssrc@{ssrc}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{ssrc}{ssrc}}
+{\footnotesize\ttfamily uint32\+\_\+t Rtp\+Header\+::ssrc\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_af59a149901194ad8b18cf763c3f89fd8}\label{classRtpHeader_af59a149901194ad8b18cf763c3f89fd8}} 
+\index{RtpHeader@{RtpHeader}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily uint32\+\_\+t Rtp\+Header\+::timestamp\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRtpHeader_a7ec52e7795f5e9646697060e12596a68}\label{classRtpHeader_a7ec52e7795f5e9646697060e12596a68}} 
+\index{RtpHeader@{RtpHeader}!version@{version}}
+\index{version@{version}!RtpHeader@{RtpHeader}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily uint8\+\_\+t Rtp\+Header\+::version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{rtp__header_8hpp}{rtp\+\_\+header.\+hpp}}\item 
+src/\mbox{\hyperlink{rtp__header_8cpp}{rtp\+\_\+header.\+cpp}}\end{DoxyCompactItemize}

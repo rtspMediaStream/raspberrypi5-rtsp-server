@@ -1,0 +1,24 @@
+\hypertarget{AudioCapture_8h_source}{}\doxysection{Audio\+Capture.\+h}
+\label{AudioCapture_8h_source}\index{example/AudioServer/AudioCapture.h@{example/AudioServer/AudioCapture.h}}
+\mbox{\hyperlink{AudioCapture_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{DataCapture_8h}{DataCapture.h}}"{}}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <alsa/asoundlib.h>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <mutex>}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{classAudioCapture}{AudioCapture}} : \textcolor{keyword}{public} \mbox{\hyperlink{classDataCapture}{DataCapture}}\{}
+\DoxyCodeLine{7 \textcolor{keyword}{public}:}
+\DoxyCodeLine{8     \mbox{\hyperlink{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}{AudioCapture}}();}
+\DoxyCodeLine{9     \textcolor{keywordtype}{int} \mbox{\hyperlink{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}{read}}(\textcolor{keywordtype}{short} *\mbox{\hyperlink{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}{buffer}}, \textcolor{keywordtype}{int} frames);}
+\DoxyCodeLine{10     \mbox{\hyperlink{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}{\string~AudioCapture}}();}
+\DoxyCodeLine{11 \textcolor{keyword}{private}:}
+\DoxyCodeLine{12     std::queue <std::pair<unsigned char*, int>> \mbox{\hyperlink{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}{buffer}};}
+\DoxyCodeLine{13     std::mutex \mbox{\hyperlink{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}{bufferMutex}};}
+\DoxyCodeLine{14     snd\_pcm\_t* \mbox{\hyperlink{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}{pcm\_handle}};}
+\DoxyCodeLine{15     snd\_pcm\_hw\_params\_t* \mbox{\hyperlink{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}{params}};}
+\DoxyCodeLine{16     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}{sample\_rate}};}
+\DoxyCodeLine{17     \textcolor{keywordtype}{int} \mbox{\hyperlink{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}{dir}};}
+\DoxyCodeLine{18 \};}
+
+\end{DoxyCode}

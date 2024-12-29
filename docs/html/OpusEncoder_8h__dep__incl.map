@@ -1,0 +1,7 @@
+<map id="inc/OpusEncoder.h" name="inc/OpusEncoder.h">
+<area shape="rect" id="node1" title="Opus 오디오 인코딩 클래스 헤더" alt="" coords="308,5,449,32"/>
+<area shape="rect" id="node2" href="$AudioCapture_8cpp.html" title=" " alt="" coords="5,80,168,121"/>
+<area shape="rect" id="node3" href="$AudioServer_2main_8cpp.html" title=" " alt="" coords="192,80,355,121"/>
+<area shape="rect" id="node4" href="$MediaStreamHandler_8cpp.html" title="MediaStreamHandler 클래스의 구현부" alt="" coords="379,87,589,114"/>
+<area shape="rect" id="node5" href="$OpusEncoder_8cpp.html" title="OpusEncoder 클래스의 구현부" alt="" coords="613,87,769,114"/>
+</map>
