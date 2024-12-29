@@ -35,12 +35,6 @@ ClientSession::ClientSession(const int tcpSocket, const std::string ip) {
 }
 
 /**
- * @brief 세션 ID를 반환하는 메서드
- * @return int 현재 세션의 고유 ID
- */
-int ClientSession::GetSessionId() const { return this->id; }
-
-/**
  * @brief 세션 버전을 반환하는 메서드
  * @return int 현재 세션의 버전 번호
  */
