@@ -8,14 +8,13 @@
  */
 
 #include "Protos.h"
-#include "utils.h"
+#include "Global.h"
 #include "TCPHandler.h"
 #include "UDPHandler.h"
 #include "MediaStreamHandler.h"
 #include "DataCapture.h"
 #include "OpusEncoder.h"
 #include "H264Encoder.h"
-#include "global.h"
 #include "rtp_header.hpp"
 #include "rtp_packet.hpp"
 #include "RTPHeader.h"
@@ -121,7 +120,7 @@ void MediaStreamHandler::HandleMediaStream() {
 
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
-    uint16_t seqNum = (uint16_t)utils::GetRanNum(16);
+    uint16_t seqNum = (uint16_t)GetRanNum(16);
 
     Protos::SenderReport sr;
     int ssrcNum = 0;

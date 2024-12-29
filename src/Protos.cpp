@@ -1,5 +1,5 @@
 #include "Protos.h"
-#include "utils.h"
+#include "Global.h"
 
 #include <arpa/inet.h>
 
@@ -14,7 +14,7 @@ void Protos::CreateSR(SenderReport *sr, unsigned int timestamp, unsigned int pac
     sr->length = htons(6);
     sr->ssrc = htonl(payloadType);
 
-    auto time = utils::GetTime();
+    auto time = GetTime();
     sr->ntpTimestampMsw = htonl((uint32_t)(time >> 32));
     sr->ntpTimestampLsw = htonl((uint32_t)(time & 0xFFFFFFFF));
     sr->rtpTimestamp = htonl(timestamp);

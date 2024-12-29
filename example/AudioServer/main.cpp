@@ -7,7 +7,7 @@
 #include <thread>
 #include "H264Encoder.h"
 #include "DataCapture.h"
-#include "utils.h"
+#include "Global.h"
 
 // Read Audio from Opus
 void LoadOpus()
@@ -16,7 +16,7 @@ void LoadOpus()
                      short pcmBuffer[OPUS_FRAME_SIZE * OPUS_CHANNELS];
                      OpusEncoder opusEncoder;
                      DataCaptureFrame newFrame;
-                     newFrame.timestamp = (unsigned int)utils::GetRanNum(16);
+                     newFrame.timestamp = (unsigned int)GetRanNum(16);
                      AudioCapture audioCapture;
                      while(1){
                         newFrame.dataPtr = new unsigned char[MAX_PACKET_SIZE];
