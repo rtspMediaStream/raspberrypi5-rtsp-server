@@ -1,3 +1,12 @@
+/**
+ * @file TCPHandler.cpp
+ * @brief TCPHandler 클래스의 구현부
+ * @details TCPHandler 클래스의 멤버 함수를 구현한 소스 파일
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #include "TCPHandler.h"
 #include "Global.h"
 
@@ -8,12 +17,28 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
+/**
+ * @brief TCPHandler 클래스의 생성자
+ * @details TCP 포트를 설정하고 TCP 소켓을 생성
+ */
 TCPHandler::TCPHandler(): tcpPort(g_serverRtpPort) {
     CreateTCPSocket();
 }
 
+/**
+ * @brief TCPHandler 클래스의 소멸자
+ */
 TCPHandler::~TCPHandler() {}
 
+/**
+ * @brief TCP 소켓을 생성하고 초기화하는 메서드
+ * @details 
+ *   - TCP 소켓 생성
+ *   - SO_REUSEADDR 옵션 설정
+ *   - 주소 바인딩
+ *   - 리스닝 상태로 전환
+ * @throw std::runtime_error 소켓 생성, 바인딩 또는 리스닝 실패 시
+ */
 void TCPHandler::CreateTCPSocket() {
     tcpSocket = socket(AF_INET, SOCK_STREAM, 0);
     int option = 1;          // SO_REUSEADDR 의 옵션 값을 TRUE 로
@@ -39,6 +64,12 @@ void TCPHandler::CreateTCPSocket() {
     }
 }
 
+/**
+ * @brief 클라이언트 연결을 수락하는 메서드
+ * @param _clientIp [out] 연결된 클라이언트의 IP 주소
+ * @return int 생성된 클라이언트 소켓 디스크립터 (-1: 실패)
+ * @details 클라이언트의 연결 요청을 수락하고 IP 주소를 획득
+ */
 int TCPHandler::AcceptClientConnection(std::string &_clientIp) {
     socklen_t clientAddrLen = sizeof(tcpAddr);
     int clientSocket = accept(tcpSocket, (sockaddr*)&tcpAddr, &clientAddrLen);
@@ -55,10 +86,20 @@ int TCPHandler::AcceptClientConnection(std::string &_clientIp) {
     return clientSocket;
 }
 
+/**
+ * @brief 클라이언트 연결을 종료하는 메서드
+ * @details TCP 소켓을 닫고 연결을 종료
+ */
 void TCPHandler::CloseClientConnection() {
     close(tcpSocket);
 }
 
+/**
+ * @brief RTSP 요청을 수신하는 메서드
+ * @param clientSocket 클라이언트 소켓 디스크립터
+ * @return std::string 수신된 RTSP 요청 메시지
+ * @details 클라이언트로부터 RTSP 요청 메시지를 수신
+ */
 std::string TCPHandler::ReceiveRTSPRequest(int clientSocket) {
     char buffer[1024] = {0,};
     memset(buffer, 0, sizeof(buffer));
@@ -74,6 +115,12 @@ std::string TCPHandler::ReceiveRTSPRequest(int clientSocket) {
     return {buffer};
 }
 
+/**
+ * @brief RTSP 응답을 전송하는 메서드
+ * @param clientSocket 클라이언트 소켓 디스크립터
+ * @param response 전송할 RTSP 응답 메시지
+ * @details 클라이언트에게 RTSP 응답 메시지를 전송
+ */
 void TCPHandler::SendRTSPResponse(int clientSocket, std::string& response) {
     int sentBytes = send(clientSocket, response.c_str(), response.size(), 0);
     if (sentBytes == -1) {
@@ -81,6 +128,14 @@ void TCPHandler::SendRTSPResponse(int clientSocket, std::string& response) {
     }
 }
 
+/**
+ * @brief TCP 소켓을 반환하는 메서드
+ * @return int& TCP 소켓 디스크립터에 대한 참조
+ */
 int& TCPHandler::GetTCPSocket() { return tcpSocket; }
 
+/**
+ * @brief TCP 주소 구조체를 반환하는 메서드
+ * @return sockaddr_in& TCP 주소 구조체에 대한 참조
+ */
 sockaddr_in& TCPHandler::GetTCPAddr() { return tcpAddr; }
