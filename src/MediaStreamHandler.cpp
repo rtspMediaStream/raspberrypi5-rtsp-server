@@ -7,7 +7,7 @@
  * This project is licensed under the MIT License - see the LICENSE file for details
  */
 
-#include "Protos.h"
+#include "RTCPPacket.hpp"
 #include "Global.h"
 #include "TCPHandler.h"
 #include "UDPHandler.h"
@@ -115,13 +115,14 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
  *   - RTCP Sender Report 주기적 전송
  */
 void MediaStreamHandler::HandleMediaStream() {
-    Protos protos;
+    // Protos protos;
 
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
     uint16_t seqNum = (uint16_t)GetRanNum(16);
 
-    Protos::SenderReport sr;
+    //Protos::SenderReport sr;
+
     int ssrcNum = 0;
 
     // RTP 헤더 생성
@@ -162,12 +163,14 @@ void MediaStreamHandler::HandleMediaStream() {
                 packetCount++;
                 octetCount += frame_size;
 
-                // if (packetCount % 100 == 0)
-                // {
-                //     std::cout << "RTCP sent" << std::endl;
-                //     protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
-                //     udpHandler->SendSenderReport(&sr, sizeof(sr));
-                // }
+                if (packetCount % 100 == 0)
+                {
+                    std::cout << "RTCP sent" << std::endl;
+                    //protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
+                    //RTCPPacket rtcpPacket(timestamp, packetCount, octetCount, RTSPServer::getInstance().getProtocol());
+                    //udpHandler->SendSenderReport(&sr, sizeof(sr));
+                }
+
             }
         }else if(streamState == MediaStreamState::eMediaStream_Pause) {
             std::unique_lock<std::mutex> lck(streamMutex);
