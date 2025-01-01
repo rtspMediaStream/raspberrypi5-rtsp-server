@@ -17,3 +17,9 @@ RTCPPacket::RTCPPacket(const unsigned int timestamp, unsigned int packetCount, u
     senderPacketCount = htonl(packetCount);
     senderOctetCount = htonl(octetCount);
 }
+
+int64_t RTCPPacket::rtcp_sendto(int sockfd, int64_t _bufferLen, int flags, const sockaddr *to)
+{
+    auto sentBytes = sendto(sockfd, this, _bufferLen, flags, to, sizeof(sockaddr));
+    return sentBytes;
+}

@@ -106,6 +106,11 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
     }
 }
 
+void MediaStreamHandler::SendRTCPPacket(RTCPPacket& rtcpPacket){
+    rtcpPacket.rtcp_sendto(udpHandler->GetRTCPSocket(), sizeof(RTCPPacket), 0, (struct sockaddr *)(&udpHandler->GetRTCPAddr()));
+    return ;
+}
+
 /**
  * @brief 미디어 스트림을 처리하는 메인 메서드
  * @details
@@ -115,19 +120,17 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
  *   - RTCP Sender Report 주기적 전송
  */
 void MediaStreamHandler::HandleMediaStream() {
-    // Protos protos;
-
     unsigned int octetCount = 0;
     unsigned int packetCount = 0;
     uint16_t seqNum = (uint16_t)GetRanNum(16);
 
-    //Protos::SenderReport sr;
-
     int ssrcNum = 0;
+
+    Protocol mediaType = RTSPServer::getInstance().getProtocol();
 
     // RTP 헤더 생성
     RTPHeader rtpHeader(0, 0, ssrcNum);
-    rtpHeader.set_payloadType(RTSPServer::getInstance().getProtocol());
+    rtpHeader.set_payloadType(mediaType);
     rtpHeader.set_seq(seqNum);
 
     // RTP 패킷 생성
@@ -165,10 +168,8 @@ void MediaStreamHandler::HandleMediaStream() {
 
                 if (packetCount % 100 == 0)
                 {
-                    std::cout << "RTCP sent" << std::endl;
-                    //protos.CreateSR(&sr, timestamp, packetCount, octetCount, PROTO_H264);
-                    //RTCPPacket rtcpPacket(timestamp, packetCount, octetCount, RTSPServer::getInstance().getProtocol());
-                    //udpHandler->SendSenderReport(&sr, sizeof(sr));
+                    RTCPPacket rtcpPacket(timestamp, packetCount, octetCount, mediaType);
+                    SendRTCPPacket(rtcpPacket);
                 }
 
             }

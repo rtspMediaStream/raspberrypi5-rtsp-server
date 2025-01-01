@@ -20,7 +20,7 @@ class RTCPPacket
 {
 public:
     RTCPPacket(const unsigned int timestamp, unsigned int packetCount, unsigned int octetCount, Protocol payloadType);
-
+    int64_t rtcp_sendto(int sockfd, int64_t _bufferLen, int flags, const sockaddr *to);
     ~RTCPPacket() = default;
 
 private:

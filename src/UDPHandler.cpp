@@ -41,14 +41,6 @@ bool UDPHandler::CreateUDPSocket() {
     return true;
 }
 
-void UDPHandler::SendSenderReport(Protos::SenderReport* senderReport, size_t srSize) {
-    int sentBytes = sendto(rtcpSocket, senderReport, srSize, 0, (struct sockaddr*)&rtcpAddr, sizeof(rtcpAddr));
-    if (sentBytes == -1) {
-        std::cerr << "Error: fail to send RTCP packet" << std::endl;
-        exit(1);
-    }
-}
-
 int& UDPHandler::GetRTPSocket() { return rtpSocket; }
 int& UDPHandler::GetRTCPSocket() { return rtcpSocket; }
 
