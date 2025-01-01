@@ -34,6 +34,7 @@ enum MediaStreamState{
 /// @details 실제 구현은 RTPPacket.hpp에 정의되어 있으며,
 ///          RTP 패킷의 생성, 관리, 전송 클래스
 class RTPPacket;
+class RTCPPacket;
 
 /**
  * @class MediaStreamHandler
@@ -77,6 +78,8 @@ private:
      * @details 오디오 데이터를 MTU 크기에 따라 단일 또는 분할하여 RTP 패킷으로 생성하고 전송
      */
     void SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket, const uint32_t timeStamp);
+
+    void SendRTCPPacket(RTCPPacket& rtcpPacket);
 };
 
 #endif //RTSP_MEDIASTREAMHANDLER_H

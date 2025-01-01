@@ -1,8 +1,6 @@
 #ifndef RTSP_UDPHANDLER_H
 #define RTSP_UDPHANDLER_H
 
-#include "Protos.h"
-
 #include <string>
 #include <arpa/inet.h>
 #include <memory>
@@ -15,8 +13,6 @@ public:
     ~UDPHandler();
 
     bool CreateUDPSocket();
-
-    void SendSenderReport(Protos::SenderReport* senderReport, size_t srSize);
 
     int& GetRTPSocket();
     int& GetRTCPSocket();
