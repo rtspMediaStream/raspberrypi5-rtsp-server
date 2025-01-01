@@ -106,6 +106,11 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
     }
 }
 
+/**
+ * @brief RTCP 패킷을 전송하는 메서드
+ * @param rtcpPacket 전송할 RTCP 패킷 객체
+ * @details RTCP 패킷을 생성하고 전송
+ */
 void MediaStreamHandler::SendRTCPPacket(RTCPPacket& rtcpPacket){
     rtcpPacket.rtcp_sendto(udpHandler->GetRTCPSocket(), sizeof(RTCPPacket), 0, (struct sockaddr *)(&udpHandler->GetRTCPAddr()));
     return ;

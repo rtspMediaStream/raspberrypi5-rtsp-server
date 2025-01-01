@@ -29,11 +29,18 @@ enum MediaStreamState{
     eMediaStream_Teardown, ///< 종료 상태
 };
 
-/// @class RTPPacket
-/// @brief RTP 패킷 관리를 위한 클래스
-/// @details 실제 구현은 RTPPacket.hpp에 정의되어 있으며,
-///          RTP 패킷의 생성, 관리, 전송 클래스
+/** @class RTPPacket
+ * @brief RTP 패킷 관리를 위한 클래스
+ * @details 실제 구현은 RTPPacket.hpp에 정의되어 있으며,
+ *          RTP 패킷의 생성, 관리, 전송 클래스
+ */
 class RTPPacket;
+
+/** @class RTCPPacket
+ * @brief RTCP 패킷 관리를 위한 클래스
+ * @details 실제 구현은 RTCPPacket.hpp에 정의되어 있으며,
+ *          RTCP 패킷의 생성, 관리, 전송 클래스
+ */
 class RTCPPacket;
 
 /**
@@ -79,6 +86,10 @@ private:
      */
     void SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket, const uint32_t timeStamp);
 
+    /**
+     * @brief 오디오 스트림을 처리하는 메서드
+     * @param rtcpPacket RTCP 패킷 객체
+     */
     void SendRTCPPacket(RTCPPacket& rtcpPacket);
 };
 
