@@ -1,3 +1,12 @@
+/**
+ * @file RequestHandler.cpp
+ * @brief RequestHandler 클래스의 구현부
+ * @details RTSP 프로토콜의 각 메서드 처리 및 응답 생성 구현
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #include "RequestHandler.h"
 #include "TCPHandler.h"
 #include "ClientSession.h"
@@ -12,11 +21,20 @@
 
 RequestHandler::RequestHandler(ClientSession* session) : session(session){};
 
+/**
+ * @details 새로운 스레드를 생성하고 detach하여 백그라운드에서 요청을 처리
+ */
 void RequestHandler::StartThread() {
     std::thread handlerThread(*this);
     handlerThread.detach();
 };
 
+/**
+ * @details RTSP 요청 처리 메인 루프:
+ *          1. 요청 수신
+ *          2. CSeq 및 메서드 파싱
+ *          3. 메서드별 적절한 핸들러 호출
+ */
 void RequestHandler::HandleRequest() {
     while (true) {
         std::cout << "recv wait id :" << session->GetTCPSocket() << std::endl;
@@ -53,6 +71,9 @@ void RequestHandler::HandleRequest() {
     }
 }
 
+/**
+ * @details RTSP 요청의 첫 줄에서 메서드 이름을 추출
+ */
 std::string RequestHandler::ParseMethod(const std::string& request) {
     std::istringstream requestStream(request);
     std::string method;
@@ -60,6 +81,9 @@ std::string RequestHandler::ParseMethod(const std::string& request) {
     return method;
 }
 
+/**
+ * @details 요청 헤더에서 "CSeq" 필드를 찾아 값을 파싱
+ */
 int RequestHandler::ParseCSeq(const std::string& request) {
     std::istringstream requestStream(request);
     std::string line;
@@ -75,6 +99,9 @@ int RequestHandler::ParseCSeq(const std::string& request) {
     return -1; // CSeq not found
 }
 
+/**
+ * @details Transport 헤더에서 "client_port" 필드를 파싱하여 RTP/RTCP 포트 쌍 추출
+ */
 std::pair<int, int> RequestHandler::ParsePorts(const std::string& request) {
     std::istringstream requestStream(request);
     std::string line;
@@ -101,6 +128,9 @@ std::pair<int, int> RequestHandler::ParsePorts(const std::string& request) {
     return {-1, -1};
 }
 
+/**
+ * @details Accept 헤더에서 "application/sdp" 지원 여부 확인
+ */
 bool RequestHandler::ParseAccept(const std::string& request) {
     std::istringstream requestStream(request);
     std::string line;
@@ -110,6 +140,9 @@ bool RequestHandler::ParseAccept(const std::string& request) {
     return false;
 }
 
+/**
+ * @details 지원하는 RTSP 메서드 목록을 포함한 응답 생성
+ */
 void RequestHandler::HandleOptionsRequest(const int cseq) {
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
@@ -118,6 +151,11 @@ void RequestHandler::HandleOptionsRequest(const int cseq) {
     TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 }
 
+/**
+ * @details 미디어 스트림 정보를 포함한 SDP 응답 생성:
+ *          - 비디오(H264)나 오디오(Opus) 스트림 정보
+ *          - 세션 ID, 버전, IP 주소 등의 정보 포함
+ */
 void RequestHandler::HandleDescribeRequest(const std::string& request, const int cseq) {
     std::string ip = GetServerIP();
     std::string sdp = "";
@@ -158,7 +196,13 @@ void RequestHandler::HandleDescribeRequest(const std::string& request, const int
     TCPHandler::GetInstance().SendRTSPResponse(session->GetTCPSocket(), response);
 }
 
-
+/**
+ * @details 스트리밍을 위한 초기 설정 처리:
+ *          1. RTP/RTCP 포트 설정
+ *          2. UDP 소켓 생성
+ *          3. 미디어 스트림 핸들러 초기화
+ *          4. 스트리밍 스레드 시작
+ */
 void RequestHandler::HandleSetupRequest(const std::string& request, const int cseq) {
     auto ports = ParsePorts(request);
     if (ports.first < 0 || ports.second < 0) {
@@ -188,6 +232,9 @@ void RequestHandler::HandleSetupRequest(const std::string& request, const int cs
     mediaStreamThread.detach();
 }
 
+/**
+ * @details 미디어 스트림 재생 명령 처리
+ */
 void RequestHandler::HandlePlayRequest(int cseq) {
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
@@ -199,6 +246,9 @@ void RequestHandler::HandlePlayRequest(int cseq) {
     mediaStreamHandler->SetCmd("PLAY");
 }
 
+/**
+ * @details 미디어 스트림 일시 정지 명령 처리
+ */
 void RequestHandler::HandlePauseRequest(int cseq) {
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
@@ -211,6 +261,9 @@ void RequestHandler::HandlePauseRequest(int cseq) {
     mediaStreamHandler->SetCmd("PAUSE");
 }
 
+/**
+ * @details 세션 종료 및 리소스 정리 처리
+ */
 void RequestHandler::HandleTeardownRequest(int cseq) {
     std::string response = "RTSP/1.0 200 OK\r\n"
                            "CSeq: " + std::to_string(cseq) + "\r\n"
