@@ -41,13 +41,12 @@ MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaSt
  * @param payload 전송할 페이로드 데이터
  * @param payloadSize 전송할 페이로드 데이터 크기
  * @param rtpPacket RTP 패킷 객체
- * @param timeStamp RTP 패킷의 타임스탬프
  * @details
  *   - 페이로드 크기에 따라 단일 패킷 또는 분할 패킷으로 전송
  *   - FU-A 형식으로 NAL 단위 분할 처리
  *   - RTP 헤더 마커 비트 설정
  */
-void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket, const uint32_t timeStamp) {
+void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket) {
     unsigned char nalHeader = payload[0]; // NAL 헤더 (첫 바이트)
 
     if (payloadSize <= MAX_RTP_DATA_SIZE) {
@@ -57,7 +56,6 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
         // 패킷 크기가 MTU 이하인 경우, 단일 RTP 패킷 전송
         memcpy(rtpPacket.get_payload(), payload, payloadSize); // NAL 데이터 복사
 
-        rtpPacket.get_header().set_timestamp(timeStamp);
         rtpPacket.rtp_sendto(udpHandler->GetRTPSocket(), RTP_HEADER_SIZE + payloadSize, 0, (struct sockaddr *)(&udpHandler->GetRTPAddr()));
         return;
     }
@@ -165,6 +163,7 @@ void MediaStreamHandler::HandleMediaStream() {
                 }
 
                 // split FU-A
+                rtpPack.get_header().set_timestamp(timestamp);
                 SendFragmentedRTPPackets((unsigned char *)frame_ptr, frame_size, rtpPack, timestamp);
 
                 // 주기적으로 RTCP Sender Report 전송

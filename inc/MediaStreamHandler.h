@@ -81,10 +81,9 @@ private:
      * @param payload 전송할 페이로드 데이터
      * @param payloadSize 전송할 페이로드 데이터 크기
      * @param rtpPacket RTP 패킷 객체
-     * @param timeStamp RTP 패킷의 타임스탬프
      * @details 오디오 데이터를 MTU 크기에 따라 단일 또는 분할하여 RTP 패킷으로 생성하고 전송
      */
-    void SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket, const uint32_t timeStamp);
+    void SendFragmentedRTPPackets(unsigned char* payload, size_t payloadSize, RTPPacket& rtpPacket);
 
     /**
      * @brief 오디오 스트림을 처리하는 메서드
