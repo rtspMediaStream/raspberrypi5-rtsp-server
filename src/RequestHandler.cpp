@@ -13,6 +13,7 @@
 #include "MediaStreamHandler.h"
 #include "UDPHandler.h"
 #include "Global.h"
+#include "RTSPServer.h"
 
 #include <iostream>
 #include <string>

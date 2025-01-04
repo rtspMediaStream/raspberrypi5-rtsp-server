@@ -153,18 +153,9 @@ void MediaStreamHandler::HandleMediaStream() {
                     continue;
                 }
 
-                if (packetCount % 100 == 0)
-                {
-                    rtpPack.get_header().set_marker(true);
-                }
-                else
-                {
-                    rtpPack.get_header().set_marker(false);
-                }
-
                 // split FU-A
                 rtpPack.get_header().set_timestamp(timestamp);
-                SendFragmentedRTPPackets((unsigned char *)frame_ptr, frame_size, rtpPack, timestamp);
+                SendFragmentedRTPPackets((unsigned char *)frame_ptr, frame_size, rtpPack);
 
                 // 주기적으로 RTCP Sender Report 전송
                 packetCount++;
