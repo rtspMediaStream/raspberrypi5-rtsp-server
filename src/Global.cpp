@@ -1,3 +1,12 @@
+/**
+ * @file Global.cpp
+ * @brief Global 클래스의 구현부
+ * @details Global 클래스의 멤버 함수를 구현한 소스 파일
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #include "Global.h"
 
 #include <chrono>
