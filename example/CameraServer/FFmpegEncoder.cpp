@@ -2,6 +2,7 @@
 #include <iostream>
 #include <thread>
 #include "DataCapture.h"
+/// C언어로 FFmpeg Library를 사용
 extern "C"
 {
     #include "libavformat/avformat.h"
@@ -11,15 +12,27 @@ extern "C"
     #include "libswscale/swscale.h"
 }
 
+/**
+ * @brief FFmpegEncoder 생성자
+ * @details AVCodec을 설정하고 ffmpeg library를 이용해 라즈베리파이 카메라모듈과 연결합니다.
+ */
 FFmpegEncoder::FFmpegEncoder(const std::string& filename, int width, int height, double fps)
     : width(width), height(height) {
     initFFmpeg(filename, fps);
 }
 
+/**
+ * @brief FFmpegEncoder 소멸자
+ * @details FFmpeg에 연결된 카메라모듈을 반환합니다.
+ */
 FFmpegEncoder::~FFmpegEncoder() {
     releaseFFmpeg();
 }
 
+/**
+ * @brief FFmpeg library로 카메라를 설정합니다.
+ * @details AVCodec을 설정하고 ffmpeg library를 이용해 라즈베리파이 카메라모듈과 연결합니다.
+ */
 void FFmpegEncoder::initFFmpeg(const std::string& filename, double fps) {
     const struct AVCodec *codec = avcodec_find_encoder(AV_CODEC_ID_H264);
     if (!codec) {
@@ -98,8 +111,12 @@ void FFmpegEncoder::initFFmpeg(const std::string& filename, double fps) {
     }
 }
 
-
-// FFmpeg 초기화, encode, release 로직을 기존 코드를 모듈화
+/**
+ * @brief 카메라 모듈에서 프레임을 읽어옵니다.
+ * @param frame YUVformat형태의 프레임
+ * @param fps 카메라 모듈에 설정된 frame per seconds
+ * @details 카메라 모듈에서 YUVformat의 프레임을 읽어와 DataCapture로 프레임을 처리합니다.
+ */
 void FFmpegEncoder::encode(const cv::Mat& inputFrame, double fps) {
 
     int y_size = codec_ctx->width * codec_ctx->height;      // Y 채널 크기
@@ -168,7 +185,10 @@ void FFmpegEncoder::encode(const cv::Mat& inputFrame, double fps) {
 
 }
 
-
+/**
+ * @brief FFmpeg library의 카메라 메모리를 해제합니다.
+ * @details FFmpeg에 연결된 카메라모듈을 반환합니다.
+ */
 void FFmpegEncoder::releaseFFmpeg() {
     if (frame) {
         av_frame_free(&frame);
