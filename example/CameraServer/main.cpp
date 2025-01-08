@@ -30,44 +30,6 @@ using namespace std;
 static std::shared_ptr<libcamera::Camera> camera;
 FFmpegEncoder ffmpegEncoder("output.h264",640, 480, 30.0);
 
-static void processRequest(Request *request)
-{
-    if (request->status() == Request::RequestCancelled) {
-        std::cerr << "Request was cancelled!" << std::endl;
-        return;
-    }
-
-    // Request에서 스트림과 버퍼를 가져옴
-    DataCaptureFrame newframe;
-    for (const auto &bufferPair : request->buffers()) {
-        const FrameBuffer *buffer = bufferPair.second;
-
-        // 버퍼의 첫 번째 Plane 가져오기
-        const FrameBuffer::Plane &plane = buffer->planes()[0];
-
-        // fd를 사용하여 메모리 매핑
-        void *mappedMemory = mmap(nullptr, plane.length, PROT_READ, MAP_SHARED, plane.fd.get(), 0);
-        if (mappedMemory == MAP_FAILED) {
-            std::cerr << "Failed to mmap buffer!" << std::endl;
-            continue;
-        }
-
-        // 이미지 데이터를 unsigned char*로 처리
-        unsigned char *imgData = static_cast<unsigned char *>(mappedMemory);
-        int imgSize = plane.length;
-
-        // 이미지 데이터를 pushImg 함수로 전달
-        newframe.dataPtr = imgData;
-        newframe.size = imgSize;
-        newframe.timestamp += 3000;
-        DataCapture::getInstance().pushFrame(newframe);
-        std::cout << "Image data processed, size: " << imgSize << " bytes" << std::endl;
-
-        // 메모리 매핑 해제
-        munmap(mappedMemory, plane.length);
-    }
-}
-
 static void requestComplete(Request *request)
 {
 	if (request->status() == Request::RequestCancelled)
