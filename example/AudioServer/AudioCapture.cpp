@@ -42,7 +42,6 @@ AudioCapture::AudioCapture()
     snd_pcm_hw_params_set_rate(pcm_handle, params, OPUS_SAMPLE_RATE, 0);
     snd_pcm_hw_params_set_channels(pcm_handle, params, OPUS_CHANNELS);
     snd_pcm_hw_params_set_period_size(pcm_handle, params, OPUS_FRAME_SIZE, 0);  
-    //snd_pcm_hw_params_set_rate_near(pcm_handle, params, &sample_rate, &dir);
     rc = snd_pcm_hw_params(pcm_handle, params);
     if (rc < 0)
     {

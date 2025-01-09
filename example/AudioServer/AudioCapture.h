@@ -50,5 +50,4 @@ private:
     snd_pcm_t* pcm_handle;       ///< PCM 디바이스 핸들
     snd_pcm_hw_params_t* params; ///< PCM 하드웨어 파라미터
     unsigned int sample_rate;    ///< 샘플링 레이트
-    int dir;                     ///< ALSA PCM 설정 방향
 };
