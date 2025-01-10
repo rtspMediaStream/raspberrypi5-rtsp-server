@@ -1,0 +1,247 @@
+\hypertarget{classRTCPPacket}{}\doxysection{RTCPPacket Class Reference}
+\label{classRTCPPacket}\index{RTCPPacket@{RTCPPacket}}
+
+
+RTCP 패킷 관리를 위한 클래스  
+
+
+
+
+{\ttfamily \#include $<$RTCPPacket.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRTCPPacket_a83a947239e4b16dbe062d37cd44ab389}{RTCPPacket}} (const unsigned int timestamp, unsigned int packet\+Count, unsigned int octet\+Count, \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} payload\+Type)
+\begin{DoxyCompactList}\small\item\em RTCP 패킷 생성자 \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{classRTCPPacket_af13a1919e90b4526de8a021ba5c4af10}{rtcp\+\_\+sendto}} (int sockfd, int64\+\_\+t \+\_\+buffer\+Len, int flags, const sockaddr $\ast$to)
+\begin{DoxyCompactList}\small\item\em RTCP 패킷을 UDP 소켓으로 전송하는 메서드 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTCPPacket_a42a27dd6a4b9009412aced0cb0f569ee}{$\sim$\+RTCPPacket}} ()=default
+\begin{DoxyCompactList}\small\item\em 소멸자 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTCPPacket_ac5ec147eb2d2faab142206be04384bb9}{rc}}\+: 5
+\begin{DoxyCompactList}\small\item\em 리포트 카운트 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTCPPacket_a514589b6c1d598bcf7dfde85032c7be7}{p}}\+: 1
+\begin{DoxyCompactList}\small\item\em 패딩 비트 \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTCPPacket_a49087676ba1ea54c61a569ee996253fd}{version}}\+: 2
+\begin{DoxyCompactList}\small\item\em 버전 정보 (2) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTCPPacket_a209b6c069bfd4e38b71301f6bc616f47}{pt}}
+\begin{DoxyCompactList}\small\item\em 패킷 타입 (200\+: Sender Report) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classRTCPPacket_a2596f09ec7902f38e427a3fc76ce1931}{length}}
+\begin{DoxyCompactList}\small\item\em 패킷 길이 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTCPPacket_a14772f0b7e6b36669ec90ab25a6de202}{ssrc}}
+\begin{DoxyCompactList}\small\item\em 동기화 소스 식별자 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTCPPacket_a0eb97bd50d3e4b6468fac557e3dec358}{ntp\+Timestamp\+Msw}}
+\begin{DoxyCompactList}\small\item\em NTP 타임스탬프 MSW. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTCPPacket_a8360760c0beea4174d585e06a3177474}{ntp\+Timestamp\+Lsw}}
+\begin{DoxyCompactList}\small\item\em NTP 타임스탬프 LSW. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTCPPacket_ac4ba9cfcfae5f0b68d501c02ef79176c}{rtp\+Timestamp}}
+\begin{DoxyCompactList}\small\item\em RTP 타임스탬프 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTCPPacket_ad64ed3c04a8c910477aa7f3d667a3227}{sender\+Packet\+Count}}
+\begin{DoxyCompactList}\small\item\em 전송된 패킷 수 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTCPPacket_af5cf7df52d9181a3bf68b5c7e9fcc9f4}{sender\+Octet\+Count}}
+\begin{DoxyCompactList}\small\item\em 전송된 총 바이트 수 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTCP 패킷 관리를 위한 클래스 
+
+\texorpdfstring{$<$}{<} 1바이트 정렬로 패딩 없이 메모리에 패킷 구조체 배치
+
+실제 구현은 RTCPPacket.\+hpp에 정의되어 있으며, RTCP 패킷의 생성, 관리, 전송 클래스
+
+RTCP 패킷을 생성하고 전송하는 클래스
+
+RTCP Sender Report 패킷의 구조를 정의하고, 네트워크 바이트 오더 변환과 UDP 소켓을 통한 전송을 처리한다. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRTCPPacket_a83a947239e4b16dbe062d37cd44ab389}\label{classRTCPPacket_a83a947239e4b16dbe062d37cd44ab389}} 
+\index{RTCPPacket@{RTCPPacket}!RTCPPacket@{RTCPPacket}}
+\index{RTCPPacket@{RTCPPacket}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{RTCPPacket()}{RTCPPacket()}}
+{\footnotesize\ttfamily RTCPPacket\+::\+RTCPPacket (\begin{DoxyParamCaption}\item[{const unsigned int}]{timestamp,  }\item[{unsigned int}]{packet\+Count,  }\item[{unsigned int}]{octet\+Count,  }\item[{\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}}}]{payload\+Type }\end{DoxyParamCaption})}
+
+
+
+RTCP 패킷 생성자 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timestamp} & RTP 타임스탬프 \\
+\hline
+{\em packet\+Count} & 전송된 패킷 수 \\
+\hline
+{\em octet\+Count} & 전송된 총 바이트 수 \\
+\hline
+{\em payload\+Type} & 페이로드 타입 (H264 또는 OPUS)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item RTCP 버전 2로 설정
+\item 패킷 타입을 200(SR)으로 설정
+\item 패킷 길이를 6으로 설정
+\item SSRC를 페이로드 타입으로 설정
+\item NTP 타임스탬프 생성 및 설정
+\item 네트워크 바이트로 변환하여 설정
+\item RTP 타임스탬프 설정
+\item 전송된 패킷 수 설정
+\item 전송된 바이트 수 설정 (옥텟 수) 
+\end{DoxyItemize}\mbox{\Hypertarget{classRTCPPacket_a42a27dd6a4b9009412aced0cb0f569ee}\label{classRTCPPacket_a42a27dd6a4b9009412aced0cb0f569ee}} 
+\index{RTCPPacket@{RTCPPacket}!````~RTCPPacket@{$\sim$RTCPPacket}}
+\index{````~RTCPPacket@{$\sim$RTCPPacket}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{$\sim$RTCPPacket()}{~RTCPPacket()}}
+{\footnotesize\ttfamily RTCPPacket\+::$\sim$\+RTCPPacket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+소멸자 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRTCPPacket_af13a1919e90b4526de8a021ba5c4af10}\label{classRTCPPacket_af13a1919e90b4526de8a021ba5c4af10}} 
+\index{RTCPPacket@{RTCPPacket}!rtcp\_sendto@{rtcp\_sendto}}
+\index{rtcp\_sendto@{rtcp\_sendto}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{rtcp\_sendto()}{rtcp\_sendto()}}
+{\footnotesize\ttfamily int64\+\_\+t RTCPPacket\+::rtcp\+\_\+sendto (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{int64\+\_\+t}]{\+\_\+buffer\+Len,  }\item[{int}]{flags,  }\item[{const sockaddr $\ast$}]{to }\end{DoxyParamCaption})}
+
+
+
+RTCP 패킷을 UDP 소켓으로 전송하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sockfd} & UDP 소켓 디스크립터 \\
+\hline
+{\em \+\_\+buffer\+Len} & 전송할 버퍼의 크기 \\
+\hline
+{\em flags} & 전송 옵션 플래그 \\
+\hline
+{\em to} & 수신자 주소 정보 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int64\+\_\+t 전송된 바이트 수
+\end{DoxyReturn}
+RTCP 패킷을 UDP 소켓을 통해 지정된 주소로 전송하는 메서드 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRTCPPacket_a2596f09ec7902f38e427a3fc76ce1931}\label{classRTCPPacket_a2596f09ec7902f38e427a3fc76ce1931}} 
+\index{RTCPPacket@{RTCPPacket}!length@{length}}
+\index{length@{length}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily uint16\+\_\+t RTCPPacket\+::length\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+패킷 길이 
+
+\mbox{\Hypertarget{classRTCPPacket_a8360760c0beea4174d585e06a3177474}\label{classRTCPPacket_a8360760c0beea4174d585e06a3177474}} 
+\index{RTCPPacket@{RTCPPacket}!ntpTimestampLsw@{ntpTimestampLsw}}
+\index{ntpTimestampLsw@{ntpTimestampLsw}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{ntpTimestampLsw}{ntpTimestampLsw}}
+{\footnotesize\ttfamily uint32\+\_\+t RTCPPacket\+::ntp\+Timestamp\+Lsw\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+NTP 타임스탬프 LSW. 
+
+\mbox{\Hypertarget{classRTCPPacket_a0eb97bd50d3e4b6468fac557e3dec358}\label{classRTCPPacket_a0eb97bd50d3e4b6468fac557e3dec358}} 
+\index{RTCPPacket@{RTCPPacket}!ntpTimestampMsw@{ntpTimestampMsw}}
+\index{ntpTimestampMsw@{ntpTimestampMsw}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{ntpTimestampMsw}{ntpTimestampMsw}}
+{\footnotesize\ttfamily uint32\+\_\+t RTCPPacket\+::ntp\+Timestamp\+Msw\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+NTP 타임스탬프 MSW. 
+
+\mbox{\Hypertarget{classRTCPPacket_a514589b6c1d598bcf7dfde85032c7be7}\label{classRTCPPacket_a514589b6c1d598bcf7dfde85032c7be7}} 
+\index{RTCPPacket@{RTCPPacket}!p@{p}}
+\index{p@{p}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{p}{p}}
+{\footnotesize\ttfamily uint8\+\_\+t RTCPPacket\+::p\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+패딩 비트 
+
+\mbox{\Hypertarget{classRTCPPacket_a209b6c069bfd4e38b71301f6bc616f47}\label{classRTCPPacket_a209b6c069bfd4e38b71301f6bc616f47}} 
+\index{RTCPPacket@{RTCPPacket}!pt@{pt}}
+\index{pt@{pt}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{pt}{pt}}
+{\footnotesize\ttfamily uint8\+\_\+t RTCPPacket\+::pt\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+패킷 타입 (200\+: Sender Report) 
+
+\mbox{\Hypertarget{classRTCPPacket_ac5ec147eb2d2faab142206be04384bb9}\label{classRTCPPacket_ac5ec147eb2d2faab142206be04384bb9}} 
+\index{RTCPPacket@{RTCPPacket}!rc@{rc}}
+\index{rc@{rc}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{rc}{rc}}
+{\footnotesize\ttfamily uint8\+\_\+t RTCPPacket\+::rc\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+리포트 카운트 
+
+\mbox{\Hypertarget{classRTCPPacket_ac4ba9cfcfae5f0b68d501c02ef79176c}\label{classRTCPPacket_ac4ba9cfcfae5f0b68d501c02ef79176c}} 
+\index{RTCPPacket@{RTCPPacket}!rtpTimestamp@{rtpTimestamp}}
+\index{rtpTimestamp@{rtpTimestamp}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{rtpTimestamp}{rtpTimestamp}}
+{\footnotesize\ttfamily uint32\+\_\+t RTCPPacket\+::rtp\+Timestamp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+RTP 타임스탬프 
+
+\mbox{\Hypertarget{classRTCPPacket_af5cf7df52d9181a3bf68b5c7e9fcc9f4}\label{classRTCPPacket_af5cf7df52d9181a3bf68b5c7e9fcc9f4}} 
+\index{RTCPPacket@{RTCPPacket}!senderOctetCount@{senderOctetCount}}
+\index{senderOctetCount@{senderOctetCount}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{senderOctetCount}{senderOctetCount}}
+{\footnotesize\ttfamily uint32\+\_\+t RTCPPacket\+::sender\+Octet\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+전송된 총 바이트 수 
+
+\mbox{\Hypertarget{classRTCPPacket_ad64ed3c04a8c910477aa7f3d667a3227}\label{classRTCPPacket_ad64ed3c04a8c910477aa7f3d667a3227}} 
+\index{RTCPPacket@{RTCPPacket}!senderPacketCount@{senderPacketCount}}
+\index{senderPacketCount@{senderPacketCount}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{senderPacketCount}{senderPacketCount}}
+{\footnotesize\ttfamily uint32\+\_\+t RTCPPacket\+::sender\+Packet\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+전송된 패킷 수 
+
+\mbox{\Hypertarget{classRTCPPacket_a14772f0b7e6b36669ec90ab25a6de202}\label{classRTCPPacket_a14772f0b7e6b36669ec90ab25a6de202}} 
+\index{RTCPPacket@{RTCPPacket}!ssrc@{ssrc}}
+\index{ssrc@{ssrc}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{ssrc}{ssrc}}
+{\footnotesize\ttfamily uint32\+\_\+t RTCPPacket\+::ssrc\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+동기화 소스 식별자 
+
+\mbox{\Hypertarget{classRTCPPacket_a49087676ba1ea54c61a569ee996253fd}\label{classRTCPPacket_a49087676ba1ea54c61a569ee996253fd}} 
+\index{RTCPPacket@{RTCPPacket}!version@{version}}
+\index{version@{version}!RTCPPacket@{RTCPPacket}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily uint8\+\_\+t RTCPPacket\+::version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+버전 정보 (2) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{RTCPPacket_8hpp}{RTCPPacket.\+hpp}}\item 
+src/\mbox{\hyperlink{RTCPPacket_8cpp}{RTCPPacket.\+cpp}}\end{DoxyCompactItemize}

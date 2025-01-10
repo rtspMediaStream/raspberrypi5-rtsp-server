@@ -17,27 +17,31 @@
 \DoxyCodeLine{29     \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758a2c5ac8f51e7195f6a9c2a8125ed21822}{eMediaStream\_Teardown}}, }
 \DoxyCodeLine{30 \};}
 \DoxyCodeLine{31 }
-\DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{classRtpPacket}{RtpPacket}};}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{44 \textcolor{keyword}{class }\mbox{\hyperlink{classMediaStreamHandler}{MediaStreamHandler}} \{}
-\DoxyCodeLine{45 \textcolor{keyword}{public}:}
-\DoxyCodeLine{46     \mbox{\hyperlink{classUDPHandler}{UDPHandler}}* \mbox{\hyperlink{classMediaStreamHandler_ac193a65ab24f9041080054412fa6fb2a}{udpHandler}}; }
-\DoxyCodeLine{47 }
-\DoxyCodeLine{51     \mbox{\hyperlink{classMediaStreamHandler_ab8b368bab8d774050daab184872bc553}{MediaStreamHandler}}();}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{57     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_a2462f2771df761cdfa1806a1c4d5815e}{HandleMediaStream}}();}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{63     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}{SetCmd}}(\textcolor{keyword}{const} std::string\& cmd);}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{65 \textcolor{keyword}{private}:}
-\DoxyCodeLine{66     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMediaStreamHandler_a3ca21c7a10431081078d808fb2f54492}{threadRun}} = \textcolor{keyword}{true};              }
-\DoxyCodeLine{67     \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}{MediaStreamState}} \mbox{\hyperlink{classMediaStreamHandler_abe9e20473f7b4e47fff523506b5cfabb}{streamState}};       }
-\DoxyCodeLine{68     std::mutex \mbox{\hyperlink{classMediaStreamHandler_ad4ed6832e724123cfc778af5f014f3c2}{streamMutex}};             }
-\DoxyCodeLine{69     std::condition\_variable \mbox{\hyperlink{classMediaStreamHandler_a4b484970656f9a92fd2bb699e5dab52c}{condition}};  }
-\DoxyCodeLine{70 }
-\DoxyCodeLine{79     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}{SendFragmentedRTPPackets}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* payload, \textcolor{keywordtype}{size\_t} payloadSize, \mbox{\hyperlink{classRtpPacket}{RtpPacket}}\& rtpPacket, \textcolor{keyword}{const} uint32\_t timeStamp);}
-\DoxyCodeLine{80 \};}
-\DoxyCodeLine{81 }
-\DoxyCodeLine{82 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_MEDIASTREAMHANDLER\_H}}
+\DoxyCodeLine{37 \textcolor{keyword}{class }\mbox{\hyperlink{classRTPPacket}{RTPPacket}};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{44 \textcolor{keyword}{class }\mbox{\hyperlink{classRTCPPacket}{RTCPPacket}};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{52 \textcolor{keyword}{class }\mbox{\hyperlink{classMediaStreamHandler}{MediaStreamHandler}} \{}
+\DoxyCodeLine{53 \textcolor{keyword}{public}:}
+\DoxyCodeLine{54     \mbox{\hyperlink{classUDPHandler}{UDPHandler}}* \mbox{\hyperlink{classMediaStreamHandler_ac193a65ab24f9041080054412fa6fb2a}{udpHandler}}; }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{59     \mbox{\hyperlink{classMediaStreamHandler_ab8b368bab8d774050daab184872bc553}{MediaStreamHandler}}();}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_a2462f2771df761cdfa1806a1c4d5815e}{HandleMediaStream}}();}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{71     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}{SetCmd}}(\textcolor{keyword}{const} std::string\& cmd);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{keyword}{private}:}
+\DoxyCodeLine{74     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classMediaStreamHandler_a3ca21c7a10431081078d808fb2f54492}{threadRun}} = \textcolor{keyword}{true};              }
+\DoxyCodeLine{75     \mbox{\hyperlink{MediaStreamHandler_8h_a0190fa6d2691cdf0b90825f4b89dc758}{MediaStreamState}} \mbox{\hyperlink{classMediaStreamHandler_abe9e20473f7b4e47fff523506b5cfabb}{streamState}};       }
+\DoxyCodeLine{76     std::mutex \mbox{\hyperlink{classMediaStreamHandler_ad4ed6832e724123cfc778af5f014f3c2}{streamMutex}};             }
+\DoxyCodeLine{77     std::condition\_variable \mbox{\hyperlink{classMediaStreamHandler_a4b484970656f9a92fd2bb699e5dab52c}{condition}};  }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_a4c7b9de79b65783f347e634724253988}{SendFragmentedRTPPackets}}(\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* payload, \textcolor{keywordtype}{size\_t} payloadSize, \mbox{\hyperlink{classRTPPacket}{RTPPacket}}\& rtpPacket);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{void} \mbox{\hyperlink{classMediaStreamHandler_a596c40ab0acc1c1a0f0d10edcaef7542}{SendRTCPPacket}}(\mbox{\hyperlink{classRTCPPacket}{RTCPPacket}}\& rtcpPacket);}
+\DoxyCodeLine{93 \};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_MEDIASTREAMHANDLER\_H}}
 
 \end{DoxyCode}

@@ -22,35 +22,33 @@
 \DoxyCodeLine{37 \textcolor{keyword}{public}:}
 \DoxyCodeLine{43     \mbox{\hyperlink{classClientSession_aa72842ab3124cbd077a8e578211512d9}{ClientSession}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcpSocket}}, \textcolor{keyword}{const} std::string \mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}});}
 \DoxyCodeLine{44     }
-\DoxyCodeLine{49     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_aaf0142819e005e859760309a2f967261}{GetSessionId}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{49     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a8df99ce608ca9291620afd423335faea}{GetVersion}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{50 }
-\DoxyCodeLine{55     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a8df99ce608ca9291620afd423335faea}{GetVersion}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{55     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a1d9cd0096be8d56a5fed63fcac884791}{GetID}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}{id}}; \};}
 \DoxyCodeLine{56 }
-\DoxyCodeLine{61     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a1d9cd0096be8d56a5fed63fcac884791}{GetID}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}{id}}; \};}
+\DoxyCodeLine{61     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_ad91b07a5a04b428b1321cdec5cc9ee31}{GetTCPSocket}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcpSocket}}; \};}
 \DoxyCodeLine{62 }
-\DoxyCodeLine{67     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_ad91b07a5a04b428b1321cdec5cc9ee31}{GetTCPSocket}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcpSocket}}; \};}
+\DoxyCodeLine{67     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a4952f07ee43e08f20de10e627f342728}{GetRTPPort}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}}; \};}
 \DoxyCodeLine{68 }
-\DoxyCodeLine{73     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a4952f07ee43e08f20de10e627f342728}{GetRTPPort}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}}; \};}
+\DoxyCodeLine{73     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a449f195ca418582435f1bb444efbe28a}{GetRTCPPort}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}}; \};}
 \DoxyCodeLine{74 }
-\DoxyCodeLine{79     \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a449f195ca418582435f1bb444efbe28a}{GetRTCPPort}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}}; \};}
+\DoxyCodeLine{79     \textcolor{keyword}{inline} std::string \mbox{\hyperlink{classClientSession_a25215c61de3a450ea4b2536520502ab1}{GetIP}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}}; \};}
 \DoxyCodeLine{80 }
-\DoxyCodeLine{85     \textcolor{keyword}{inline} std::string \mbox{\hyperlink{classClientSession_a25215c61de3a450ea4b2536520502ab1}{GetIP}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}}; \};}
+\DoxyCodeLine{85     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientSession_ac52b4a76d1aca6dbda875ced7ff0b3db}{SetRTPPort}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}}) \{ this-\/>rtpPort = \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}}; \};}
 \DoxyCodeLine{86 }
-\DoxyCodeLine{91     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientSession_ac52b4a76d1aca6dbda875ced7ff0b3db}{SetRTPPort}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}}) \{ this-\/>rtpPort = \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}}; \};}
+\DoxyCodeLine{91     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientSession_a42be9f9d12fdcead28509268bb56904b}{SetRTCPPort}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}}) \{ this-\/>rtcpPort = \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}}; \};}
 \DoxyCodeLine{92 }
-\DoxyCodeLine{97     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classClientSession_a42be9f9d12fdcead28509268bb56904b}{SetRTCPPort}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}}) \{ this-\/>rtcpPort = \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}}; \};}
-\DoxyCodeLine{98 }
-\DoxyCodeLine{99 \textcolor{keyword}{private}:}
-\DoxyCodeLine{100     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}{id}};         }
-\DoxyCodeLine{101     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a9bf21cf0408fae916ad3d4999f2e5ba3}{version}};    }
-\DoxyCodeLine{102     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcpSocket}};  }
-\DoxyCodeLine{103     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}};    }
-\DoxyCodeLine{104     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}};   }
-\DoxyCodeLine{105     std::string \mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}}; }
-\DoxyCodeLine{106     }
-\DoxyCodeLine{107     \mbox{\hyperlink{classRequestHandler}{RequestHandler}}* \mbox{\hyperlink{classClientSession_ab419704c6ee8e72948ab2cd1415cc72b}{requestHandler}}; }
-\DoxyCodeLine{108 \};}
-\DoxyCodeLine{109 }
-\DoxyCodeLine{110 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_CLIENTSESSION\_H}}
+\DoxyCodeLine{93 \textcolor{keyword}{private}:}
+\DoxyCodeLine{94     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a2f499a4d75f0a3c310520fdc4929b184}{id}};         }
+\DoxyCodeLine{95     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a9bf21cf0408fae916ad3d4999f2e5ba3}{version}};    }
+\DoxyCodeLine{96     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a09e12a63ea26d1071629e5b1637a7b38}{tcpSocket}};  }
+\DoxyCodeLine{97     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_a7323e6c733d12c025b757299dfcbc06c}{rtpPort}};    }
+\DoxyCodeLine{98     \textcolor{keywordtype}{int} \mbox{\hyperlink{classClientSession_aada5a30a3689eaf3052f4686ab1e3619}{rtcpPort}};   }
+\DoxyCodeLine{99     std::string \mbox{\hyperlink{classClientSession_a60fbda694c50003d0adadc9a64fe570d}{ip}}; }
+\DoxyCodeLine{100     }
+\DoxyCodeLine{101     \mbox{\hyperlink{classRequestHandler}{RequestHandler}}* \mbox{\hyperlink{classClientSession_ab419704c6ee8e72948ab2cd1415cc72b}{requestHandler}}; }
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_CLIENTSESSION\_H}}
 
 \end{DoxyCode}

@@ -64,52 +64,237 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classRTPHeader-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RTPHeader Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="RTPHeader_8h_source.html">RTPHeader.h</a>&gt;</code></p>
+<p>패킹 설정을 원래대로 복구  
+ <a href="classRTPHeader.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="RTPHeader_8hpp_source.html">RTPHeader.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRTPHeader_1_1rtp__header.html">rtp_header</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1d2cada8803aae72ab5dda6f0d1b9084"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structRTPHeader_1_1rtp__header.html">RTPHeader::rtp_header</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a1d2cada8803aae72ab5dda6f0d1b9084">__attribute__</a> ((packed))</td></tr>
-<tr class="separator:a1d2cada8803aae72ab5dda6f0d1b9084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70115b38649e15193cf17568b6913164"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a70115b38649e15193cf17568b6913164">RTPHeader</a> (uint8_t _version, uint8_t _padding, uint8_t _extension, uint8_t _csrcCount, uint8_t _marker, uint8_t _payloadType, uint16_t _seq, uint32_t _timestamp, uint32_t _ssrc)</td></tr>
+<tr class="memdesc:a70115b38649e15193cf17568b6913164"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 헤더 생성자 - 모든 필드 직접 지정  <a href="classRTPHeader.html#a70115b38649e15193cf17568b6913164">More...</a><br /></td></tr>
+<tr class="separator:a70115b38649e15193cf17568b6913164"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60dcb9e5c2ea67c3967a662679e4f350"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a60dcb9e5c2ea67c3967a662679e4f350">RTPHeader</a> (uint16_t _seq, uint32_t _timestamp, uint32_t _ssrc)</td></tr>
+<tr class="memdesc:a60dcb9e5c2ea67c3967a662679e4f350"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 헤더 생성자 - 기본값으로 초기화  <a href="classRTPHeader.html#a60dcb9e5c2ea67c3967a662679e4f350">More...</a><br /></td></tr>
+<tr class="separator:a60dcb9e5c2ea67c3967a662679e4f350"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23bd2b15cdff5a28f493c66f60fab9f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a23bd2b15cdff5a28f493c66f60fab9f0">RTPHeader</a> (const <a class="el" href="classRTPHeader.html">RTPHeader</a> &amp;)=default</td></tr>
+<tr class="memdesc:a23bd2b15cdff5a28f493c66f60fab9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 헤더 복사 생성자  <a href="classRTPHeader.html#a23bd2b15cdff5a28f493c66f60fab9f0">More...</a><br /></td></tr>
+<tr class="separator:a23bd2b15cdff5a28f493c66f60fab9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd71360dc48e020948d9027784c3780"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#aefd71360dc48e020948d9027784c3780">~RTPHeader</a> ()=default</td></tr>
+<tr class="memdesc:aefd71360dc48e020948d9027784c3780"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 헤더 소멸자  <a href="classRTPHeader.html#aefd71360dc48e020948d9027784c3780">More...</a><br /></td></tr>
+<tr class="separator:aefd71360dc48e020948d9027784c3780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c7c0fe7ab2ffb3ef6168c1b48a9db5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a3c7c0fe7ab2ffb3ef6168c1b48a9db5c">set_timestamp</a> (const uint32_t _newtimestamp)</td></tr>
+<tr class="memdesc:a3c7c0fe7ab2ffb3ef6168c1b48a9db5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">타임스탬프 설정  <a href="classRTPHeader.html#a3c7c0fe7ab2ffb3ef6168c1b48a9db5c">More...</a><br /></td></tr>
+<tr class="separator:a3c7c0fe7ab2ffb3ef6168c1b48a9db5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3906c98ab7e282207a00a074e0d288a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a3906c98ab7e282207a00a074e0d288a0">set_ssrc</a> (const uint32_t SSRC)</td></tr>
+<tr class="memdesc:a3906c98ab7e282207a00a074e0d288a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSRC 설정  <a href="classRTPHeader.html#a3906c98ab7e282207a00a074e0d288a0">More...</a><br /></td></tr>
+<tr class="separator:a3906c98ab7e282207a00a074e0d288a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5eaf7af4b91787e77d29c83160360a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#acc5eaf7af4b91787e77d29c83160360a">set_seq</a> (const uint32_t _seq)</td></tr>
+<tr class="memdesc:acc5eaf7af4b91787e77d29c83160360a"><td class="mdescLeft">&#160;</td><td class="mdescRight">시퀀스 번호 설정  <a href="classRTPHeader.html#acc5eaf7af4b91787e77d29c83160360a">More...</a><br /></td></tr>
+<tr class="separator:acc5eaf7af4b91787e77d29c83160360a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affedcb722a2e3dc80428b88a27b5ce2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#affedcb722a2e3dc80428b88a27b5ce2a">set_marker</a> (const bool _marker)</td></tr>
+<tr class="memdesc:affedcb722a2e3dc80428b88a27b5ce2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">마커 비트 설정 (RTP 헤더의 M 비트)  <a href="classRTPHeader.html#affedcb722a2e3dc80428b88a27b5ce2a">More...</a><br /></td></tr>
+<tr class="separator:affedcb722a2e3dc80428b88a27b5ce2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb81650f930d11e2bc1ff5154d8851ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#aeb81650f930d11e2bc1ff5154d8851ff">set_payloadType</a> (const uint8_t _payloadType)</td></tr>
+<tr class="memdesc:aeb81650f930d11e2bc1ff5154d8851ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">페이로드 타입 설정  <a href="classRTPHeader.html#aeb81650f930d11e2bc1ff5154d8851ff">More...</a><br /></td></tr>
+<tr class="separator:aeb81650f930d11e2bc1ff5154d8851ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e95c459d83dcd643e20a9d6c6075f4a"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a0e95c459d83dcd643e20a9d6c6075f4a">get_header</a> () const</td></tr>
+<tr class="memdesc:a0e95c459d83dcd643e20a9d6c6075f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">헤더 포인터 반환  <a href="classRTPHeader.html#a0e95c459d83dcd643e20a9d6c6075f4a">More...</a><br /></td></tr>
+<tr class="separator:a0e95c459d83dcd643e20a9d6c6075f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27be997261930f7300cba1d4cd6d9768"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a27be997261930f7300cba1d4cd6d9768">get_timestamp</a> () const</td></tr>
+<tr class="memdesc:a27be997261930f7300cba1d4cd6d9768"><td class="mdescLeft">&#160;</td><td class="mdescRight">타임스탬프 반환 (네트워크 바이트 순서 변환 처리)  <a href="classRTPHeader.html#a27be997261930f7300cba1d4cd6d9768">More...</a><br /></td></tr>
+<tr class="separator:a27be997261930f7300cba1d4cd6d9768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad56b225c15d93641c9636b8c81ad2413"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#ad56b225c15d93641c9636b8c81ad2413">get_seq</a> () const</td></tr>
+<tr class="memdesc:ad56b225c15d93641c9636b8c81ad2413"><td class="mdescLeft">&#160;</td><td class="mdescRight">시퀀스 번호 반환 (네트워크 바이트 순서 변환 처리)  <a href="classRTPHeader.html#ad56b225c15d93641c9636b8c81ad2413">More...</a><br /></td></tr>
+<tr class="separator:ad56b225c15d93641c9636b8c81ad2413"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aa665e085b7706e1693d91551222663be"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#aa665e085b7706e1693d91551222663be">create</a> (<a class="el" href="structRTPHeader_1_1rtp__header.html">rtp_header</a> &amp;header, unsigned short <a class="el" href="RTPHeader_8h.html#a98d07458cfe1557cbc2a1b1b2310b428">seq_num</a>, unsigned int <a class="el" href="RTPHeader_8h.html#ab20b0c7772544cf5d318507f34231fbe">timestamp</a>, unsigned int <a class="el" href="RTPHeader_8h.html#a7728cdfcf33cc14c0d7ba2dcdcbcdf2e">ssrc</a>)</td></tr>
-<tr class="separator:aa665e085b7706e1693d91551222663be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8dc80e608188d16a67a94041211e67db"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a8dc80e608188d16a67a94041211e67db">csrcCount</a>: 4</td></tr>
+<tr class="memdesc:a8dc80e608188d16a67a94041211e67db"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSRC 카운트 (4비트)  <a href="classRTPHeader.html#a8dc80e608188d16a67a94041211e67db">More...</a><br /></td></tr>
+<tr class="separator:a8dc80e608188d16a67a94041211e67db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada76ecef1cd74bbe9b7c8a80095dce1b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#ada76ecef1cd74bbe9b7c8a80095dce1b">extension</a>: 1</td></tr>
+<tr class="memdesc:ada76ecef1cd74bbe9b7c8a80095dce1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">확장 비트 (1비트)  <a href="classRTPHeader.html#ada76ecef1cd74bbe9b7c8a80095dce1b">More...</a><br /></td></tr>
+<tr class="separator:ada76ecef1cd74bbe9b7c8a80095dce1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa528117a02dabb49c91806e4705e6f75"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#aa528117a02dabb49c91806e4705e6f75">padding</a>: 1</td></tr>
+<tr class="memdesc:aa528117a02dabb49c91806e4705e6f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">패딩 비트 (1비트)  <a href="classRTPHeader.html#aa528117a02dabb49c91806e4705e6f75">More...</a><br /></td></tr>
+<tr class="separator:aa528117a02dabb49c91806e4705e6f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c99622d036103521567dc94f691a686"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a1c99622d036103521567dc94f691a686">version</a>: 2</td></tr>
+<tr class="memdesc:a1c99622d036103521567dc94f691a686"><td class="mdescLeft">&#160;</td><td class="mdescRight">버전 정보 (2비트)  <a href="classRTPHeader.html#a1c99622d036103521567dc94f691a686">More...</a><br /></td></tr>
+<tr class="separator:a1c99622d036103521567dc94f691a686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5781e20dc56b2864da0172e1176e61"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a5c5781e20dc56b2864da0172e1176e61">payloadType</a>: 7</td></tr>
+<tr class="memdesc:a5c5781e20dc56b2864da0172e1176e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">페이로드 타입 (7비트)  <a href="classRTPHeader.html#a5c5781e20dc56b2864da0172e1176e61">More...</a><br /></td></tr>
+<tr class="separator:a5c5781e20dc56b2864da0172e1176e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05226e9d5f9fb4803dbdc7eecd5d77cf"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a05226e9d5f9fb4803dbdc7eecd5d77cf">marker</a>: 1</td></tr>
+<tr class="memdesc:a05226e9d5f9fb4803dbdc7eecd5d77cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">마커 비트 (1비트)  <a href="classRTPHeader.html#a05226e9d5f9fb4803dbdc7eecd5d77cf">More...</a><br /></td></tr>
+<tr class="separator:a05226e9d5f9fb4803dbdc7eecd5d77cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc44cffa3139a179e4a4d6c3d10cb576"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#adc44cffa3139a179e4a4d6c3d10cb576">seq</a></td></tr>
+<tr class="memdesc:adc44cffa3139a179e4a4d6c3d10cb576"><td class="mdescLeft">&#160;</td><td class="mdescRight">시퀀스 번호  <a href="classRTPHeader.html#adc44cffa3139a179e4a4d6c3d10cb576">More...</a><br /></td></tr>
+<tr class="separator:adc44cffa3139a179e4a4d6c3d10cb576"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab44d1b81caf069b91711e82853da35cc"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#ab44d1b81caf069b91711e82853da35cc">timestamp</a></td></tr>
+<tr class="memdesc:ab44d1b81caf069b91711e82853da35cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">타임스탬프  <a href="classRTPHeader.html#ab44d1b81caf069b91711e82853da35cc">More...</a><br /></td></tr>
+<tr class="separator:ab44d1b81caf069b91711e82853da35cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51a4c4b134457859614ecf3ecb1f29ae"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTPHeader.html#a51a4c4b134457859614ecf3ecb1f29ae">ssrc</a></td></tr>
+<tr class="memdesc:a51a4c4b134457859614ecf3ecb1f29ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">동기화 소스 식별자  <a href="classRTPHeader.html#a51a4c4b134457859614ecf3ecb1f29ae">More...</a><br /></td></tr>
+<tr class="separator:a51a4c4b134457859614ecf3ecb1f29ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1d2cada8803aae72ab5dda6f0d1b9084" name="a1d2cada8803aae72ab5dda6f0d1b9084"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d2cada8803aae72ab5dda6f0d1b9084">&#9670;&nbsp;</a></span>__attribute__()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >패킹 설정을 원래대로 복구 </p>
+<p >RTP 헤더를 정의하고 처리하는 클래스</p>
+<p >RTP 헤더의 각 필드를 비트 단위로 정의하고, 네트워크 바이트 오더 변환 및 헤더 필드 접근을 처리한다. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a70115b38649e15193cf17568b6913164" name="a70115b38649e15193cf17568b6913164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70115b38649e15193cf17568b6913164">&#9670;&nbsp;</a></span>RTPHeader() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct <a class="el" href="structRTPHeader_1_1rtp__header.html">RTPHeader::rtp_header</a> RTPHeader::__attribute__ </td>
+          <td class="memname">RTPHeader::RTPHeader </td>
           <td>(</td>
-          <td class="paramtype">(packed)&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>_version</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>_padding</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>_extension</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>_csrcCount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>_marker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>_payloadType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>_seq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>_timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>_ssrc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>RTP 헤더 생성자 - 모든 필드 직접 지정 </p>
+<p ><a class="el" href="classRTPHeader.html" title="패킹 설정을 원래대로 복구">RTPHeader</a> 클래스의 상세 생성자</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_version</td><td>RTP 버전 </td></tr>
+    <tr><td class="paramname">_padding</td><td>패딩 비트 </td></tr>
+    <tr><td class="paramname">_extension</td><td>확장 비트 </td></tr>
+    <tr><td class="paramname">_csrcCount</td><td>CSRC 카운트 </td></tr>
+    <tr><td class="paramname">_marker</td><td>마커 비트 </td></tr>
+    <tr><td class="paramname">_payloadType</td><td>페이로드 타입 </td></tr>
+    <tr><td class="paramname">_seq</td><td>시퀀스 번호 </td></tr>
+    <tr><td class="paramname">_timestamp</td><td>타임스탬프 </td></tr>
+    <tr><td class="paramname">_ssrc</td><td>동기화 소스 식별자</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>모든 RTP 헤더 필드를 직접 지정하여 초기화하고, 필요한 필드에 대해 네트워크 바이트 순서로 변환한다. </p>
+
 </div>
 </div>
-<a id="aa665e085b7706e1693d91551222663be" name="aa665e085b7706e1693d91551222663be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa665e085b7706e1693d91551222663be">&#9670;&nbsp;</a></span>create()</h2>
+<a id="a60dcb9e5c2ea67c3967a662679e4f350" name="a60dcb9e5c2ea67c3967a662679e4f350"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60dcb9e5c2ea67c3967a662679e4f350">&#9670;&nbsp;</a></span>RTPHeader() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">RTPHeader::RTPHeader </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>_seq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>_timestamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>_ssrc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RTP 헤더 생성자 - 기본값으로 초기화 </p>
+<p ><a class="el" href="classRTPHeader.html" title="패킹 설정을 원래대로 복구">RTPHeader</a> 오버로드된 생성자 - H264 스트리밍용 기본 설정</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_seq</td><td>시퀀스 번호 </td></tr>
+    <tr><td class="paramname">_timestamp</td><td>타임스탬프 </td></tr>
+    <tr><td class="paramname">_ssrc</td><td>동기화 소스 식별자</td></tr>
+    <tr><td class="paramname">_seq</td><td>시퀀스 번호 </td></tr>
+    <tr><td class="paramname">_timestamp</td><td>타임스탬프 </td></tr>
+    <tr><td class="paramname">_ssrc</td><td>동기화 소스 식별자</td></tr>
+  </table>
+  </dd>
+</dl>
+<ul>
+<li>RTP 버전을 2로 설정</li>
+<li>패딩, 확장, CSRC 카운트를 0으로 초기화</li>
+<li>마커 비트를 0으로 초기화</li>
+<li>페이로드 타입을 H264(96)로 설정</li>
+<li>시퀀스 번호, 타임스탬프, SSRC는 네트워크 바이트 순서로 변환 </li>
+</ul>
+
+</div>
+</div>
+<a id="a23bd2b15cdff5a28f493c66f60fab9f0" name="a23bd2b15cdff5a28f493c66f60fab9f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23bd2b15cdff5a28f493c66f60fab9f0">&#9670;&nbsp;</a></span>RTPHeader() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -118,46 +303,534 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void RTPHeader::create </td>
+          <td class="memname">RTPHeader::RTPHeader </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structRTPHeader_1_1rtp__header.html">rtp_header</a> &amp;&#160;</td>
-          <td class="paramname"><em>header</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="classRTPHeader.html">RTPHeader</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">unsigned short&#160;</td>
-          <td class="paramname"><em>seq_num</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>timestamp</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>ssrc</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
+<p>RTP 헤더 복사 생성자 </p>
+
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>inc/<a class="el" href="RTPHeader_8h_source.html">RTPHeader.h</a></li>
+<a id="aefd71360dc48e020948d9027784c3780" name="aefd71360dc48e020948d9027784c3780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefd71360dc48e020948d9027784c3780">&#9670;&nbsp;</a></span>~RTPHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RTPHeader::~RTPHeader </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RTP 헤더 소멸자 </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0e95c459d83dcd643e20a9d6c6075f4a" name="a0e95c459d83dcd643e20a9d6c6075f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e95c459d83dcd643e20a9d6c6075f4a">&#9670;&nbsp;</a></span>get_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void * RTPHeader::get_header </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>헤더 포인터 반환 </p>
+<dl class="section return"><dt>Returns</dt><dd>void* 헤더의 메모리 주소 </dd></dl>
+
+</div>
+</div>
+<a id="ad56b225c15d93641c9636b8c81ad2413" name="ad56b225c15d93641c9636b8c81ad2413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad56b225c15d93641c9636b8c81ad2413">&#9670;&nbsp;</a></span>get_seq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t RTPHeader::get_seq </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>시퀀스 번호 반환 (네트워크 바이트 순서 변환 처리) </p>
+<dl class="section return"><dt>Returns</dt><dd>uint32_t 현재 시퀀스 번호 </dd></dl>
+
+</div>
+</div>
+<a id="a27be997261930f7300cba1d4cd6d9768" name="a27be997261930f7300cba1d4cd6d9768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27be997261930f7300cba1d4cd6d9768">&#9670;&nbsp;</a></span>get_timestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t RTPHeader::get_timestamp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임스탬프 반환 (네트워크 바이트 순서 변환 처리) </p>
+<dl class="section return"><dt>Returns</dt><dd>uint32_t 현재 타임스탬프 </dd></dl>
+
+</div>
+</div>
+<a id="affedcb722a2e3dc80428b88a27b5ce2a" name="affedcb722a2e3dc80428b88a27b5ce2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affedcb722a2e3dc80428b88a27b5ce2a">&#9670;&nbsp;</a></span>set_marker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RTPHeader::set_marker </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>_marker</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>마커 비트 설정 (RTP 헤더의 M 비트) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_marker</td><td>마커 비트 값 (true: 설정, false: 해제)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>RTP 패킷의 마커 비트(M bit)를 설정하는 메서드입니다.</p><ul>
+<li>true로 설정 시: marker |= 0x01 (비트 OR 연산으로 마지막 비트를 1로 설정)</li>
+<li>false로 설정 시: marker &amp;= ~0x01 (비트 AND 연산으로 마지막 비트를 0으로 설정)</li>
+</ul>
+<p >마커 비트는 페이로드 특정적인 의미를 가지며, H.264 비디오의 경우:</p><ul>
+<li>프레임의 마지막 패킷임을 나타낼 때 1로 설정</li>
+<li>프레임의 중간 패킷들에서는 0으로 설정 </li>
+</ul>
+
+</div>
+</div>
+<a id="aeb81650f930d11e2bc1ff5154d8851ff" name="aeb81650f930d11e2bc1ff5154d8851ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb81650f930d11e2bc1ff5154d8851ff">&#9670;&nbsp;</a></span>set_payloadType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RTPHeader::set_payloadType </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>_payloadType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>페이로드 타입 설정 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_payloadType</td><td>새로운 페이로드 타입 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acc5eaf7af4b91787e77d29c83160360a" name="acc5eaf7af4b91787e77d29c83160360a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc5eaf7af4b91787e77d29c83160360a">&#9670;&nbsp;</a></span>set_seq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RTPHeader::set_seq </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>_seq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>시퀀스 번호 설정 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_seq</td><td>새로운 시퀀스 번호 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3906c98ab7e282207a00a074e0d288a0" name="a3906c98ab7e282207a00a074e0d288a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3906c98ab7e282207a00a074e0d288a0">&#9670;&nbsp;</a></span>set_ssrc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RTPHeader::set_ssrc </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>SSRC</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>SSRC 설정 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SSRC</td><td>새로운 SSRC 값 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3c7c0fe7ab2ffb3ef6168c1b48a9db5c" name="a3c7c0fe7ab2ffb3ef6168c1b48a9db5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c7c0fe7ab2ffb3ef6168c1b48a9db5c">&#9670;&nbsp;</a></span>set_timestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RTPHeader::set_timestamp </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t&#160;</td>
+          <td class="paramname"><em>_newtimestamp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임스탬프 설정 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_newtimestamp</td><td>새로운 타임스탬프 값 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8dc80e608188d16a67a94041211e67db" name="a8dc80e608188d16a67a94041211e67db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc80e608188d16a67a94041211e67db">&#9670;&nbsp;</a></span>csrcCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RTPHeader::csrcCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CSRC 카운트 (4비트) </p>
+
+</div>
+</div>
+<a id="ada76ecef1cd74bbe9b7c8a80095dce1b" name="ada76ecef1cd74bbe9b7c8a80095dce1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada76ecef1cd74bbe9b7c8a80095dce1b">&#9670;&nbsp;</a></span>extension</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RTPHeader::extension</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>확장 비트 (1비트) </p>
+
+</div>
+</div>
+<a id="a05226e9d5f9fb4803dbdc7eecd5d77cf" name="a05226e9d5f9fb4803dbdc7eecd5d77cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05226e9d5f9fb4803dbdc7eecd5d77cf">&#9670;&nbsp;</a></span>marker</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RTPHeader::marker</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>마커 비트 (1비트) </p>
+
+</div>
+</div>
+<a id="aa528117a02dabb49c91806e4705e6f75" name="aa528117a02dabb49c91806e4705e6f75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa528117a02dabb49c91806e4705e6f75">&#9670;&nbsp;</a></span>padding</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RTPHeader::padding</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>패딩 비트 (1비트) </p>
+
+</div>
+</div>
+<a id="a5c5781e20dc56b2864da0172e1176e61" name="a5c5781e20dc56b2864da0172e1176e61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c5781e20dc56b2864da0172e1176e61">&#9670;&nbsp;</a></span>payloadType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RTPHeader::payloadType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>페이로드 타입 (7비트) </p>
+
+</div>
+</div>
+<a id="adc44cffa3139a179e4a4d6c3d10cb576" name="adc44cffa3139a179e4a4d6c3d10cb576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc44cffa3139a179e4a4d6c3d10cb576">&#9670;&nbsp;</a></span>seq</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t RTPHeader::seq</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>시퀀스 번호 </p>
+
+</div>
+</div>
+<a id="a51a4c4b134457859614ecf3ecb1f29ae" name="a51a4c4b134457859614ecf3ecb1f29ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51a4c4b134457859614ecf3ecb1f29ae">&#9670;&nbsp;</a></span>ssrc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t RTPHeader::ssrc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>동기화 소스 식별자 </p>
+
+</div>
+</div>
+<a id="ab44d1b81caf069b91711e82853da35cc" name="ab44d1b81caf069b91711e82853da35cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab44d1b81caf069b91711e82853da35cc">&#9670;&nbsp;</a></span>timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t RTPHeader::timestamp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>타임스탬프 </p>
+
+</div>
+</div>
+<a id="a1c99622d036103521567dc94f691a686" name="a1c99622d036103521567dc94f691a686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c99622d036103521567dc94f691a686">&#9670;&nbsp;</a></span>version</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t RTPHeader::version</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>버전 정보 (2비트) </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>inc/<a class="el" href="RTPHeader_8hpp_source.html">RTPHeader.hpp</a></li>
+<li>src/<a class="el" href="RTPHeader_8cpp.html">RTPHeader.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

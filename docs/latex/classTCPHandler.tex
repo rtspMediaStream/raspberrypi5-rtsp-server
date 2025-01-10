@@ -2,53 +2,63 @@
 \label{classTCPHandler}\index{TCPHandler@{TCPHandler}}
 
 
+TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스  
+
+
+
+
 {\ttfamily \#include $<$TCPHandler.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}{TCPHandler}} (const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&)=delete
-\item 
+\begin{DoxyCompactList}\small\item\em 복사 생성자 삭제 (싱글톤 패턴) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& \mbox{\hyperlink{classTCPHandler_a011aac5db737403ed5b22b69a8479499}{operator=}} (const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&)=delete
-\item 
+\begin{DoxyCompactList}\small\item\em 대입 연산자 삭제 (싱글톤 패턴) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}{Create\+TCPSocket}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em TCP 소켓을 생성하고 초기화하는 메서드 \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classTCPHandler_abce89659421235566b3f28c80707b502}{Accept\+Client\+Connection}} (std\+::string \&\+\_\+client\+Ip)
-\item 
+\begin{DoxyCompactList}\small\item\em 클라이언트 연결을 수락하는 메서드 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}{Close\+Client\+Connection}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em 클라이언트 연결을 종료하는 메서드 \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}{Receive\+RTSPRequest}} (int session\+Id)
-\item 
+\begin{DoxyCompactList}\small\item\em RTSP 요청 메시지를 수신하는 메서드 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}{Send\+RTSPResponse}} (int client\+Socket, std\+::string \&response)
-\item 
+\begin{DoxyCompactList}\small\item\em RTSP 응답을 전송하는 메서드 \end{DoxyCompactList}\item 
 int \& \mbox{\hyperlink{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}{Get\+TCPSocket}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em TCP 소켓을 반환하는 메서드 \end{DoxyCompactList}\item 
 sockaddr\+\_\+in \& \mbox{\hyperlink{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}{Get\+TCPAddr}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em TCP 주소 구조체를 반환하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& \mbox{\hyperlink{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}{Get\+Instance}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 싱글톤 인스턴스를 반환하는 정적 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}{TCPHandler}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em 생성자 -\/ TCP 소켓 초기화 \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}{$\sim$\+TCPHandler}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 소멸자 -\/ TCP 소켓 닫기 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{classTCPHandler_a705214e294e4e7fb56f667499784cfae}{tcp\+Port}}
-\item 
+\begin{DoxyCompactList}\small\item\em TCP 포트 번호 \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classTCPHandler_a70c042292e2cf941369256d8affc7c74}{tcp\+Socket}}
-\item 
+\begin{DoxyCompactList}\small\item\em TCP 소켓 디스크립터 \end{DoxyCompactList}\item 
 sockaddr\+\_\+in \mbox{\hyperlink{classTCPHandler_a294fc26391c01530d299281f791fd728}{tcp\+Addr}}
-\item 
+\begin{DoxyCompactList}\small\item\em TCP 주소 구조체 \end{DoxyCompactList}\item 
 std\+::unordered\+\_\+map$<$ int, int $>$ \mbox{\hyperlink{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}{socket\+Table}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 클라이언트 소켓 테이블 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스 
+
+TCP 소켓을 생성하고 클라이언트 연결을 관리하며, RTSP 프로토콜에 따른 메시지 송수신을 처리하는 기능을 제공한다. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}\label{classTCPHandler_a803487890e72e8bba3d82697b7be4e9f}} 
@@ -57,19 +67,33 @@ std\+::unordered\+\_\+map$<$ int, int $>$ \mbox{\hyperlink{classTCPHandler_ad573
 \doxysubsubsection{\texorpdfstring{TCPHandler()}{TCPHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily TCPHandler\+::\+TCPHandler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
+
+
+복사 생성자 삭제 (싱글톤 패턴) 
+
 \mbox{\Hypertarget{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}\label{classTCPHandler_affca35152b4e9f2bbbdcdfa0169e7902}} 
 \index{TCPHandler@{TCPHandler}!TCPHandler@{TCPHandler}}
 \index{TCPHandler@{TCPHandler}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{TCPHandler()}{TCPHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily TCPHandler\+::\+TCPHandler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}\label{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}} 
+
+
+생성자 -\/ TCP 소켓 초기화 
+
+\mbox{\hyperlink{classTCPHandler}{TCPHandler}} 클래스의 생성자
+
+TCP 포트를 설정하고 TCP 소켓을 생성 \mbox{\Hypertarget{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}\label{classTCPHandler_ac7d97b5b08a234426e93248cce83acac}} 
 \index{TCPHandler@{TCPHandler}!````~TCPHandler@{$\sim$TCPHandler}}
 \index{````~TCPHandler@{$\sim$TCPHandler}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{$\sim$TCPHandler()}{~TCPHandler()}}
 {\footnotesize\ttfamily TCPHandler\+::$\sim$\+TCPHandler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
+
+소멸자 -\/ TCP 소켓 닫기 
+
+\mbox{\hyperlink{classTCPHandler}{TCPHandler}} 클래스의 소멸자 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classTCPHandler_abce89659421235566b3f28c80707b502}\label{classTCPHandler_abce89659421235566b3f28c80707b502}} 
@@ -78,55 +102,166 @@ std\+::unordered\+\_\+map$<$ int, int $>$ \mbox{\hyperlink{classTCPHandler_ad573
 \doxysubsubsection{\texorpdfstring{AcceptClientConnection()}{AcceptClientConnection()}}
 {\footnotesize\ttfamily int TCPHandler\+::\+Accept\+Client\+Connection (\begin{DoxyParamCaption}\item[{std\+::string \&}]{\+\_\+client\+Ip }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}\label{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}} 
+
+
+클라이언트 연결을 수락하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+client\+Ip} & \mbox{[}out\mbox{]} 연결된 클라이언트의 IP 주소 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 생성된 클라이언트 소켓 디스크립터 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 연결 수락 실패 시\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+client\+Ip} & \mbox{[}out\mbox{]} 연결된 클라이언트의 IP 주소 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 생성된 클라이언트 소켓 디스크립터 (-\/1\+: 실패)
+\end{DoxyReturn}
+클라이언트의 연결 요청을 수락하고 IP 주소를 획득 \mbox{\Hypertarget{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}\label{classTCPHandler_ab3be8de462a07b0d21571b735a139f41}} 
 \index{TCPHandler@{TCPHandler}!CloseClientConnection@{CloseClientConnection}}
 \index{CloseClientConnection@{CloseClientConnection}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{CloseClientConnection()}{CloseClientConnection()}}
 {\footnotesize\ttfamily void TCPHandler\+::\+Close\+Client\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}\label{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}} 
+
+
+클라이언트 연결을 종료하는 메서드 
+
+TCP 소켓을 닫고 연결을 종료 \mbox{\Hypertarget{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}\label{classTCPHandler_a0f0ef8498b18fd6f56f559560643794e}} 
 \index{TCPHandler@{TCPHandler}!CreateTCPSocket@{CreateTCPSocket}}
 \index{CreateTCPSocket@{CreateTCPSocket}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{CreateTCPSocket()}{CreateTCPSocket()}}
 {\footnotesize\ttfamily void TCPHandler\+::\+Create\+TCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}\label{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}} 
+
+
+TCP 소켓을 생성하고 초기화하는 메서드 
+
+소켓 생성, 옵션 설정, 바인딩, 리스닝 상태 설정 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 소켓 생성 또는 초기화 실패 시\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyItemize}
+\item TCP 소켓 생성
+\item SO\+\_\+\+REUSEADDR 옵션 설정
+\item 주소 바인딩
+\item 리스닝 상태로 전환 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & 소켓 생성, 바인딩 또는 리스닝 실패 시 \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}\mbox{\Hypertarget{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}\label{classTCPHandler_afcb35361f780b13c32bcdf616d89b53b}} 
 \index{TCPHandler@{TCPHandler}!GetInstance@{GetInstance}}
 \index{GetInstance@{GetInstance}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{GetInstance()}{GetInstance()}}
 {\footnotesize\ttfamily static \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& TCPHandler\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
+
+
+싱글톤 인스턴스를 반환하는 정적 메서드 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classTCPHandler}{TCPHandler}}\& 싱글톤 인스턴스에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}\label{classTCPHandler_ae2fd55b2fb6a4df23f04da72789b06cc}} 
 \index{TCPHandler@{TCPHandler}!GetTCPAddr@{GetTCPAddr}}
 \index{GetTCPAddr@{GetTCPAddr}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{GetTCPAddr()}{GetTCPAddr()}}
 {\footnotesize\ttfamily sockaddr\+\_\+in \& TCPHandler\+::\+Get\+TCPAddr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+TCP 주소 구조체를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+sockaddr\+\_\+in\& TCP 주소 구조체에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}\label{classTCPHandler_a03a0a4e19c76bef4c4eb4dbb04498b52}} 
 \index{TCPHandler@{TCPHandler}!GetTCPSocket@{GetTCPSocket}}
 \index{GetTCPSocket@{GetTCPSocket}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{GetTCPSocket()}{GetTCPSocket()}}
 {\footnotesize\ttfamily int \& TCPHandler\+::\+Get\+TCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+TCP 소켓을 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int\& TCP 소켓 디스크립터에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classTCPHandler_a011aac5db737403ed5b22b69a8479499}\label{classTCPHandler_a011aac5db737403ed5b22b69a8479499}} 
 \index{TCPHandler@{TCPHandler}!operator=@{operator=}}
 \index{operator=@{operator=}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \& TCPHandler\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTCPHandler}{TCPHandler}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
+
+
+대입 연산자 삭제 (싱글톤 패턴) 
+
 \mbox{\Hypertarget{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}\label{classTCPHandler_a03fbf3fd1989544d871e0e36401cd249}} 
 \index{TCPHandler@{TCPHandler}!ReceiveRTSPRequest@{ReceiveRTSPRequest}}
 \index{ReceiveRTSPRequest@{ReceiveRTSPRequest}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{ReceiveRTSPRequest()}{ReceiveRTSPRequest()}}
-{\footnotesize\ttfamily std\+::string TCPHandler\+::\+Receive\+RTSPRequest (\begin{DoxyParamCaption}\item[{int}]{session\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::string TCPHandler\+::\+Receive\+RTSPRequest (\begin{DoxyParamCaption}\item[{int}]{client\+Socket }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}\label{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}} 
+
+
+RTSP 요청 메시지를 수신하는 메서드 
+
+RTSP 요청을 수신하는 메서드
+
+
+\begin{DoxyParams}{Parameters}
+{\em session\+Id} & 클라이언트 세션 ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string 수신된 RTSP 요청 메시지
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em client\+Socket} & 클라이언트 소켓 디스크립터 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string 수신된 RTSP 요청 메시지
+\end{DoxyReturn}
+클라이언트로부터 RTSP 요청 메시지를 수신 \mbox{\Hypertarget{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}\label{classTCPHandler_a16fd91c71ab21e6ba5968b564e641ced}} 
 \index{TCPHandler@{TCPHandler}!SendRTSPResponse@{SendRTSPResponse}}
 \index{SendRTSPResponse@{SendRTSPResponse}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{SendRTSPResponse()}{SendRTSPResponse()}}
 {\footnotesize\ttfamily void TCPHandler\+::\+Send\+RTSPResponse (\begin{DoxyParamCaption}\item[{int}]{client\+Socket,  }\item[{std\+::string \&}]{response }\end{DoxyParamCaption})}
 
 
+
+RTSP 응답을 전송하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client\+Socket} & 클라이언트 소켓 디스크립터 \\
+\hline
+{\em response} & 전송할 RTSP 응답 메시지\\
+\hline
+{\em client\+Socket} & 클라이언트 소켓 디스크립터 \\
+\hline
+{\em response} & 전송할 RTSP 응답 메시지\\
+\hline
+\end{DoxyParams}
+클라이언트에게 RTSP 응답 메시지를 전송 
 
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}\label{classTCPHandler_ad5738a45d302ae872bd610890e2b2c9c}} 
@@ -135,11 +270,19 @@ std\+::unordered\+\_\+map$<$ int, int $>$ \mbox{\hyperlink{classTCPHandler_ad573
 \doxysubsubsection{\texorpdfstring{socketTable}{socketTable}}
 {\footnotesize\ttfamily std\+::unordered\+\_\+map$<$int, int$>$ TCPHandler\+::socket\+Table\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+클라이언트 소켓 테이블 
+
 \mbox{\Hypertarget{classTCPHandler_a294fc26391c01530d299281f791fd728}\label{classTCPHandler_a294fc26391c01530d299281f791fd728}} 
 \index{TCPHandler@{TCPHandler}!tcpAddr@{tcpAddr}}
 \index{tcpAddr@{tcpAddr}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{tcpAddr}{tcpAddr}}
 {\footnotesize\ttfamily sockaddr\+\_\+in TCPHandler\+::tcp\+Addr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+TCP 주소 구조체 
 
 \mbox{\Hypertarget{classTCPHandler_a705214e294e4e7fb56f667499784cfae}\label{classTCPHandler_a705214e294e4e7fb56f667499784cfae}} 
 \index{TCPHandler@{TCPHandler}!tcpPort@{tcpPort}}
@@ -147,11 +290,19 @@ std\+::unordered\+\_\+map$<$ int, int $>$ \mbox{\hyperlink{classTCPHandler_ad573
 \doxysubsubsection{\texorpdfstring{tcpPort}{tcpPort}}
 {\footnotesize\ttfamily int TCPHandler\+::tcp\+Port\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+TCP 포트 번호 
+
 \mbox{\Hypertarget{classTCPHandler_a70c042292e2cf941369256d8affc7c74}\label{classTCPHandler_a70c042292e2cf941369256d8affc7c74}} 
 \index{TCPHandler@{TCPHandler}!tcpSocket@{tcpSocket}}
 \index{tcpSocket@{tcpSocket}!TCPHandler@{TCPHandler}}
 \doxysubsubsection{\texorpdfstring{tcpSocket}{tcpSocket}}
 {\footnotesize\ttfamily int TCPHandler\+::tcp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+TCP 소켓 디스크립터 
 
 
 

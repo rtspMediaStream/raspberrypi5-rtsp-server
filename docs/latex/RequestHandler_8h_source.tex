@@ -2,51 +2,51 @@
 \label{RequestHandler_8h_source}\index{inc/RequestHandler.h@{inc/RequestHandler.h}}
 \mbox{\hyperlink{RequestHandler_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef RTSP\_REQUESTHANDLER\_H}}
-\DoxyCodeLine{2 \textcolor{preprocessor}{\#define RTSP\_REQUESTHANDLER\_H}}
-\DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <memory>}}
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{6 \textcolor{keyword}{class }\mbox{\hyperlink{classClientSession}{ClientSession}};}
-\DoxyCodeLine{7 \textcolor{keyword}{class }\mbox{\hyperlink{classMediaStreamHandler}{MediaStreamHandler}};}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{classRequestHandler}{RequestHandler}} \{}
-\DoxyCodeLine{11 \textcolor{keyword}{public}:}
-\DoxyCodeLine{12     \mbox{\hyperlink{classRequestHandler_a5b3d29ebd79cf9befc8f0b72280503c5}{RequestHandler}}(\mbox{\hyperlink{classClientSession}{ClientSession}}* \mbox{\hyperlink{classRequestHandler_ad3726f8cce7cebcee401017d2fff1ed3}{session}});}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a73cf4be812db3c45a9941e3e927f7735}{operator()}}() \{ \mbox{\hyperlink{classRequestHandler_a977c6714dfbe4bcb0f1fdfe3a9ffcdf0}{HandleRequest}}(); \}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a977c6714dfbe4bcb0f1fdfe3a9ffcdf0}{HandleRequest}}();}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a2e0e566ccb932763af41c5f195bb195e}{StartThread}}();}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{keyword}{private}:}
-\DoxyCodeLine{21     std::shared\_ptr<ClientSession> \mbox{\hyperlink{classRequestHandler_ad3726f8cce7cebcee401017d2fff1ed3}{session}};}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23     \mbox{\hyperlink{classMediaStreamHandler}{MediaStreamHandler}} *\mbox{\hyperlink{classRequestHandler_a2e41a61070c75d1517a8cd9f193421fa}{mediaStreamHandler}};}
-\DoxyCodeLine{24 }
-\DoxyCodeLine{25     std::string \mbox{\hyperlink{classRequestHandler_a29b87738eef635a6bfc4068281157496}{ParseMethod}}(\textcolor{keyword}{const} std::string\& request);}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27     \textcolor{keywordtype}{int} \mbox{\hyperlink{classRequestHandler_a58e4b7f806f39064b02c3121e3dc9d5c}{ParseCSeq}}(\textcolor{keyword}{const} std::string\& request);}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29     std::pair<int, int> \mbox{\hyperlink{classRequestHandler_a5b904ae4bdffb632e3fe8e3af9fabfe1}{ParsePorts}}(\textcolor{keyword}{const} std::string\& request);}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{31     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRequestHandler_aa10783383d83d4eb81fc7e8931c427ca}{ParseAccept}}(\textcolor{keyword}{const} std::string\& request);}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{33     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a3a968d73b7f304253fd7ec34a20c8a43}{HandleOptionsRequest}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} cseq);}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a97265bdc463799a354b43f66301d0674}{HandleDescribeRequest}}(\textcolor{keyword}{const} std::string\& request, \textcolor{keyword}{const} \textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#ifndef RTSP\_REQUESTHANDLER\_H}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define RTSP\_REQUESTHANDLER\_H}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{classClientSession}{ClientSession}};}
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{classMediaStreamHandler}{MediaStreamHandler}};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{29 \textcolor{keyword}{class }\mbox{\hyperlink{classRequestHandler}{RequestHandler}} \{}
+\DoxyCodeLine{30 \textcolor{keyword}{public}:}
+\DoxyCodeLine{35     \mbox{\hyperlink{classRequestHandler_a5b3d29ebd79cf9befc8f0b72280503c5}{RequestHandler}}(\mbox{\hyperlink{classClientSession}{ClientSession}}* \mbox{\hyperlink{classRequestHandler_ad3726f8cce7cebcee401017d2fff1ed3}{session}});}
 \DoxyCodeLine{36 }
-\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a9bf1d9458bee6aa2d2e21dbdd231cb04}{HandleSetupRequest}}(\textcolor{keyword}{const} std::string\& request, \textcolor{keyword}{const} \textcolor{keywordtype}{int} cseq);}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{39     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a4dd4a64ee2e81095cb3daa28ba326d82}{HandlePlayRequest}}(\textcolor{keywordtype}{int} cseq);}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{41     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_add64570d46ae57fb15e90abe99628f40}{HandlePauseRequest}}(\textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a73cf4be812db3c45a9941e3e927f7735}{operator()}}() \{ \mbox{\hyperlink{classRequestHandler_a977c6714dfbe4bcb0f1fdfe3a9ffcdf0}{HandleRequest}}(); \}}
 \DoxyCodeLine{42 }
-\DoxyCodeLine{43     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_ab8aad5c364b0b8dee0ad82fd72f29207}{HandleTeardownRequest}}(\textcolor{keywordtype}{int} cseq);}
-\DoxyCodeLine{44 \};}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_REQUESTHANDLER\_H}}
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a977c6714dfbe4bcb0f1fdfe3a9ffcdf0}{HandleRequest}}();}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a2e0e566ccb932763af41c5f195bb195e}{StartThread}}();}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{private}:}
+\DoxyCodeLine{54     std::shared\_ptr<ClientSession> \mbox{\hyperlink{classRequestHandler_ad3726f8cce7cebcee401017d2fff1ed3}{session}}; }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \mbox{\hyperlink{classMediaStreamHandler}{MediaStreamHandler}} *\mbox{\hyperlink{classRequestHandler_a2e41a61070c75d1517a8cd9f193421fa}{mediaStreamHandler}}; }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{63     std::string \mbox{\hyperlink{classRequestHandler_a29b87738eef635a6bfc4068281157496}{ParseMethod}}(\textcolor{keyword}{const} std::string\& request);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{int} \mbox{\hyperlink{classRequestHandler_a58e4b7f806f39064b02c3121e3dc9d5c}{ParseCSeq}}(\textcolor{keyword}{const} std::string\& request);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{77     std::pair<int, int> \mbox{\hyperlink{classRequestHandler_a5b904ae4bdffb632e3fe8e3af9fabfe1}{ParsePorts}}(\textcolor{keyword}{const} std::string\& request);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{84     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRequestHandler_aa10783383d83d4eb81fc7e8931c427ca}{ParseAccept}}(\textcolor{keyword}{const} std::string\& request);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{90     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a3a968d73b7f304253fd7ec34a20c8a43}{HandleOptionsRequest}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{97     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a97265bdc463799a354b43f66301d0674}{HandleDescribeRequest}}(\textcolor{keyword}{const} std::string\& request, \textcolor{keyword}{const} \textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a9bf1d9458bee6aa2d2e21dbdd231cb04}{HandleSetupRequest}}(\textcolor{keyword}{const} std::string\& request, \textcolor{keyword}{const} \textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{110     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_a4dd4a64ee2e81095cb3daa28ba326d82}{HandlePlayRequest}}(\textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{116     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_add64570d46ae57fb15e90abe99628f40}{HandlePauseRequest}}(\textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRequestHandler_ab8aad5c364b0b8dee0ad82fd72f29207}{HandleTeardownRequest}}(\textcolor{keywordtype}{int} cseq);}
+\DoxyCodeLine{123 \};}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RTSP\_REQUESTHANDLER\_H}}
 
 \end{DoxyCode}

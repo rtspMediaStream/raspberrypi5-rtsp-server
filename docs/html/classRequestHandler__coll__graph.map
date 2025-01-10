@@ -1,5 +1,5 @@
 <map id="RequestHandler" name="RequestHandler">
-<area shape="rect" id="node1" title=" " alt="" coords="22,184,149,211"/>
+<area shape="rect" id="node1" title="RTSP 요청 처리 클래스" alt="" coords="22,184,149,211"/>
 <area shape="rect" id="node2" href="$classMediaStreamHandler.html" title="미디어 스트리밍 처리를 담당하는 클래스" alt="" coords="5,95,165,121"/>
-<area shape="rect" id="node3" href="$classUDPHandler.html" title=" " alt="" coords="35,5,136,32"/>
+<area shape="rect" id="node3" href="$classUDPHandler.html" title="RTP/RTCP를 위한 UDP 소켓 관리 클래스" alt="" coords="35,5,136,32"/>
 </map>

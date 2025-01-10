@@ -2,40 +2,381 @@
 \label{classRTPHeader}\index{RTPHeader@{RTPHeader}}
 
 
-{\ttfamily \#include $<$RTPHeader.\+h$>$}
+패킹 설정을 원래대로 복구  
 
-\doxysubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \mbox{\hyperlink{structRTPHeader_1_1rtp__header}{rtp\+\_\+header}}
-\end{DoxyCompactItemize}
+
+
+
+{\ttfamily \#include $<$RTPHeader.\+hpp$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structRTPHeader_1_1rtp__header}{RTPHeader\+::rtp\+\_\+header}} \mbox{\hyperlink{classRTPHeader_a1d2cada8803aae72ab5dda6f0d1b9084}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}} ((packed))
-\end{DoxyCompactItemize}
-\doxysubsection*{Static Public Member Functions}
+\mbox{\hyperlink{classRTPHeader_a70115b38649e15193cf17568b6913164}{RTPHeader}} (uint8\+\_\+t \+\_\+version, uint8\+\_\+t \+\_\+padding, uint8\+\_\+t \+\_\+extension, uint8\+\_\+t \+\_\+csrc\+Count, uint8\+\_\+t \+\_\+marker, uint8\+\_\+t \+\_\+payload\+Type, uint16\+\_\+t \+\_\+seq, uint32\+\_\+t \+\_\+timestamp, uint32\+\_\+t \+\_\+ssrc)
+\begin{DoxyCompactList}\small\item\em RTP 헤더 생성자 -\/ 모든 필드 직접 지정 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTPHeader_a60dcb9e5c2ea67c3967a662679e4f350}{RTPHeader}} (uint16\+\_\+t \+\_\+seq, uint32\+\_\+t \+\_\+timestamp, uint32\+\_\+t \+\_\+ssrc)
+\begin{DoxyCompactList}\small\item\em RTP 헤더 생성자 -\/ 기본값으로 초기화 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTPHeader_a23bd2b15cdff5a28f493c66f60fab9f0}{RTPHeader}} (const \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&)=default
+\begin{DoxyCompactList}\small\item\em RTP 헤더 복사 생성자 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTPHeader_aefd71360dc48e020948d9027784c3780}{$\sim$\+RTPHeader}} ()=default
+\begin{DoxyCompactList}\small\item\em RTP 헤더 소멸자 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTPHeader_a3c7c0fe7ab2ffb3ef6168c1b48a9db5c}{set\+\_\+timestamp}} (const uint32\+\_\+t \+\_\+newtimestamp)
+\begin{DoxyCompactList}\small\item\em 타임스탬프 설정 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTPHeader_a3906c98ab7e282207a00a074e0d288a0}{set\+\_\+ssrc}} (const uint32\+\_\+t SSRC)
+\begin{DoxyCompactList}\small\item\em SSRC 설정 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTPHeader_acc5eaf7af4b91787e77d29c83160360a}{set\+\_\+seq}} (const uint32\+\_\+t \+\_\+seq)
+\begin{DoxyCompactList}\small\item\em 시퀀스 번호 설정 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTPHeader_affedcb722a2e3dc80428b88a27b5ce2a}{set\+\_\+marker}} (const bool \+\_\+marker)
+\begin{DoxyCompactList}\small\item\em 마커 비트 설정 (RTP 헤더의 M 비트) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTPHeader_aeb81650f930d11e2bc1ff5154d8851ff}{set\+\_\+payload\+Type}} (const uint8\+\_\+t \+\_\+payload\+Type)
+\begin{DoxyCompactList}\small\item\em 페이로드 타입 설정 \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{classRTPHeader_a0e95c459d83dcd643e20a9d6c6075f4a}{get\+\_\+header}} () const
+\begin{DoxyCompactList}\small\item\em 헤더 포인터 반환 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTPHeader_a27be997261930f7300cba1d4cd6d9768}{get\+\_\+timestamp}} () const
+\begin{DoxyCompactList}\small\item\em 타임스탬프 반환 (네트워크 바이트 순서 변환 처리) \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTPHeader_ad56b225c15d93641c9636b8c81ad2413}{get\+\_\+seq}} () const
+\begin{DoxyCompactList}\small\item\em 시퀀스 번호 반환 (네트워크 바이트 순서 변환 처리) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{classRTPHeader_aa665e085b7706e1693d91551222663be}{create}} (\mbox{\hyperlink{structRTPHeader_1_1rtp__header}{rtp\+\_\+header}} \&header, unsigned short \mbox{\hyperlink{RTPHeader_8h_a98d07458cfe1557cbc2a1b1b2310b428}{seq\+\_\+num}}, unsigned int \mbox{\hyperlink{RTPHeader_8h_ab20b0c7772544cf5d318507f34231fbe}{timestamp}}, unsigned int \mbox{\hyperlink{RTPHeader_8h_a7728cdfcf33cc14c0d7ba2dcdcbcdf2e}{ssrc}})
-\end{DoxyCompactItemize}
+uint8\+\_\+t \mbox{\hyperlink{classRTPHeader_a8dc80e608188d16a67a94041211e67db}{csrc\+Count}}\+: 4
+\begin{DoxyCompactList}\small\item\em CSRC 카운트 (4비트) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTPHeader_ada76ecef1cd74bbe9b7c8a80095dce1b}{extension}}\+: 1
+\begin{DoxyCompactList}\small\item\em 확장 비트 (1비트) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTPHeader_aa528117a02dabb49c91806e4705e6f75}{padding}}\+: 1
+\begin{DoxyCompactList}\small\item\em 패딩 비트 (1비트) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTPHeader_a1c99622d036103521567dc94f691a686}{version}}\+: 2
+\begin{DoxyCompactList}\small\item\em 버전 정보 (2비트) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTPHeader_a5c5781e20dc56b2864da0172e1176e61}{payload\+Type}}\+: 7
+\begin{DoxyCompactList}\small\item\em 페이로드 타입 (7비트) \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTPHeader_a05226e9d5f9fb4803dbdc7eecd5d77cf}{marker}}\+: 1
+\begin{DoxyCompactList}\small\item\em 마커 비트 (1비트) \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classRTPHeader_adc44cffa3139a179e4a4d6c3d10cb576}{seq}}
+\begin{DoxyCompactList}\small\item\em 시퀀스 번호 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTPHeader_ab44d1b81caf069b91711e82853da35cc}{timestamp}}
+\begin{DoxyCompactList}\small\item\em 타임스탬프 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classRTPHeader_a51a4c4b134457859614ecf3ecb1f29ae}{ssrc}}
+\begin{DoxyCompactList}\small\item\em 동기화 소스 식별자 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+패킹 설정을 원래대로 복구 
+
+RTP 헤더를 정의하고 처리하는 클래스
+
+RTP 헤더의 각 필드를 비트 단위로 정의하고, 네트워크 바이트 오더 변환 및 헤더 필드 접근을 처리한다. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRTPHeader_a70115b38649e15193cf17568b6913164}\label{classRTPHeader_a70115b38649e15193cf17568b6913164}} 
+\index{RTPHeader@{RTPHeader}!RTPHeader@{RTPHeader}}
+\index{RTPHeader@{RTPHeader}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{RTPHeader()}{RTPHeader()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily RTPHeader\+::\+RTPHeader (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{\+\_\+version,  }\item[{uint8\+\_\+t}]{\+\_\+padding,  }\item[{uint8\+\_\+t}]{\+\_\+extension,  }\item[{uint8\+\_\+t}]{\+\_\+csrc\+Count,  }\item[{uint8\+\_\+t}]{\+\_\+marker,  }\item[{uint8\+\_\+t}]{\+\_\+payload\+Type,  }\item[{uint16\+\_\+t}]{\+\_\+seq,  }\item[{uint32\+\_\+t}]{\+\_\+timestamp,  }\item[{uint32\+\_\+t}]{\+\_\+ssrc }\end{DoxyParamCaption})}
+
+
+
+RTP 헤더 생성자 -\/ 모든 필드 직접 지정 
+
+\mbox{\hyperlink{classRTPHeader}{RTPHeader}} 클래스의 상세 생성자
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+version} & RTP 버전 \\
+\hline
+{\em \+\_\+padding} & 패딩 비트 \\
+\hline
+{\em \+\_\+extension} & 확장 비트 \\
+\hline
+{\em \+\_\+csrc\+Count} & CSRC 카운트 \\
+\hline
+{\em \+\_\+marker} & 마커 비트 \\
+\hline
+{\em \+\_\+payload\+Type} & 페이로드 타입 \\
+\hline
+{\em \+\_\+seq} & 시퀀스 번호 \\
+\hline
+{\em \+\_\+timestamp} & 타임스탬프 \\
+\hline
+{\em \+\_\+ssrc} & 동기화 소스 식별자\\
+\hline
+\end{DoxyParams}
+모든 RTP 헤더 필드를 직접 지정하여 초기화하고, 필요한 필드에 대해 네트워크 바이트 순서로 변환한다. \mbox{\Hypertarget{classRTPHeader_a60dcb9e5c2ea67c3967a662679e4f350}\label{classRTPHeader_a60dcb9e5c2ea67c3967a662679e4f350}} 
+\index{RTPHeader@{RTPHeader}!RTPHeader@{RTPHeader}}
+\index{RTPHeader@{RTPHeader}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{RTPHeader()}{RTPHeader()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily RTPHeader\+::\+RTPHeader (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{\+\_\+seq,  }\item[{uint32\+\_\+t}]{\+\_\+timestamp,  }\item[{uint32\+\_\+t}]{\+\_\+ssrc }\end{DoxyParamCaption})}
+
+
+
+RTP 헤더 생성자 -\/ 기본값으로 초기화 
+
+\mbox{\hyperlink{classRTPHeader}{RTPHeader}} 오버로드된 생성자 -\/ H264 스트리밍용 기본 설정
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+seq} & 시퀀스 번호 \\
+\hline
+{\em \+\_\+timestamp} & 타임스탬프 \\
+\hline
+{\em \+\_\+ssrc} & 동기화 소스 식별자\\
+\hline
+{\em \+\_\+seq} & 시퀀스 번호 \\
+\hline
+{\em \+\_\+timestamp} & 타임스탬프 \\
+\hline
+{\em \+\_\+ssrc} & 동기화 소스 식별자\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyItemize}
+\item RTP 버전을 2로 설정
+\item 패딩, 확장, CSRC 카운트를 0으로 초기화
+\item 마커 비트를 0으로 초기화
+\item 페이로드 타입을 H264(96)로 설정
+\item 시퀀스 번호, 타임스탬프, SSRC는 네트워크 바이트 순서로 변환 
+\end{DoxyItemize}\mbox{\Hypertarget{classRTPHeader_a23bd2b15cdff5a28f493c66f60fab9f0}\label{classRTPHeader_a23bd2b15cdff5a28f493c66f60fab9f0}} 
+\index{RTPHeader@{RTPHeader}!RTPHeader@{RTPHeader}}
+\index{RTPHeader@{RTPHeader}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{RTPHeader()}{RTPHeader()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily RTPHeader\+::\+RTPHeader (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+RTP 헤더 복사 생성자 
+
+\mbox{\Hypertarget{classRTPHeader_aefd71360dc48e020948d9027784c3780}\label{classRTPHeader_aefd71360dc48e020948d9027784c3780}} 
+\index{RTPHeader@{RTPHeader}!````~RTPHeader@{$\sim$RTPHeader}}
+\index{````~RTPHeader@{$\sim$RTPHeader}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{$\sim$RTPHeader()}{~RTPHeader()}}
+{\footnotesize\ttfamily RTPHeader\+::$\sim$\+RTPHeader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+RTP 헤더 소멸자 
+
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classRTPHeader_a1d2cada8803aae72ab5dda6f0d1b9084}\label{classRTPHeader_a1d2cada8803aae72ab5dda6f0d1b9084}} 
-\index{RTPHeader@{RTPHeader}!\_\_attribute\_\_@{\_\_attribute\_\_}}
-\index{\_\_attribute\_\_@{\_\_attribute\_\_}!RTPHeader@{RTPHeader}}
-\doxysubsubsection{\texorpdfstring{\_\_attribute\_\_()}{\_\_attribute\_\_()}}
-{\footnotesize\ttfamily struct \mbox{\hyperlink{structRTPHeader_1_1rtp__header}{RTPHeader\+::rtp\+\_\+header}} RTPHeader\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(packed)}]{ }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{classRTPHeader_aa665e085b7706e1693d91551222663be}\label{classRTPHeader_aa665e085b7706e1693d91551222663be}} 
-\index{RTPHeader@{RTPHeader}!create@{create}}
-\index{create@{create}!RTPHeader@{RTPHeader}}
-\doxysubsubsection{\texorpdfstring{create()}{create()}}
-{\footnotesize\ttfamily static void RTPHeader\+::create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structRTPHeader_1_1rtp__header}{rtp\+\_\+header}} \&}]{header,  }\item[{unsigned short}]{seq\+\_\+num,  }\item[{unsigned int}]{timestamp,  }\item[{unsigned int}]{ssrc }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+\mbox{\Hypertarget{classRTPHeader_a0e95c459d83dcd643e20a9d6c6075f4a}\label{classRTPHeader_a0e95c459d83dcd643e20a9d6c6075f4a}} 
+\index{RTPHeader@{RTPHeader}!get\_header@{get\_header}}
+\index{get\_header@{get\_header}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+{\footnotesize\ttfamily void $\ast$ RTPHeader\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+헤더 포인터 반환 
+
+\begin{DoxyReturn}{Returns}
+void$\ast$ 헤더의 메모리 주소 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRTPHeader_ad56b225c15d93641c9636b8c81ad2413}\label{classRTPHeader_ad56b225c15d93641c9636b8c81ad2413}} 
+\index{RTPHeader@{RTPHeader}!get\_seq@{get\_seq}}
+\index{get\_seq@{get\_seq}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{get\_seq()}{get\_seq()}}
+{\footnotesize\ttfamily uint32\+\_\+t RTPHeader\+::get\+\_\+seq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+시퀀스 번호 반환 (네트워크 바이트 순서 변환 처리) 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t 현재 시퀀스 번호 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRTPHeader_a27be997261930f7300cba1d4cd6d9768}\label{classRTPHeader_a27be997261930f7300cba1d4cd6d9768}} 
+\index{RTPHeader@{RTPHeader}!get\_timestamp@{get\_timestamp}}
+\index{get\_timestamp@{get\_timestamp}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{get\_timestamp()}{get\_timestamp()}}
+{\footnotesize\ttfamily uint32\+\_\+t RTPHeader\+::get\+\_\+timestamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+타임스탬프 반환 (네트워크 바이트 순서 변환 처리) 
+
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t 현재 타임스탬프 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRTPHeader_affedcb722a2e3dc80428b88a27b5ce2a}\label{classRTPHeader_affedcb722a2e3dc80428b88a27b5ce2a}} 
+\index{RTPHeader@{RTPHeader}!set\_marker@{set\_marker}}
+\index{set\_marker@{set\_marker}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{set\_marker()}{set\_marker()}}
+{\footnotesize\ttfamily void RTPHeader\+::set\+\_\+marker (\begin{DoxyParamCaption}\item[{const bool}]{\+\_\+marker }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+마커 비트 설정 (RTP 헤더의 M 비트) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+marker} & 마커 비트 값 (true\+: 설정, false\+: 해제)\\
+\hline
+\end{DoxyParams}
+RTP 패킷의 마커 비트(\+M bit)를 설정하는 메서드입니다.
+\begin{DoxyItemize}
+\item true로 설정 시\+: marker $\vert$= 0x01 (비트 OR 연산으로 마지막 비트를 1로 설정)
+\item false로 설정 시\+: marker \&= $\sim$0x01 (비트 AND 연산으로 마지막 비트를 0으로 설정)
+\end{DoxyItemize}
+
+마커 비트는 페이로드 특정적인 의미를 가지며, H.\+264 비디오의 경우\+:
+\begin{DoxyItemize}
+\item 프레임의 마지막 패킷임을 나타낼 때 1로 설정
+\item 프레임의 중간 패킷들에서는 0으로 설정 
+\end{DoxyItemize}\mbox{\Hypertarget{classRTPHeader_aeb81650f930d11e2bc1ff5154d8851ff}\label{classRTPHeader_aeb81650f930d11e2bc1ff5154d8851ff}} 
+\index{RTPHeader@{RTPHeader}!set\_payloadType@{set\_payloadType}}
+\index{set\_payloadType@{set\_payloadType}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{set\_payloadType()}{set\_payloadType()}}
+{\footnotesize\ttfamily void RTPHeader\+::set\+\_\+payload\+Type (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t}]{\+\_\+payload\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+페이로드 타입 설정 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+payload\+Type} & 새로운 페이로드 타입 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRTPHeader_acc5eaf7af4b91787e77d29c83160360a}\label{classRTPHeader_acc5eaf7af4b91787e77d29c83160360a}} 
+\index{RTPHeader@{RTPHeader}!set\_seq@{set\_seq}}
+\index{set\_seq@{set\_seq}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{set\_seq()}{set\_seq()}}
+{\footnotesize\ttfamily void RTPHeader\+::set\+\_\+seq (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{\+\_\+seq }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+시퀀스 번호 설정 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+seq} & 새로운 시퀀스 번호 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRTPHeader_a3906c98ab7e282207a00a074e0d288a0}\label{classRTPHeader_a3906c98ab7e282207a00a074e0d288a0}} 
+\index{RTPHeader@{RTPHeader}!set\_ssrc@{set\_ssrc}}
+\index{set\_ssrc@{set\_ssrc}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{set\_ssrc()}{set\_ssrc()}}
+{\footnotesize\ttfamily void RTPHeader\+::set\+\_\+ssrc (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{SSRC }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+SSRC 설정 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SSRC} & 새로운 SSRC 값 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRTPHeader_a3c7c0fe7ab2ffb3ef6168c1b48a9db5c}\label{classRTPHeader_a3c7c0fe7ab2ffb3ef6168c1b48a9db5c}} 
+\index{RTPHeader@{RTPHeader}!set\_timestamp@{set\_timestamp}}
+\index{set\_timestamp@{set\_timestamp}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{set\_timestamp()}{set\_timestamp()}}
+{\footnotesize\ttfamily void RTPHeader\+::set\+\_\+timestamp (\begin{DoxyParamCaption}\item[{const uint32\+\_\+t}]{\+\_\+newtimestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+타임스탬프 설정 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+newtimestamp} & 새로운 타임스탬프 값 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRTPHeader_a8dc80e608188d16a67a94041211e67db}\label{classRTPHeader_a8dc80e608188d16a67a94041211e67db}} 
+\index{RTPHeader@{RTPHeader}!csrcCount@{csrcCount}}
+\index{csrcCount@{csrcCount}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{csrcCount}{csrcCount}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPHeader\+::csrc\+Count\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+CSRC 카운트 (4비트) 
+
+\mbox{\Hypertarget{classRTPHeader_ada76ecef1cd74bbe9b7c8a80095dce1b}\label{classRTPHeader_ada76ecef1cd74bbe9b7c8a80095dce1b}} 
+\index{RTPHeader@{RTPHeader}!extension@{extension}}
+\index{extension@{extension}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{extension}{extension}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPHeader\+::extension\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+확장 비트 (1비트) 
+
+\mbox{\Hypertarget{classRTPHeader_a05226e9d5f9fb4803dbdc7eecd5d77cf}\label{classRTPHeader_a05226e9d5f9fb4803dbdc7eecd5d77cf}} 
+\index{RTPHeader@{RTPHeader}!marker@{marker}}
+\index{marker@{marker}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{marker}{marker}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPHeader\+::marker\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+마커 비트 (1비트) 
+
+\mbox{\Hypertarget{classRTPHeader_aa528117a02dabb49c91806e4705e6f75}\label{classRTPHeader_aa528117a02dabb49c91806e4705e6f75}} 
+\index{RTPHeader@{RTPHeader}!padding@{padding}}
+\index{padding@{padding}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{padding}{padding}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPHeader\+::padding\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+패딩 비트 (1비트) 
+
+\mbox{\Hypertarget{classRTPHeader_a5c5781e20dc56b2864da0172e1176e61}\label{classRTPHeader_a5c5781e20dc56b2864da0172e1176e61}} 
+\index{RTPHeader@{RTPHeader}!payloadType@{payloadType}}
+\index{payloadType@{payloadType}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{payloadType}{payloadType}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPHeader\+::payload\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+페이로드 타입 (7비트) 
+
+\mbox{\Hypertarget{classRTPHeader_adc44cffa3139a179e4a4d6c3d10cb576}\label{classRTPHeader_adc44cffa3139a179e4a4d6c3d10cb576}} 
+\index{RTPHeader@{RTPHeader}!seq@{seq}}
+\index{seq@{seq}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{seq}{seq}}
+{\footnotesize\ttfamily uint16\+\_\+t RTPHeader\+::seq\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+시퀀스 번호 
+
+\mbox{\Hypertarget{classRTPHeader_a51a4c4b134457859614ecf3ecb1f29ae}\label{classRTPHeader_a51a4c4b134457859614ecf3ecb1f29ae}} 
+\index{RTPHeader@{RTPHeader}!ssrc@{ssrc}}
+\index{ssrc@{ssrc}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{ssrc}{ssrc}}
+{\footnotesize\ttfamily uint32\+\_\+t RTPHeader\+::ssrc\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+동기화 소스 식별자 
+
+\mbox{\Hypertarget{classRTPHeader_ab44d1b81caf069b91711e82853da35cc}\label{classRTPHeader_ab44d1b81caf069b91711e82853da35cc}} 
+\index{RTPHeader@{RTPHeader}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily uint32\+\_\+t RTPHeader\+::timestamp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+타임스탬프 
+
+\mbox{\Hypertarget{classRTPHeader_a1c99622d036103521567dc94f691a686}\label{classRTPHeader_a1c99622d036103521567dc94f691a686}} 
+\index{RTPHeader@{RTPHeader}!version@{version}}
+\index{version@{version}!RTPHeader@{RTPHeader}}
+\doxysubsubsection{\texorpdfstring{version}{version}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPHeader\+::version\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+버전 정보 (2비트) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-inc/\mbox{\hyperlink{RTPHeader_8h}{RTPHeader.\+h}}\end{DoxyCompactItemize}
+inc/\mbox{\hyperlink{RTPHeader_8hpp}{RTPHeader.\+hpp}}\item 
+src/\mbox{\hyperlink{RTPHeader_8cpp}{RTPHeader.\+cpp}}\end{DoxyCompactItemize}

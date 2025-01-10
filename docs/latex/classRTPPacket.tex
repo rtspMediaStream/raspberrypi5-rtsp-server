@@ -1,0 +1,202 @@
+\hypertarget{classRTPPacket}{}\doxysection{RTPPacket Class Reference}
+\label{classRTPPacket}\index{RTPPacket@{RTPPacket}}
+
+
+RTP 패킷 관리를 위한 클래스  
+
+
+
+
+{\ttfamily \#include $<$RTPPacket.\+hpp$>$}
+
+
+
+Collaboration diagram for RTPPacket\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classRTPPacket__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRTPPacket_a8533bc5dbefde4cb787a1befb25fdc54}{RTPPacket}} (const \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&rtp\+Header)
+\begin{DoxyCompactList}\small\item\em RTPHeader를 가지는 \mbox{\hyperlink{classRTPPacket}{RTPPacket}} 생성자 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTPPacket_a524e24f3589c80ee7fbb5849936b27db}{RTPPacket}} (const \mbox{\hyperlink{classRTPPacket}{RTPPacket}} \&)=default
+\begin{DoxyCompactList}\small\item\em 기본 복사생성자 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTPPacket_a70c902361b0872ccc5495fdf95bb2679}{$\sim$\+RTPPacket}} ()=default
+\begin{DoxyCompactList}\small\item\em 기본 소멸자 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTPPacket_a8462c1f2e3ebc688b2f5c5bfe79e88bc}{load\+\_\+data}} (const uint8\+\_\+t $\ast$data, int64\+\_\+t data\+Size, int64\+\_\+t bias=0)
+\begin{DoxyCompactList}\small\item\em 페이로드 데이터를 설정하는 메서드 \end{DoxyCompactList}\item 
+int64\+\_\+t \mbox{\hyperlink{classRTPPacket_a8cb8732cd42d643d29065fc8abc71921}{rtp\+\_\+sendto}} (int sockfd, int64\+\_\+t \+\_\+buffer\+Len, int flags, const sockaddr $\ast$to)
+\begin{DoxyCompactList}\small\item\em UDP 소켓을 통해 RTP 패킷을 전송하는 메서드 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRTPHeader}{RTPHeader}} \& \mbox{\hyperlink{classRTPPacket_a2e83ed7afd4f7207ff8486da851a9d4f}{get\+\_\+header}} ()
+\begin{DoxyCompactList}\small\item\em RTP 헤더 참조를 반환하는 메서드 \end{DoxyCompactList}\item 
+uint8\+\_\+t $\ast$ \mbox{\hyperlink{classRTPPacket_a4b0382facae5aee65459f2286aea04cd}{get\+\_\+payload}} ()
+\begin{DoxyCompactList}\small\item\em 페이로드 버퍼 포인터를 반환하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRTPHeader}{RTPHeader}} \mbox{\hyperlink{classRTPPacket_ae61f279622038f728ef3d632583d4b22}{header}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}{RTP\+\_\+\+Payload}} \mbox{[}\mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}+\mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]} \{0\}
+\begin{DoxyCompactList}\small\item\em RTP 페이로드 버퍼 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTP 패킷 관리를 위한 클래스 
+
+RTP 패킷을 생성하고 전송하는 클래스
+
+실제 구현은 RTPPacket.\+hpp에 정의되어 있으며, RTP 패킷의 생성, 관리, 전송 클래스
+
+RTP Packet = Header + Payload 로 구성된 패킷을 생성하고 전송하는 기능을 제공한다. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRTPPacket_a8533bc5dbefde4cb787a1befb25fdc54}\label{classRTPPacket_a8533bc5dbefde4cb787a1befb25fdc54}} 
+\index{RTPPacket@{RTPPacket}!RTPPacket@{RTPPacket}}
+\index{RTPPacket@{RTPPacket}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{RTPPacket()}{RTPPacket()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily RTPPacket\+::\+RTPPacket (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&}]{rtp\+Header }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+RTPHeader를 가지는 \mbox{\hyperlink{classRTPPacket}{RTPPacket}} 생성자 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtp\+Header} & 초기화할 RTP 헤더 객체\\
+\hline
+\end{DoxyParams}
+멤버 초기화 리스트를 사용하여 RTP 헤더를 초기화하고, RTP\+\_\+\+Payload는 0으로 초기화된다 (클래스 선언에서 \{0\}으로 초기화) \mbox{\Hypertarget{classRTPPacket_a524e24f3589c80ee7fbb5849936b27db}\label{classRTPPacket_a524e24f3589c80ee7fbb5849936b27db}} 
+\index{RTPPacket@{RTPPacket}!RTPPacket@{RTPPacket}}
+\index{RTPPacket@{RTPPacket}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{RTPPacket()}{RTPPacket()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily RTPPacket\+::\+RTPPacket (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRTPPacket}{RTPPacket}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+기본 복사생성자 
+
+\mbox{\Hypertarget{classRTPPacket_a70c902361b0872ccc5495fdf95bb2679}\label{classRTPPacket_a70c902361b0872ccc5495fdf95bb2679}} 
+\index{RTPPacket@{RTPPacket}!````~RTPPacket@{$\sim$RTPPacket}}
+\index{````~RTPPacket@{$\sim$RTPPacket}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{$\sim$RTPPacket()}{~RTPPacket()}}
+{\footnotesize\ttfamily RTPPacket\+::$\sim$\+RTPPacket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+기본 소멸자 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRTPPacket_a2e83ed7afd4f7207ff8486da851a9d4f}\label{classRTPPacket_a2e83ed7afd4f7207ff8486da851a9d4f}} 
+\index{RTPPacket@{RTPPacket}!get\_header@{get\_header}}
+\index{get\_header@{get\_header}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{get\_header()}{get\_header()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \& RTPPacket\+::get\+\_\+header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+RTP 헤더 참조를 반환하는 메서드 
+
+RTPPakcet에 설정된 RTPHeader의 참조를 가져온다. \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classRTPHeader}{RTPHeader}}\& RTP 헤더 객체에 대한 참조 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRTPPacket_a4b0382facae5aee65459f2286aea04cd}\label{classRTPPacket_a4b0382facae5aee65459f2286aea04cd}} 
+\index{RTPPacket@{RTPPacket}!get\_payload@{get\_payload}}
+\index{get\_payload@{get\_payload}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{get\_payload()}{get\_payload()}}
+{\footnotesize\ttfamily uint8\+\_\+t $\ast$ RTPPacket\+::get\+\_\+payload (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+페이로드 버퍼 포인터를 반환하는 메서드 
+
+RTPPakcet에 설정된 RTP Payload (=data)의 주소를 가져온다. \begin{DoxyReturn}{Returns}
+uint8\+\_\+t$\ast$ 페이로드 버퍼의 시작 주소 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRTPPacket_a8462c1f2e3ebc688b2f5c5bfe79e88bc}\label{classRTPPacket_a8462c1f2e3ebc688b2f5c5bfe79e88bc}} 
+\index{RTPPacket@{RTPPacket}!load\_data@{load\_data}}
+\index{load\_data@{load\_data}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{load\_data()}{load\_data()}}
+{\footnotesize\ttfamily void RTPPacket\+::load\+\_\+data (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t $\ast$}]{data,  }\item[{int64\+\_\+t}]{data\+Size,  }\item[{int64\+\_\+t}]{bias = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+페이로드 데이터를 설정하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & 복사할 데이터의 포인터 \\
+\hline
+{\em data\+Size} & 복사할 데이터의 크기 \\
+\hline
+{\em bias} & 페이로드 버퍼 내 오프셋 (기본값\+: 0)\\
+\hline
+\end{DoxyParams}
+지정된 오프셋 위치부터 데이터를 페이로드 버퍼에 복사. 버퍼 오버플로우 방지를 위해 최대 크기 제한
+
+
+\begin{DoxyItemize}
+\item 페이로드 버퍼의 특정 위치(bias)부터 데이터를 복사
+\item std\+::min을 사용하여 버퍼 오버플로우 방지
+\item 버퍼 크기는 FU\+\_\+\+SIZE + MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE로 제한 
+\end{DoxyItemize}\mbox{\Hypertarget{classRTPPacket_a8cb8732cd42d643d29065fc8abc71921}\label{classRTPPacket_a8cb8732cd42d643d29065fc8abc71921}} 
+\index{RTPPacket@{RTPPacket}!rtp\_sendto@{rtp\_sendto}}
+\index{rtp\_sendto@{rtp\_sendto}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{rtp\_sendto()}{rtp\_sendto()}}
+{\footnotesize\ttfamily int64\+\_\+t RTPPacket\+::rtp\+\_\+sendto (\begin{DoxyParamCaption}\item[{int}]{sockfd,  }\item[{int64\+\_\+t}]{\+\_\+buffer\+Len,  }\item[{int}]{flags,  }\item[{const sockaddr $\ast$}]{to }\end{DoxyParamCaption})}
+
+
+
+UDP 소켓을 통해 RTP 패킷을 전송하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sockfd} & UDP 소켓 디스크립터 \\
+\hline
+{\em \+\_\+buffer\+Len} & 전송할 버퍼의 크기 \\
+\hline
+{\em flags} & 전송 옵션 플래그 \\
+\hline
+{\em to} & 수신자 주소 정보 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int64\+\_\+t 전송된 바이트 수
+\end{DoxyReturn}
+패킷 전송 후 시퀀스 번호를 자동으로 증가시킴
+
+
+\begin{DoxyItemize}
+\item sendto() 함수를 사용하여 UDP로 패킷 전송
+\item 전송 후 시퀀스 번호 자동 증가
+\item sockaddr 구조체는 수신자의 IP 주소와 포트 정보를 포함 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classRTPPacket_ae61f279622038f728ef3d632583d4b22}\label{classRTPPacket_ae61f279622038f728ef3d632583d4b22}} 
+\index{RTPPacket@{RTPPacket}!header@{header}}
+\index{header@{header}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{header}{header}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRTPHeader}{RTPHeader}} RTPPacket\+::header\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}\label{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}} 
+\index{RTPPacket@{RTPPacket}!RTP\_Payload@{RTP\_Payload}}
+\index{RTP\_Payload@{RTP\_Payload}!RTPPacket@{RTPPacket}}
+\doxysubsubsection{\texorpdfstring{RTP\_Payload}{RTP\_Payload}}
+{\footnotesize\ttfamily uint8\+\_\+t RTPPacket\+::\+RTP\+\_\+\+Payload\mbox{[}\mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}+\mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}}\mbox{]} \{0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+RTP 페이로드 버퍼 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{RTPPacket_8hpp}{RTPPacket.\+hpp}}\item 
+src/\mbox{\hyperlink{RTPPacket_8cpp}{RTPPacket.\+cpp}}\end{DoxyCompactItemize}

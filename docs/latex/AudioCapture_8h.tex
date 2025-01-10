@@ -1,5 +1,10 @@
 \hypertarget{AudioCapture_8h}{}\doxysection{example/\+Audio\+Server/\+Audio\+Capture.h File Reference}
 \label{AudioCapture_8h}\index{example/AudioServer/AudioCapture.h@{example/AudioServer/AudioCapture.h}}
+
+
+오디오 스트림 캡처 및 관리 클래스 헤더  
+
+
 {\ttfamily \#include \char`\"{}Data\+Capture.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$alsa/asoundlib.\+h$>$}\newline
 {\ttfamily \#include $<$queue$>$}\newline
@@ -22,4 +27,19 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classAudioCapture}{Audio\+Capture}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Audio Stream Data를 캡처하는 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+오디오 스트림 캡처 및 관리 클래스 헤더 
+
+ALSA를 사용하여 PCM 오디오 데이터를 캡처하고 관리하는 클래스
+\begin{DoxyItemize}
+\item PCM 디바이스 설정 및 관리
+\item 오디오 스트림 데이터 캡처
+\item Opus 인코딩을 위한 오디오 데이터 처리
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 

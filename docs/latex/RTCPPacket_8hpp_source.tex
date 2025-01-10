@@ -1,0 +1,49 @@
+\hypertarget{RTCPPacket_8hpp_source}{}\doxysection{RTCPPacket.\+hpp}
+\label{RTCPPacket_8hpp_source}\index{inc/RTCPPacket.hpp@{inc/RTCPPacket.hpp}}
+\mbox{\hyperlink{RTCPPacket_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{RTSPServer_8h}{RTSPServer.h}}"{}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#pragma pack(1)  }}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{classRTCPPacket}{RTCPPacket}}}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42     \mbox{\hyperlink{classRTCPPacket_a83a947239e4b16dbe062d37cd44ab389}{RTCPPacket}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} timestamp, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} packetCount, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} octetCount, \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} payloadType);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{52     int64\_t \mbox{\hyperlink{classRTCPPacket_af13a1919e90b4526de8a021ba5c4af10}{rtcp\_sendto}}(\textcolor{keywordtype}{int} sockfd, int64\_t \_bufferLen, \textcolor{keywordtype}{int} flags, \textcolor{keyword}{const} sockaddr *to);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{57     \mbox{\hyperlink{classRTCPPacket_a42a27dd6a4b9009412aced0cb0f569ee}{\string~RTCPPacket}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{private}:}
+\DoxyCodeLine{60 \textcolor{preprocessor}{\#if \_\_BYTE\_ORDER == \_\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{61     uint8\_t \mbox{\hyperlink{classRTCPPacket_ac5ec147eb2d2faab142206be04384bb9}{rc}} : 5;        }
+\DoxyCodeLine{62     uint8\_t \mbox{\hyperlink{classRTCPPacket_a514589b6c1d598bcf7dfde85032c7be7}{p}} : 1;         }
+\DoxyCodeLine{63     uint8\_t \mbox{\hyperlink{classRTCPPacket_a49087676ba1ea54c61a569ee996253fd}{version}} : 2;   }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#elif \_\_BYTE\_ORDER == \_\_BIG\_ENDIAN}}
+\DoxyCodeLine{65     uint8\_t \mbox{\hyperlink{classRTCPPacket_a49087676ba1ea54c61a569ee996253fd}{version}} : 2;   }
+\DoxyCodeLine{66     uint8\_t \mbox{\hyperlink{classRTCPPacket_a514589b6c1d598bcf7dfde85032c7be7}{p}} : 1;         }
+\DoxyCodeLine{67     uint8\_t \mbox{\hyperlink{classRTCPPacket_ac5ec147eb2d2faab142206be04384bb9}{rc}} : 5;        }
+\DoxyCodeLine{68 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{\#error "{}Please fix <bits/endian.h>"{}}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{71     uint8\_t \mbox{\hyperlink{classRTCPPacket_a209b6c069bfd4e38b71301f6bc616f47}{pt}};              }
+\DoxyCodeLine{72     uint16\_t \mbox{\hyperlink{classRTCPPacket_a2596f09ec7902f38e427a3fc76ce1931}{length}};         }
+\DoxyCodeLine{73     uint32\_t \mbox{\hyperlink{classRTCPPacket_a14772f0b7e6b36669ec90ab25a6de202}{ssrc}};           }
+\DoxyCodeLine{74     uint32\_t \mbox{\hyperlink{classRTCPPacket_a0eb97bd50d3e4b6468fac557e3dec358}{ntpTimestampMsw}}; }
+\DoxyCodeLine{75     uint32\_t \mbox{\hyperlink{classRTCPPacket_a8360760c0beea4174d585e06a3177474}{ntpTimestampLsw}}; }
+\DoxyCodeLine{76     uint32\_t \mbox{\hyperlink{classRTCPPacket_ac4ba9cfcfae5f0b68d501c02ef79176c}{rtpTimestamp}};    }
+\DoxyCodeLine{77     uint32\_t \mbox{\hyperlink{classRTCPPacket_ad64ed3c04a8c910477aa7f3d667a3227}{senderPacketCount}}; }
+\DoxyCodeLine{78     uint32\_t \mbox{\hyperlink{classRTCPPacket_af5cf7df52d9181a3bf68b5c7e9fcc9f4}{senderOctetCount}};  }
+\DoxyCodeLine{79 \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#pragma pack()}}
+
+\end{DoxyCode}

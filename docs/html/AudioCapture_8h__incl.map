@@ -1,5 +1,5 @@
 <map id="example/AudioServer/AudioCapture.h" name="example/AudioServer/AudioCapture.h">
-<area shape="rect" id="node1" title=" " alt="" coords="94,5,257,47"/>
+<area shape="rect" id="node1" title="오디오 스트림 캡처 및 관리 클래스 헤더" alt="" coords="94,5,257,47"/>
 <area shape="rect" id="node2" href="$DataCapture_8h.html" title="미디어 프레임 캡처 및 버퍼 관리 클래스 헤더" alt="" coords="69,95,185,121"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,169,68,196"/>
 <area shape="rect" id="node5" title=" " alt="" coords="187,169,251,196"/>

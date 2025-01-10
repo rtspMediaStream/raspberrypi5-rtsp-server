@@ -1,0 +1,125 @@
+\hypertarget{Global_8cpp}{}\doxysection{src/\+Global.cpp File Reference}
+\label{Global_8cpp}\index{src/Global.cpp@{src/Global.cpp}}
+
+
+Global 헤더의 구현부  
+
+
+{\ttfamily \#include \char`\"{}Global.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include $<$netdb.\+h$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+Include dependency graph for Global.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{Global_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{Global_8cpp_a6bc25a69d9a07e9cc34c343e9b1975e7}{Get\+Time}} ()
+\begin{DoxyCompactList}\small\item\em 현재 시간을 NTP(\+Network Time Protocol)타임스탬프 형식으로 계산 상위 32비트\+: 1900년 1월 1일(\+UTC)부터 경과한 초 단위 시간 하위 32비트\+: 초의 소수점 이하 부분 \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{Global_8cpp_a834438c2ff1cdb9f23953a1073c0a760}{Get\+Ran\+Num}} (int n)
+\begin{DoxyCompactList}\small\item\em 주어진 비트 수에 따라 랜덤 숫자를 생성 \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{Global_8cpp_a51231472dc84f361f26a3c58bfb8e707}{Get\+Server\+IP}} ()
+\begin{DoxyCompactList}\small\item\em 현재 서버의 IP 주소 반환 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Global 헤더의 구현부 
+
+Global 클래스의 멤버 함수를 구현한 소스 파일
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Global_8cpp_a834438c2ff1cdb9f23953a1073c0a760}\label{Global_8cpp_a834438c2ff1cdb9f23953a1073c0a760}} 
+\index{Global.cpp@{Global.cpp}!GetRanNum@{GetRanNum}}
+\index{GetRanNum@{GetRanNum}!Global.cpp@{Global.cpp}}
+\doxysubsubsection{\texorpdfstring{GetRanNum()}{GetRanNum()}}
+{\footnotesize\ttfamily uint32\+\_\+t Get\+Ran\+Num (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+주어진 비트 수에 따라 랜덤 숫자를 생성 
+
+주어진 비트 수에 따라 랜덤 숫자를 생성하는 함수
+
+이 함수는 입력으로 받은 비트 수(n)에 따라 16비트 또는 32비트 범위의 랜덤 숫자를 생성하여 반환 랜덤 시드 생성기를 사용하여 매 호출마다 새로운 랜덤 값을 생성 
+\begin{DoxyParams}{Parameters}
+{\em n} & 생성할 랜덤 숫자의 비트 수. 16 또는 32만 지원 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uint32\+\_\+t 생성된 랜덤 숫자
+\begin{DoxyItemize}
+\item n이 32일 경우\+: 0부터 2$^\wedge$32-\/1(0x\+FFFFFFFF) 범위의 랜덤 숫자
+\item n이 16일 경우\+: 0부터 65535(2$^\wedge$16-\/1) 범위의 랜덤 숫자
+\item n이 16 또는 32가 아닐 경우\+: 0을 반환 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item {\ttfamily std\+::random\+\_\+device}는 랜덤 시드 값을 생성하는 데 사용
+\item {\ttfamily std\+::mt19937}는 Mersenne Twister 알고리즘을 기반으로 한 난수 생성기
+\item {\ttfamily std\+::uniform\+\_\+int\+\_\+distribution}은 지정된 범위 내에서 균등 분포를 가진 난수를 생성 
+\end{DoxyItemize}
+\end{DoxyNote}
+\mbox{\Hypertarget{Global_8cpp_a51231472dc84f361f26a3c58bfb8e707}\label{Global_8cpp_a51231472dc84f361f26a3c58bfb8e707}} 
+\index{Global.cpp@{Global.cpp}!GetServerIP@{GetServerIP}}
+\index{GetServerIP@{GetServerIP}!Global.cpp@{Global.cpp}}
+\doxysubsubsection{\texorpdfstring{GetServerIP()}{GetServerIP()}}
+{\footnotesize\ttfamily std\+::string Get\+Server\+IP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+현재 서버의 IP 주소 반환 
+
+현재 서버의 IP 주소를 반환하는 함수
+
+이 함수는 시스템의 호스트 이름을 기반으로 서버의 IP 주소를 조회하여 반환 반환된 IP 주소는 IPv4 형식의 문자열로 제공
+
+\begin{DoxyReturn}{Returns}
+std\+::string 서버의 IP 주소
+\begin{DoxyItemize}
+\item 성공 시\+: IPv4 형식의 IP 주소 문자열
+\item 실패 시\+: 빈 문자열 (\char`\"{}\char`\"{})
+\end{DoxyItemize}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyItemize}
+\item {\ttfamily gethostname} 함수는 시스템의 호스트 이름을 조회
+\item {\ttfamily gethostbyname} 함수는 호스트 이름을 기반으로 IP 주소 정보를 조회
+\item {\ttfamily inet\+\_\+ntoa} 함수는 이진 형식의 IP 주소를 사람이 읽을 수 있는 문자열 형식으로 변환
+\end{DoxyItemize}
+\end{DoxyNote}
+\begin{DoxyWarning}{Warning}
+
+\begin{DoxyItemize}
+\item 이 함수는 IPv6 주소를 지원하지 않습니다. IPv4 주소만 반환
+\item {\ttfamily gethostbyname}는 오래된 함수로, 최신 시스템에서는 {\ttfamily getaddrinfo} 사용을 권장
+\item 함수 호출 중 오류가 발생하면 {\ttfamily perror}를 통해 에러 메시지가 출력 
+\end{DoxyItemize}
+\end{DoxyWarning}
+\mbox{\Hypertarget{Global_8cpp_a6bc25a69d9a07e9cc34c343e9b1975e7}\label{Global_8cpp_a6bc25a69d9a07e9cc34c343e9b1975e7}} 
+\index{Global.cpp@{Global.cpp}!GetTime@{GetTime}}
+\index{GetTime@{GetTime}!Global.cpp@{Global.cpp}}
+\doxysubsubsection{\texorpdfstring{GetTime()}{GetTime()}}
+{\footnotesize\ttfamily uint64\+\_\+t Get\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+현재 시간을 NTP(\+Network Time Protocol)타임스탬프 형식으로 계산 상위 32비트\+: 1900년 1월 1일(\+UTC)부터 경과한 초 단위 시간 하위 32비트\+: 초의 소수점 이하 부분 
+
+현재 시간을 NTP(\+Network Time Protocol)타임스탬프 형식으로 반환하는 함수
+
+\begin{DoxyReturn}{Returns}
+uint64\+\_\+t NTP 타임스탬프 형식의 현재 시간 
+\end{DoxyReturn}

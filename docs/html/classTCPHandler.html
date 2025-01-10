@@ -73,53 +73,75 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스  
+ <a href="classTCPHandler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="TCPHandler_8h_source.html">TCPHandler.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a803487890e72e8bba3d82697b7be4e9f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a803487890e72e8bba3d82697b7be4e9f">TCPHandler</a> (const <a class="el" href="classTCPHandler.html">TCPHandler</a> &amp;)=delete</td></tr>
+<tr class="memdesc:a803487890e72e8bba3d82697b7be4e9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">복사 생성자 삭제 (싱글톤 패턴)  <a href="classTCPHandler.html#a803487890e72e8bba3d82697b7be4e9f">More...</a><br /></td></tr>
 <tr class="separator:a803487890e72e8bba3d82697b7be4e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a011aac5db737403ed5b22b69a8479499"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classTCPHandler.html">TCPHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a011aac5db737403ed5b22b69a8479499">operator=</a> (const <a class="el" href="classTCPHandler.html">TCPHandler</a> &amp;)=delete</td></tr>
+<tr class="memdesc:a011aac5db737403ed5b22b69a8479499"><td class="mdescLeft">&#160;</td><td class="mdescRight">대입 연산자 삭제 (싱글톤 패턴)  <a href="classTCPHandler.html#a011aac5db737403ed5b22b69a8479499">More...</a><br /></td></tr>
 <tr class="separator:a011aac5db737403ed5b22b69a8479499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f0ef8498b18fd6f56f559560643794e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a0f0ef8498b18fd6f56f559560643794e">CreateTCPSocket</a> ()</td></tr>
+<tr class="memdesc:a0f0ef8498b18fd6f56f559560643794e"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP 소켓을 생성하고 초기화하는 메서드  <a href="classTCPHandler.html#a0f0ef8498b18fd6f56f559560643794e">More...</a><br /></td></tr>
 <tr class="separator:a0f0ef8498b18fd6f56f559560643794e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abce89659421235566b3f28c80707b502"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#abce89659421235566b3f28c80707b502">AcceptClientConnection</a> (std::string &amp;_clientIp)</td></tr>
+<tr class="memdesc:abce89659421235566b3f28c80707b502"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 연결을 수락하는 메서드  <a href="classTCPHandler.html#abce89659421235566b3f28c80707b502">More...</a><br /></td></tr>
 <tr class="separator:abce89659421235566b3f28c80707b502"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3be8de462a07b0d21571b735a139f41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#ab3be8de462a07b0d21571b735a139f41">CloseClientConnection</a> ()</td></tr>
+<tr class="memdesc:ab3be8de462a07b0d21571b735a139f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 연결을 종료하는 메서드  <a href="classTCPHandler.html#ab3be8de462a07b0d21571b735a139f41">More...</a><br /></td></tr>
 <tr class="separator:ab3be8de462a07b0d21571b735a139f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03fbf3fd1989544d871e0e36401cd249"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a03fbf3fd1989544d871e0e36401cd249">ReceiveRTSPRequest</a> (int sessionId)</td></tr>
+<tr class="memdesc:a03fbf3fd1989544d871e0e36401cd249"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTSP 요청 메시지를 수신하는 메서드  <a href="classTCPHandler.html#a03fbf3fd1989544d871e0e36401cd249">More...</a><br /></td></tr>
 <tr class="separator:a03fbf3fd1989544d871e0e36401cd249"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16fd91c71ab21e6ba5968b564e641ced"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a16fd91c71ab21e6ba5968b564e641ced">SendRTSPResponse</a> (int clientSocket, std::string &amp;response)</td></tr>
+<tr class="memdesc:a16fd91c71ab21e6ba5968b564e641ced"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTSP 응답을 전송하는 메서드  <a href="classTCPHandler.html#a16fd91c71ab21e6ba5968b564e641ced">More...</a><br /></td></tr>
 <tr class="separator:a16fd91c71ab21e6ba5968b564e641ced"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03a0a4e19c76bef4c4eb4dbb04498b52"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a03a0a4e19c76bef4c4eb4dbb04498b52">GetTCPSocket</a> ()</td></tr>
+<tr class="memdesc:a03a0a4e19c76bef4c4eb4dbb04498b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP 소켓을 반환하는 메서드  <a href="classTCPHandler.html#a03a0a4e19c76bef4c4eb4dbb04498b52">More...</a><br /></td></tr>
 <tr class="separator:a03a0a4e19c76bef4c4eb4dbb04498b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2fd55b2fb6a4df23f04da72789b06cc"><td class="memItemLeft" align="right" valign="top">sockaddr_in &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#ae2fd55b2fb6a4df23f04da72789b06cc">GetTCPAddr</a> ()</td></tr>
+<tr class="memdesc:ae2fd55b2fb6a4df23f04da72789b06cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP 주소 구조체를 반환하는 메서드  <a href="classTCPHandler.html#ae2fd55b2fb6a4df23f04da72789b06cc">More...</a><br /></td></tr>
 <tr class="separator:ae2fd55b2fb6a4df23f04da72789b06cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:afcb35361f780b13c32bcdf616d89b53b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classTCPHandler.html">TCPHandler</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#afcb35361f780b13c32bcdf616d89b53b">GetInstance</a> ()</td></tr>
+<tr class="memdesc:afcb35361f780b13c32bcdf616d89b53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">싱글톤 인스턴스를 반환하는 정적 메서드  <a href="classTCPHandler.html#afcb35361f780b13c32bcdf616d89b53b">More...</a><br /></td></tr>
 <tr class="separator:afcb35361f780b13c32bcdf616d89b53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:affca35152b4e9f2bbbdcdfa0169e7902"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#affca35152b4e9f2bbbdcdfa0169e7902">TCPHandler</a> ()</td></tr>
+<tr class="memdesc:affca35152b4e9f2bbbdcdfa0169e7902"><td class="mdescLeft">&#160;</td><td class="mdescRight">생성자 - TCP 소켓 초기화  <a href="classTCPHandler.html#affca35152b4e9f2bbbdcdfa0169e7902">More...</a><br /></td></tr>
 <tr class="separator:affca35152b4e9f2bbbdcdfa0169e7902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7d97b5b08a234426e93248cce83acac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#ac7d97b5b08a234426e93248cce83acac">~TCPHandler</a> ()</td></tr>
+<tr class="memdesc:ac7d97b5b08a234426e93248cce83acac"><td class="mdescLeft">&#160;</td><td class="mdescRight">소멸자 - TCP 소켓 닫기  <a href="classTCPHandler.html#ac7d97b5b08a234426e93248cce83acac">More...</a><br /></td></tr>
 <tr class="separator:ac7d97b5b08a234426e93248cce83acac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a705214e294e4e7fb56f667499784cfae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a705214e294e4e7fb56f667499784cfae">tcpPort</a></td></tr>
+<tr class="memdesc:a705214e294e4e7fb56f667499784cfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP 포트 번호  <a href="classTCPHandler.html#a705214e294e4e7fb56f667499784cfae">More...</a><br /></td></tr>
 <tr class="separator:a705214e294e4e7fb56f667499784cfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70c042292e2cf941369256d8affc7c74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a70c042292e2cf941369256d8affc7c74">tcpSocket</a></td></tr>
+<tr class="memdesc:a70c042292e2cf941369256d8affc7c74"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP 소켓 디스크립터  <a href="classTCPHandler.html#a70c042292e2cf941369256d8affc7c74">More...</a><br /></td></tr>
 <tr class="separator:a70c042292e2cf941369256d8affc7c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a294fc26391c01530d299281f791fd728"><td class="memItemLeft" align="right" valign="top">sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#a294fc26391c01530d299281f791fd728">tcpAddr</a></td></tr>
+<tr class="memdesc:a294fc26391c01530d299281f791fd728"><td class="mdescLeft">&#160;</td><td class="mdescRight">TCP 주소 구조체  <a href="classTCPHandler.html#a294fc26391c01530d299281f791fd728">More...</a><br /></td></tr>
 <tr class="separator:a294fc26391c01530d299281f791fd728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5738a45d302ae872bd610890e2b2c9c"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTCPHandler.html#ad5738a45d302ae872bd610890e2b2c9c">socketTable</a></td></tr>
+<tr class="memdesc:ad5738a45d302ae872bd610890e2b2c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 소켓 테이블  <a href="classTCPHandler.html#ad5738a45d302ae872bd610890e2b2c9c">More...</a><br /></td></tr>
 <tr class="separator:ad5738a45d302ae872bd610890e2b2c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스 </p>
+<p >TCP 소켓을 생성하고 클라이언트 연결을 관리하며, RTSP 프로토콜에 따른 메시지 송수신을 처리하는 기능을 제공한다. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a803487890e72e8bba3d82697b7be4e9f" name="a803487890e72e8bba3d82697b7be4e9f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a803487890e72e8bba3d82697b7be4e9f">&#9670;&nbsp;</a></span>TCPHandler() <span class="overload">[1/2]</span></h2>
 
@@ -143,6 +165,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>복사 생성자 삭제 (싱글톤 패턴) </p>
 
 </div>
 </div>
@@ -169,6 +193,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>생성자 - TCP 소켓 초기화 </p>
+<p ><a class="el" href="classTCPHandler.html" title="TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스">TCPHandler</a> 클래스의 생성자</p>
+<p >TCP 포트를 설정하고 TCP 소켓을 생성 </p>
+
 </div>
 </div>
 <a id="ac7d97b5b08a234426e93248cce83acac" name="ac7d97b5b08a234426e93248cce83acac"></a>
@@ -194,6 +222,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>소멸자 - TCP 소켓 닫기 </p>
+<p ><a class="el" href="classTCPHandler.html" title="TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스">TCPHandler</a> 클래스의 소멸자 </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -213,6 +244,29 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>클라이언트 연결을 수락하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_clientIp</td><td>[out] 연결된 클라이언트의 IP 주소 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 생성된 클라이언트 소켓 디스크립터 </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>연결 수락 실패 시</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_clientIp</td><td>[out] 연결된 클라이언트의 IP 주소 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 생성된 클라이언트 소켓 디스크립터 (-1: 실패)</dd></dl>
+<p>클라이언트의 연결 요청을 수락하고 IP 주소를 획득 </p>
+
 </div>
 </div>
 <a id="ab3be8de462a07b0d21571b735a139f41" name="ab3be8de462a07b0d21571b735a139f41"></a>
@@ -230,6 +284,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>클라이언트 연결을 종료하는 메서드 </p>
+<p >TCP 소켓을 닫고 연결을 종료 </p>
+
 </div>
 </div>
 <a id="a0f0ef8498b18fd6f56f559560643794e" name="a0f0ef8498b18fd6f56f559560643794e"></a>
@@ -246,6 +303,26 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>TCP 소켓을 생성하고 초기화하는 메서드 </p>
+<p >소켓 생성, 옵션 설정, 바인딩, 리스닝 상태 설정 </p><dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>소켓 생성 또는 초기화 실패 시</td></tr>
+  </table>
+  </dd>
+</dl>
+<ul>
+<li>TCP 소켓 생성</li>
+<li>SO_REUSEADDR 옵션 설정</li>
+<li>주소 바인딩</li>
+<li>리스닝 상태로 전환 <dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>소켓 생성, 바인딩 또는 리스닝 실패 시 </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -272,6 +349,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>싱글톤 인스턴스를 반환하는 정적 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classTCPHandler.html" title="TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스">TCPHandler</a>&amp; 싱글톤 인스턴스에 대한 참조 </dd></dl>
+
 </div>
 </div>
 <a id="ae2fd55b2fb6a4df23f04da72789b06cc" name="ae2fd55b2fb6a4df23f04da72789b06cc"></a>
@@ -289,6 +369,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>TCP 주소 구조체를 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>sockaddr_in&amp; TCP 주소 구조체에 대한 참조 </dd></dl>
+
 </div>
 </div>
 <a id="a03a0a4e19c76bef4c4eb4dbb04498b52" name="a03a0a4e19c76bef4c4eb4dbb04498b52"></a>
@@ -305,6 +388,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>TCP 소켓을 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>int&amp; TCP 소켓 디스크립터에 대한 참조 </dd></dl>
 
 </div>
 </div>
@@ -332,6 +418,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>대입 연산자 삭제 (싱글톤 패턴) </p>
+
 </div>
 </div>
 <a id="a03fbf3fd1989544d871e0e36401cd249" name="a03fbf3fd1989544d871e0e36401cd249"></a>
@@ -344,11 +432,29 @@ Private Attributes</h2></td></tr>
           <td class="memname">std::string TCPHandler::ReceiveRTSPRequest </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>sessionId</em></td><td>)</td>
+          <td class="paramname"><em>clientSocket</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>RTSP 요청 메시지를 수신하는 메서드 </p>
+<p >RTSP 요청을 수신하는 메서드</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sessionId</td><td>클라이언트 세션 ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string 수신된 RTSP 요청 메시지</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clientSocket</td><td>클라이언트 소켓 디스크립터 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string 수신된 RTSP 요청 메시지</dd></dl>
+<p>클라이언트로부터 RTSP 요청 메시지를 수신 </p>
 
 </div>
 </div>
@@ -378,6 +484,18 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>RTSP 응답을 전송하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clientSocket</td><td>클라이언트 소켓 디스크립터 </td></tr>
+    <tr><td class="paramname">response</td><td>전송할 RTSP 응답 메시지</td></tr>
+    <tr><td class="paramname">clientSocket</td><td>클라이언트 소켓 디스크립터 </td></tr>
+    <tr><td class="paramname">response</td><td>전송할 RTSP 응답 메시지</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>클라이언트에게 RTSP 응답 메시지를 전송 </p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -401,6 +519,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>클라이언트 소켓 테이블 </p>
+
 </div>
 </div>
 <a id="a294fc26391c01530d299281f791fd728" name="a294fc26391c01530d299281f791fd728"></a>
@@ -422,6 +542,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>TCP 주소 구조체 </p>
 
 </div>
 </div>
@@ -445,6 +567,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>TCP 포트 번호 </p>
+
 </div>
 </div>
 <a id="a70c042292e2cf941369256d8affc7c74" name="a70c042292e2cf941369256d8affc7c74"></a>
@@ -466,6 +590,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>TCP 소켓 디스크립터 </p>
 
 </div>
 </div>

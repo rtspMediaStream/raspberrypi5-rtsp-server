@@ -1,6 +1,10 @@
 \hypertarget{TCPHandler_8h}{}\doxysection{inc/\+TCPHandler.h File Reference}
 \label{TCPHandler_8h}\index{inc/TCPHandler.h@{inc/TCPHandler.h}}
-{\ttfamily \#include \char`\"{}Protos.\+h\char`\"{}}\newline
+
+
+TCP 연결 및 RTSP 메시지 처리를 위한 싱글톤 클래스 헤더  
+
+
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
 {\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
@@ -23,4 +27,19 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classTCPHandler}{TCPHandler}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em TCP 연결 관리 및 RTSP 메시지 처리를 위한 싱글톤 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TCP 연결 및 RTSP 메시지 처리를 위한 싱글톤 클래스 헤더 
+
+TCP 소켓을 생성하고 클라이언트 연결을 관리하며, RTSP 프로토콜에 따른 메시지 송수신을 처리하는 기능을 제공하는 클래스
+\begin{DoxyItemize}
+\item TCP 소켓 생성 및 초기화
+\item 클라이언트 연결 수락 및 관리
+\item RTSP 요청/응답 메시지 처리
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 

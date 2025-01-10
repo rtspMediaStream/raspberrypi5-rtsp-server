@@ -1,10 +1,9 @@
 \hypertarget{CameraServer_2main_8cpp}{}\doxysection{example/\+Camera\+Server/main.cpp File Reference}
 \label{CameraServer_2main_8cpp}\index{example/CameraServer/main.cpp@{example/CameraServer/main.cpp}}
 {\ttfamily \#include \char`\"{}RTSPServer.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Client\+Session.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Request\+Handler.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Global.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Data\+Capture.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$thread$>$}\newline
@@ -33,8 +32,6 @@ Include dependency graph for main.\+cpp\+:\nopagebreak
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-static void \mbox{\hyperlink{CameraServer_2main_8cpp_a029fa38595512022183e997c8ae4fc3a}{process\+Request}} (Request $\ast$request)
-\item 
 static void \mbox{\hyperlink{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}{request\+Complete}} (Request $\ast$request)
 \item 
 void \mbox{\hyperlink{CameraServer_2main_8cpp_a6faad531a4d03098ea8c227e203ae97b}{camera\+Thread}} ()
@@ -44,7 +41,7 @@ int \mbox{\hyperlink{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-static std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0a72159b99f162eb7444ea0810dcce4442}{libcamera\+::\+Camera}} $>$ \mbox{\hyperlink{CameraServer_2main_8cpp_aa7e1e05dad3ca1fabd2f1ac791074478}{camera}}
+static std\+::shared\+\_\+ptr$<$ libcamera\+::\+Camera $>$ \mbox{\hyperlink{CameraServer_2main_8cpp_aa7e1e05dad3ca1fabd2f1ac791074478}{camera}}
 \item 
 \mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} \mbox{\hyperlink{CameraServer_2main_8cpp_a48138829a6dfafcf86643050f74db421}{ffmpeg\+Encoder}} (\char`\"{}output.\+h264\char`\"{}, 640, 480, 30.\+0)
 \end{DoxyCompactItemize}
@@ -63,12 +60,6 @@ camera test\mbox{\Hypertarget{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{CameraServer_2main_8cpp_a029fa38595512022183e997c8ae4fc3a}\label{CameraServer_2main_8cpp_a029fa38595512022183e997c8ae4fc3a}} 
-\index{main.cpp@{main.cpp}!processRequest@{processRequest}}
-\index{processRequest@{processRequest}!main.cpp@{main.cpp}}
-\doxysubsubsection{\texorpdfstring{processRequest()}{processRequest()}}
-{\footnotesize\ttfamily static void process\+Request (\begin{DoxyParamCaption}\item[{Request $\ast$}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
-
 \mbox{\Hypertarget{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}\label{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}} 
 \index{main.cpp@{main.cpp}!requestComplete@{requestComplete}}
 \index{requestComplete@{requestComplete}!main.cpp@{main.cpp}}
@@ -82,7 +73,7 @@ camera test\mbox{\Hypertarget{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f
 \index{main.cpp@{main.cpp}!camera@{camera}}
 \index{camera@{camera}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{camera}{camera}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{global_8h_af1a4278bf09d9727ec95e087b1af52b0a72159b99f162eb7444ea0810dcce4442}{libcamera\+::\+Camera}}$>$ camera\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$libcamera\+::\+Camera$>$ camera\hspace{0.3cm}{\ttfamily [static]}}
 
 \mbox{\Hypertarget{CameraServer_2main_8cpp_a48138829a6dfafcf86643050f74db421}\label{CameraServer_2main_8cpp_a48138829a6dfafcf86643050f74db421}} 
 \index{main.cpp@{main.cpp}!ffmpegEncoder@{ffmpegEncoder}}

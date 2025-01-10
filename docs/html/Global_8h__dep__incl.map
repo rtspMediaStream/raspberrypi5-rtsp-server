@@ -1,0 +1,12 @@
+<map id="inc/Global.h" name="inc/Global.h">
+<area shape="rect" id="node1" title="RTSP 서버의 전역변수 및 전역함수를 관리하는 헤더" alt="" coords="771,5,869,32"/>
+<area shape="rect" id="node2" href="$AudioServer_2main_8cpp.html" title=" " alt="" coords="5,80,168,121"/>
+<area shape="rect" id="node3" href="$CameraServer_2main_8cpp.html" title=" " alt="" coords="192,80,368,121"/>
+<area shape="rect" id="node4" href="$ClientSession_8cpp.html" title="ClientSession 클래스의 구현부" alt="" coords="392,87,552,114"/>
+<area shape="rect" id="node5" href="$Global_8cpp.html" title="Global 헤더의 구현부" alt="" coords="576,87,691,114"/>
+<area shape="rect" id="node6" href="$MediaStreamHandler_8cpp.html" title="MediaStreamHandler 클래스의 구현부" alt="" coords="715,87,925,114"/>
+<area shape="rect" id="node7" href="$RTCPPacket_8cpp.html" title="RTCPPacket 클래스의 구현부" alt="" coords="949,87,1096,114"/>
+<area shape="rect" id="node8" href="$RTSPServer_8cpp.html" title="RTSPServer 클래스의 구현부" alt="" coords="1121,87,1266,114"/>
+<area shape="rect" id="node9" href="$RequestHandler_8cpp.html" title="RequestHandler 클래스의 구현부" alt="" coords="1290,87,1465,114"/>
+<area shape="rect" id="node10" href="$TCPHandler_8cpp.html" title="TCPHandler 클래스의 구현부" alt="" coords="1489,87,1636,114"/>
+</map>

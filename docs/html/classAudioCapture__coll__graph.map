@@ -1,4 +1,4 @@
 <map id="AudioCapture" name="AudioCapture">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,116,107"/>
+<area shape="rect" id="node1" title="Audio Stream Data를 캡처하는 클래스" alt="" coords="5,80,116,107"/>
 <area shape="rect" id="node2" href="$classDataCapture.html" title="미디어 프레임 캡처 및 버퍼 관리를 위한 싱글톤 클래스" alt="" coords="9,5,113,32"/>
 </map>

@@ -1,0 +1,163 @@
+\hypertarget{RTPHeader_8hpp}{}\doxysection{inc/\+RTPHeader.hpp File Reference}
+\label{RTPHeader_8hpp}\index{inc/RTPHeader.hpp@{inc/RTPHeader.hpp}}
+
+
+RTP 헤더 정의 및 처리 클래스 헤더  
+
+
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+Include dependency graph for RTPHeader.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{RTPHeader_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{RTPHeader_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRTPHeader}{RTPHeader}}
+\begin{DoxyCompactList}\small\item\em 패킹 설정을 원래대로 복구 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}{IP\+\_\+\+V4\+\_\+\+HEADER\+\_\+\+SIZE}} = 20
+\begin{DoxyCompactList}\small\item\em RTP/\+UDP 패킷 관련 상수 정의 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}{UDP\+\_\+\+HEADER\+\_\+\+SIZE}} = 8
+\begin{DoxyCompactList}\small\item\em UDP 헤더 크기 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\+\_\+\+HEADER\+\_\+\+SIZE}} = 12
+\begin{DoxyCompactList}\small\item\em RTP 헤더 크기 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}{RTP\+\_\+\+VERSION}} = 2
+\begin{DoxyCompactList}\small\item\em RTP 버전 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_adb2feb8b100615f535c26bb2a0b59976}{RTP\+\_\+\+PAYLOAD\+\_\+\+TYPE\+\_\+\+H264}} = 96
+\begin{DoxyCompactList}\small\item\em H264 페이로드 타입 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}} = 2
+\begin{DoxyCompactList}\small\item\em Fragmentation Unit 크기 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_ac03432f082c5d4c0fc9076532852e96d}{MAX\+\_\+\+UDP\+\_\+\+PACKET\+\_\+\+SIZE}} = 65535
+\begin{DoxyCompactList}\small\item\em 최대 패킷 크기 관련 상수 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em RTP 최대 데이터 크기 \end{DoxyCompactList}\item 
+constexpr int64\+\_\+t \mbox{\hyperlink{RTPHeader_8hpp_abd9bca75675e244c5401794619c5e5f1}{MAX\+\_\+\+RTP\+\_\+\+PACKET\+\_\+\+LEN}} = \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\+\_\+\+HEADER\+\_\+\+SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}
+\begin{DoxyCompactList}\small\item\em RTP 최대 패킷 길이 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTP 헤더 정의 및 처리 클래스 헤더 
+
+RTP(Real-\/time Transport Protocol) 헤더의 구조체를 정의하고 처리하는 클래스
+\begin{DoxyItemize}
+\item RTP 헤더 구조 정의 및 비트필드 처리
+\item 네트워크 바이트 오더 변환
+\item MTU 기반 패킷 크기 제한 처리
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}\label{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!FU\_SIZE@{FU\_SIZE}}
+\index{FU\_SIZE@{FU\_SIZE}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{FU\_SIZE}{FU\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t FU\+\_\+\+SIZE = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Fragmentation Unit 크기 
+
+\mbox{\Hypertarget{RTPHeader_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}\label{RTPHeader_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!IP\_V4\_HEADER\_SIZE@{IP\_V4\_HEADER\_SIZE}}
+\index{IP\_V4\_HEADER\_SIZE@{IP\_V4\_HEADER\_SIZE}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{IP\_V4\_HEADER\_SIZE}{IP\_V4\_HEADER\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t IP\+\_\+\+V4\+\_\+\+HEADER\+\_\+\+SIZE = 20\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+RTP/\+UDP 패킷 관련 상수 정의 
+
+IPv4 헤더 크기 \mbox{\Hypertarget{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}\label{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!MAX\_RTP\_DATA\_SIZE@{MAX\_RTP\_DATA\_SIZE}}
+\index{MAX\_RTP\_DATA\_SIZE@{MAX\_RTP\_DATA\_SIZE}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_RTP\_DATA\_SIZE}{MAX\_RTP\_DATA\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{= \mbox{\hyperlink{RTPHeader_8hpp_ac03432f082c5d4c0fc9076532852e96d}{MAX\_UDP\_PACKET\_SIZE}} -\/ \mbox{\hyperlink{RTPHeader_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}{IP\_V4\_HEADER\_SIZE}}}
+\DoxyCodeLine{                                     -\/ \mbox{\hyperlink{RTPHeader_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}{UDP\_HEADER\_SIZE}} -\/ \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\_HEADER\_SIZE}} -\/ \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}}}
+
+\end{DoxyCode}
+
+
+RTP 최대 데이터 크기 
+
+\mbox{\Hypertarget{RTPHeader_8hpp_abd9bca75675e244c5401794619c5e5f1}\label{RTPHeader_8hpp_abd9bca75675e244c5401794619c5e5f1}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!MAX\_RTP\_PACKET\_LEN@{MAX\_RTP\_PACKET\_LEN}}
+\index{MAX\_RTP\_PACKET\_LEN@{MAX\_RTP\_PACKET\_LEN}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_RTP\_PACKET\_LEN}{MAX\_RTP\_PACKET\_LEN}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t MAX\+\_\+\+RTP\+\_\+\+PACKET\+\_\+\+LEN = \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\+\_\+\+RTP\+\_\+\+DATA\+\_\+\+SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\+\_\+\+HEADER\+\_\+\+SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\+\_\+\+SIZE}}\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+RTP 최대 패킷 길이 
+
+1바이트 정렬로 패딩 없이 메모리에 헤더 구조체를 배치 \mbox{\Hypertarget{RTPHeader_8hpp_ac03432f082c5d4c0fc9076532852e96d}\label{RTPHeader_8hpp_ac03432f082c5d4c0fc9076532852e96d}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!MAX\_UDP\_PACKET\_SIZE@{MAX\_UDP\_PACKET\_SIZE}}
+\index{MAX\_UDP\_PACKET\_SIZE@{MAX\_UDP\_PACKET\_SIZE}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_UDP\_PACKET\_SIZE}{MAX\_UDP\_PACKET\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t MAX\+\_\+\+UDP\+\_\+\+PACKET\+\_\+\+SIZE = 65535\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+최대 패킷 크기 관련 상수 
+
+UDP 최대 패킷 크기 \mbox{\Hypertarget{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}\label{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!RTP\_HEADER\_SIZE@{RTP\_HEADER\_SIZE}}
+\index{RTP\_HEADER\_SIZE@{RTP\_HEADER\_SIZE}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{RTP\_HEADER\_SIZE}{RTP\_HEADER\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t RTP\+\_\+\+HEADER\+\_\+\+SIZE = 12\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+RTP 헤더 크기 
+
+\mbox{\Hypertarget{RTPHeader_8hpp_adb2feb8b100615f535c26bb2a0b59976}\label{RTPHeader_8hpp_adb2feb8b100615f535c26bb2a0b59976}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!RTP\_PAYLOAD\_TYPE\_H264@{RTP\_PAYLOAD\_TYPE\_H264}}
+\index{RTP\_PAYLOAD\_TYPE\_H264@{RTP\_PAYLOAD\_TYPE\_H264}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{RTP\_PAYLOAD\_TYPE\_H264}{RTP\_PAYLOAD\_TYPE\_H264}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t RTP\+\_\+\+PAYLOAD\+\_\+\+TYPE\+\_\+\+H264 = 96\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+H264 페이로드 타입 
+
+\mbox{\Hypertarget{RTPHeader_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}\label{RTPHeader_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!RTP\_VERSION@{RTP\_VERSION}}
+\index{RTP\_VERSION@{RTP\_VERSION}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{RTP\_VERSION}{RTP\_VERSION}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t RTP\+\_\+\+VERSION = 2\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+RTP 버전 
+
+\mbox{\Hypertarget{RTPHeader_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}\label{RTPHeader_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}} 
+\index{RTPHeader.hpp@{RTPHeader.hpp}!UDP\_HEADER\_SIZE@{UDP\_HEADER\_SIZE}}
+\index{UDP\_HEADER\_SIZE@{UDP\_HEADER\_SIZE}!RTPHeader.hpp@{RTPHeader.hpp}}
+\doxysubsubsection{\texorpdfstring{UDP\_HEADER\_SIZE}{UDP\_HEADER\_SIZE}}
+{\footnotesize\ttfamily constexpr int64\+\_\+t UDP\+\_\+\+HEADER\+\_\+\+SIZE = 8\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+UDP 헤더 크기 
+

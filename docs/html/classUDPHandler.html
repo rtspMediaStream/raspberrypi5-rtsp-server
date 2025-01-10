@@ -71,41 +71,57 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>RTP/RTCP를 위한 UDP 소켓 관리 클래스  
+ <a href="classUDPHandler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="UDPHandler_8h_source.html">UDPHandler.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3a053e49fb55e0e4632278467c6b9f91"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a3a053e49fb55e0e4632278467c6b9f91">UDPHandler</a> (std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt; <a class="el" href="classUDPHandler.html#ad258b4640634b07e3fce9cd7c53597ac">client</a>)</td></tr>
+<tr class="memdesc:a3a053e49fb55e0e4632278467c6b9f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">UDP 핸들러 생성자  <a href="classUDPHandler.html#a3a053e49fb55e0e4632278467c6b9f91">More...</a><br /></td></tr>
 <tr class="separator:a3a053e49fb55e0e4632278467c6b9f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3954df271b184ace20f867c1de79d742"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a3954df271b184ace20f867c1de79d742">~UDPHandler</a> ()</td></tr>
+<tr class="memdesc:a3954df271b184ace20f867c1de79d742"><td class="mdescLeft">&#160;</td><td class="mdescRight">소멸자 - 소켓 리소스 해제  <a href="classUDPHandler.html#a3954df271b184ace20f867c1de79d742">More...</a><br /></td></tr>
 <tr class="separator:a3954df271b184ace20f867c1de79d742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0a86f1914c6563951fcf09bc2e867e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#af0a86f1914c6563951fcf09bc2e867e1">CreateUDPSocket</a> ()</td></tr>
+<tr class="memdesc:af0a86f1914c6563951fcf09bc2e867e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP와 RTCP UDP 소켓을 생성하는 메서드  <a href="classUDPHandler.html#af0a86f1914c6563951fcf09bc2e867e1">More...</a><br /></td></tr>
 <tr class="separator:af0a86f1914c6563951fcf09bc2e867e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4c1f2a65e5ab109f10ee7a52413cab2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#ad4c1f2a65e5ab109f10ee7a52413cab2">SendSenderReport</a> (<a class="el" href="structProtos_1_1SenderReport.html">Protos::SenderReport</a> *senderReport, size_t srSize)</td></tr>
-<tr class="separator:ad4c1f2a65e5ab109f10ee7a52413cab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6d1128384a6f7fda15eac1cdcc4f113"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#aa6d1128384a6f7fda15eac1cdcc4f113">GetRTPSocket</a> ()</td></tr>
+<tr class="memdesc:aa6d1128384a6f7fda15eac1cdcc4f113"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 소켓을 반환하는 메서드  <a href="classUDPHandler.html#aa6d1128384a6f7fda15eac1cdcc4f113">More...</a><br /></td></tr>
 <tr class="separator:aa6d1128384a6f7fda15eac1cdcc4f113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adea80af661c0dfd1ef643f16746b42f7"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#adea80af661c0dfd1ef643f16746b42f7">GetRTCPSocket</a> ()</td></tr>
+<tr class="memdesc:adea80af661c0dfd1ef643f16746b42f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP 소켓을 반환하는 메서드  <a href="classUDPHandler.html#adea80af661c0dfd1ef643f16746b42f7">More...</a><br /></td></tr>
 <tr class="separator:adea80af661c0dfd1ef643f16746b42f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bd9b385ea3dec4cb96a155d989f40f9"><td class="memItemLeft" align="right" valign="top">sockaddr_in &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a9bd9b385ea3dec4cb96a155d989f40f9">GetRTPAddr</a> ()</td></tr>
+<tr class="memdesc:a9bd9b385ea3dec4cb96a155d989f40f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 주소를 반환하는 메서드  <a href="classUDPHandler.html#a9bd9b385ea3dec4cb96a155d989f40f9">More...</a><br /></td></tr>
 <tr class="separator:a9bd9b385ea3dec4cb96a155d989f40f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dcb8b1014e1a765d53d2dffe9d38ba1"><td class="memItemLeft" align="right" valign="top">sockaddr_in &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a4dcb8b1014e1a765d53d2dffe9d38ba1">GetRTCPAddr</a> ()</td></tr>
+<tr class="memdesc:a4dcb8b1014e1a765d53d2dffe9d38ba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP 주소를 반환하는 메서드  <a href="classUDPHandler.html#a4dcb8b1014e1a765d53d2dffe9d38ba1">More...</a><br /></td></tr>
 <tr class="separator:a4dcb8b1014e1a765d53d2dffe9d38ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad258b4640634b07e3fce9cd7c53597ac"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#ad258b4640634b07e3fce9cd7c53597ac">client</a></td></tr>
+<tr class="memdesc:ad258b4640634b07e3fce9cd7c53597ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 세션 객체  <a href="classUDPHandler.html#ad258b4640634b07e3fce9cd7c53597ac">More...</a><br /></td></tr>
 <tr class="separator:ad258b4640634b07e3fce9cd7c53597ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a402334de669d7828576569eb4fea5a26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a402334de669d7828576569eb4fea5a26">rtpSocket</a></td></tr>
+<tr class="memdesc:a402334de669d7828576569eb4fea5a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 소켓 디스크립터  <a href="classUDPHandler.html#a402334de669d7828576569eb4fea5a26">More...</a><br /></td></tr>
 <tr class="separator:a402334de669d7828576569eb4fea5a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e4a45ad6c404bc908f8fbf8330c5405"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a1e4a45ad6c404bc908f8fbf8330c5405">rtcpSocket</a></td></tr>
+<tr class="memdesc:a1e4a45ad6c404bc908f8fbf8330c5405"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP 소켓 디스크립터  <a href="classUDPHandler.html#a1e4a45ad6c404bc908f8fbf8330c5405">More...</a><br /></td></tr>
 <tr class="separator:a1e4a45ad6c404bc908f8fbf8330c5405"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae97c97f827990902784e635e22effbc2"><td class="memItemLeft" align="right" valign="top">sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#ae97c97f827990902784e635e22effbc2">rtpAddr</a></td></tr>
+<tr class="memdesc:ae97c97f827990902784e635e22effbc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP 주소 구조체  <a href="classUDPHandler.html#ae97c97f827990902784e635e22effbc2">More...</a><br /></td></tr>
 <tr class="separator:ae97c97f827990902784e635e22effbc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09acc318bbd1cb7e9a23bcc1e75e98d3"><td class="memItemLeft" align="right" valign="top">sockaddr_in&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUDPHandler.html#a09acc318bbd1cb7e9a23bcc1e75e98d3">rtcpAddr</a></td></tr>
+<tr class="memdesc:a09acc318bbd1cb7e9a23bcc1e75e98d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP 주소 구조체  <a href="classUDPHandler.html#a09acc318bbd1cb7e9a23bcc1e75e98d3">More...</a><br /></td></tr>
 <tr class="separator:a09acc318bbd1cb7e9a23bcc1e75e98d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >RTP/RTCP를 위한 UDP 소켓 관리 클래스 </p>
+<p >클라이언트와의 미디어 스트리밍을 위한 UDP 소켓을 관리하며, RTP/RTCP 프로토콜에 필요한 소켓과 주소 정보를 제공한다. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3a053e49fb55e0e4632278467c6b9f91" name="a3a053e49fb55e0e4632278467c6b9f91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a053e49fb55e0e4632278467c6b9f91">&#9670;&nbsp;</a></span>UDPHandler()</h2>
 
@@ -121,6 +137,15 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>UDP 핸들러 생성자 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>클라이언트 세션 객체</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>소켓 디스크립터를 초기값 -1로 초기화하여 유효하지 않은 소켓임을 표시 </p>
 
 </div>
 </div>
@@ -138,6 +163,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>소멸자 - 소켓 리소스 해제 </p>
+<p >열려있는 소켓이 있다면(디스크립터가 -1이 아닌 경우) 소켓을 닫고 리소스 해제 </p>
 
 </div>
 </div>
@@ -157,6 +185,19 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>RTP와 RTCP UDP 소켓을 생성하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>bool 소켓 생성 성공 여부</dd></dl>
+<p>클라이언트의 RTP/RTCP 포트로 연결할 UDP 소켓을 생성</p>
+<p >UDP 소켓 생성 과정:</p><ol type="1">
+<li>RTP와 RTCP 소켓 각각 생성</li>
+<li>주소 구조체 초기화 및 설정<ul>
+<li>AF_INET: IPv4 프로토콜</li>
+<li>SOCK_DGRAM: UDP 소켓 타입</li>
+</ul>
+</li>
+<li>클라이언트의 IP 주소와 포트 번호로 주소 구조체 설정 </li>
+</ol>
+
 </div>
 </div>
 <a id="a4dcb8b1014e1a765d53d2dffe9d38ba1" name="a4dcb8b1014e1a765d53d2dffe9d38ba1"></a>
@@ -173,6 +214,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>RTCP 주소를 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>sockaddr_in&amp; RTCP 주소 구조체에 대한 참조 </dd></dl>
 
 </div>
 </div>
@@ -191,6 +235,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>RTCP 소켓을 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>int&amp; RTCP 소켓 디스크립터에 대한 참조 </dd></dl>
+
 </div>
 </div>
 <a id="a9bd9b385ea3dec4cb96a155d989f40f9" name="a9bd9b385ea3dec4cb96a155d989f40f9"></a>
@@ -207,6 +254,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>RTP 주소를 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>sockaddr_in&amp; RTP 주소 구조체에 대한 참조 </dd></dl>
 
 </div>
 </div>
@@ -225,33 +275,8 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ad4c1f2a65e5ab109f10ee7a52413cab2" name="ad4c1f2a65e5ab109f10ee7a52413cab2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4c1f2a65e5ab109f10ee7a52413cab2">&#9670;&nbsp;</a></span>SendSenderReport()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UDPHandler::SendSenderReport </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structProtos_1_1SenderReport.html">Protos::SenderReport</a> *&#160;</td>
-          <td class="paramname"><em>senderReport</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>srSize</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>RTP 소켓을 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>int&amp; RTP 소켓 디스크립터에 대한 참조 </dd></dl>
 
 </div>
 </div>
@@ -276,6 +301,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>클라이언트 세션 객체 </p>
+
 </div>
 </div>
 <a id="a09acc318bbd1cb7e9a23bcc1e75e98d3" name="a09acc318bbd1cb7e9a23bcc1e75e98d3"></a>
@@ -297,6 +324,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>RTCP 주소 구조체 </p>
 
 </div>
 </div>
@@ -320,6 +349,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>RTCP 소켓 디스크립터 </p>
+
 </div>
 </div>
 <a id="ae97c97f827990902784e635e22effbc2" name="ae97c97f827990902784e635e22effbc2"></a>
@@ -342,6 +373,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>RTP 주소 구조체 </p>
+
 </div>
 </div>
 <a id="a402334de669d7828576569eb4fea5a26" name="a402334de669d7828576569eb4fea5a26"></a>
@@ -363,6 +396,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>RTP 소켓 디스크립터 </p>
 
 </div>
 </div>

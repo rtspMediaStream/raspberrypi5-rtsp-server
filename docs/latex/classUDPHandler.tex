@@ -2,41 +2,49 @@
 \label{classUDPHandler}\index{UDPHandler@{UDPHandler}}
 
 
+RTP/\+RTCP를 위한 UDP 소켓 관리 클래스  
+
+
+
+
 {\ttfamily \#include $<$UDPHandler.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}{UDPHandler}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientSession}{Client\+Session}} $>$ \mbox{\hyperlink{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}{client}})
-\item 
+\begin{DoxyCompactList}\small\item\em UDP 핸들러 생성자 \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classUDPHandler_a3954df271b184ace20f867c1de79d742}{$\sim$\+UDPHandler}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em 소멸자 -\/ 소켓 리소스 해제 \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}{Create\+UDPSocket}} ()
-\item 
-void \mbox{\hyperlink{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}{Send\+Sender\+Report}} (\mbox{\hyperlink{structProtos_1_1SenderReport}{Protos\+::\+Sender\+Report}} $\ast$sender\+Report, size\+\_\+t sr\+Size)
-\item 
+\begin{DoxyCompactList}\small\item\em RTP와 RTCP UDP 소켓을 생성하는 메서드 \end{DoxyCompactList}\item 
 int \& \mbox{\hyperlink{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}{Get\+RTPSocket}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em RTP 소켓을 반환하는 메서드 \end{DoxyCompactList}\item 
 int \& \mbox{\hyperlink{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}{Get\+RTCPSocket}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em RTCP 소켓을 반환하는 메서드 \end{DoxyCompactList}\item 
 sockaddr\+\_\+in \& \mbox{\hyperlink{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}{Get\+RTPAddr}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em RTP 주소를 반환하는 메서드 \end{DoxyCompactList}\item 
 sockaddr\+\_\+in \& \mbox{\hyperlink{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}{Get\+RTCPAddr}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em RTCP 주소를 반환하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientSession}{Client\+Session}} $>$ \mbox{\hyperlink{classUDPHandler_ad258b4640634b07e3fce9cd7c53597ac}{client}}
-\item 
+\begin{DoxyCompactList}\small\item\em 클라이언트 세션 객체 \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classUDPHandler_a402334de669d7828576569eb4fea5a26}{rtp\+Socket}}
-\item 
+\begin{DoxyCompactList}\small\item\em RTP 소켓 디스크립터 \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}{rtcp\+Socket}}
-\item 
+\begin{DoxyCompactList}\small\item\em RTCP 소켓 디스크립터 \end{DoxyCompactList}\item 
 sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_ae97c97f827990902784e635e22effbc2}{rtp\+Addr}}
-\item 
+\begin{DoxyCompactList}\small\item\em RTP 주소 구조체 \end{DoxyCompactList}\item 
 sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}{rtcp\+Addr}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em RTCP 주소 구조체 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+RTP/\+RTCP를 위한 UDP 소켓 관리 클래스 
+
+클라이언트와의 미디어 스트리밍을 위한 UDP 소켓을 관리하며, RTP/\+RTCP 프로토콜에 필요한 소켓과 주소 정보를 제공한다. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}\label{classUDPHandler_a3a053e49fb55e0e4632278467c6b9f91}} 
@@ -45,13 +53,26 @@ sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e9
 \doxysubsubsection{\texorpdfstring{UDPHandler()}{UDPHandler()}}
 {\footnotesize\ttfamily UDPHandler\+::\+UDPHandler (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classClientSession}{Client\+Session}} $>$}]{client }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classUDPHandler_a3954df271b184ace20f867c1de79d742}\label{classUDPHandler_a3954df271b184ace20f867c1de79d742}} 
+
+
+UDP 핸들러 생성자 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & 클라이언트 세션 객체\\
+\hline
+\end{DoxyParams}
+소켓 디스크립터를 초기값 -\/1로 초기화하여 유효하지 않은 소켓임을 표시 \mbox{\Hypertarget{classUDPHandler_a3954df271b184ace20f867c1de79d742}\label{classUDPHandler_a3954df271b184ace20f867c1de79d742}} 
 \index{UDPHandler@{UDPHandler}!````~UDPHandler@{$\sim$UDPHandler}}
 \index{````~UDPHandler@{$\sim$UDPHandler}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{$\sim$UDPHandler()}{~UDPHandler()}}
 {\footnotesize\ttfamily UDPHandler\+::$\sim$\+UDPHandler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
+
+소멸자 -\/ 소켓 리소스 해제 
+
+열려있는 소켓이 있다면(디스크립터가 -\/1이 아닌 경우) 소켓을 닫고 리소스 해제 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}\label{classUDPHandler_af0a86f1914c6563951fcf09bc2e867e1}} 
@@ -60,36 +81,76 @@ sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e9
 \doxysubsubsection{\texorpdfstring{CreateUDPSocket()}{CreateUDPSocket()}}
 {\footnotesize\ttfamily bool UDPHandler\+::\+Create\+UDPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}\label{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}} 
+
+
+RTP와 RTCP UDP 소켓을 생성하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+bool 소켓 생성 성공 여부
+\end{DoxyReturn}
+클라이언트의 RTP/\+RTCP 포트로 연결할 UDP 소켓을 생성
+
+UDP 소켓 생성 과정\+:
+\begin{DoxyEnumerate}
+\item RTP와 RTCP 소켓 각각 생성
+\item 주소 구조체 초기화 및 설정
+\begin{DoxyItemize}
+\item AF\+\_\+\+INET\+: IPv4 프로토콜
+\item SOCK\+\_\+\+DGRAM\+: UDP 소켓 타입
+\end{DoxyItemize}
+\item 클라이언트의 IP 주소와 포트 번호로 주소 구조체 설정 
+\end{DoxyEnumerate}\mbox{\Hypertarget{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}\label{classUDPHandler_a4dcb8b1014e1a765d53d2dffe9d38ba1}} 
 \index{UDPHandler@{UDPHandler}!GetRTCPAddr@{GetRTCPAddr}}
 \index{GetRTCPAddr@{GetRTCPAddr}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{GetRTCPAddr()}{GetRTCPAddr()}}
 {\footnotesize\ttfamily sockaddr\+\_\+in \& UDPHandler\+::\+Get\+RTCPAddr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+RTCP 주소를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+sockaddr\+\_\+in\& RTCP 주소 구조체에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}\label{classUDPHandler_adea80af661c0dfd1ef643f16746b42f7}} 
 \index{UDPHandler@{UDPHandler}!GetRTCPSocket@{GetRTCPSocket}}
 \index{GetRTCPSocket@{GetRTCPSocket}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{GetRTCPSocket()}{GetRTCPSocket()}}
 {\footnotesize\ttfamily int \& UDPHandler\+::\+Get\+RTCPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+RTCP 소켓을 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int\& RTCP 소켓 디스크립터에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}\label{classUDPHandler_a9bd9b385ea3dec4cb96a155d989f40f9}} 
 \index{UDPHandler@{UDPHandler}!GetRTPAddr@{GetRTPAddr}}
 \index{GetRTPAddr@{GetRTPAddr}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{GetRTPAddr()}{GetRTPAddr()}}
 {\footnotesize\ttfamily sockaddr\+\_\+in \& UDPHandler\+::\+Get\+RTPAddr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+
+
+RTP 주소를 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+sockaddr\+\_\+in\& RTP 주소 구조체에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}\label{classUDPHandler_aa6d1128384a6f7fda15eac1cdcc4f113}} 
 \index{UDPHandler@{UDPHandler}!GetRTPSocket@{GetRTPSocket}}
 \index{GetRTPSocket@{GetRTPSocket}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{GetRTPSocket()}{GetRTPSocket()}}
 {\footnotesize\ttfamily int \& UDPHandler\+::\+Get\+RTPSocket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}\label{classUDPHandler_ad4c1f2a65e5ab109f10ee7a52413cab2}} 
-\index{UDPHandler@{UDPHandler}!SendSenderReport@{SendSenderReport}}
-\index{SendSenderReport@{SendSenderReport}!UDPHandler@{UDPHandler}}
-\doxysubsubsection{\texorpdfstring{SendSenderReport()}{SendSenderReport()}}
-{\footnotesize\ttfamily void UDPHandler\+::\+Send\+Sender\+Report (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structProtos_1_1SenderReport}{Protos\+::\+Sender\+Report}} $\ast$}]{sender\+Report,  }\item[{size\+\_\+t}]{sr\+Size }\end{DoxyParamCaption})}
 
+
+RTP 소켓을 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int\& RTP 소켓 디스크립터에 대한 참조 
+\end{DoxyReturn}
 
 
 \doxysubsection{Member Data Documentation}
@@ -99,11 +160,19 @@ sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e9
 \doxysubsubsection{\texorpdfstring{client}{client}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{classClientSession}{Client\+Session}}$>$ UDPHandler\+::client\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+클라이언트 세션 객체 
+
 \mbox{\Hypertarget{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}\label{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e98d3}} 
 \index{UDPHandler@{UDPHandler}!rtcpAddr@{rtcpAddr}}
 \index{rtcpAddr@{rtcpAddr}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{rtcpAddr}{rtcpAddr}}
 {\footnotesize\ttfamily sockaddr\+\_\+in UDPHandler\+::rtcp\+Addr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+RTCP 주소 구조체 
 
 \mbox{\Hypertarget{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}\label{classUDPHandler_a1e4a45ad6c404bc908f8fbf8330c5405}} 
 \index{UDPHandler@{UDPHandler}!rtcpSocket@{rtcpSocket}}
@@ -111,17 +180,29 @@ sockaddr\+\_\+in \mbox{\hyperlink{classUDPHandler_a09acc318bbd1cb7e9a23bcc1e75e9
 \doxysubsubsection{\texorpdfstring{rtcpSocket}{rtcpSocket}}
 {\footnotesize\ttfamily int UDPHandler\+::rtcp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+RTCP 소켓 디스크립터 
+
 \mbox{\Hypertarget{classUDPHandler_ae97c97f827990902784e635e22effbc2}\label{classUDPHandler_ae97c97f827990902784e635e22effbc2}} 
 \index{UDPHandler@{UDPHandler}!rtpAddr@{rtpAddr}}
 \index{rtpAddr@{rtpAddr}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{rtpAddr}{rtpAddr}}
 {\footnotesize\ttfamily sockaddr\+\_\+in UDPHandler\+::rtp\+Addr\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+RTP 주소 구조체 
+
 \mbox{\Hypertarget{classUDPHandler_a402334de669d7828576569eb4fea5a26}\label{classUDPHandler_a402334de669d7828576569eb4fea5a26}} 
 \index{UDPHandler@{UDPHandler}!rtpSocket@{rtpSocket}}
 \index{rtpSocket@{rtpSocket}!UDPHandler@{UDPHandler}}
 \doxysubsubsection{\texorpdfstring{rtpSocket}{rtpSocket}}
 {\footnotesize\ttfamily int UDPHandler\+::rtp\+Socket\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+RTP 소켓 디스크립터 
 
 
 

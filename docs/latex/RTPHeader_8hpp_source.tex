@@ -1,0 +1,75 @@
+\hypertarget{RTPHeader_8hpp_source}{}\doxysection{RTPHeader.\+hpp}
+\label{RTPHeader_8hpp_source}\index{inc/RTPHeader.hpp@{inc/RTPHeader.hpp}}
+\mbox{\hyperlink{RTPHeader_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <arpa/inet.h>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{24 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}{IP\_V4\_HEADER\_SIZE}} = 20;        }
+\DoxyCodeLine{25 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}{UDP\_HEADER\_SIZE}} = 8;           }
+\DoxyCodeLine{26 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\_HEADER\_SIZE}} = 12;          }
+\DoxyCodeLine{27 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_abd54aa2ceef387a4deaa2fb691ab6e96}{RTP\_VERSION}} = 2;               }
+\DoxyCodeLine{28 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_adb2feb8b100615f535c26bb2a0b59976}{RTP\_PAYLOAD\_TYPE\_H264}} = 96;    }
+\DoxyCodeLine{29 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}} = 2;                   }
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_ac03432f082c5d4c0fc9076532852e96d}{MAX\_UDP\_PACKET\_SIZE}} = 65535;   }
+\DoxyCodeLine{33 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\_RTP\_DATA\_SIZE}} = \mbox{\hyperlink{RTPHeader_8hpp_ac03432f082c5d4c0fc9076532852e96d}{MAX\_UDP\_PACKET\_SIZE}} -\/ \mbox{\hyperlink{RTPHeader_8hpp_aa4d4ccdb1b753fe946d41e2e025fde75}{IP\_V4\_HEADER\_SIZE}}}
+\DoxyCodeLine{34                                      -\/ \mbox{\hyperlink{RTPHeader_8hpp_ac3bdb012f8edcae5dfd58a7f432bd52d}{UDP\_HEADER\_SIZE}} -\/ \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\_HEADER\_SIZE}} -\/ \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}};  }
+\DoxyCodeLine{35 \textcolor{keyword}{constexpr} int64\_t \mbox{\hyperlink{RTPHeader_8hpp_abd9bca75675e244c5401794619c5e5f1}{MAX\_RTP\_PACKET\_LEN}} = \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\_RTP\_DATA\_SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a865de8ad755a482d2ece2779879d29f9}{RTP\_HEADER\_SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}};  }
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#pragma pack(1) }}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{46 \textcolor{keyword}{class }\mbox{\hyperlink{classRTPHeader}{RTPHeader}}}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48 \textcolor{keyword}{public}:}
+\DoxyCodeLine{61     \mbox{\hyperlink{classRTPHeader_a70115b38649e15193cf17568b6913164}{RTPHeader}}(uint8\_t \_version,     uint8\_t \_padding,}
+\DoxyCodeLine{62               uint8\_t \_extension,   uint8\_t \_csrcCount,}
+\DoxyCodeLine{63               uint8\_t \_marker,      uint8\_t \_payloadType,}
+\DoxyCodeLine{64               uint16\_t \_seq,        uint32\_t \_timestamp,}
+\DoxyCodeLine{65               uint32\_t \_ssrc);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{73     \mbox{\hyperlink{classRTPHeader_a70115b38649e15193cf17568b6913164}{RTPHeader}}(uint16\_t \_seq, uint32\_t \_timestamp, uint32\_t \_ssrc);}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{78     \mbox{\hyperlink{classRTPHeader_a23bd2b15cdff5a28f493c66f60fab9f0}{RTPHeader}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{83     \mbox{\hyperlink{classRTPHeader_aefd71360dc48e020948d9027784c3780}{\string~RTPHeader}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{89     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPHeader_a3c7c0fe7ab2ffb3ef6168c1b48a9db5c}{set\_timestamp}}(\textcolor{keyword}{const} uint32\_t \_newtimestamp) \{ this-\/>\mbox{\hyperlink{classRTPHeader_ab44d1b81caf069b91711e82853da35cc}{timestamp}} = htonl(\_newtimestamp); \};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{95     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPHeader_a3906c98ab7e282207a00a074e0d288a0}{set\_ssrc}}(\textcolor{keyword}{const} uint32\_t SSRC) \{ this-\/>\mbox{\hyperlink{classRTPHeader_a51a4c4b134457859614ecf3ecb1f29ae}{ssrc}} = htonl(SSRC); \};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{101     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPHeader_acc5eaf7af4b91787e77d29c83160360a}{set\_seq}}(\textcolor{keyword}{const} uint32\_t \_seq) \{ this-\/>\mbox{\hyperlink{classRTPHeader_adc44cffa3139a179e4a4d6c3d10cb576}{seq}} = htons(\_seq); \};}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{115     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPHeader_affedcb722a2e3dc80428b88a27b5ce2a}{set\_marker}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool} \_marker)\{ \_marker? \mbox{\hyperlink{classRTPHeader_a05226e9d5f9fb4803dbdc7eecd5d77cf}{marker}} |= 0x01 : \mbox{\hyperlink{classRTPHeader_a05226e9d5f9fb4803dbdc7eecd5d77cf}{marker}} \&= \string~0x01; \};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{121     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPHeader_aeb81650f930d11e2bc1ff5154d8851ff}{set\_payloadType}}(\textcolor{keyword}{const} uint8\_t \_payloadType) \{ \mbox{\hyperlink{classRTPHeader_a5c5781e20dc56b2864da0172e1176e61}{payloadType}} = \_payloadType; \};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{127     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} *\mbox{\hyperlink{classRTPHeader_a0e95c459d83dcd643e20a9d6c6075f4a}{get\_header}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} (\textcolor{keywordtype}{void} *)\textcolor{keyword}{this}; \};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{133     \textcolor{keyword}{inline} uint32\_t \mbox{\hyperlink{classRTPHeader_a27be997261930f7300cba1d4cd6d9768}{get\_timestamp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} ntohl(this-\/>\mbox{\hyperlink{classRTPHeader_ab44d1b81caf069b91711e82853da35cc}{timestamp}}); \};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{139     \textcolor{keyword}{inline} uint32\_t \mbox{\hyperlink{classRTPHeader_ad56b225c15d93641c9636b8c81ad2413}{get\_seq}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} ntohs(this-\/>\mbox{\hyperlink{classRTPHeader_adc44cffa3139a179e4a4d6c3d10cb576}{seq}}); \};}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \textcolor{keyword}{private}:}
+\DoxyCodeLine{142     uint8\_t \mbox{\hyperlink{classRTPHeader_a8dc80e608188d16a67a94041211e67db}{csrcCount}} : 4;    }
+\DoxyCodeLine{143     uint8\_t \mbox{\hyperlink{classRTPHeader_ada76ecef1cd74bbe9b7c8a80095dce1b}{extension}} : 1;    }
+\DoxyCodeLine{144     uint8\_t \mbox{\hyperlink{classRTPHeader_aa528117a02dabb49c91806e4705e6f75}{padding}} : 1;      }
+\DoxyCodeLine{145     uint8\_t \mbox{\hyperlink{classRTPHeader_a1c99622d036103521567dc94f691a686}{version}} : 2;      }
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     uint8\_t \mbox{\hyperlink{classRTPHeader_a5c5781e20dc56b2864da0172e1176e61}{payloadType}} : 7;  }
+\DoxyCodeLine{148     uint8\_t \mbox{\hyperlink{classRTPHeader_a05226e9d5f9fb4803dbdc7eecd5d77cf}{marker}} : 1;       }
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150     uint16\_t \mbox{\hyperlink{classRTPHeader_adc44cffa3139a179e4a4d6c3d10cb576}{seq}};             }
+\DoxyCodeLine{151     uint32\_t \mbox{\hyperlink{classRTPHeader_ab44d1b81caf069b91711e82853da35cc}{timestamp}};       }
+\DoxyCodeLine{152     uint32\_t \mbox{\hyperlink{classRTPHeader_a51a4c4b134457859614ecf3ecb1f29ae}{ssrc}};           }
+\DoxyCodeLine{153 \};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#pragma pack() }}
+
+\end{DoxyCode}

@@ -2,6 +2,11 @@
 \label{classAudioCapture}\index{AudioCapture@{AudioCapture}}
 
 
+Audio Stream Data를 캡처하는 클래스  
+
+
+
+
 {\ttfamily \#include $<$Audio\+Capture.\+h$>$}
 
 
@@ -26,28 +31,27 @@ Collaboration diagram for Audio\+Capture\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}{Audio\+Capture}} ()
-\item 
-int \mbox{\hyperlink{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}{read}} (short $\ast$\mbox{\hyperlink{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}{buffer}}, int frames)
-\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classAudioCapture}{Audio\+Capture}} 생성자 \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}{read}} (short $\ast$buffer, int frames)
+\begin{DoxyCompactList}\small\item\em PCM 디바이스에서 오디오 데이터를 읽는 함수 \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}{$\sim$\+Audio\+Capture}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classAudioCapture}{Audio\+Capture}} 소멸자 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::queue$<$ std\+::pair$<$ unsigned char $\ast$, int $>$ $>$ \mbox{\hyperlink{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}{buffer}}
-\item 
-std\+::mutex \mbox{\hyperlink{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}{buffer\+Mutex}}
-\item 
 snd\+\_\+pcm\+\_\+t $\ast$ \mbox{\hyperlink{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}{pcm\+\_\+handle}}
-\item 
+\begin{DoxyCompactList}\small\item\em PCM 디바이스 핸들 \end{DoxyCompactList}\item 
 snd\+\_\+pcm\+\_\+hw\+\_\+params\+\_\+t $\ast$ \mbox{\hyperlink{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}{params}}
-\item 
+\begin{DoxyCompactList}\small\item\em PCM 하드웨어 파라미터 \end{DoxyCompactList}\item 
 unsigned int \mbox{\hyperlink{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}{sample\+\_\+rate}}
-\item 
-int \mbox{\hyperlink{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}{dir}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 샘플링 레이트 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
+
+\doxysubsection{Detailed Description}
+Audio Stream Data를 캡처하는 클래스 
+
+PCM 오디오 데이터를 캡처하고 Opus 인코딩을 위한 처리를 수행하는 클래스로, \mbox{\hyperlink{classDataCapture}{Data\+Capture}} 클래스를 상속받아 오디오 스트림 관리 기능을 구현합니다. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}\label{classAudioCapture_ac150d0c279bef017f85bac96a45353d9}} 
@@ -56,13 +60,41 @@ int \mbox{\hyperlink{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}{dir}}
 \doxysubsubsection{\texorpdfstring{AudioCapture()}{AudioCapture()}}
 {\footnotesize\ttfamily Audio\+Capture\+::\+Audio\+Capture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}\label{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}} 
+
+
+\mbox{\hyperlink{classAudioCapture}{Audio\+Capture}} 생성자 
+
+
+\begin{DoxyItemize}
+\item ALSA PCM 디바이스 초기화
+\item PCM 하드웨어 파라미터 설정
+\item 오디오 캡처를 위한 PCM 핸들 획득
+\item ALSA PCM 디바이스를 캡처 모드로 열기
+\item Opus 인코딩에 적합한 오디오 파라미터 설정\+:
+\begin{DoxyItemize}
+\item 48k\+Hz 샘플링 레이트
+\item 16비트 리틀 엔디안 포맷
+\item 스테레오 채널
+\item 인터리브드 접근 방식 
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & PCM 디바이스 열기 또는 하드웨어 파라미터 설정 실패 시 \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyItemize}
+\end{DoxyItemize}\mbox{\Hypertarget{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}\label{classAudioCapture_a61dc26c4719aa7ef7cabfab8aed5e6a1}} 
 \index{AudioCapture@{AudioCapture}!````~AudioCapture@{$\sim$AudioCapture}}
 \index{````~AudioCapture@{$\sim$AudioCapture}!AudioCapture@{AudioCapture}}
 \doxysubsubsection{\texorpdfstring{$\sim$AudioCapture()}{~AudioCapture()}}
 {\footnotesize\ttfamily Audio\+Capture\+::$\sim$\+Audio\+Capture (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
+
+\mbox{\hyperlink{classAudioCapture}{Audio\+Capture}} 소멸자 
+
+할당된 PCM handle을 반환
+
+PCM 디바이스를 안전하게 닫고 리소스를 해제 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}\label{classAudioCapture_a7d42a65531ec553c03b4c9266ae6ac09}} 
@@ -73,30 +105,49 @@ int \mbox{\hyperlink{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}{dir}}
 
 
 
+PCM 디바이스에서 오디오 데이터를 읽는 함수 
+
+PCM 디바이스에서 오디오 데이터를 읽는 메서드
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & 오디오 데이터를 저장할 버퍼 포인터 \\
+\hline
+{\em frames} & 읽을 프레임 수 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 성공 시 읽은 프레임 수, 실패 시 ALSA 에러 코드
+\end{DoxyReturn}
+PCM 핸들을 통해 지정된 프레임 수만큼 오디오 데이터를 읽어 버퍼에 저장
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & 오디오 데이터를 저장할 버퍼 \\
+\hline
+{\em frames} & 읽을 프레임 수 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 성공적으로 읽은 프레임 수 또는 오류 코드
+\end{DoxyReturn}
+
+\begin{DoxyItemize}
+\item PCM 디바이스로부터 지정된 프레임 수만큼 오디오 데이터를 읽음
+\item 오버런 발생 시 자동으로 복구 시도
+\item 오류 발생 시 오류 메시지 출력 
+\end{DoxyItemize}
+
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}\label{classAudioCapture_af3bb8a3ef15e958be893ca7c14f22281}} 
-\index{AudioCapture@{AudioCapture}!buffer@{buffer}}
-\index{buffer@{buffer}!AudioCapture@{AudioCapture}}
-\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
-{\footnotesize\ttfamily std\+::queue$<$std\+::pair$<$unsigned char$\ast$, int$>$ $>$ Audio\+Capture\+::buffer\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}\label{classAudioCapture_a3820714f4ae1cb8d4f38defcc3a5c35b}} 
-\index{AudioCapture@{AudioCapture}!bufferMutex@{bufferMutex}}
-\index{bufferMutex@{bufferMutex}!AudioCapture@{AudioCapture}}
-\doxysubsubsection{\texorpdfstring{bufferMutex}{bufferMutex}}
-{\footnotesize\ttfamily std\+::mutex Audio\+Capture\+::buffer\+Mutex\hspace{0.3cm}{\ttfamily [private]}}
-
-\mbox{\Hypertarget{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}\label{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}} 
-\index{AudioCapture@{AudioCapture}!dir@{dir}}
-\index{dir@{dir}!AudioCapture@{AudioCapture}}
-\doxysubsubsection{\texorpdfstring{dir}{dir}}
-{\footnotesize\ttfamily int Audio\+Capture\+::dir\hspace{0.3cm}{\ttfamily [private]}}
-
 \mbox{\Hypertarget{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}\label{classAudioCapture_a6e79528bb027918ecf9afe1260d29685}} 
 \index{AudioCapture@{AudioCapture}!params@{params}}
 \index{params@{params}!AudioCapture@{AudioCapture}}
 \doxysubsubsection{\texorpdfstring{params}{params}}
 {\footnotesize\ttfamily snd\+\_\+pcm\+\_\+hw\+\_\+params\+\_\+t$\ast$ Audio\+Capture\+::params\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+PCM 하드웨어 파라미터 
 
 \mbox{\Hypertarget{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}\label{classAudioCapture_adc567984dc923b097ab318e2bd8c48ef}} 
 \index{AudioCapture@{AudioCapture}!pcm\_handle@{pcm\_handle}}
@@ -104,11 +155,19 @@ int \mbox{\hyperlink{classAudioCapture_a51db52fc6955e5f34a31c69cef06243d}{dir}}
 \doxysubsubsection{\texorpdfstring{pcm\_handle}{pcm\_handle}}
 {\footnotesize\ttfamily snd\+\_\+pcm\+\_\+t$\ast$ Audio\+Capture\+::pcm\+\_\+handle\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
+PCM 디바이스 핸들 
+
 \mbox{\Hypertarget{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}\label{classAudioCapture_a581f5eadeedecc51bfc5689423eaf4cb}} 
 \index{AudioCapture@{AudioCapture}!sample\_rate@{sample\_rate}}
 \index{sample\_rate@{sample\_rate}!AudioCapture@{AudioCapture}}
 \doxysubsubsection{\texorpdfstring{sample\_rate}{sample\_rate}}
 {\footnotesize\ttfamily unsigned int Audio\+Capture\+::sample\+\_\+rate\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+샘플링 레이트 
 
 
 

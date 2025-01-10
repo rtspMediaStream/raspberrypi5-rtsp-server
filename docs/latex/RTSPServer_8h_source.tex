@@ -2,36 +2,41 @@
 \label{RTSPServer_8h_source}\index{inc/RTSPServer.h@{inc/RTSPServer.h}}
 \mbox{\hyperlink{RTSPServer_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef \_\_RTSPSERVER\_H\_\_}}
-\DoxyCodeLine{2 \textcolor{preprocessor}{\#define \_\_RTSPSERVER\_H\_\_}}
-\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <functional>}}
-\DoxyCodeLine{4 \textcolor{keyword}{class }\mbox{\hyperlink{classFFmpegEncoder}{FFmpegEncoder}};}
-\DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{keyword}{enum} \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \{}
-\DoxyCodeLine{7     \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184ca408465075f1a464440c9c941fd97fe02}{PROTO\_OPUS}} = 111,}
-\DoxyCodeLine{8     \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184ca2b2105cec4a6950a799b2810dfb8dd57}{PROTO\_H264}} = 96,}
-\DoxyCodeLine{9 \};}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{classRTSPServer}{RTSPServer}} \{}
-\DoxyCodeLine{13 \textcolor{keyword}{private}:}
-\DoxyCodeLine{14     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}{isPrivilegedPort}}(\textcolor{keywordtype}{int} port);}
-\DoxyCodeLine{15     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{isRunningAsRoot}}();}
-\DoxyCodeLine{16     \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}};}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{keyword}{public}:}
-\DoxyCodeLine{19     \textcolor{keyword}{static} \mbox{\hyperlink{classRTSPServer}{RTSPServer}}\& \mbox{\hyperlink{classRTSPServer_aa448def962b448dad50948ca971a086c}{getInstance}}() \{}
-\DoxyCodeLine{20         \textcolor{keyword}{static} \mbox{\hyperlink{classRTSPServer}{RTSPServer}} instance;}
-\DoxyCodeLine{21         \textcolor{keywordflow}{return} instance;}
-\DoxyCodeLine{22     \}}
-\DoxyCodeLine{23     \mbox{\hyperlink{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}{RTSPServer}}();}
-\DoxyCodeLine{24     \mbox{\hyperlink{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}{\string~RTSPServer}}();}
-\DoxyCodeLine{25     \textcolor{keywordtype}{int} \mbox{\hyperlink{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}{startServerThread}}();}
-\DoxyCodeLine{26     \textcolor{keyword}{inline} \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}{getProtocol}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}}; \};}
-\DoxyCodeLine{27     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}{setProtocol}}(\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \_ptorocol) \{ \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}} = \_ptorocol; \};}
-\DoxyCodeLine{28     std::function<void()> \mbox{\hyperlink{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}{onInitEvent}};}
-\DoxyCodeLine{29 \};}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{31 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_\_RTSPSERVER\_H\_\_}}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#ifndef \_\_RTSPSERVER\_H\_\_}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define \_\_RTSPSERVER\_H\_\_}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{26 \textcolor{keyword}{class }\mbox{\hyperlink{classFFmpegEncoder}{FFmpegEncoder}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{32 \textcolor{keyword}{enum} \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \{}
+\DoxyCodeLine{33     \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184ca408465075f1a464440c9c941fd97fe02}{PROTO\_OPUS}} = 111,   }
+\DoxyCodeLine{34     \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184ca2b2105cec4a6950a799b2810dfb8dd57}{PROTO\_H264}} = 96,    }
+\DoxyCodeLine{35 \};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{42 \textcolor{keyword}{class }\mbox{\hyperlink{classRTSPServer}{RTSPServer}} \{}
+\DoxyCodeLine{43 \textcolor{keyword}{private}:}
+\DoxyCodeLine{49     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}{isPrivilegedPort}}(\textcolor{keywordtype}{int} port);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{55     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{isRunningAsRoot}}();}
+\DoxyCodeLine{56     }
+\DoxyCodeLine{57     \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}};   }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{keyword}{public}:}
+\DoxyCodeLine{64     \textcolor{keyword}{static} \mbox{\hyperlink{classRTSPServer}{RTSPServer}}\& \mbox{\hyperlink{classRTSPServer_aa448def962b448dad50948ca971a086c}{getInstance}}();}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \mbox{\hyperlink{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}{RTSPServer}}();}
+\DoxyCodeLine{67     \mbox{\hyperlink{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}{\string~RTSPServer}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73     \textcolor{keywordtype}{int} \mbox{\hyperlink{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}{startServerThread}}();}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{79     \textcolor{keyword}{inline} \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}{getProtocol}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}}; \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTSPServer_a06977dcc266e0abc11d1c321a4f9bb8b}{setProtocol}}(\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \_protocol) \{ \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}} = \_protocol; \};}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87     std::function<void()> \mbox{\hyperlink{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}{onInitEvent}};  }
+\DoxyCodeLine{88 \};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// \_\_RTSPSERVER\_H\_\_}}
 
 \end{DoxyCode}

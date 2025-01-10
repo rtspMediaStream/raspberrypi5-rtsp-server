@@ -1,8 +1,8 @@
 <map id="inc/UDPHandler.h" name="inc/UDPHandler.h">
-<area shape="rect" id="node1" title=" " alt="" coords="429,5,563,32"/>
+<area shape="rect" id="node1" title="UDP 소켓 관리 클래스 헤더" alt="" coords="429,5,563,32"/>
 <area shape="rect" id="node2" href="$ClientSession_8cpp.html" title="ClientSession 클래스의 구현부" alt="" coords="5,80,165,107"/>
 <area shape="rect" id="node3" href="$MediaStreamHandler_8cpp.html" title="MediaStreamHandler 클래스의 구현부" alt="" coords="190,80,399,107"/>
-<area shape="rect" id="node4" href="$RTSPServer_8cpp.html" title=" " alt="" coords="423,80,569,107"/>
-<area shape="rect" id="node5" href="$RequestHandler_8cpp.html" title=" " alt="" coords="593,80,767,107"/>
-<area shape="rect" id="node6" href="$UDPHandler_8cpp.html" title=" " alt="" coords="791,80,942,107"/>
+<area shape="rect" id="node4" href="$RTSPServer_8cpp.html" title="RTSPServer 클래스의 구현부" alt="" coords="423,80,569,107"/>
+<area shape="rect" id="node5" href="$RequestHandler_8cpp.html" title="RequestHandler 클래스의 구현부" alt="" coords="593,80,767,107"/>
+<area shape="rect" id="node6" href="$UDPHandler_8cpp.html" title="UDPHandler 클래스의 구현부" alt="" coords="791,80,942,107"/>
 </map>

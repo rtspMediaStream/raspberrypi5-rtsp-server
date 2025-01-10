@@ -1,7 +1,7 @@
 \doxysection{File List}
 Here is a list of all files with brief descriptions\+:\begin{DoxyCompactList}
-\item\contentsline{section}{example/\+Audio\+Server/\mbox{\hyperlink{AudioCapture_8cpp}{Audio\+Capture.\+cpp}} }{\pageref{AudioCapture_8cpp}}{}
-\item\contentsline{section}{example/\+Audio\+Server/\mbox{\hyperlink{AudioCapture_8h}{Audio\+Capture.\+h}} }{\pageref{AudioCapture_8h}}{}
+\item\contentsline{section}{example/\+Audio\+Server/\mbox{\hyperlink{AudioCapture_8cpp}{Audio\+Capture.\+cpp}} \\*\mbox{\hyperlink{classAudioCapture}{Audio\+Capture}} 클래스의 구현부 }{\pageref{AudioCapture_8cpp}}{}
+\item\contentsline{section}{example/\+Audio\+Server/\mbox{\hyperlink{AudioCapture_8h}{Audio\+Capture.\+h}} \\*오디오 스트림 캡처 및 관리 클래스 헤더 }{\pageref{AudioCapture_8h}}{}
 \item\contentsline{section}{example/\+Audio\+Server/\mbox{\hyperlink{AudioServer_2main_8cpp}{main.\+cpp}} }{\pageref{AudioServer_2main_8cpp}}{}
 \item\contentsline{section}{example/\+Audio\+Server/build/\+CMake\+Files/3.\+29.\+2/\+Compiler\+Id\+C/\mbox{\hyperlink{AudioServer_2build_2CMakeFiles_23_829_82_2CompilerIdC_2CMakeCCompilerId_8c}{CMake\+CCompiler\+Id.\+c}} }{\pageref{AudioServer_2build_2CMakeFiles_23_829_82_2CompilerIdC_2CMakeCCompilerId_8c}}{}
 \item\contentsline{section}{example/\+Audio\+Server/build/\+CMake\+Files/3.\+29.\+2/\+Compiler\+Id\+CXX/\mbox{\hyperlink{AudioServer_2build_2CMakeFiles_23_829_82_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp}{CMake\+CXXCompiler\+Id.\+cpp}} }{\pageref{AudioServer_2build_2CMakeFiles_23_829_82_2CompilerIdCXX_2CMakeCXXCompilerId_8cpp}}{}
@@ -20,30 +20,28 @@ Here is a list of all files with brief descriptions\+:\begin{DoxyCompactList}
 \item\contentsline{section}{example/\+Video\+Server/build/\+CMake\+Files/\+Video\+Server.\+dir/\mbox{\hyperlink{VideoServer_2build_2CMakeFiles_2VideoServer_8dir_2main_8cpp_8o_8d}{main.\+cpp.\+o.\+d}} }{\pageref{VideoServer_2build_2CMakeFiles_2VideoServer_8dir_2main_8cpp_8o_8d}}{}
 \item\contentsline{section}{inc/\mbox{\hyperlink{ClientSession_8h}{Client\+Session.\+h}} \\*RTSP 클라이언트 세션 관리 클래스 헤더 }{\pageref{ClientSession_8h}}{}
 \item\contentsline{section}{inc/\mbox{\hyperlink{DataCapture_8h}{Data\+Capture.\+h}} \\*미디어 프레임 캡처 및 버퍼 관리 클래스 헤더 }{\pageref{DataCapture_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{global_8h}{global.\+h}} }{\pageref{global_8h}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{Global_8h}{Global.\+h}} \\*RTSP 서버의 전역변수 및 전역함수를 관리하는 헤더 }{\pageref{Global_8h}}{}
 \item\contentsline{section}{inc/\mbox{\hyperlink{H264Encoder_8h}{H264\+Encoder.\+h}} \\*H264 비디오 프레임 파싱 및 인코딩 클래스 헤더 }{\pageref{H264Encoder_8h}}{}
 \item\contentsline{section}{inc/\mbox{\hyperlink{MediaStreamHandler_8h}{Media\+Stream\+Handler.\+h}} \\*미디어 스트림 처리 클래스 헤더 }{\pageref{MediaStreamHandler_8h}}{}
 \item\contentsline{section}{inc/\mbox{\hyperlink{OpusEncoder_8h}{Opus\+Encoder.\+h}} \\*Opus 오디오 인코딩 클래스 헤더 }{\pageref{OpusEncoder_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{Protos_8h}{Protos.\+h}} }{\pageref{Protos_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{RequestHandler_8h}{Request\+Handler.\+h}} }{\pageref{RequestHandler_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{rtp__header_8hpp}{rtp\+\_\+header.\+hpp}} \\*Rtp 헤더 정의 }{\pageref{rtp__header_8hpp}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{rtp__packet_8hpp}{rtp\+\_\+packet.\+hpp}} }{\pageref{rtp__packet_8hpp}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{RTPHeader_8h}{RTPHeader.\+h}} }{\pageref{RTPHeader_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{RTSPServer_8h}{RTSPServer.\+h}} }{\pageref{RTSPServer_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{TCPHandler_8h}{TCPHandler.\+h}} }{\pageref{TCPHandler_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{UDPHandler_8h}{UDPHandler.\+h}} }{\pageref{UDPHandler_8h}}{}
-\item\contentsline{section}{inc/\mbox{\hyperlink{utils_8h}{utils.\+h}} }{\pageref{utils_8h}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{RequestHandler_8h}{Request\+Handler.\+h}} \\*RTSP 요청 처리 클래스 헤더 }{\pageref{RequestHandler_8h}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{RTCPPacket_8hpp}{RTCPPacket.\+hpp}} \\*RTCP 패킷 데이터 및 전송 처리 클래스 헤더 }{\pageref{RTCPPacket_8hpp}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{RTPHeader_8hpp}{RTPHeader.\+hpp}} \\*RTP 헤더 정의 및 처리 클래스 헤더 }{\pageref{RTPHeader_8hpp}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{RTPPacket_8hpp}{RTPPacket.\+hpp}} \\*RTP 패킷 생성 및 전송 클래스 헤더 }{\pageref{RTPPacket_8hpp}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{RTSPServer_8h}{RTSPServer.\+h}} \\*RTSP 서버 메인 클래스 헤더 }{\pageref{RTSPServer_8h}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{TCPHandler_8h}{TCPHandler.\+h}} \\*TCP 연결 및 RTSP 메시지 처리를 위한 싱글톤 클래스 헤더 }{\pageref{TCPHandler_8h}}{}
+\item\contentsline{section}{inc/\mbox{\hyperlink{UDPHandler_8h}{UDPHandler.\+h}} \\*UDP 소켓 관리 클래스 헤더 }{\pageref{UDPHandler_8h}}{}
 \item\contentsline{section}{src/\mbox{\hyperlink{ClientSession_8cpp}{Client\+Session.\+cpp}} \\*\mbox{\hyperlink{classClientSession}{Client\+Session}} 클래스의 구현부 }{\pageref{ClientSession_8cpp}}{}
 \item\contentsline{section}{src/\mbox{\hyperlink{DataCapture_8cpp}{Data\+Capture.\+cpp}} \\*\mbox{\hyperlink{classDataCapture}{Data\+Capture}} 클래스의 구현부 }{\pageref{DataCapture_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{Global_8cpp}{Global.\+cpp}} \\*Global 헤더의 구현부 }{\pageref{Global_8cpp}}{}
 \item\contentsline{section}{src/\mbox{\hyperlink{H264Encoder_8cpp}{H264\+Encoder.\+cpp}} \\*\mbox{\hyperlink{classH264Encoder}{H264\+Encoder}} 클래스의 구현부 }{\pageref{H264Encoder_8cpp}}{}
 \item\contentsline{section}{src/\mbox{\hyperlink{MediaStreamHandler_8cpp}{Media\+Stream\+Handler.\+cpp}} \\*\mbox{\hyperlink{classMediaStreamHandler}{Media\+Stream\+Handler}} 클래스의 구현부 }{\pageref{MediaStreamHandler_8cpp}}{}
 \item\contentsline{section}{src/\mbox{\hyperlink{OpusEncoder_8cpp}{Opus\+Encoder.\+cpp}} \\*\mbox{\hyperlink{classOpusEncoder}{Opus\+Encoder}} 클래스의 구현부 }{\pageref{OpusEncoder_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{Protos_8cpp}{Protos.\+cpp}} }{\pageref{Protos_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{RequestHandler_8cpp}{Request\+Handler.\+cpp}} }{\pageref{RequestHandler_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{rtp__header_8cpp}{rtp\+\_\+header.\+cpp}} }{\pageref{rtp__header_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{rtp__packet_8cpp}{rtp\+\_\+packet.\+cpp}} }{\pageref{rtp__packet_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{RTSPServer_8cpp}{RTSPServer.\+cpp}} }{\pageref{RTSPServer_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{TCPHandler_8cpp}{TCPHandler.\+cpp}} }{\pageref{TCPHandler_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{UDPHandler_8cpp}{UDPHandler.\+cpp}} }{\pageref{UDPHandler_8cpp}}{}
-\item\contentsline{section}{src/\mbox{\hyperlink{utils_8cpp}{utils.\+cpp}} }{\pageref{utils_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{RequestHandler_8cpp}{Request\+Handler.\+cpp}} \\*\mbox{\hyperlink{classRequestHandler}{Request\+Handler}} 클래스의 구현부 }{\pageref{RequestHandler_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{RTCPPacket_8cpp}{RTCPPacket.\+cpp}} \\*\mbox{\hyperlink{classRTCPPacket}{RTCPPacket}} 클래스의 구현부 }{\pageref{RTCPPacket_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{RTPHeader_8cpp}{RTPHeader.\+cpp}} \\*\mbox{\hyperlink{classRTPHeader}{RTPHeader}} 클래스의 구현부 }{\pageref{RTPHeader_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{RTPPacket_8cpp}{RTPPacket.\+cpp}} \\*\mbox{\hyperlink{classRTPPacket}{RTPPacket}} 클래스의 구현부 }{\pageref{RTPPacket_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{RTSPServer_8cpp}{RTSPServer.\+cpp}} \\*\mbox{\hyperlink{classRTSPServer}{RTSPServer}} 클래스의 구현부 }{\pageref{RTSPServer_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{TCPHandler_8cpp}{TCPHandler.\+cpp}} \\*\mbox{\hyperlink{classTCPHandler}{TCPHandler}} 클래스의 구현부 }{\pageref{TCPHandler_8cpp}}{}
+\item\contentsline{section}{src/\mbox{\hyperlink{UDPHandler_8cpp}{UDPHandler.\+cpp}} \\*\mbox{\hyperlink{classUDPHandler}{UDPHandler}} 클래스의 구현부 }{\pageref{UDPHandler_8cpp}}{}
 \end{DoxyCompactList}

@@ -81,9 +81,9 @@ Collaboration diagram for ClientSession:</div>
 <div class="center"><img src="classClientSession__coll__graph.png" border="0" usemap="#aClientSession_coll__map" alt="Collaboration graph"/></div>
 <map name="aClientSession_coll__map" id="aClientSession_coll__map">
 <area shape="rect" title="RTSP 클라이언트 세션을 관리하는 클래스" alt="" coords="30,273,141,300"/>
-<area shape="rect" href="classRequestHandler.html" title=" " alt="" coords="22,184,149,211"/>
+<area shape="rect" href="classRequestHandler.html" title="RTSP 요청 처리 클래스" alt="" coords="22,184,149,211"/>
 <area shape="rect" href="classMediaStreamHandler.html" title="미디어 스트리밍 처리를 담당하는 클래스" alt="" coords="5,95,165,121"/>
-<area shape="rect" href="classUDPHandler.html" title=" " alt="" coords="35,5,136,32"/>
+<area shape="rect" href="classUDPHandler.html" title="RTP/RTCP를 위한 UDP 소켓 관리 클래스" alt="" coords="35,5,136,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -92,9 +92,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa72842ab3124cbd077a8e578211512d9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientSession.html#aa72842ab3124cbd077a8e578211512d9">ClientSession</a> (const int <a class="el" href="classClientSession.html#a09e12a63ea26d1071629e5b1637a7b38">tcpSocket</a>, const std::string <a class="el" href="classClientSession.html#a60fbda694c50003d0adadc9a64fe570d">ip</a>)</td></tr>
 <tr class="memdesc:aa72842ab3124cbd077a8e578211512d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 세션 생성자 - 새로운 클라이언트 세션 초기화  <a href="classClientSession.html#aa72842ab3124cbd077a8e578211512d9">More...</a><br /></td></tr>
 <tr class="separator:aa72842ab3124cbd077a8e578211512d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf0142819e005e859760309a2f967261"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientSession.html#aaf0142819e005e859760309a2f967261">GetSessionId</a> () const</td></tr>
-<tr class="memdesc:aaf0142819e005e859760309a2f967261"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 세션 ID를 반환하는 메서드  <a href="classClientSession.html#aaf0142819e005e859760309a2f967261">More...</a><br /></td></tr>
-<tr class="separator:aaf0142819e005e859760309a2f967261"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df99ce608ca9291620afd423335faea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classClientSession.html#a8df99ce608ca9291620afd423335faea">GetVersion</a> () const</td></tr>
 <tr class="memdesc:a8df99ce608ca9291620afd423335faea"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 세션 버전 정보를 반환하는 메서드  <a href="classClientSession.html#a8df99ce608ca9291620afd423335faea">More...</a><br /></td></tr>
 <tr class="separator:a8df99ce608ca9291620afd423335faea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,7 +184,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <ul>
 <li>보안과 고유한 세션 ID를 위해 랜덤하게 생성</li>
-<li>세션 버전 초기화</li>
+<li>SDP 규격에 따라 세션 ID와 세션 버전에 동일한 값을 사용 (RFC 4566 - 5.2. Origin ("o=") 참조)</li>
 <li>TCP 소켓과 IP 주소 설정</li>
 <li>RTP/RTCP 포트를 초기값(-1)으로 설정 </li>
 </ul>
@@ -307,29 +304,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aaf0142819e005e859760309a2f967261" name="aaf0142819e005e859760309a2f967261"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf0142819e005e859760309a2f967261">&#9670;&nbsp;</a></span>GetSessionId()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int ClientSession::GetSessionId </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>클라이언트 세션 ID를 반환하는 메서드 </p>
-<p >세션 ID를 반환하는 메서드</p>
-<dl class="section return"><dt>Returns</dt><dd>int 클라이언트 세션 ID</dd>
-<dd>
-int 현재 세션의 고유 ID </dd></dl>
-
-</div>
-</div>
 <a id="ad91b07a5a04b428b1321cdec5cc9ee31" name="ad91b07a5a04b428b1321cdec5cc9ee31"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad91b07a5a04b428b1321cdec5cc9ee31">&#9670;&nbsp;</a></span>GetTCPSocket()</h2>
 
@@ -377,7 +351,7 @@ int 현재 세션의 고유 ID </dd></dl>
 <p >세션 버전을 반환하는 메서드</p>
 <dl class="section return"><dt>Returns</dt><dd>int 클라이언트 세션 버전 정보</dd>
 <dd>
-int 현재 세션의 버전 번호 </dd></dl>
+int 현재 세션의 버전 번호 (세션 ID와 동일한 값) </dd></dl>
 
 </div>
 </div>

@@ -83,7 +83,7 @@ Collaboration diagram for MediaStreamHandler:</div>
 <div class="center"><img src="classMediaStreamHandler__coll__graph.png" border="0" usemap="#aMediaStreamHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="aMediaStreamHandler_coll__map" id="aMediaStreamHandler_coll__map">
 <area shape="rect" title="미디어 스트리밍 처리를 담당하는 클래스" alt="" coords="5,95,165,121"/>
-<area shape="rect" href="classUDPHandler.html" title=" " alt="" coords="35,5,136,32"/>
+<area shape="rect" href="classUDPHandler.html" title="RTP/RTCP를 위한 UDP 소켓 관리 클래스" alt="" coords="35,5,136,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -108,9 +108,12 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ad060b35aabd2de8f4e53e75667cfbc64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMediaStreamHandler.html#ad060b35aabd2de8f4e53e75667cfbc64">SendFragmentedRTPPackets</a> (unsigned char *payload, size_t payloadSize, <a class="el" href="classRtpPacket.html">RtpPacket</a> &amp;rtpPacket, const uint32_t timeStamp)</td></tr>
-<tr class="memdesc:ad060b35aabd2de8f4e53e75667cfbc64"><td class="mdescLeft">&#160;</td><td class="mdescRight">오디오 스트림을 처리하는 메서드  <a href="classMediaStreamHandler.html#ad060b35aabd2de8f4e53e75667cfbc64">More...</a><br /></td></tr>
-<tr class="separator:ad060b35aabd2de8f4e53e75667cfbc64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c7b9de79b65783f347e634724253988"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMediaStreamHandler.html#a4c7b9de79b65783f347e634724253988">SendFragmentedRTPPackets</a> (unsigned char *payload, size_t payloadSize, <a class="el" href="classRTPPacket.html">RTPPacket</a> &amp;rtpPacket)</td></tr>
+<tr class="memdesc:a4c7b9de79b65783f347e634724253988"><td class="mdescLeft">&#160;</td><td class="mdescRight">오디오 스트림을 처리하는 메서드  <a href="classMediaStreamHandler.html#a4c7b9de79b65783f347e634724253988">More...</a><br /></td></tr>
+<tr class="separator:a4c7b9de79b65783f347e634724253988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a596c40ab0acc1c1a0f0d10edcaef7542"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMediaStreamHandler.html#a596c40ab0acc1c1a0f0d10edcaef7542">SendRTCPPacket</a> (<a class="el" href="classRTCPPacket.html">RTCPPacket</a> &amp;rtcpPacket)</td></tr>
+<tr class="memdesc:a596c40ab0acc1c1a0f0d10edcaef7542"><td class="mdescLeft">&#160;</td><td class="mdescRight">오디오 스트림을 처리하는 메서드  <a href="classMediaStreamHandler.html#a596c40ab0acc1c1a0f0d10edcaef7542">More...</a><br /></td></tr>
+<tr class="separator:a596c40ab0acc1c1a0f0d10edcaef7542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -179,8 +182,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad060b35aabd2de8f4e53e75667cfbc64" name="ad060b35aabd2de8f4e53e75667cfbc64"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad060b35aabd2de8f4e53e75667cfbc64">&#9670;&nbsp;</a></span>SendFragmentedRTPPackets()</h2>
+<a id="a4c7b9de79b65783f347e634724253988" name="a4c7b9de79b65783f347e634724253988"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c7b9de79b65783f347e634724253988">&#9670;&nbsp;</a></span>SendFragmentedRTPPackets()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -203,14 +206,8 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classRtpPacket.html">RtpPacket</a> &amp;&#160;</td>
-          <td class="paramname"><em>rtpPacket</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint32_t&#160;</td>
-          <td class="paramname"><em>timeStamp</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classRTPPacket.html">RTPPacket</a> &amp;&#160;</td>
+          <td class="paramname"><em>rtpPacket</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -231,8 +228,7 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">payload</td><td>전송할 페이로드 데이터 </td></tr>
     <tr><td class="paramname">payloadSize</td><td>전송할 페이로드 데이터 크기 </td></tr>
-    <tr><td class="paramname">rtpPacket</td><td>RTP 패킷 객체 </td></tr>
-    <tr><td class="paramname">timeStamp</td><td>RTP 패킷의 타임스탬프</td></tr>
+    <tr><td class="paramname">rtpPacket</td><td>RTP 패킷 객체</td></tr>
   </table>
   </dd>
 </dl>
@@ -241,8 +237,7 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">payload</td><td>전송할 페이로드 데이터 </td></tr>
     <tr><td class="paramname">payloadSize</td><td>전송할 페이로드 데이터 크기 </td></tr>
-    <tr><td class="paramname">rtpPacket</td><td>RTP 패킷 객체 </td></tr>
-    <tr><td class="paramname">timeStamp</td><td>RTP 패킷의 타임스탬프</td></tr>
+    <tr><td class="paramname">rtpPacket</td><td>RTP 패킷 객체</td></tr>
   </table>
   </dd>
 </dl>
@@ -251,6 +246,43 @@ Private Attributes</h2></td></tr>
 <li>FU-A 형식으로 NAL 단위 분할 처리</li>
 <li>RTP 헤더 마커 비트 설정 </li>
 </ul>
+
+</div>
+</div>
+<a id="a596c40ab0acc1c1a0f0d10edcaef7542" name="a596c40ab0acc1c1a0f0d10edcaef7542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a596c40ab0acc1c1a0f0d10edcaef7542">&#9670;&nbsp;</a></span>SendRTCPPacket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MediaStreamHandler::SendRTCPPacket </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classRTCPPacket.html">RTCPPacket</a> &amp;&#160;</td>
+          <td class="paramname"><em>rtcpPacket</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>오디오 스트림을 처리하는 메서드 </p>
+<p >RTCP 패킷을 전송하는 메서드</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rtcpPacket</td><td>RTCP 패킷 객체</td></tr>
+    <tr><td class="paramname">rtcpPacket</td><td>전송할 RTCP 패킷 객체</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>RTCP 패킷을 생성하고 전송 </p>
 
 </div>
 </div>

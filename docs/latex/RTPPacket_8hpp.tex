@@ -1,0 +1,45 @@
+\hypertarget{RTPPacket_8hpp}{}\doxysection{inc/\+RTPPacket.hpp File Reference}
+\label{RTPPacket_8hpp}\index{inc/RTPPacket.hpp@{inc/RTPPacket.hpp}}
+
+
+RTP 패킷 생성 및 전송 클래스 헤더  
+
+
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$RTPHeader.\+hpp$>$}\newline
+Include dependency graph for RTPPacket.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{RTPPacket_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{RTPPacket_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRTPPacket}{RTPPacket}}
+\begin{DoxyCompactList}\small\item\em RTP 패킷 관리를 위한 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTP 패킷 생성 및 전송 클래스 헤더 
+
+RTP(Real-\/time Transport Protocol) 패킷 처리를 위한 클래스로, 패킷의 생성, 데이터 로드, UDP 전송을 담당
+\begin{DoxyItemize}
+\item RTP 헤더와 페이로드 관리
+\item 데이터 페이로드 설정
+\item UDP 소켓을 통한 패킷 전송
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 

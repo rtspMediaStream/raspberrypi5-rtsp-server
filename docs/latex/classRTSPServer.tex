@@ -2,6 +2,11 @@
 \label{classRTSPServer}\index{RTSPServer@{RTSPServer}}
 
 
+RTSP 서버 메인 클래스  
+
+
+
+
 {\ttfamily \#include $<$RTSPServer.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -12,34 +17,39 @@
 \mbox{\hyperlink{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}{$\sim$\+RTSPServer}} ()
 \item 
 int \mbox{\hyperlink{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}{start\+Server\+Thread}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em 서버 스레드를 시작하는 메서드 \end{DoxyCompactList}\item 
 \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}{get\+Protocol}} ()
-\item 
-void \mbox{\hyperlink{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}{set\+Protocol}} (\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \+\_\+ptorocol)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 현재 설정된 프로토콜을 반환하는 메서드 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classRTSPServer_a06977dcc266e0abc11d1c321a4f9bb8b}{set\+Protocol}} (\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \+\_\+protocol)
+\begin{DoxyCompactList}\small\item\em 프로토콜 타입을 설정하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 static \mbox{\hyperlink{classRTSPServer}{RTSPServer}} \& \mbox{\hyperlink{classRTSPServer_aa448def962b448dad50948ca971a086c}{get\+Instance}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 싱글톤 패턴을 반환하는 정적 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::function$<$ void()$>$ \mbox{\hyperlink{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}{on\+Init\+Event}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 초기화 이벤트 콜백 함수 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 bool \mbox{\hyperlink{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}{is\+Privileged\+Port}} (int port)
-\item 
+\begin{DoxyCompactList}\small\item\em 주어진 포트가 권한이 필요한 포트인지 확인 \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{is\+Running\+As\+Root}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 프로그램이 루트 권한으로 실행 중인지 확인 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} \mbox{\hyperlink{classRTSPServer_a58d0e93646122c12325665aa43c51616}{protocol}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 현재 설정된 프로토콜 타입 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+RTSP 서버 메인 클래스 
+
+RTSP 프로토콜을 지원하는 미디어 스트리밍 서버의 핵심 기능을 제공하는 클래스 
 
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}\label{classRTSPServer_a65dd1dba926b63c3cc22b818c3f812b5}} 
@@ -48,45 +58,87 @@ bool \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{is\+Run
 \doxysubsubsection{\texorpdfstring{RTSPServer()}{RTSPServer()}}
 {\footnotesize\ttfamily RTSPServer\+::\+RTSPServer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}\label{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}} 
+서버 인스턴스 초기화 \mbox{\Hypertarget{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}\label{classRTSPServer_a187ee9b223f5989501f9a603083c70f2}} 
 \index{RTSPServer@{RTSPServer}!````~RTSPServer@{$\sim$RTSPServer}}
 \index{````~RTSPServer@{$\sim$RTSPServer}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{$\sim$RTSPServer()}{~RTSPServer()}}
 {\footnotesize\ttfamily RTSPServer\+::$\sim$\+RTSPServer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-
+서버 종료 시 리소스 정리 및 클라이언트 연결 종료 처리 
 
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classRTSPServer_aa448def962b448dad50948ca971a086c}\label{classRTSPServer_aa448def962b448dad50948ca971a086c}} 
 \index{RTSPServer@{RTSPServer}!getInstance@{getInstance}}
 \index{getInstance@{getInstance}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
-{\footnotesize\ttfamily static \mbox{\hyperlink{classRTSPServer}{RTSPServer}} \& RTSPServer\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classRTSPServer}{RTSPServer}} \& RTSPServer\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
+
+
+싱글톤 패턴을 반환하는 정적 메서드 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classRTSPServer}{RTSPServer}}\& 서버 인스턴스에 대한 참조 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}\label{classRTSPServer_a45c60ac861cd57ce2a76e2f73cc0c0ca}} 
 \index{RTSPServer@{RTSPServer}!getProtocol@{getProtocol}}
 \index{getProtocol@{getProtocol}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{getProtocol()}{getProtocol()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} RTSPServer\+::get\+Protocol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+현재 설정된 프로토콜을 반환하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+Protocol 현재 프로토콜 타입 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}\label{classRTSPServer_ab6e5067853f1d69111446cf3a02b926b}} 
 \index{RTSPServer@{RTSPServer}!isPrivilegedPort@{isPrivilegedPort}}
 \index{isPrivilegedPort@{isPrivilegedPort}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{isPrivilegedPort()}{isPrivilegedPort()}}
 {\footnotesize\ttfamily bool RTSPServer\+::is\+Privileged\+Port (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}\label{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}} 
+
+
+주어진 포트가 권한이 필요한 포트인지 확인 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & 확인할 포트 번호 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 권한 필요 여부
+\end{DoxyReturn}
+1024 이하의 포트는 privileged port로 간주 \mbox{\Hypertarget{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}\label{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}} 
 \index{RTSPServer@{RTSPServer}!isRunningAsRoot@{isRunningAsRoot}}
 \index{isRunningAsRoot@{isRunningAsRoot}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{isRunningAsRoot()}{isRunningAsRoot()}}
 {\footnotesize\ttfamily bool RTSPServer\+::is\+Running\+As\+Root (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}\label{classRTSPServer_ae48eed2c3b411ced41508176b0133aca}} 
+
+
+프로그램이 루트 권한으로 실행 중인지 확인 
+
+\begin{DoxyReturn}{Returns}
+bool 루트 권한 실행 여부
+\end{DoxyReturn}
+프로세스의 실효 사용자 ID가 0(root)인지 확인 \mbox{\Hypertarget{classRTSPServer_a06977dcc266e0abc11d1c321a4f9bb8b}\label{classRTSPServer_a06977dcc266e0abc11d1c321a4f9bb8b}} 
 \index{RTSPServer@{RTSPServer}!setProtocol@{setProtocol}}
 \index{setProtocol@{setProtocol}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{setProtocol()}{setProtocol()}}
-{\footnotesize\ttfamily void RTSPServer\+::set\+Protocol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}}}]{\+\_\+ptorocol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void RTSPServer\+::set\+Protocol (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}}}]{\+\_\+protocol }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
+프로토콜 타입을 설정하는 메서드 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+protocol} & 설정할 프로토콜 타입 \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}\label{classRTSPServer_afe292e99617a7bd82ff16d13451a46cd}} 
 \index{RTSPServer@{RTSPServer}!startServerThread@{startServerThread}}
 \index{startServerThread@{startServerThread}!RTSPServer@{RTSPServer}}
@@ -95,6 +147,19 @@ bool \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{is\+Run
 
 
 
+서버 스레드를 시작하는 메서드 
+
+\begin{DoxyReturn}{Returns}
+int 스레드 시작 결과 (0\+: 성공, 1\+: 실패)
+\end{DoxyReturn}
+서버 스레드 시작 프로세스\+:
+\begin{DoxyEnumerate}
+\item 권한 검사 (privileged port 사용 시)
+\item 클라이언트 연결 수신 대기
+\item 새 클라이언트 연결 시 세션 생성
+\item 요청 처리 스레드 시작 
+\end{DoxyEnumerate}
+
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}\label{classRTSPServer_acff03b58bf62d36e95bfae51f5be90b3}} 
 \index{RTSPServer@{RTSPServer}!onInitEvent@{onInitEvent}}
@@ -102,11 +167,19 @@ bool \mbox{\hyperlink{classRTSPServer_a55814a38072837e4212643cc6cb78cf9}{is\+Run
 \doxysubsubsection{\texorpdfstring{onInitEvent}{onInitEvent}}
 {\footnotesize\ttfamily std\+::function$<$void()$>$ RTSPServer\+::on\+Init\+Event}
 
+
+
+초기화 이벤트 콜백 함수 
+
 \mbox{\Hypertarget{classRTSPServer_a58d0e93646122c12325665aa43c51616}\label{classRTSPServer_a58d0e93646122c12325665aa43c51616}} 
 \index{RTSPServer@{RTSPServer}!protocol@{protocol}}
 \index{protocol@{protocol}!RTSPServer@{RTSPServer}}
 \doxysubsubsection{\texorpdfstring{protocol}{protocol}}
 {\footnotesize\ttfamily \mbox{\hyperlink{RTSPServer_8h_aac39b55be6469395f55ff0292ad8184c}{Protocol}} RTSPServer\+::protocol\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+현재 설정된 프로토콜 타입 
 
 
 

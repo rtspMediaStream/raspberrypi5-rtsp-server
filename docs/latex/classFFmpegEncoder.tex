@@ -2,24 +2,29 @@
 \label{classFFmpegEncoder}\index{FFmpegEncoder@{FFmpegEncoder}}
 
 
+FFmpeg 인코딩 기능을 제공하는 클래스  
+
+
+
+
 {\ttfamily \#include $<$FFmpeg\+Encoder.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}{FFmpeg\+Encoder}} (const std\+::string \&filename, int \mbox{\hyperlink{classFFmpegEncoder_af2c388078193e01b3b60a7399c6085e7}{width}}, int \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{height}}, double fps)
-\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 생성자 \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}{$\sim$\+FFmpeg\+Encoder}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 소멸자 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}{encode}} (const cv\+::\+Mat \&\mbox{\hyperlink{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}{frame}}, double fps)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 카메라 모듈에서 프레임을 읽어옵니다. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}{init\+FFmpeg}} (const std\+::string \&filename, double fps)
-\item 
+\begin{DoxyCompactList}\small\item\em FFmpeg library로 카메라를 설정합니다. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}{release\+FFmpeg}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em FFmpeg library로 카메라를 설정합니다. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,6 +46,15 @@ int \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{heigh
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+FFmpeg 인코딩 기능을 제공하는 클래스 
+
+FFmpeg을 이용해 이미지를 변환하는 클래스
+
+카메라 스트리밍을 위한 FFmpeg 기반의 비디오/오디오 인코딩을 담당 실제 구현은 Camera\+Server/\+FFmpeg\+Encoder.\{h,cpp\}에 정의됨
+
+FFmpeg library를 이용해 이미지를 변환합니다. 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}\label{classFFmpegEncoder_aa14bc555f515cb19ae284ba4bf2b13d7}} 
 \index{FFmpegEncoder@{FFmpegEncoder}!FFmpegEncoder@{FFmpegEncoder}}
@@ -48,7 +62,17 @@ int \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{heigh
 \doxysubsubsection{\texorpdfstring{FFmpegEncoder()}{FFmpegEncoder()}}
 {\footnotesize\ttfamily FFmpeg\+Encoder\+::\+FFmpeg\+Encoder (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{int}]{width,  }\item[{int}]{height,  }\item[{double}]{fps }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}\label{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}} 
+
+
+\mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 생성자 
+
+C언어로 FFmpeg Library를 사용
+
+AVCodec을 설정하고 ffmpeg library를 이용해 라즈베리파이 카메라모듈과 연결합니다.
+
+\mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 생성자
+
+AVCodec을 설정하고 ffmpeg library를 이용해 라즈베리파이 카메라모듈과 연결합니다. \mbox{\Hypertarget{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}\label{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}} 
 \index{FFmpegEncoder@{FFmpegEncoder}!````~FFmpegEncoder@{$\sim$FFmpegEncoder}}
 \index{````~FFmpegEncoder@{$\sim$FFmpegEncoder}!FFmpegEncoder@{FFmpegEncoder}}
 \doxysubsubsection{\texorpdfstring{$\sim$FFmpegEncoder()}{~FFmpegEncoder()}}
@@ -56,26 +80,55 @@ int \mbox{\hyperlink{classFFmpegEncoder_a25bac014356797591514c3d4c9d488cb}{heigh
 
 
 
+\mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 소멸자 
+
+ffmpeg에 연결된 카메라모듈을 반환합니다.
+
+FFmpeg에 연결된 카메라모듈을 반환합니다. 
+
 \doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}\label{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}} 
 \index{FFmpegEncoder@{FFmpegEncoder}!encode@{encode}}
 \index{encode@{encode}!FFmpegEncoder@{FFmpegEncoder}}
 \doxysubsubsection{\texorpdfstring{encode()}{encode()}}
-{\footnotesize\ttfamily void FFmpeg\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{frame,  }\item[{double}]{fps }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void FFmpeg\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{input\+Frame,  }\item[{double}]{fps }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}\label{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}} 
+
+
+카메라 모듈에서 프레임을 읽어옵니다. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & YUVformat형태의 프레임 \\
+\hline
+{\em fps} & 카메라 모듈에 설정된 frame per seconds\\
+\hline
+\end{DoxyParams}
+카메라 모듈에서 YUVformat의 프레임을 읽어와 Data\+Capture로 프레임을 처리합니다. \mbox{\Hypertarget{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}\label{classFFmpegEncoder_a22932d1a28db0314ab7c0cc44316ceee}} 
 \index{FFmpegEncoder@{FFmpegEncoder}!initFFmpeg@{initFFmpeg}}
 \index{initFFmpeg@{initFFmpeg}!FFmpegEncoder@{FFmpegEncoder}}
 \doxysubsubsection{\texorpdfstring{initFFmpeg()}{initFFmpeg()}}
 {\footnotesize\ttfamily void FFmpeg\+Encoder\+::init\+FFmpeg (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename,  }\item[{double}]{fps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-\mbox{\Hypertarget{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}\label{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}} 
+
+
+FFmpeg library로 카메라를 설정합니다. 
+
+AVCodec을 설정하고 ffmpeg library를 이용해 라즈베리파이 카메라모듈과 연결합니다. \mbox{\Hypertarget{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}\label{classFFmpegEncoder_a3c5404c6c20a2a199ad0829192b776cd}} 
 \index{FFmpegEncoder@{FFmpegEncoder}!releaseFFmpeg@{releaseFFmpeg}}
 \index{releaseFFmpeg@{releaseFFmpeg}!FFmpegEncoder@{FFmpegEncoder}}
 \doxysubsubsection{\texorpdfstring{releaseFFmpeg()}{releaseFFmpeg()}}
 {\footnotesize\ttfamily void FFmpeg\+Encoder\+::release\+FFmpeg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
+
+FFmpeg library로 카메라를 설정합니다. 
+
+FFmpeg library의 카메라 메모리를 해제합니다.
+
+AVCodec을 설정하고 ffmpeg library를 이용해 라즈베리파이 카메라모듈과 연결합니다.
+
+FFmpeg에 연결된 카메라모듈을 반환합니다. 
 
 \doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{classFFmpegEncoder_a260d3d601487435e9befea401ea31dd2}\label{classFFmpegEncoder_a260d3d601487435e9befea401ea31dd2}} 

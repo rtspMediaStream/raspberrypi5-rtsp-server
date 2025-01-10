@@ -74,6 +74,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>RTSP 서버 메인 클래스  
+ <a href="classRTSPServer.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="RTSPServer_8h_source.html">RTSPServer.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -83,35 +86,46 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a187ee9b223f5989501f9a603083c70f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#a187ee9b223f5989501f9a603083c70f2">~RTSPServer</a> ()</td></tr>
 <tr class="separator:a187ee9b223f5989501f9a603083c70f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe292e99617a7bd82ff16d13451a46cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#afe292e99617a7bd82ff16d13451a46cd">startServerThread</a> ()</td></tr>
+<tr class="memdesc:afe292e99617a7bd82ff16d13451a46cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">서버 스레드를 시작하는 메서드  <a href="classRTSPServer.html#afe292e99617a7bd82ff16d13451a46cd">More...</a><br /></td></tr>
 <tr class="separator:afe292e99617a7bd82ff16d13451a46cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45c60ac861cd57ce2a76e2f73cc0c0ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="RTSPServer_8h.html#aac39b55be6469395f55ff0292ad8184c">Protocol</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#a45c60ac861cd57ce2a76e2f73cc0c0ca">getProtocol</a> ()</td></tr>
+<tr class="memdesc:a45c60ac861cd57ce2a76e2f73cc0c0ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 설정된 프로토콜을 반환하는 메서드  <a href="classRTSPServer.html#a45c60ac861cd57ce2a76e2f73cc0c0ca">More...</a><br /></td></tr>
 <tr class="separator:a45c60ac861cd57ce2a76e2f73cc0c0ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48eed2c3b411ced41508176b0133aca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#ae48eed2c3b411ced41508176b0133aca">setProtocol</a> (<a class="el" href="RTSPServer_8h.html#aac39b55be6469395f55ff0292ad8184c">Protocol</a> _ptorocol)</td></tr>
-<tr class="separator:ae48eed2c3b411ced41508176b0133aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06977dcc266e0abc11d1c321a4f9bb8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#a06977dcc266e0abc11d1c321a4f9bb8b">setProtocol</a> (<a class="el" href="RTSPServer_8h.html#aac39b55be6469395f55ff0292ad8184c">Protocol</a> _protocol)</td></tr>
+<tr class="memdesc:a06977dcc266e0abc11d1c321a4f9bb8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">프로토콜 타입을 설정하는 메서드  <a href="classRTSPServer.html#a06977dcc266e0abc11d1c321a4f9bb8b">More...</a><br /></td></tr>
+<tr class="separator:a06977dcc266e0abc11d1c321a4f9bb8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa448def962b448dad50948ca971a086c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classRTSPServer.html">RTSPServer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#aa448def962b448dad50948ca971a086c">getInstance</a> ()</td></tr>
+<tr class="memdesc:aa448def962b448dad50948ca971a086c"><td class="mdescLeft">&#160;</td><td class="mdescRight">싱글톤 패턴을 반환하는 정적 메서드  <a href="classRTSPServer.html#aa448def962b448dad50948ca971a086c">More...</a><br /></td></tr>
 <tr class="separator:aa448def962b448dad50948ca971a086c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:acff03b58bf62d36e95bfae51f5be90b3"><td class="memItemLeft" align="right" valign="top">std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#acff03b58bf62d36e95bfae51f5be90b3">onInitEvent</a></td></tr>
+<tr class="memdesc:acff03b58bf62d36e95bfae51f5be90b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">초기화 이벤트 콜백 함수  <a href="classRTSPServer.html#acff03b58bf62d36e95bfae51f5be90b3">More...</a><br /></td></tr>
 <tr class="separator:acff03b58bf62d36e95bfae51f5be90b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ab6e5067853f1d69111446cf3a02b926b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#ab6e5067853f1d69111446cf3a02b926b">isPrivilegedPort</a> (int port)</td></tr>
+<tr class="memdesc:ab6e5067853f1d69111446cf3a02b926b"><td class="mdescLeft">&#160;</td><td class="mdescRight">주어진 포트가 권한이 필요한 포트인지 확인  <a href="classRTSPServer.html#ab6e5067853f1d69111446cf3a02b926b">More...</a><br /></td></tr>
 <tr class="separator:ab6e5067853f1d69111446cf3a02b926b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55814a38072837e4212643cc6cb78cf9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#a55814a38072837e4212643cc6cb78cf9">isRunningAsRoot</a> ()</td></tr>
+<tr class="memdesc:a55814a38072837e4212643cc6cb78cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">프로그램이 루트 권한으로 실행 중인지 확인  <a href="classRTSPServer.html#a55814a38072837e4212643cc6cb78cf9">More...</a><br /></td></tr>
 <tr class="separator:a55814a38072837e4212643cc6cb78cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a58d0e93646122c12325665aa43c51616"><td class="memItemLeft" align="right" valign="top"><a class="el" href="RTSPServer_8h.html#aac39b55be6469395f55ff0292ad8184c">Protocol</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRTSPServer.html#a58d0e93646122c12325665aa43c51616">protocol</a></td></tr>
+<tr class="memdesc:a58d0e93646122c12325665aa43c51616"><td class="mdescLeft">&#160;</td><td class="mdescRight">현재 설정된 프로토콜 타입  <a href="classRTSPServer.html#a58d0e93646122c12325665aa43c51616">More...</a><br /></td></tr>
 <tr class="separator:a58d0e93646122c12325665aa43c51616"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >RTSP 서버 메인 클래스 </p>
+<p >RTSP 프로토콜을 지원하는 미디어 스트리밍 서버의 핵심 기능을 제공하는 클래스 </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a65dd1dba926b63c3cc22b818c3f812b5" name="a65dd1dba926b63c3cc22b818c3f812b5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a65dd1dba926b63c3cc22b818c3f812b5">&#9670;&nbsp;</a></span>RTSPServer()</h2>
 
@@ -126,6 +140,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >서버 인스턴스 초기화 </p>
 
 </div>
 </div>
@@ -143,6 +158,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >서버 종료 시 리소스 정리 및 클라이언트 연결 종료 처리 </p>
 
 </div>
 </div>
@@ -165,10 +181,13 @@ Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>싱글톤 패턴을 반환하는 정적 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRTSPServer.html" title="RTSP 서버 메인 클래스">RTSPServer</a>&amp; 서버 인스턴스에 대한 참조 </dd></dl>
 
 </div>
 </div>
@@ -194,6 +213,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>현재 설정된 프로토콜을 반환하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>Protocol 현재 프로토콜 타입 </dd></dl>
 
 </div>
 </div>
@@ -221,6 +243,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>주어진 포트가 권한이 필요한 포트인지 확인 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>확인할 포트 번호 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool 권한 필요 여부</dd></dl>
+<p>1024 이하의 포트는 privileged port로 간주 </p>
+
 </div>
 </div>
 <a id="a55814a38072837e4212643cc6cb78cf9" name="a55814a38072837e4212643cc6cb78cf9"></a>
@@ -246,10 +278,14 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>프로그램이 루트 권한으로 실행 중인지 확인 </p>
+<dl class="section return"><dt>Returns</dt><dd>bool 루트 권한 실행 여부</dd></dl>
+<p>프로세스의 실효 사용자 ID가 0(root)인지 확인 </p>
+
 </div>
 </div>
-<a id="ae48eed2c3b411ced41508176b0133aca" name="ae48eed2c3b411ced41508176b0133aca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae48eed2c3b411ced41508176b0133aca">&#9670;&nbsp;</a></span>setProtocol()</h2>
+<a id="a06977dcc266e0abc11d1c321a4f9bb8b" name="a06977dcc266e0abc11d1c321a4f9bb8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06977dcc266e0abc11d1c321a4f9bb8b">&#9670;&nbsp;</a></span>setProtocol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +297,7 @@ Private Attributes</h2></td></tr>
           <td class="memname">void RTSPServer::setProtocol </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="RTSPServer_8h.html#aac39b55be6469395f55ff0292ad8184c">Protocol</a>&#160;</td>
-          <td class="paramname"><em>_ptorocol</em></td><td>)</td>
+          <td class="paramname"><em>_protocol</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -271,6 +307,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>프로토콜 타입을 설정하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_protocol</td><td>설정할 프로토콜 타입 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -289,6 +333,15 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>서버 스레드를 시작하는 메서드 </p>
+<dl class="section return"><dt>Returns</dt><dd>int 스레드 시작 결과 (0: 성공, 1: 실패)</dd></dl>
+<p>서버 스레드 시작 프로세스:</p><ol type="1">
+<li>권한 검사 (privileged port 사용 시)</li>
+<li>클라이언트 연결 수신 대기</li>
+<li>새 클라이언트 연결 시 세션 생성</li>
+<li>요청 처리 스레드 시작 </li>
+</ol>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -303,6 +356,8 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>초기화 이벤트 콜백 함수 </p>
 
 </div>
 </div>
@@ -325,6 +380,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>현재 설정된 프로토콜 타입 </p>
 
 </div>
 </div>

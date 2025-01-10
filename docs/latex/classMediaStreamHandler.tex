@@ -36,7 +36,9 @@ void \mbox{\hyperlink{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}{Send\+Fragmented\+RTPPackets}} (unsigned char $\ast$payload, size\+\_\+t payload\+Size, \mbox{\hyperlink{classRtpPacket}{Rtp\+Packet}} \&rtp\+Packet, const uint32\+\_\+t time\+Stamp)
+void \mbox{\hyperlink{classMediaStreamHandler_a4c7b9de79b65783f347e634724253988}{Send\+Fragmented\+RTPPackets}} (unsigned char $\ast$payload, size\+\_\+t payload\+Size, \mbox{\hyperlink{classRTPPacket}{RTPPacket}} \&rtp\+Packet)
+\begin{DoxyCompactList}\small\item\em 오디오 스트림을 처리하는 메서드 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMediaStreamHandler_a596c40ab0acc1c1a0f0d10edcaef7542}{Send\+RTCPPacket}} (\mbox{\hyperlink{classRTCPPacket}{RTCPPacket}} \&rtcp\+Packet)
 \begin{DoxyCompactList}\small\item\em 오디오 스트림을 처리하는 메서드 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -90,11 +92,11 @@ std\+::condition\+\_\+variable \mbox{\hyperlink{classMediaStreamHandler_a4b48497
 \item Data\+Capture로부터 프레임 데이터 획득
 \item RTP 패킷 생성 및 전송
 \item RTCP Sender Report 주기적 전송 
-\end{DoxyItemize}\mbox{\Hypertarget{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}\label{classMediaStreamHandler_ad060b35aabd2de8f4e53e75667cfbc64}} 
+\end{DoxyItemize}\mbox{\Hypertarget{classMediaStreamHandler_a4c7b9de79b65783f347e634724253988}\label{classMediaStreamHandler_a4c7b9de79b65783f347e634724253988}} 
 \index{MediaStreamHandler@{MediaStreamHandler}!SendFragmentedRTPPackets@{SendFragmentedRTPPackets}}
 \index{SendFragmentedRTPPackets@{SendFragmentedRTPPackets}!MediaStreamHandler@{MediaStreamHandler}}
 \doxysubsubsection{\texorpdfstring{SendFragmentedRTPPackets()}{SendFragmentedRTPPackets()}}
-{\footnotesize\ttfamily void Media\+Stream\+Handler\+::\+Send\+Fragmented\+RTPPackets (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{payload,  }\item[{size\+\_\+t}]{payload\+Size,  }\item[{\mbox{\hyperlink{classRtpPacket}{Rtp\+Packet}} \&}]{rtp\+Packet,  }\item[{const uint32\+\_\+t}]{time\+Stamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily void Media\+Stream\+Handler\+::\+Send\+Fragmented\+RTPPackets (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{payload,  }\item[{size\+\_\+t}]{payload\+Size,  }\item[{\mbox{\hyperlink{classRTPPacket}{RTPPacket}} \&}]{rtp\+Packet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -108,9 +110,7 @@ RTP 패킷을 프래그먼트화하여 전송하는 메서드
 \hline
 {\em payload\+Size} & 전송할 페이로드 데이터 크기 \\
 \hline
-{\em rtp\+Packet} & RTP 패킷 객체 \\
-\hline
-{\em time\+Stamp} & RTP 패킷의 타임스탬프\\
+{\em rtp\+Packet} & RTP 패킷 객체\\
 \hline
 \end{DoxyParams}
 오디오 데이터를 MTU 크기에 따라 단일 또는 분할하여 RTP 패킷으로 생성하고 전송
@@ -121,9 +121,7 @@ RTP 패킷을 프래그먼트화하여 전송하는 메서드
 \hline
 {\em payload\+Size} & 전송할 페이로드 데이터 크기 \\
 \hline
-{\em rtp\+Packet} & RTP 패킷 객체 \\
-\hline
-{\em time\+Stamp} & RTP 패킷의 타임스탬프\\
+{\em rtp\+Packet} & RTP 패킷 객체\\
 \hline
 \end{DoxyParams}
 
@@ -131,7 +129,26 @@ RTP 패킷을 프래그먼트화하여 전송하는 메서드
 \item 페이로드 크기에 따라 단일 패킷 또는 분할 패킷으로 전송
 \item FU-\/A 형식으로 NAL 단위 분할 처리
 \item RTP 헤더 마커 비트 설정 
-\end{DoxyItemize}\mbox{\Hypertarget{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}\label{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}} 
+\end{DoxyItemize}\mbox{\Hypertarget{classMediaStreamHandler_a596c40ab0acc1c1a0f0d10edcaef7542}\label{classMediaStreamHandler_a596c40ab0acc1c1a0f0d10edcaef7542}} 
+\index{MediaStreamHandler@{MediaStreamHandler}!SendRTCPPacket@{SendRTCPPacket}}
+\index{SendRTCPPacket@{SendRTCPPacket}!MediaStreamHandler@{MediaStreamHandler}}
+\doxysubsubsection{\texorpdfstring{SendRTCPPacket()}{SendRTCPPacket()}}
+{\footnotesize\ttfamily void Media\+Stream\+Handler\+::\+Send\+RTCPPacket (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classRTCPPacket}{RTCPPacket}} \&}]{rtcp\+Packet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+오디오 스트림을 처리하는 메서드 
+
+RTCP 패킷을 전송하는 메서드
+
+
+\begin{DoxyParams}{Parameters}
+{\em rtcp\+Packet} & RTCP 패킷 객체\\
+\hline
+{\em rtcp\+Packet} & 전송할 RTCP 패킷 객체\\
+\hline
+\end{DoxyParams}
+RTCP 패킷을 생성하고 전송 \mbox{\Hypertarget{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}\label{classMediaStreamHandler_a848698e610bdf4f4890796f0bbece756}} 
 \index{MediaStreamHandler@{MediaStreamHandler}!SetCmd@{SetCmd}}
 \index{SetCmd@{SetCmd}!MediaStreamHandler@{MediaStreamHandler}}
 \doxysubsubsection{\texorpdfstring{SetCmd()}{SetCmd()}}

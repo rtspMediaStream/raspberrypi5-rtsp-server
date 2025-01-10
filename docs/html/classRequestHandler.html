@@ -72,60 +72,82 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>RTSP 요청 처리 클래스  
+ <a href="classRequestHandler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="RequestHandler_8h_source.html">RequestHandler.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for RequestHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classRequestHandler__coll__graph.png" border="0" usemap="#aRequestHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="aRequestHandler_coll__map" id="aRequestHandler_coll__map">
-<area shape="rect" title=" " alt="" coords="22,184,149,211"/>
+<area shape="rect" title="RTSP 요청 처리 클래스" alt="" coords="22,184,149,211"/>
 <area shape="rect" href="classMediaStreamHandler.html" title="미디어 스트리밍 처리를 담당하는 클래스" alt="" coords="5,95,165,121"/>
-<area shape="rect" href="classUDPHandler.html" title=" " alt="" coords="35,5,136,32"/>
+<area shape="rect" href="classUDPHandler.html" title="RTP/RTCP를 위한 UDP 소켓 관리 클래스" alt="" coords="35,5,136,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b3d29ebd79cf9befc8f0b72280503c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a5b3d29ebd79cf9befc8f0b72280503c5">RequestHandler</a> (<a class="el" href="classClientSession.html">ClientSession</a> *<a class="el" href="classRequestHandler.html#ad3726f8cce7cebcee401017d2fff1ed3">session</a>)</td></tr>
+<tr class="memdesc:a5b3d29ebd79cf9befc8f0b72280503c5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classRequestHandler.html" title="RTSP 요청 처리 클래스">RequestHandler</a> 생성자  <a href="classRequestHandler.html#a5b3d29ebd79cf9befc8f0b72280503c5">More...</a><br /></td></tr>
 <tr class="separator:a5b3d29ebd79cf9befc8f0b72280503c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73cf4be812db3c45a9941e3e927f7735"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a73cf4be812db3c45a9941e3e927f7735">operator()</a> ()</td></tr>
+<tr class="memdesc:a73cf4be812db3c45a9941e3e927f7735"><td class="mdescLeft">&#160;</td><td class="mdescRight">함수 호출 연산자 오버로딩  <a href="classRequestHandler.html#a73cf4be812db3c45a9941e3e927f7735">More...</a><br /></td></tr>
 <tr class="separator:a73cf4be812db3c45a9941e3e927f7735"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a977c6714dfbe4bcb0f1fdfe3a9ffcdf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a977c6714dfbe4bcb0f1fdfe3a9ffcdf0">HandleRequest</a> ()</td></tr>
+<tr class="memdesc:a977c6714dfbe4bcb0f1fdfe3a9ffcdf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTSP 요청을 처리하는 메인 메서드  <a href="classRequestHandler.html#a977c6714dfbe4bcb0f1fdfe3a9ffcdf0">More...</a><br /></td></tr>
 <tr class="separator:a977c6714dfbe4bcb0f1fdfe3a9ffcdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e0e566ccb932763af41c5f195bb195e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a2e0e566ccb932763af41c5f195bb195e">StartThread</a> ()</td></tr>
+<tr class="memdesc:a2e0e566ccb932763af41c5f195bb195e"><td class="mdescLeft">&#160;</td><td class="mdescRight">요청 처리를 위한 스레드를 시작하는 메서드  <a href="classRequestHandler.html#a2e0e566ccb932763af41c5f195bb195e">More...</a><br /></td></tr>
 <tr class="separator:a2e0e566ccb932763af41c5f195bb195e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a29b87738eef635a6bfc4068281157496"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a29b87738eef635a6bfc4068281157496">ParseMethod</a> (const std::string &amp;request)</td></tr>
+<tr class="memdesc:a29b87738eef635a6bfc4068281157496"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTSP 메서드를 파싱하는 메서드  <a href="classRequestHandler.html#a29b87738eef635a6bfc4068281157496">More...</a><br /></td></tr>
 <tr class="separator:a29b87738eef635a6bfc4068281157496"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58e4b7f806f39064b02c3121e3dc9d5c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a58e4b7f806f39064b02c3121e3dc9d5c">ParseCSeq</a> (const std::string &amp;request)</td></tr>
+<tr class="memdesc:a58e4b7f806f39064b02c3121e3dc9d5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">CSeq 값을 파싱하는 메서드  <a href="classRequestHandler.html#a58e4b7f806f39064b02c3121e3dc9d5c">More...</a><br /></td></tr>
 <tr class="separator:a58e4b7f806f39064b02c3121e3dc9d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b904ae4bdffb632e3fe8e3af9fabfe1"><td class="memItemLeft" align="right" valign="top">std::pair&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a5b904ae4bdffb632e3fe8e3af9fabfe1">ParsePorts</a> (const std::string &amp;request)</td></tr>
+<tr class="memdesc:a5b904ae4bdffb632e3fe8e3af9fabfe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTP/RTCP 포트를 파싱하는 메서드  <a href="classRequestHandler.html#a5b904ae4bdffb632e3fe8e3af9fabfe1">More...</a><br /></td></tr>
 <tr class="separator:a5b904ae4bdffb632e3fe8e3af9fabfe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa10783383d83d4eb81fc7e8931c427ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#aa10783383d83d4eb81fc7e8931c427ca">ParseAccept</a> (const std::string &amp;request)</td></tr>
+<tr class="memdesc:aa10783383d83d4eb81fc7e8931c427ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Accept 헤더를 파싱하는 메서드  <a href="classRequestHandler.html#aa10783383d83d4eb81fc7e8931c427ca">More...</a><br /></td></tr>
 <tr class="separator:aa10783383d83d4eb81fc7e8931c427ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a968d73b7f304253fd7ec34a20c8a43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a3a968d73b7f304253fd7ec34a20c8a43">HandleOptionsRequest</a> (const int cseq)</td></tr>
+<tr class="memdesc:a3a968d73b7f304253fd7ec34a20c8a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">OPTIONS 요청을 처리하는 메서드  <a href="classRequestHandler.html#a3a968d73b7f304253fd7ec34a20c8a43">More...</a><br /></td></tr>
 <tr class="separator:a3a968d73b7f304253fd7ec34a20c8a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97265bdc463799a354b43f66301d0674"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a97265bdc463799a354b43f66301d0674">HandleDescribeRequest</a> (const std::string &amp;request, const int cseq)</td></tr>
+<tr class="memdesc:a97265bdc463799a354b43f66301d0674"><td class="mdescLeft">&#160;</td><td class="mdescRight">DESCRIBE 요청을 처리하는 메서드  <a href="classRequestHandler.html#a97265bdc463799a354b43f66301d0674">More...</a><br /></td></tr>
 <tr class="separator:a97265bdc463799a354b43f66301d0674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bf1d9458bee6aa2d2e21dbdd231cb04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a9bf1d9458bee6aa2d2e21dbdd231cb04">HandleSetupRequest</a> (const std::string &amp;request, const int cseq)</td></tr>
+<tr class="memdesc:a9bf1d9458bee6aa2d2e21dbdd231cb04"><td class="mdescLeft">&#160;</td><td class="mdescRight">SETUP 요청을 처리하는 메서드  <a href="classRequestHandler.html#a9bf1d9458bee6aa2d2e21dbdd231cb04">More...</a><br /></td></tr>
 <tr class="separator:a9bf1d9458bee6aa2d2e21dbdd231cb04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dd4a64ee2e81095cb3daa28ba326d82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a4dd4a64ee2e81095cb3daa28ba326d82">HandlePlayRequest</a> (int cseq)</td></tr>
+<tr class="memdesc:a4dd4a64ee2e81095cb3daa28ba326d82"><td class="mdescLeft">&#160;</td><td class="mdescRight">PLAY 요청을 처리하는 메서드  <a href="classRequestHandler.html#a4dd4a64ee2e81095cb3daa28ba326d82">More...</a><br /></td></tr>
 <tr class="separator:a4dd4a64ee2e81095cb3daa28ba326d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add64570d46ae57fb15e90abe99628f40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#add64570d46ae57fb15e90abe99628f40">HandlePauseRequest</a> (int cseq)</td></tr>
+<tr class="memdesc:add64570d46ae57fb15e90abe99628f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">PAUSE 요청을 처리하는 메서드  <a href="classRequestHandler.html#add64570d46ae57fb15e90abe99628f40">More...</a><br /></td></tr>
 <tr class="separator:add64570d46ae57fb15e90abe99628f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8aad5c364b0b8dee0ad82fd72f29207"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#ab8aad5c364b0b8dee0ad82fd72f29207">HandleTeardownRequest</a> (int cseq)</td></tr>
+<tr class="memdesc:ab8aad5c364b0b8dee0ad82fd72f29207"><td class="mdescLeft">&#160;</td><td class="mdescRight">TEARDOWN 요청을 처리하는 메서드  <a href="classRequestHandler.html#ab8aad5c364b0b8dee0ad82fd72f29207">More...</a><br /></td></tr>
 <tr class="separator:ab8aad5c364b0b8dee0ad82fd72f29207"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad3726f8cce7cebcee401017d2fff1ed3"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classClientSession.html">ClientSession</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#ad3726f8cce7cebcee401017d2fff1ed3">session</a></td></tr>
+<tr class="memdesc:ad3726f8cce7cebcee401017d2fff1ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">클라이언트 세션 객체  <a href="classRequestHandler.html#ad3726f8cce7cebcee401017d2fff1ed3">More...</a><br /></td></tr>
 <tr class="separator:ad3726f8cce7cebcee401017d2fff1ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e41a61070c75d1517a8cd9f193421fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMediaStreamHandler.html">MediaStreamHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRequestHandler.html#a2e41a61070c75d1517a8cd9f193421fa">mediaStreamHandler</a></td></tr>
+<tr class="memdesc:a2e41a61070c75d1517a8cd9f193421fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">미디어 스트림 핸들러 처리 객체  <a href="classRequestHandler.html#a2e41a61070c75d1517a8cd9f193421fa">More...</a><br /></td></tr>
 <tr class="separator:a2e41a61070c75d1517a8cd9f193421fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >RTSP 요청 처리 클래스 </p>
+<p >클라이언트로부터 받은 RTSP 요청을 파싱하고 처리하며, 적절한 응답(OPTIONS, DESCRIBE, SETUP, PLAY, PAUSE, TEARDOWN)을 생성하는 기능을 제공한다. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5b3d29ebd79cf9befc8f0b72280503c5" name="a5b3d29ebd79cf9befc8f0b72280503c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5b3d29ebd79cf9befc8f0b72280503c5">&#9670;&nbsp;</a></span>RequestHandler()</h2>
 
@@ -141,6 +163,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p><a class="el" href="classRequestHandler.html" title="RTSP 요청 처리 클래스">RequestHandler</a> 생성자 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">session</td><td>클라이언트 세션 객체 </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -179,6 +209,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>DESCRIBE 요청을 처리하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>RTSP 요청 문자열 </td></tr>
+    <tr><td class="paramname">cseq</td><td>요청의 CSeq 값</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>미디어 스트림 정보를 포함한 SDP 응답 생성:</p><ul>
+<li>비디오(H264)나 오디오(Opus) 스트림 정보</li>
+<li>세션 ID, 버전, IP 주소 등의 정보 포함 </li>
+</ul>
+
 </div>
 </div>
 <a id="a3a968d73b7f304253fd7ec34a20c8a43" name="a3a968d73b7f304253fd7ec34a20c8a43"></a>
@@ -204,6 +247,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>OPTIONS 요청을 처리하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cseq</td><td>요청의 CSeq 값</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>지원하는 RTSP 메서드 목록을 포함한 응답 생성 </p>
 
 </div>
 </div>
@@ -231,6 +283,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>PAUSE 요청을 처리하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cseq</td><td>요청의 CSeq 값</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>미디어 스트림 일시 정지 명령 처리 </p>
+
 </div>
 </div>
 <a id="a4dd4a64ee2e81095cb3daa28ba326d82" name="a4dd4a64ee2e81095cb3daa28ba326d82"></a>
@@ -257,6 +318,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>PLAY 요청을 처리하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cseq</td><td>요청의 CSeq 값</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>미디어 스트림 재생 명령 처리 </p>
+
 </div>
 </div>
 <a id="a977c6714dfbe4bcb0f1fdfe3a9ffcdf0" name="a977c6714dfbe4bcb0f1fdfe3a9ffcdf0"></a>
@@ -273,6 +343,13 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>RTSP 요청을 처리하는 메인 메서드 </p>
+<p >RTSP 요청 처리 메인 루프:</p><ol type="1">
+<li>요청 수신</li>
+<li>CSeq 및 메서드 파싱</li>
+<li>메서드별 적절한 핸들러 호출 </li>
+</ol>
 
 </div>
 </div>
@@ -310,6 +387,21 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>SETUP 요청을 처리하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>RTSP 요청 문자열 </td></tr>
+    <tr><td class="paramname">cseq</td><td>요청의 CSeq 값</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>스트리밍을 위한 초기 설정 처리:</p><ol type="1">
+<li>RTP/RTCP 포트 설정</li>
+<li>UDP 소켓 생성</li>
+<li>미디어 스트림 핸들러 초기화</li>
+<li>스트리밍 스레드 시작 </li>
+</ol>
+
 </div>
 </div>
 <a id="ab8aad5c364b0b8dee0ad82fd72f29207" name="ab8aad5c364b0b8dee0ad82fd72f29207"></a>
@@ -336,6 +428,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>TEARDOWN 요청을 처리하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cseq</td><td>요청의 CSeq 값</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>세션 종료 및 리소스 정리 처리 </p>
+
 </div>
 </div>
 <a id="a73cf4be812db3c45a9941e3e927f7735" name="a73cf4be812db3c45a9941e3e927f7735"></a>
@@ -360,6 +461,9 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>함수 호출 연산자 오버로딩 </p>
+<p >요청 처리를 위한 HandleRequest 메서드 호출 </p>
 
 </div>
 </div>
@@ -387,6 +491,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Accept 헤더를 파싱하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>RTSP 요청 문자열 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool SDP 수락 여부</dd></dl>
+<p>Accept 헤더에서 "application/sdp" 지원 여부 확인 </p>
+
 </div>
 </div>
 <a id="a58e4b7f806f39064b02c3121e3dc9d5c" name="a58e4b7f806f39064b02c3121e3dc9d5c"></a>
@@ -412,6 +526,16 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>CSeq 값을 파싱하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>RTSP 요청 문자열 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 파싱된 CSeq 값 (-1: 파싱 실패)</dd></dl>
+<p>요청 헤더에서 "CSeq" 필드를 찾아 값을 파싱 </p>
 
 </div>
 </div>
@@ -439,6 +563,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>RTSP 메서드를 파싱하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>RTSP 요청 문자열 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string 파싱된 RTSP 메서드</dd></dl>
+<p>RTSP 요청의 첫 줄에서 메서드 이름을 추출 </p>
+
 </div>
 </div>
 <a id="a5b904ae4bdffb632e3fe8e3af9fabfe1" name="a5b904ae4bdffb632e3fe8e3af9fabfe1"></a>
@@ -465,6 +599,16 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>RTP/RTCP 포트를 파싱하는 메서드 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>RTSP 요청 문자열 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;int, int&gt; RTP와 RTCP 포트 번호 쌍</dd></dl>
+<p>Transport 헤더에서 "client_port" 필드를 파싱하여 RTP/RTCP 포트 쌍 추출 </p>
+
 </div>
 </div>
 <a id="a2e0e566ccb932763af41c5f195bb195e" name="a2e0e566ccb932763af41c5f195bb195e"></a>
@@ -481,6 +625,9 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>요청 처리를 위한 스레드를 시작하는 메서드 </p>
+<p >새로운 스레드를 생성하고 detach하여 백그라운드에서 요청을 처리 </p>
 
 </div>
 </div>
@@ -505,6 +652,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>미디어 스트림 핸들러 처리 객체 </p>
+
 </div>
 </div>
 <a id="ad3726f8cce7cebcee401017d2fff1ed3" name="ad3726f8cce7cebcee401017d2fff1ed3"></a>
@@ -526,6 +675,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>클라이언트 세션 객체 </p>
 
 </div>
 </div>

@@ -1,0 +1,45 @@
+\hypertarget{RTCPPacket_8hpp}{}\doxysection{inc/\+RTCPPacket.hpp File Reference}
+\label{RTCPPacket_8hpp}\index{inc/RTCPPacket.hpp@{inc/RTCPPacket.hpp}}
+
+
+RTCP 패킷 데이터 및 전송 처리 클래스 헤더  
+
+
+{\ttfamily \#include $<$cstddef$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}RTSPServer.\+h\char`\"{}}\newline
+Include dependency graph for RTCPPacket.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{RTCPPacket_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{RTCPPacket_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classRTCPPacket}{RTCPPacket}}
+\begin{DoxyCompactList}\small\item\em RTCP 패킷 관리를 위한 클래스 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+RTCP 패킷 데이터 및 전송 처리 클래스 헤더 
+
+RTCP(\+RTP Control Protocol) 패킷의 구조체를 정의하고 전송을 처리하는 클래스
+\begin{DoxyItemize}
+\item RTCP Sender Report 패킷 구조 정의
+\item 빅엔디안, 리틀엔디안을 위한 네트워크 바이트 처리
+\item UDP 소켓을 통한 패킷 전송
+\end{DoxyItemize}
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
