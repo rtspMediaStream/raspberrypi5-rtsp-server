@@ -34,6 +34,11 @@ enum Protocol {
     PROTO_H264 = 96,    ///< H264 비디오 코덱 (페이로드 타입: 96)
 };
 
+/**
+ * @class RTSPServer
+ * @brief RTSP 서버 메인 클래스
+ * @details RTSP 프로토콜을 지원하는 미디어 스트리밍 서버의 핵심 기능을 제공하는 클래스
+ */
 class RTSPServer {
 private:
     /**
