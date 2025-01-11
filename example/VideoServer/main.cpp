@@ -1,3 +1,14 @@
+/**
+ * @file main.cpp
+ * @brief RTSP 비디오 파일 스트리밍 서버의 메인 파일
+ * @details H.264 포멧의 비디오 스트리밍 서버의 구현부.
+ * 
+ * @organization rtspMediaStream
+ * @repository https://github.com/rtspMediaStream/raspberrypi5-rtsp-server
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
 #include "RTSPServer.h"
 #include <unistd.h>
 #include <iostream>
@@ -6,7 +17,10 @@
 #include "H264Encoder.h"
 #include "DataCapture.h"
 
-// 파일에서 VideoCapture Queue로 던지기
+/**
+ * @brief Video frame을 처리하는 함수
+ * @details H.264 format의 비디오 파일에서 frame을 일겅와 DataCapture에 추가합니다.
+ */
 void LoadH264File()
 {
     std::thread([]() -> void
@@ -49,13 +63,24 @@ void LoadH264File()
         .detach();
 }
 
+/**
+ * @brief 메인 함수
+ * @param argc 명령행 인자 개수
+ * @param argv 명령행 인자 배열
+ * @return int 프로그램 종료 코드 (0: 정상 종료)
+ * 
+ * @details RTSP 서버를 초기화하고 시작하는 주요 단계:
+ * 1. RTSP 서버 프로토콜을 H264로 설정
+ * 2. 초기화 이벤트 핸들러로 LoadH264File 함수 등록
+ * 3. 서버 스레드 시작
+ * 4. 무한 루프로 서버 유지
+ */
 int main(int argc, char *argv[])
 {
     
     RTSPServer::getInstance().setProtocol(Protocol::PROTO_H264);
-    RTSPServer::getInstance().startServerThread();
-
     RTSPServer::getInstance().onInitEvent = LoadH264File;
+    RTSPServer::getInstance().startServerThread();
 
     while (1)
     {
