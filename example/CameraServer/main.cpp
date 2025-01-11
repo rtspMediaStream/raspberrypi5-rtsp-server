@@ -1,3 +1,16 @@
+/**
+ * @file main.cpp
+ * @brief RTSP 카메라 스트리밍 서버의 메인 파일
+ * @details FFmpeg Library를 이용한 카메라 스트리밍 서버의 구현부,
+ *          FFmpeg으로 인코딩하여 RTSP로 스트리밍합니다.
+ * 
+ * @organization rtspMediaStream
+ * @repository https://github.com/rtspMediaStream/raspberrypi5-rtsp-server
+ * 
+ * Copyright (c) 2024 rtspMediaStream
+ * This project is licensed under the MIT License - see the LICENSE file for details
+ */
+
 #include "RTSPServer.h"
 #include "ClientSession.h"
 #include "RequestHandler.h"
@@ -30,6 +43,10 @@ using namespace std;
 static std::shared_ptr<libcamera::Camera> camera;
 FFmpegEncoder ffmpegEncoder("output.h264",640, 480, 30.0);
 
+/**
+ * @brief 카메라 frame을 처리하는 함수
+ * @details 카메라 모듈의 frameBuffer에 접근해 yuv로 된 이미지를 가져와 mat형태로 변환하여 처리
+ */
 static void requestComplete(Request *request)
 {
 	if (request->status() == Request::RequestCancelled)
@@ -106,12 +123,18 @@ static void requestComplete(Request *request)
     request->reuse(Request::ReuseBuffers);
 }
 
+/**
+ * @brief Camera 모듈에서 이미지를 처리하는 Thread
+ * @details 스레드실행시 처리 작업을 수행합니다:
+ *          1. Raspberry Pi5 의 모듈 카메라에 연결
+ *          2. 카메라 캡처시 동작할 함수(requestComplete) 설정
+ *          3. Thread에서 캡처 처리
+ */
 void cameraThread()
 {
-    /// camera test
     std::thread([]() -> int
                 {
-        //camera open
+        //camera thread
         static std::shared_ptr<libcamera::Camera> camera;
         std::unique_ptr<CameraManager> cm = std::make_unique<CameraManager>();
         cm->start();
@@ -181,15 +204,26 @@ void cameraThread()
         .detach();
 }
 
+/**
+ * @brief 메인 함수
+ * @param argc 명령행 인자 개수
+ * @param argv 명령행 인자 배열
+ * @return int 프로그램 종료 코드 (0: 정상 종료)
+ * 
+ * @details RTSP 서버를 초기화하고 시작하는 주요 단계:
+ * 1. RTSP 서버 프로토콜을 H264로 설정
+ * 2. 초기화 이벤트 핸들러로 cameraThread 함수 등록
+ * 3. 서버 스레드 시작
+ * 4. 무한 루프로 서버 유지
+ */
 int main(int argc, char *argv[])
 {
 
     RTSPServer::getInstance().setProtocol(Protocol::PROTO_H264);
-    RTSPServer::getInstance().startServerThread();
     RTSPServer::getInstance().onInitEvent = cameraThread;
+    RTSPServer::getInstance().startServerThread();
 
     while(1){
         sleep(1);
     }
-    // camera end
 }
