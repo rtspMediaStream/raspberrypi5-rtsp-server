@@ -21,7 +21,7 @@ sudo cp librtspserver.so /usr/local/lib/
 
 ### Audio RTSP-server
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/14d123ca-4a1a-4d39-8c45-53528003d27b" alt="AudioServerDevice" height="300" />
+  <img src="https://github.com/user-attachments/assets/b37cf3d4-46d5-4b3b-8dc9-ebb8e5839ca6" alt="AudioServerDevice" height="300" />
 </div>
 
 - Install
@@ -64,7 +64,7 @@ vlc rtsp://127.0.0.1:8554
 
 ### Camera RTSP-server
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/0a438fdb-1738-43e6-be2e-4464f8646a80" alt="CameraServerDevice" height="300" />
+  <img src="https://github.com/user-attachments/assets/6169338b-6dc5-427f-9e10-4ac6841d92ba" alt="CameraServerDevice" height="300" />
 </div>
 
 - Install
