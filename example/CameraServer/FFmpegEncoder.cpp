@@ -164,7 +164,7 @@ void FFmpegEncoder::encode(const cv::Mat& inputFrame, double fps) {
         // 인터리빙 방식 : 오디오 및 비디오 스트림 교차저장하는 방식(영상재생시 동시에 재생되게함)
         // fmt_ctx(포맷컨텍스트) 출력파일과 관련된 정보 포함하고있으며, 파일에 패킷을 기록할 대상이 됨
         // pkt : 인코딩된 비디오또는 오디오 데이터 포함하고있음. 이 데이터를 출력파일에 기록하는것
-//         av_interleaved_write_frame(fmt_ctx, packet);      // 패킷을 파일에 기록
+        // av_interleaved_write_frame(fmt_ctx, packet);      // 패킷을 파일에 기록
         // 패킷에 할당된 메모리를 해제. 인코딩된 데이터를 파일에 기록한 후 메모리 해제해야함
         if (packet->size > 0 && packet->data) {
             newframe.dataPtr = (unsigned char*)packet->data;
