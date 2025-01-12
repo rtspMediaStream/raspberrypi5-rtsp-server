@@ -24,6 +24,8 @@ class MediaStreamHandler;
  * @brief RTSP 요청 처리 클래스
  * @details 클라이언트로부터 받은 RTSP 요청을 파싱하고 처리하며,
  *          적절한 응답(OPTIONS, DESCRIBE, SETUP, PLAY, PAUSE, TEARDOWN)을 생성하는 기능을 제공한다.
+ * @see ClientSession
+ * @see MediaStreamHandler
  */
 
 class RequestHandler {

@@ -27,6 +27,7 @@
  * @class RTPPacket
  * @brief RTP 패킷을 생성하고 전송하는 클래스
  * @details RTP Packet = Header + Payload 로 구성된 패킷을 생성하고 전송하는 기능을 제공한다.
+ * @see RTPHeader
  */
 class RTPPacket
 {

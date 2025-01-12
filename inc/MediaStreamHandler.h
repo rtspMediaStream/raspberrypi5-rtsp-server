@@ -48,6 +48,9 @@ class RTCPPacket;
  * @brief 미디어 스트리밍 처리를 담당하는 클래스
  * @details 미디어 스트림의 상태 관리, RTP 패킷 생성 및 전송,
  *          스트리밍 제어 기능을 제공하는 클래스
+ * @see UDPHandler
+ * @see RTPPacket
+ * @see RTCPPacket
  */
 class MediaStreamHandler {
 public:
