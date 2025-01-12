@@ -73,6 +73,9 @@ $(function() {
   <div class="headertitle"><div class="title">main.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>RTSP 카메라 스트리밍 서버의 메인 파일  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="RTSPServer_8h_source.html">RTSPServer.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ClientSession_8h_source.html">ClientSession.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="RequestHandler_8h_source.html">RequestHandler.h</a>&quot;</code><br />
@@ -100,7 +103,7 @@ Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="CameraServer_2main_8cpp__incl.png" border="0" usemap="#aexample_2CameraServer_2main_8cpp" alt=""/></div>
 <map name="aexample_2CameraServer_2main_8cpp" id="aexample_2CameraServer_2main_8cpp">
-<area shape="rect" title=" " alt="" coords="1011,5,1187,47"/>
+<area shape="rect" title="RTSP 카메라 스트리밍 서버의 메인 파일" alt="" coords="1011,5,1187,47"/>
 <area shape="rect" href="RTSPServer_8h.html" title="RTSP 서버 메인 클래스 헤더" alt="" coords="10,95,117,121"/>
 <area shape="rect" href="ClientSession_8h.html" title="RTSP 클라이언트 세션 관리 클래스 헤더" alt="" coords="367,95,490,121"/>
 <area shape="rect" title=" " alt="" coords="751,169,810,196"/>
@@ -137,10 +140,13 @@ Include dependency graph for main.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab2a3ae816972c4eb85cce8fc66ce5d10"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CameraServer_2main_8cpp.html#ab2a3ae816972c4eb85cce8fc66ce5d10">requestComplete</a> (Request *request)</td></tr>
+<tr class="memdesc:ab2a3ae816972c4eb85cce8fc66ce5d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">카메라 frame을 처리하는 함수  <a href="CameraServer_2main_8cpp.html#ab2a3ae816972c4eb85cce8fc66ce5d10">More...</a><br /></td></tr>
 <tr class="separator:ab2a3ae816972c4eb85cce8fc66ce5d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6faad531a4d03098ea8c227e203ae97b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CameraServer_2main_8cpp.html#a6faad531a4d03098ea8c227e203ae97b">cameraThread</a> ()</td></tr>
+<tr class="memdesc:a6faad531a4d03098ea8c227e203ae97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Camera 모듈에서 이미지를 처리하는 Thread.  <a href="CameraServer_2main_8cpp.html#a6faad531a4d03098ea8c227e203ae97b">More...</a><br /></td></tr>
 <tr class="separator:a6faad531a4d03098ea8c227e203ae97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CameraServer_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">메인 함수  <a href="CameraServer_2main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -150,7 +156,12 @@ Variables</h2></td></tr>
 <tr class="memitem:a48138829a6dfafcf86643050f74db421"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFFmpegEncoder.html">FFmpegEncoder</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="CameraServer_2main_8cpp.html#a48138829a6dfafcf86643050f74db421">ffmpegEncoder</a> (&quot;output.h264&quot;, 640, 480, 30.0)</td></tr>
 <tr class="separator:a48138829a6dfafcf86643050f74db421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >RTSP 카메라 스트리밍 서버의 메인 파일 </p>
+<p >FFmpeg Library를 이용한 카메라 스트리밍 서버의 구현부, FFmpeg으로 인코딩하여 RTSP로 스트리밍합니다.</p>
+<p >@organization rtspMediaStream @repository <a href="https://github.com/rtspMediaStream/raspberrypi5-rtsp-server">https://github.com/rtspMediaStream/raspberrypi5-rtsp-server</a></p>
+<p >Copyright (c) 2024 rtspMediaStream This project is licensed under the MIT License - see the LICENSE file for details </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a6faad531a4d03098ea8c227e203ae97b" name="a6faad531a4d03098ea8c227e203ae97b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6faad531a4d03098ea8c227e203ae97b">&#9670;&nbsp;</a></span>cameraThread()</h2>
 
@@ -165,7 +176,13 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >camera test</p>
+
+<p>Camera 모듈에서 이미지를 처리하는 Thread. </p>
+<p >스레드실행시 처리 작업을 수행합니다:</p><ol type="1">
+<li>Raspberry Pi5 의 모듈 카메라에 연결</li>
+<li>카메라 캡처시 동작할 함수(requestComplete) 설정</li>
+<li>Thread에서 캡처 처리 </li>
+</ol>
 
 </div>
 </div>
@@ -195,6 +212,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>메인 함수 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>명령행 인자 개수 </td></tr>
+    <tr><td class="paramname">argv</td><td>명령행 인자 배열 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int 프로그램 종료 코드 (0: 정상 종료)</dd></dl>
+<p>RTSP 서버를 초기화하고 시작하는 주요 단계:</p><ol type="1">
+<li>RTSP 서버 프로토콜을 H264로 설정</li>
+<li>초기화 이벤트 핸들러로 cameraThread 함수 등록</li>
+<li>서버 스레드 시작</li>
+<li>무한 루프로 서버 유지 </li>
+</ol>
+
 </div>
 </div>
 <a id="ab2a3ae816972c4eb85cce8fc66ce5d10" name="ab2a3ae816972c4eb85cce8fc66ce5d10"></a>
@@ -220,6 +253,9 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>카메라 frame을 처리하는 함수 </p>
+<p >카메라 모듈의 frameBuffer에 접근해 yuv로 된 이미지를 가져와 mat형태로 변환하여 처리 </p>
 
 </div>
 </div>

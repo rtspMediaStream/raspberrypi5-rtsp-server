@@ -12,27 +12,27 @@
 \DoxyCodeLine{23 }
 \DoxyCodeLine{24 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{RTPHeader_8hpp}{RTPHeader.hpp}}>}}
 \DoxyCodeLine{25 }
-\DoxyCodeLine{31 \textcolor{keyword}{class }\mbox{\hyperlink{classRTPPacket}{RTPPacket}}}
-\DoxyCodeLine{32 \{}
-\DoxyCodeLine{33 \textcolor{keyword}{private}:}
-\DoxyCodeLine{34     \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \mbox{\hyperlink{classRTPPacket_ae61f279622038f728ef3d632583d4b22}{header}};}
-\DoxyCodeLine{35     uint8\_t \mbox{\hyperlink{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}{RTP\_Payload}}[\mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\_RTP\_DATA\_SIZE}}]\{0\}; }
-\DoxyCodeLine{36 }
-\DoxyCodeLine{37 \textcolor{keyword}{public}:}
-\DoxyCodeLine{42     \textcolor{keyword}{explicit} \mbox{\hyperlink{classRTPPacket_a8533bc5dbefde4cb787a1befb25fdc54}{RTPPacket}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&rtpHeader);}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{47     \mbox{\hyperlink{classRTPPacket_a524e24f3589c80ee7fbb5849936b27db}{RTPPacket}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRTPPacket}{RTPPacket}} \&) = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{52     \mbox{\hyperlink{classRTPPacket_a70c902361b0872ccc5495fdf95bb2679}{\string~RTPPacket}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{62     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPPacket_a8462c1f2e3ebc688b2f5c5bfe79e88bc}{load\_data}}(\textcolor{keyword}{const} uint8\_t *data, int64\_t dataSize, int64\_t bias = 0);}
-\DoxyCodeLine{63 }
-\DoxyCodeLine{73     int64\_t \mbox{\hyperlink{classRTPPacket_a8cb8732cd42d643d29065fc8abc71921}{rtp\_sendto}}(\textcolor{keywordtype}{int} sockfd, int64\_t \_bufferLen, \textcolor{keywordtype}{int} flags, \textcolor{keyword}{const} sockaddr *to);}
-\DoxyCodeLine{74 }
-\DoxyCodeLine{80     \mbox{\hyperlink{classRTPHeader}{RTPHeader}}\& \mbox{\hyperlink{classRTPPacket_a2e83ed7afd4f7207ff8486da851a9d4f}{get\_header}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classRTPPacket_ae61f279622038f728ef3d632583d4b22}{header}}; \}}
-\DoxyCodeLine{81 }
-\DoxyCodeLine{87     uint8\_t *\mbox{\hyperlink{classRTPPacket_a4b0382facae5aee65459f2286aea04cd}{get\_payload}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}{RTP\_Payload}}; \}}
-\DoxyCodeLine{88 \};}
-\DoxyCodeLine{89 \textcolor{preprocessor}{\#pragma pack()}}
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{classRTPPacket}{RTPPacket}}}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34 \textcolor{keyword}{private}:}
+\DoxyCodeLine{35     \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \mbox{\hyperlink{classRTPPacket_ae61f279622038f728ef3d632583d4b22}{header}};}
+\DoxyCodeLine{36     uint8\_t \mbox{\hyperlink{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}{RTP\_Payload}}[\mbox{\hyperlink{RTPHeader_8hpp_a26849ebe2ed9e5293e3a94c6bcbd3590}{FU\_SIZE}} + \mbox{\hyperlink{RTPHeader_8hpp_a52dde1ef17634265994a49db2a36b5c7}{MAX\_RTP\_DATA\_SIZE}}]\{0\}; }
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keyword}{public}:}
+\DoxyCodeLine{43     \textcolor{keyword}{explicit} \mbox{\hyperlink{classRTPPacket_a8533bc5dbefde4cb787a1befb25fdc54}{RTPPacket}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRTPHeader}{RTPHeader}} \&rtpHeader);}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{48     \mbox{\hyperlink{classRTPPacket_a524e24f3589c80ee7fbb5849936b27db}{RTPPacket}}(\textcolor{keyword}{const} \mbox{\hyperlink{classRTPPacket}{RTPPacket}} \&) = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{53     \mbox{\hyperlink{classRTPPacket_a70c902361b0872ccc5495fdf95bb2679}{\string~RTPPacket}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} \mbox{\hyperlink{classRTPPacket_a8462c1f2e3ebc688b2f5c5bfe79e88bc}{load\_data}}(\textcolor{keyword}{const} uint8\_t *data, int64\_t dataSize, int64\_t bias = 0);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{74     int64\_t \mbox{\hyperlink{classRTPPacket_a8cb8732cd42d643d29065fc8abc71921}{rtp\_sendto}}(\textcolor{keywordtype}{int} sockfd, int64\_t \_bufferLen, \textcolor{keywordtype}{int} flags, \textcolor{keyword}{const} sockaddr *to);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{81     \mbox{\hyperlink{classRTPHeader}{RTPHeader}}\& \mbox{\hyperlink{classRTPPacket_a2e83ed7afd4f7207ff8486da851a9d4f}{get\_header}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classRTPPacket_ae61f279622038f728ef3d632583d4b22}{header}}; \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{88     uint8\_t *\mbox{\hyperlink{classRTPPacket_a4b0382facae5aee65459f2286aea04cd}{get\_payload}}() \{ \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classRTPPacket_af3f4beff2661392585575c1d3fa84d2e}{RTP\_Payload}}; \}}
+\DoxyCodeLine{89 \};}
+\DoxyCodeLine{90 \textcolor{preprocessor}{\#pragma pack()}}
 
 \end{DoxyCode}

@@ -76,6 +76,14 @@ $(function() {
  <a href="classFFmpegEncoder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="FFmpegEncoder_8h_source.html">FFmpegEncoder.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for FFmpegEncoder:</div>
+<div class="dyncontent">
+<div class="center"><img src="classFFmpegEncoder__coll__graph.png" border="0" usemap="#aFFmpegEncoder_coll__map" alt="Collaboration graph"/></div>
+<map name="aFFmpegEncoder_coll__map" id="aFFmpegEncoder_coll__map">
+<area shape="rect" title="FFmpeg 인코딩 기능을 제공하는 클래스" alt="" coords="5,5,229,361"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -85,9 +93,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e6a41471db790fe8718beaf0f6ca9b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFmpegEncoder.html#a1e6a41471db790fe8718beaf0f6ca9b9">~FFmpegEncoder</a> ()</td></tr>
 <tr class="memdesc:a1e6a41471db790fe8718beaf0f6ca9b9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classFFmpegEncoder.html" title="FFmpeg 인코딩 기능을 제공하는 클래스">FFmpegEncoder</a> 소멸자  <a href="classFFmpegEncoder.html#a1e6a41471db790fe8718beaf0f6ca9b9">More...</a><br /></td></tr>
 <tr class="separator:a1e6a41471db790fe8718beaf0f6ca9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec19fe3899019f1625de69d22d011cdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFmpegEncoder.html#aec19fe3899019f1625de69d22d011cdb">encode</a> (const cv::Mat &amp;<a class="el" href="classFFmpegEncoder.html#abc26edfb75647d12d1ef4a58159c8dc7">frame</a>, double fps)</td></tr>
-<tr class="memdesc:aec19fe3899019f1625de69d22d011cdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">카메라 모듈에서 프레임을 읽어옵니다.  <a href="classFFmpegEncoder.html#aec19fe3899019f1625de69d22d011cdb">More...</a><br /></td></tr>
-<tr class="separator:aec19fe3899019f1625de69d22d011cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63501109eb977ad3fe9c7ebd3afd6839"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFFmpegEncoder.html#a63501109eb977ad3fe9c7ebd3afd6839">encode</a> (const cv::Mat &amp;inputFrame, double fps)</td></tr>
+<tr class="memdesc:a63501109eb977ad3fe9c7ebd3afd6839"><td class="mdescLeft">&#160;</td><td class="mdescRight">카메라 모듈에서 프레임을 읽어옵니다.  <a href="classFFmpegEncoder.html#a63501109eb977ad3fe9c7ebd3afd6839">More...</a><br /></td></tr>
+<tr class="separator:a63501109eb977ad3fe9c7ebd3afd6839"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -191,8 +199,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aec19fe3899019f1625de69d22d011cdb" name="aec19fe3899019f1625de69d22d011cdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec19fe3899019f1625de69d22d011cdb">&#9670;&nbsp;</a></span>encode()</h2>
+<a id="a63501109eb977ad3fe9c7ebd3afd6839" name="a63501109eb977ad3fe9c7ebd3afd6839"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63501109eb977ad3fe9c7ebd3afd6839">&#9670;&nbsp;</a></span>encode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,7 +228,7 @@ Private Attributes</h2></td></tr>
 <p>카메라 모듈에서 프레임을 읽어옵니다. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frame</td><td>YUVformat형태의 프레임 </td></tr>
+    <tr><td class="paramname">inputFrame</td><td>YUVformat형태의 프레임 </td></tr>
     <tr><td class="paramname">fps</td><td>카메라 모듈에 설정된 frame per seconds</td></tr>
   </table>
   </dd>

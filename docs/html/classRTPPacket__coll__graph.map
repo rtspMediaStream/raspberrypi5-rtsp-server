@@ -1,4 +1,4 @@
 <map id="RTPPacket" name="RTPPacket">
-<area shape="rect" id="node1" title="RTP 패킷 관리를 위한 클래스" alt="" coords="8,95,96,121"/>
-<area shape="rect" id="node2" href="$classRTPHeader.html" title="패킹 설정을 원래대로 복구" alt="" coords="5,5,99,32"/>
+<area shape="rect" id="node1" title="RTP 패킷 관리를 위한 클래스" alt="" coords="26,673,245,941"/>
+<area shape="rect" id="node2" href="$classRTPHeader.html" title="패킹 설정을 원래대로 복구" alt="" coords="5,5,265,611"/>
 </map>

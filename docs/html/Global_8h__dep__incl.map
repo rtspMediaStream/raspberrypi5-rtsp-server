@@ -1,7 +1,7 @@
 <map id="inc/Global.h" name="inc/Global.h">
 <area shape="rect" id="node1" title="RTSP 서버의 전역변수 및 전역함수를 관리하는 헤더" alt="" coords="771,5,869,32"/>
-<area shape="rect" id="node2" href="$AudioServer_2main_8cpp.html" title=" " alt="" coords="5,80,168,121"/>
-<area shape="rect" id="node3" href="$CameraServer_2main_8cpp.html" title=" " alt="" coords="192,80,368,121"/>
+<area shape="rect" id="node2" href="$AudioServer_2main_8cpp.html" title="RTSP 오디오 스트리밍 서버의 메인 파일" alt="" coords="5,80,168,121"/>
+<area shape="rect" id="node3" href="$CameraServer_2main_8cpp.html" title="RTSP 카메라 스트리밍 서버의 메인 파일" alt="" coords="192,80,368,121"/>
 <area shape="rect" id="node4" href="$ClientSession_8cpp.html" title="ClientSession 클래스의 구현부" alt="" coords="392,87,552,114"/>
 <area shape="rect" id="node5" href="$Global_8cpp.html" title="Global 헤더의 구현부" alt="" coords="576,87,691,114"/>
 <area shape="rect" id="node6" href="$MediaStreamHandler_8cpp.html" title="MediaStreamHandler 클래스의 구현부" alt="" coords="715,87,925,114"/>

@@ -1,5 +1,10 @@
 \hypertarget{CameraServer_2main_8cpp}{}\doxysection{example/\+Camera\+Server/main.cpp File Reference}
 \label{CameraServer_2main_8cpp}\index{example/CameraServer/main.cpp@{example/CameraServer/main.cpp}}
+
+
+RTSP 카메라 스트리밍 서버의 메인 파일  
+
+
 {\ttfamily \#include \char`\"{}RTSPServer.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Client\+Session.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Request\+Handler.\+h\char`\"{}}\newline
@@ -33,11 +38,11 @@ Include dependency graph for main.\+cpp\+:\nopagebreak
 \begin{DoxyCompactItemize}
 \item 
 static void \mbox{\hyperlink{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}{request\+Complete}} (Request $\ast$request)
-\item 
+\begin{DoxyCompactList}\small\item\em 카메라 frame을 처리하는 함수 \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{CameraServer_2main_8cpp_a6faad531a4d03098ea8c227e203ae97b}{camera\+Thread}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Camera 모듈에서 이미지를 처리하는 Thread. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 메인 함수 \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,6 +52,15 @@ static std\+::shared\+\_\+ptr$<$ libcamera\+::\+Camera $>$ \mbox{\hyperlink{Came
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+RTSP 카메라 스트리밍 서버의 메인 파일 
+
+FFmpeg Library를 이용한 카메라 스트리밍 서버의 구현부, FFmpeg으로 인코딩하여 RTSP로 스트리밍합니다.
+
+@organization rtsp\+Media\+Stream @repository \href{https://github.com/rtspMediaStream/raspberrypi5-rtsp-server}{\texttt{ https\+://github.\+com/rtsp\+Media\+Stream/raspberrypi5-\/rtsp-\/server}}
+
+Copyright (c) 2024 rtsp\+Media\+Stream This project is licensed under the MIT License -\/ see the LICENSE file for details 
+
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{CameraServer_2main_8cpp_a6faad531a4d03098ea8c227e203ae97b}\label{CameraServer_2main_8cpp_a6faad531a4d03098ea8c227e203ae97b}} 
 \index{main.cpp@{main.cpp}!cameraThread@{cameraThread}}
@@ -54,19 +68,52 @@ static std\+::shared\+\_\+ptr$<$ libcamera\+::\+Camera $>$ \mbox{\hyperlink{Came
 \doxysubsubsection{\texorpdfstring{cameraThread()}{cameraThread()}}
 {\footnotesize\ttfamily void camera\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-camera test\mbox{\Hypertarget{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+
+
+Camera 모듈에서 이미지를 처리하는 Thread. 
+
+스레드실행시 처리 작업을 수행합니다\+:
+\begin{DoxyEnumerate}
+\item Raspberry Pi5 의 모듈 카메라에 연결
+\item 카메라 캡처시 동작할 함수(request\+Complete) 설정
+\item Thread에서 캡처 처리 
+\end{DoxyEnumerate}\mbox{\Hypertarget{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{CameraServer_2main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
 \index{main.cpp@{main.cpp}!main@{main}}
 \index{main@{main}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{main()}{main()}}
 {\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}\label{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}} 
+
+
+메인 함수 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & 명령행 인자 개수 \\
+\hline
+{\em argv} & 명령행 인자 배열 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 프로그램 종료 코드 (0\+: 정상 종료)
+\end{DoxyReturn}
+RTSP 서버를 초기화하고 시작하는 주요 단계\+:
+\begin{DoxyEnumerate}
+\item RTSP 서버 프로토콜을 H264로 설정
+\item 초기화 이벤트 핸들러로 camera\+Thread 함수 등록
+\item 서버 스레드 시작
+\item 무한 루프로 서버 유지 
+\end{DoxyEnumerate}\mbox{\Hypertarget{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}\label{CameraServer_2main_8cpp_ab2a3ae816972c4eb85cce8fc66ce5d10}} 
 \index{main.cpp@{main.cpp}!requestComplete@{requestComplete}}
 \index{requestComplete@{requestComplete}!main.cpp@{main.cpp}}
 \doxysubsubsection{\texorpdfstring{requestComplete()}{requestComplete()}}
 {\footnotesize\ttfamily static void request\+Complete (\begin{DoxyParamCaption}\item[{Request $\ast$}]{request }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
+
+카메라 frame을 처리하는 함수 
+
+카메라 모듈의 frame\+Buffer에 접근해 yuv로 된 이미지를 가져와 mat형태로 변환하여 처리 
 
 \doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{CameraServer_2main_8cpp_aa7e1e05dad3ca1fabd2f1ac791074478}\label{CameraServer_2main_8cpp_aa7e1e05dad3ca1fabd2f1ac791074478}} 

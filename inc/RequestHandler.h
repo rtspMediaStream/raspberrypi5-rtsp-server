@@ -24,8 +24,8 @@ class MediaStreamHandler;
  * @brief RTSP 요청 처리 클래스
  * @details 클라이언트로부터 받은 RTSP 요청을 파싱하고 처리하며,
  *          적절한 응답(OPTIONS, DESCRIBE, SETUP, PLAY, PAUSE, TEARDOWN)을 생성하는 기능을 제공한다.
- * @see ClientSession
- * @see MediaStreamHandler
+ * @related MediaStreamHandler
+ * @related ClientSession
  */
 
 class RequestHandler {
@@ -53,9 +53,8 @@ public:
     void StartThread();
 
 private:
-    std::shared_ptr<ClientSession> session; ///< 클라이언트 세션 객체
-
-    MediaStreamHandler *mediaStreamHandler; ///< 미디어 스트림 핸들러 처리 객체
+    std::shared_ptr<ClientSession> session; ///< Related to @ref ClientSession
+    MediaStreamHandler *mediaStreamHandler; ///< Related to @ref MediaStreamHandler
 
     /**
      * @brief RTSP 메서드를 파싱하는 메서드

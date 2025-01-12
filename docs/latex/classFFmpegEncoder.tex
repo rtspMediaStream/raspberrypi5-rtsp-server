@@ -9,6 +9,16 @@ FFmpeg 인코딩 기능을 제공하는 클래스
 
 {\ttfamily \#include $<$FFmpeg\+Encoder.\+h$>$}
 
+
+
+Collaboration diagram for FFmpeg\+Encoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{classFFmpegEncoder__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,7 +26,7 @@ FFmpeg 인코딩 기능을 제공하는 클래스
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 생성자 \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classFFmpegEncoder_a1e6a41471db790fe8718beaf0f6ca9b9}{$\sim$\+FFmpeg\+Encoder}} ()
 \begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classFFmpegEncoder}{FFmpeg\+Encoder}} 소멸자 \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}{encode}} (const cv\+::\+Mat \&\mbox{\hyperlink{classFFmpegEncoder_abc26edfb75647d12d1ef4a58159c8dc7}{frame}}, double fps)
+void \mbox{\hyperlink{classFFmpegEncoder_a63501109eb977ad3fe9c7ebd3afd6839}{encode}} (const cv\+::\+Mat \&input\+Frame, double fps)
 \begin{DoxyCompactList}\small\item\em 카메라 모듈에서 프레임을 읽어옵니다. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
@@ -87,7 +97,7 @@ ffmpeg에 연결된 카메라모듈을 반환합니다.
 FFmpeg에 연결된 카메라모듈을 반환합니다. 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}\label{classFFmpegEncoder_aec19fe3899019f1625de69d22d011cdb}} 
+\mbox{\Hypertarget{classFFmpegEncoder_a63501109eb977ad3fe9c7ebd3afd6839}\label{classFFmpegEncoder_a63501109eb977ad3fe9c7ebd3afd6839}} 
 \index{FFmpegEncoder@{FFmpegEncoder}!encode@{encode}}
 \index{encode@{encode}!FFmpegEncoder@{FFmpegEncoder}}
 \doxysubsubsection{\texorpdfstring{encode()}{encode()}}
@@ -99,7 +109,7 @@ FFmpeg에 연결된 카메라모듈을 반환합니다.
 
 
 \begin{DoxyParams}{Parameters}
-{\em frame} & YUVformat형태의 프레임 \\
+{\em input\+Frame} & YUVformat형태의 프레임 \\
 \hline
 {\em fps} & 카메라 모듈에 설정된 frame per seconds\\
 \hline

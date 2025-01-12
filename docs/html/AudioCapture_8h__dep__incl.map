@@ -1,5 +1,5 @@
 <map id="example/AudioServer/AudioCapture.h" name="example/AudioServer/AudioCapture.h">
 <area shape="rect" id="node1" title="오디오 스트림 캡처 및 관리 클래스 헤더" alt="" coords="99,5,261,47"/>
 <area shape="rect" id="node2" href="$AudioCapture_8cpp.html" title="AudioCapture 클래스의 구현부" alt="" coords="5,95,168,136"/>
-<area shape="rect" id="node3" href="$AudioServer_2main_8cpp.html" title=" " alt="" coords="192,95,355,136"/>
+<area shape="rect" id="node3" href="$AudioServer_2main_8cpp.html" title="RTSP 오디오 스트리밍 서버의 메인 파일" alt="" coords="192,95,355,136"/>
 </map>

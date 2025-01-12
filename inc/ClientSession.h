@@ -80,13 +80,13 @@ public:
 
     /**
      * @brief RTP 포트 번호를 설정하는 메서드
-     * @param rtpPort를 설정할 RTP 포트 번호
+     * @param rtpPort 설정할 RTP 포트 번호
      */
     inline void SetRTPPort(int rtpPort) { this->rtpPort = rtpPort; };
 
     /**
      * @brief RTCP 포트 번호를 설정하는 메서드
-     * @param rtcpPort를 설정할 RTCP 포트 번호
+     * @param rtcpPort 설정할 RTCP 포트 번호
      */
     inline void SetRTCPPort(int rtcpPort) { this->rtcpPort = rtcpPort; };
 

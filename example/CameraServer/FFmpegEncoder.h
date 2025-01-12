@@ -22,11 +22,11 @@ public:
     ~FFmpegEncoder();
     /**
      * @brief 카메라 모듈에서 프레임을 읽어옵니다.
-     * @param frame YUVformat형태의 프레임
+     * @param inputFrame YUVformat형태의 프레임
      * @param fps 카메라 모듈에 설정된 frame per seconds
      * @details 카메라 모듈에서 YUVformat의 프레임을 읽어와 DataCapture로 프레임을 처리합니다.
      */
-    void encode(const cv::Mat& frame, double fps);
+    void encode(const cv::Mat& inputFrame, double fps);
 
 private:
     /**

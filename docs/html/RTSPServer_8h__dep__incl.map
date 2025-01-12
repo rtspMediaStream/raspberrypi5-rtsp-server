@@ -1,8 +1,8 @@
 <map id="inc/RTSPServer.h" name="inc/RTSPServer.h">
 <area shape="rect" id="node1" title="RTSP 서버 메인 클래스 헤더" alt="" coords="497,5,628,32"/>
-<area shape="rect" id="node2" href="$AudioServer_2main_8cpp.html" title=" " alt="" coords="5,80,168,121"/>
-<area shape="rect" id="node3" href="$CameraServer_2main_8cpp.html" title=" " alt="" coords="192,80,368,121"/>
-<area shape="rect" id="node4" href="$VideoServer_2main_8cpp.html" title=" " alt="" coords="392,80,555,121"/>
+<area shape="rect" id="node2" href="$AudioServer_2main_8cpp.html" title="RTSP 오디오 스트리밍 서버의 메인 파일" alt="" coords="5,80,168,121"/>
+<area shape="rect" id="node3" href="$CameraServer_2main_8cpp.html" title="RTSP 카메라 스트리밍 서버의 메인 파일" alt="" coords="192,80,368,121"/>
+<area shape="rect" id="node4" href="$VideoServer_2main_8cpp.html" title="RTSP 비디오 파일 스트리밍 서버의 메인 파일" alt="" coords="392,80,555,121"/>
 <area shape="rect" id="node5" href="$RTCPPacket_8hpp.html" title="RTCP 패킷 데이터 및 전송 처리 클래스 헤더" alt="" coords="579,87,725,114"/>
 <area shape="rect" id="node8" href="$RTSPServer_8cpp.html" title="RTSPServer 클래스의 구현부" alt="" coords="750,87,895,114"/>
 <area shape="rect" id="node9" href="$RequestHandler_8cpp.html" title="RequestHandler 클래스의 구현부" alt="" coords="919,87,1094,114"/>

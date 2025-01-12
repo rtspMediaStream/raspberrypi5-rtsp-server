@@ -1,6 +1,6 @@
 <map id="ClientSession" name="ClientSession">
-<area shape="rect" id="node1" title="RTSP 클라이언트 세션을 관리하는 클래스" alt="" coords="30,273,141,300"/>
-<area shape="rect" id="node2" href="$classRequestHandler.html" title="RTSP 요청 처리 클래스" alt="" coords="22,184,149,211"/>
-<area shape="rect" id="node3" href="$classMediaStreamHandler.html" title="미디어 스트리밍 처리를 담당하는 클래스" alt="" coords="5,95,165,121"/>
-<area shape="rect" id="node4" href="$classUDPHandler.html" title="RTP/RTCP를 위한 UDP 소켓 관리 클래스" alt="" coords="35,5,136,32"/>
+<area shape="rect" id="node1" title="RTSP 클라이언트 세션을 관리하는 클래스" alt="" coords="39,1217,218,1544"/>
+<area shape="rect" id="node2" href="$classRequestHandler.html" title="RTSP 요청 처리 클래스" alt="" coords="11,667,246,1155"/>
+<area shape="rect" id="node3" href="$classMediaStreamHandler.html" title="미디어 스트리밍 처리를 담당하는 클래스" alt="" coords="5,336,252,604"/>
+<area shape="rect" id="node4" href="$classUDPHandler.html" title="RTP/RTCP를 위한 UDP 소켓 관리 클래스" alt="" coords="13,5,244,273"/>
 </map>
