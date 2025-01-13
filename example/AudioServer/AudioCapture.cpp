@@ -50,10 +50,6 @@ AudioCapture::AudioCapture()
 }
 
 /**
-* @brief PCM 디바이스에서 오디오 데이터를 읽는 메서드
-* @param buffer 오디오 데이터를 저장할 버퍼
-* @param frames 읽을 프레임 수
-* @return int 성공적으로 읽은 프레임 수 또는 오류 코드
 * @details
 *   - PCM 디바이스로부터 지정된 프레임 수만큼 오디오 데이터를 읽음
 *   - 오버런 발생 시 자동으로 복구 시도
