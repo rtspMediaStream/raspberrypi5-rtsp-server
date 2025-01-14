@@ -71,10 +71,10 @@ public:
 
     /** 
      * @brief RTSP 요청 메시지를 수신하는 메서드
-     * @param sessionId 클라이언트 세션 ID
+     * @param clientSocket 클라이언트 소켓 디스크립터
      * @return std::string 수신된 RTSP 요청 메시지
      */
-    std::string ReceiveRTSPRequest(int sessionId);
+    std::string ReceiveRTSPRequest(int clientSocket);
 
     /**
      * @brief RTSP 응답을 전송하는 메서드
