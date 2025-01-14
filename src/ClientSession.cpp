@@ -15,9 +15,6 @@
 #include <thread>
 
 /**
- * @brief ClientSession 클래스의 생성자
- * @param tcpSocket 클라이언트와 연결된 TCP 소켓 디스크립터
- * @param ip 클라이언트의 IP 주소
  * @details
  *   - 보안과 고유한 세션 ID를 위해 랜덤하게 생성
  *   - SDP 규격에 따라 세션 ID와 세션 버전에 동일한 값을 사용
