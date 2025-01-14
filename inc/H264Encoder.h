@@ -74,11 +74,11 @@ public:
     /**
      * @brief H264 start code 여부를 확인하는 정적 메서드
      * @param _buffer 검사할 버퍼
-     * @param _bufLen 버퍼의 길이
+     * @param buffer_len 버퍼의 길이
      * @param start_code_type start code 타입 (3 또는 4 바이트)
      * @return bool start code 여부
      */
-    static bool is_start_code(const uint8_t *_buffer, int64_t _bufLen, uint8_t start_code_type);
+    static bool is_start_code(const uint8_t *_buffer, int64_t buffer_len, uint8_t start_code_type);
     
     /**
      * @brief 다음 H264 프레임을 가져오는 메서드
