@@ -48,10 +48,10 @@ private:
     /**
      * @brief 다음 start code의 위치를 찾는 메서드
      * @param _buffer start code를 찾을 버퍼
-     * @param _bufLen 버퍼의 길이
+     * @param buffer_len 버퍼의 길이
      * @return const uint8_t* 다음 start code의 위치를 반환
      */
-    static const uint8_t *find_next_start_code(const uint8_t *_buffer, const int64_t _bufLen);
+    static const uint8_t *find_next_start_code(const uint8_t *_buffer, const int64_t buffer_len);
 
     uint8_t *ptr_mapped_file_cur = nullptr;     ///< 현재 매핑된 파일 위치 포인터
     uint8_t *ptr_mapped_file_start = nullptr;   ///< 매핑된 파일 시작 포인터 
