@@ -31,16 +31,11 @@
 #include <algorithm>
 
 /**
- * @brief MediaStreamHandler 생성자
  * @details 스트림 상태를 초기화 상태로 설정
  */
 MediaStreamHandler::MediaStreamHandler(): streamState(MediaStreamState::eMediaStream_Init){}
 
 /**
- * @brief RTP 패킷을 프래그먼트화하여 전송하는 메서드
- * @param payload 전송할 페이로드 데이터
- * @param payloadSize 전송할 페이로드 데이터 크기
- * @param rtpPacket RTP 패킷 객체
  * @details
  *   - 페이로드 크기에 따라 단일 패킷 또는 분할 패킷으로 전송
  *   - FU-A 형식으로 NAL 단위 분할 처리
@@ -105,8 +100,6 @@ void MediaStreamHandler::SendFragmentedRTPPackets(unsigned char* payload, size_t
 }
 
 /**
- * @brief RTCP 패킷을 전송하는 메서드
- * @param rtcpPacket 전송할 RTCP 패킷 객체
  * @details RTCP 패킷을 생성하고 전송
  */
 void MediaStreamHandler::SendRTCPPacket(RTCPPacket& rtcpPacket){
@@ -115,7 +108,6 @@ void MediaStreamHandler::SendRTCPPacket(RTCPPacket& rtcpPacket){
 }
 
 /**
- * @brief 미디어 스트림을 처리하는 메인 메서드
  * @details
  *   - 스트림 상태에 따라 미디어 데이터 처리
  *   - DataCapture로부터 프레임 데이터 획득
@@ -179,8 +171,6 @@ void MediaStreamHandler::HandleMediaStream() {
 }
 
 /**
- * @brief 스트리밍 명령을 설정하는 메서드
- * @param cmd 설정할 명령 ("PLAY", "PAUSE", "TEARDOWN")
  * @details
  *   - 스트림 상태를 변경하고 조건 변수를 통해 스레드 제어
  *   - 뮤텍스를 사용하여 스레드 안전성 보장

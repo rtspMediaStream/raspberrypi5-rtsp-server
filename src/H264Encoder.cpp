@@ -26,8 +26,6 @@
 
 
 /**
- * @brief H264Encoder 클래스 생성자
- * @param filename 처리할 H264 비디오 파일 경로
  * @details 
  *   - 파일을 읽기 전용으로 열기
  *   - 파일 크기 확인
@@ -50,7 +48,6 @@ H264Encoder::H264Encoder(const char *filename)
 }
 
 /**
- * @brief H264Encoder 클래스 소멸자
  * @details 
  *   - 매핑된 메모리 해제
  *   - 파일 디스크립터 닫기
@@ -63,11 +60,6 @@ H264Encoder::~H264Encoder()
 }
 
 /**
- * @brief H264 start code 여부를 확인하는 정적 메서드
- * @param _buffer 검사할 버퍼
- * @param buffer_len 버퍼의 길이
- * @param start_code_type start code 타입 (3 또는 4 바이트)
- * @return bool start code 발견 여부
  * @details H264 start code는 다음 두 가지 형태 중 하나:
  *   - 3바이트: 0x000001
  *   - 4바이트: 0x00000001
@@ -91,10 +83,6 @@ bool H264Encoder::is_start_code(const uint8_t *_buffer, const int64_t buffer_len
 }
 
 /**
- * @brief 다음 start code의 위치를 찾는 정적 메서드
- * @param _buffer 검색할 버퍼의 시작 포인터
- * @param buffer_len 버퍼의 길이
- * @return const uint8_t* 다음 start code의 위치를 가리키는 포인터 (없으면 nullptr)
  * @details 버퍼 내에서 3바이트 또는 4바이트 start code를 순차적으로 검색
  */
 const uint8_t *H264Encoder::find_next_start_code(const uint8_t *_buffer, const int64_t buffer_len)
@@ -109,8 +97,6 @@ const uint8_t *H264Encoder::find_next_start_code(const uint8_t *_buffer, const i
 }
 
 /**
- * @brief 다음 H264 프레임을 가져오는 메서드
- * @return std::pair<const uint8_t *, int64_t> 프레임 데이터 포인터와 크기의 쌍
  * @details 파일에서 다음 NAL 유닛(Network Abstraction Layer)을 찾아 반환
  *   - 정상적인 경우: {프레임 포인터, 프레임 크기} 반환
  *   - 파일 끝: {nullptr, 0} 반환
