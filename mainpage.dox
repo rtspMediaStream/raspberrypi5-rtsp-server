@@ -1,37 +1,107 @@
 /**
- * @mainpage RTSP Media Server Documentation
+ * @mainpage RTSP 미디어 서버 문서
  *
  * @section intro 소개
  *
- * RTSP 프로토콜을 기반으로 한 미디어 스트리밍 서버 프로젝트입니다.
+ * Raspberry Pi 5를 위한 RTSP 프로토콜 기반 미디어 스트리밍 서버 프로젝트입니다.
+ * H.264 비디오와 Opus 오디오 스트리밍을 지원하며, 실시간 미디어 전송에 최적화되어 있습니다.
  * 
  * @section features 주요 기능
  *
- * @subsection features_list 기능 목록
  * - RTSP 프로토콜 기반 미디어 스트리밍
  * - H.264 비디오 스트리밍 지원
  * - Opus 오디오 스트리밍 지원
  * - 멀티클라이언트 세션 관리
  * - 실시간 미디어 프레임 캡처 및 버퍼링
  *
- * @section architecture 아키텍처
+ * @section architecture 시스템 구조
  *
- * @subsection components 주요 컴포넌트
- * - RTSPServer: 전체 서버 관리
- * - DataCapture: 미디어 프레임 캡처 및 버퍼 관리
- * - MediaStreamHandler: 미디어 스트리밍 처리
- * - ClientSession: 클라이언트 세션 관리
+ * @subsection arch_overview 전체 구조
+ * 시스템은 크게 네 개의 계층으로 구성됩니다:
+ * - 프로토콜 계층: RTSP 프로토콜 처리
+ * - 세션 계층: 클라이언트 연결 관리
+ * - 미디어 계층: 스트리밍 데이터 처리
+ * - 네트워크 계층: RTP/RTCP 패킷 전송
+ *
+ * @subsection core_components 핵심 컴포넌트
+ * 
+ * - RTSPServer
+ *   - 전체 서버 시스템 관리
+ *   - 클라이언트 연결 수락 및 세션 생성
+ *   - 싱글톤 패턴으로 구현
+ *
+ * - ClientSession
+ *   - 개별 클라이언트 연결 관리
+ *   - 세션 ID 및 상태 관리
+ *   - RTP/RTCP 포트 관리
+ *
+ * - RequestHandler
+ *   - RTSP 프로토콜 명령어 처리 (DESCRIBE, SETUP, PLAY, PAUSE, TEARDOWN)
+ *   - SDP(Session Description Protocol) 생성
+ *   - 스트리밍 세션 제어
+ *
+ * - MediaStreamHandler
+ *   - 미디어 스트림 처리 및 전송
+ *   - RTP 패킷화 및 전송
+ *   - RTCP 피드백 처리
+ *
+ * - DataCapture
+ *   - 미디어 프레임 캡처
+ *   - 순환 큐 기반 버퍼 관리
+ *   - 스레드 안전한 데이터 접근
+ *
+ * @subsection network_components 네트워크 컴포넌트
+ * 
+ * - TCPHandler
+ *   - RTSP 제어 메시지 처리
+ *   - 클라이언트 연결 관리
+ *   - 소켓 통신 처리
+ *
+ * - UDPHandler
+ *   - RTP/RTCP 패킷 전송
+ *   - 미디어 데이터 스트리밍
+ *   - 네트워크 최적화
+ *
+ * @subsection media_components 미디어 처리 컴포넌트
+ * 
+ * - H264Encoder
+ *   - H.264 비디오 프레임 처리
+ *   - NAL 유닛 파싱
+ *   - 메모리 매핑 기반 파일 처리
+ *
+ * - OpusEncoder
+ *   - Opus 오디오 인코딩
+ *   - PCM 데이터 처리
+ *   - 실시간 오디오 스트리밍
+ *
+ * @subsection protocol_components 프로토콜 컴포넌트
+ * 
+ * - RTPPacket
+ *   - RTP 패킷 생성 및 관리
+ *   - 미디어 데이터 패킷화
+ *   - 시퀀스 번호 관리
+ *
+ * - RTCPPacket
+ *   - RTCP 제어 패킷 처리
+ *   - QoS 모니터링
+ *   - 전송 통계 관리
+ *
+ * @section server_types 서버 종류
+ * 
+ * - VideoServer: H.264 비디오 파일 스트리밍 서버
+ * - CameraServer: 라즈베리파이 카메라 모듈 스트리밍 서버
+ * - AudioServer: ALSA 기반 오디오 스트리밍 서버
  *
  * @section build 빌드 방법
  *
- * @verbatim
+ * @code{.sh}
  * mkdir build
  * cd build
  * cmake ..
  * make
- * @endverbatim
+ * @endcode
  *
- * @section examples 예제
+ * @section examples 사용 예제
  *
  * @subsection example_servers 서버 예제
  * - AudioServer: 오디오 스트리밍 서버 예제
